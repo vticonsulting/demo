@@ -12,6 +12,6 @@ server.use(jsonServer.defaults())
 
 // Returns an Express router
 var router = jsonServer.router('db.json')
-server.use(router)
+server.use('/api', router)
 
 server.listen(port)
