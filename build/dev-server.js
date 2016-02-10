@@ -1,5 +1,5 @@
 var jsonServer = require('json-server')
-var port = process.env.PORT || 8080
+var port = process.env.PORT || 5678
 
 // Returns an Express server
 var server = jsonServer.create()
