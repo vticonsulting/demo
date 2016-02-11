@@ -1,0 +1,11 @@
+/* Videa Customization */
+.#{$css-prefix}button--secondary {
+  @include button;
+  @include button-secondary;
+
+  &[disabled] {
+    background: $color-background-button-secondary-disabled;
+    border-color: $color-border-button-secondary-disabled;
+    color: $color-text-button-secondary-disabled;
+  }
+}

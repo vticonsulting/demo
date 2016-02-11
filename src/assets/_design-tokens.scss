@@ -1,0 +1,57 @@
+// Overrides design system defaults
+
+$color-background-button-brand-active: rgb(72, 25, 69);
+$color-background-button-brand-disabled: rgb(224, 229, 238) !default;
+$color-background-button-brand-hover: rgb(87, 31, 83);
+$color-background-button-brand: rgb(105, 37, 101);
+$color-background-button-secondary-active: rgb(225, 109, 10);
+$color-background-button-secondary-disabled: rgb(224, 229, 238);
+$color-background-button-secondary-hover: rgb(244, 118, 11);
+$color-background-button-secondary: rgb(245, 130, 32);
+
+$color-border-brand: rgb(105, 37, 101);
+$color-border-button-brand-disabled: rgba(0, 0, 0, 0);
+$color-border-button-brand: rgb(105, 37, 101);
+$color-border-button-default: rgb(216, 221, 230);
+$color-border-button-inverse-disabled: rgba(255, 255, 255, 0.15) !default;
+$color-border-button-secondary-disabled: rgba(0, 0, 0, 0);
+$color-border-button-secondary: rgb(245, 130, 32);
+
+$color-text-button-brand-active: rgb(255, 255, 255) !default;
+$color-text-button-brand-disabled: rgb(255, 255, 255) !default;
+$color-text-button-brand-hover: rgb(255, 255, 255) !default;
+$color-text-button-brand: rgb(255, 255, 255) !default;
+
+$color-text-button-default-active: rgb(0, 112, 210) !default;
+$color-text-button-default-disabled: rgb(216, 221, 230) !default;
+$color-text-button-default-hint: rgb(159, 170, 181) !default;
+$color-text-button-default-hover: rgb(0, 112, 210) !default;
+$color-text-button-default: rgb(0, 112, 210) !default;
+
+$color-text-button-inverse-disabled: rgba(255, 255, 255, 0.15) !default;
+$color-text-button-inverse: rgb(224, 229, 238) !default;
+
+$color-text-button-secondary-active: rgb(0, 112, 210) !default;
+$color-text-button-secondary-disabled: rgb(216, 221, 230) !default;
+$color-text-button-secondary-hint: rgb(159, 170, 181) !default;
+$color-text-button-secondary-hover: rgb(252, 252, 252);
+$color-text-button-secondary: rgb(255, 255, 255);
+
+$color-text-link-hover: rgb(0, 95, 178) !default;
+$color-text-link: rgb(105, 37, 101);
+
+$font-family-body: 'Roboto-Regular', Arial, sans-serif;
+$font-family-light: 'Roboto-Light', Arial, sans-serif;
+$font-family-strong: 'Roboto-Bold', Arial, sans-serif;
+$font-family: 'Roboto', Arial, sans-serif;
+
+$font-size-large: 1.25rem !default;
+$font-size-medium: 1rem !default;
+$font-size-small: 0.875rem !default;
+$font-size-x-large: 1.5rem !default;
+$font-size-x-small: 0.625rem !default;
+$font-size-xx-large: 2rem !default;
+
+$font-weight-bold: 700 !default;
+$font-weight-light: 300 !default;
+$font-weight-regular: 400 !default;
