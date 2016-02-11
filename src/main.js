@@ -12,6 +12,10 @@ export var Router = new VueRouter()
 Router.map(routes.routes)
 Router.redirect(routes.redirects)
 
+Router.beforeEach(function () {
+  window.scrollTo(0, 0)
+})
+
 window.Vue = Vue
 window.Router = Router
 
