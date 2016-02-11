@@ -1,6 +1,5 @@
 <template lang="jade">
   .view
-    img.logo(src="../assets/svg/videa-logo.svg")
     hello
 </template>
 

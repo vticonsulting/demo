@@ -1,3 +1,18 @@
+// container
+
+$container-min-width: 1024px !default;
+$container-max-width: 1440px !default;
+
+// spacing
+
+$spacing-xxx-small: 0.125rem !default;
+$spacing-xx-small: 0.25rem !default;
+$spacing-x-small: 0.5rem !default;
+$spacing-small: 0.75rem !default;
+$spacing-medium: 1rem !default;
+$spacing-large: 1.5rem !default;
+$spacing-x-large: 2rem !default;
+
 // Overrides design system defaults
 
 $color-background-button-brand-active: rgb(72, 25, 69);
@@ -55,3 +70,56 @@ $font-size-xx-large: 2rem !default;
 $font-weight-bold: 700 !default;
 $font-weight-light: 300 !default;
 $font-weight-regular: 400 !default;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// primary
+$aqua: #83c8bc;
+$aqua: rgba(131, 200, 188, 1);
+$aqua: hsla(170, 39%, 65%, 1);
+$teal: #64b1bc;
+$teal: rgba(100, 177, 188, 1);
+$teal: hsla(188, 40%, 56%, 1);
+$gray-blue: #4296b4;
+$gray-blue: rgba(66, 150, 180, 1);
+$gray-blue: hsla(196, 46%, 48%, 1);
+$navy-blue: #276092;
+$navy-blue: rgba(39, 96, 146, 1);
+$navy-blue: hsla(208, 58%, 36%, 1);
+$dark-blue: #1d4f90;
+$dark-blue: rgba(29, 79, 144, 1);
+$dark-blue: hsla(214, 66%, 34%, 1);
+
+// secondary
+$beige: #fdecbb;
+$beige: rgba(253, 236, 187, 1);
+$beige: hsla(45, 94%, 86%, 1);
+$light-gray: #e0e4e5;
+$light-gray: rgba(224, 228, 229, 1);
+$light-gray: hsla(192, 9%, 89%, 1);
+$dark-gray: #52545d;
+$dark-gray: rgba(82, 84, 93, 1);
+$dark-gray: hsla(229, 6%, 34%, 1);
+$orange: #f58220;
+$orange: rgba(245, 130, 32, 1);
+$orange: hsla(28, 91%, 54%, 1);
+$red: #c5203e;
+$red: rgba(197, 32, 62, 1);
+$red: hsla(349, 72%, 45%, 1);
+$purple: #692565;
+$purple: rgba(105, 37, 101, 1);
+$purple: hsla(304, 48%, 28%, 1);
+$white: #fff;
+$black: #000;
+
+$vui-color-brand-1: $aqua;
+$vui-color-brand-2: $teal;
+$vui-color-brand-3: $gray-blue;
+$vui-color-brand-4: $navy-blue;
+$vui-color-brand-5: $dark-blue;
+$vui-color-brand-6: $beige;
+$vui-color-brand-7: $light-gray;
+$vui-color-brand-8: $dark-gray;
+$vui-color-brand-9: $orange;
+$vui-color-brand-10: $red;
+$vui-color-brand-11: $purple;
