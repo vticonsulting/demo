@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "rimraf public && webpack --progress --hide-modules --config build/webpack.prod.conf.js",
+    "postbuild": " cp -R src/assets/vendor/design-system/assets/. public/assets",
     "test": "karma start build/karma.conf.js --single-run"
   },
   "engines": {
@@ -67,6 +68,7 @@
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
-    "webpack-hot-middleware": "^2.6.0"
+    "webpack-hot-middleware": "^2.6.0",
+    "webpack-svgstore-plugin": "^2.1.2"
   }
 }

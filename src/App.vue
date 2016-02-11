@@ -1,19 +1,29 @@
 <template lang="jade">
   #app
     site-header
-    main.vui-main
+    site-navigation
+    main.vui-main(:class="{ 'vui-main--login': sharedState.activeApp == 'login' }")
       router-view
     site-footer
 </template>
 
 <script>
+  import store from './store'
   import SiteHeader from './components/SiteHeader.vue'
+  import SiteNavigation from './components/SiteNavigation.vue'
   import SiteFooter from './components/SiteFooter.vue'
 
   export default {
     components: {
       SiteHeader,
+      SiteNavigation,
       SiteFooter
+    },
+
+    data () {
+      return {
+        sharedState: store.state
+      }
     }
   }
 </script>
@@ -46,7 +56,6 @@
     max-width $container-max-width
 
   .vui-main
-    margin-bottom $spacing-x-large
     padding-left $spacing-x-large
     padding-right $spacing-x-large
     padding-left  $spacing-xxx-large
@@ -54,4 +63,12 @@
     min-width $container-min-width
     max-width $container-max-width
     flex-grow 1
+
+  .vui-input,
+  .vui-select,
+  .vui-button
+    border-radius $border-radius-small
+
+  .vui-view
+    margin-bottom $spacing-x-large
 </style>

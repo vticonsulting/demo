@@ -1,3 +1,11 @@
+// border-radius
+
+$border-radius-small: .125rem;
+$border-radius-medium: .25rem;
+$border-radius-large: .5rem;
+$border-radius-pill: 15rem;
+$border-radius-circle: 50%;
+
 // container
 
 $container-min-width: 1024px !default;
@@ -15,7 +23,7 @@ $spacing-x-large: 2rem !default;
 $spacing-xx-large: 3rem !default;
 $spacing-xxx-large: 4.5rem !default;
 
-// Overrides design system defaults
+////////////////// Overrides design system defaults
 
 $color-background-button-brand-active: rgb(72, 25, 69);
 $color-background-button-brand-disabled: rgb(224, 229, 238) !default;

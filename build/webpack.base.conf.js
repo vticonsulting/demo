@@ -1,4 +1,5 @@
 var path = require('path')
+var SvgStore = require('webpack-svgstore-plugin')
 
 module.exports = {
   entry: {
@@ -37,7 +38,7 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'url',
         query: {
-          limit: 10000,
+          limit: 100000,
           name: '[name].[ext]?[hash:7]'
         }
       }
@@ -50,5 +51,17 @@ module.exports = {
   },
   eslint: {
     formatter: require('eslint-friendly-formatter')
-  }
+  },
+  plugins: [
+    new SvgStore(path.join('./src/assets', 'svg', '**/*.svg'), '', {
+      name: '[hash].sprite.svg',
+      chunk: 'app',
+      // baseUrl: '//path-to-cdn:port/',
+      // prefix: 'myprefix-',
+      svgoOptions: {
+            // options for svgo, optional
+            removeUselessStrokeAndFill: true
+      }
+    })
+  ]
 }
