@@ -1,22 +1,20 @@
-<template>
-  <div id="app">
-    <img class="logo" src="./assets/svg/videa-logo.svg">
-    <hello></hello>
-  </div>
+<template lang="jade">
+  #app
+    img.logo(src="./assets/svg/videa-logo.svg")
+    hello
 </template>
 
 <script>
-  import Hello from './components/Hello'
+  import Hello from './components/Hello.vue'
 
   export default {
     components: {
       Hello
     }
   }
-  </script>
+</script>
 
-  <style>
-  body {
-    font-family: Helvetica, sans-serif;
-  }
+<style lang="stylus">
+  body
+    font-family: Helvetica, sans-serif
 </style>
