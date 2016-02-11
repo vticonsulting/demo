@@ -64,6 +64,16 @@
     max-width $container-max-width
     flex-grow 1
 
+    &--login
+      background-image url('./assets/img/login-background--placeholder.png')
+      background-repeat no-repeat
+      background-attachment local
+      background-position 0 60%
+      background-size cover
+      margin-bottom 0
+      max-width none
+
+
   .vui-input,
   .vui-select,
   .vui-button
