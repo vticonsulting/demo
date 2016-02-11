@@ -27,5 +27,4 @@
         min-width $container-min-width
         max-width $container-max-width
         max-height 64px
-
 </style>
