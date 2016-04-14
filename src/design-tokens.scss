@@ -1,0 +1,105 @@
+// Overrides design system defaults
+
+$color-background-button-brand-active       : rgb(72, 25, 69);
+$color-background-button-brand-disabled     : rgb(224, 229, 238);
+$color-background-button-brand-hover        : rgb(87, 31, 83);
+$color-background-button-brand              : rgb(105, 37, 101);
+$color-background-button-secondary-active   : rgb(225, 109, 10);
+$color-background-button-secondary-disabled : rgb(224, 229, 238);
+$color-background-button-secondary-hover    : rgb(244, 118, 11);
+$color-background-button-secondary          : rgb(245, 130, 32);
+$color-background-secondary                 : hsla(28, 91%, 54%, 1);
+$color-border-secondary                     : hsla(28, 91%, 54%, 1);
+$color-background-secondary-hover           : rgb(244, 118, 11);
+$color-background-button-secondary-active   : rgb(225, 109, 10);
+$color-background-toast-success             : rgb(4, 132, 75);
+$color-background-toast-error               : rgb(194, 57, 52);
+
+$color-border-secondary-active              : rgb(225, 109, 10);
+$color-border-brand                         : rgb(105, 37, 101);
+$color-border-button-brand-disabled         : rgba(0, 0, 0, 0);
+$color-border-button-brand                  : rgb(105, 37, 101);
+$color-border-button-default                : rgb(216, 221, 230);
+$color-border-button-inverse-disabled       : rgba(255, 255, 255, 0.15);
+$color-border-button-secondary-disabled     : rgba(0, 0, 0, 0);
+$color-border-button-secondary              : rgb(245, 130, 32);
+$color-text-button-brand-active             : rgb(255, 255, 255);
+$color-text-button-brand-disabled           : rgb(255, 255, 255);
+$color-text-button-brand-hover              : rgb(255, 255, 255);
+$color-text-button-brand                    : rgb(255, 255, 255);
+$color-text-button-default-active           : rgb(0, 112, 210);
+$color-text-button-default-disabled         : rgb(216, 221, 230);
+$color-text-button-default-hint             : rgb(159, 170, 181);
+$color-text-button-default-hover            : rgb(0, 112, 210);
+$color-text-button-default                  : rgb(0, 112, 210);
+$color-text-button-inverse-disabled         : rgba(255, 255, 255, 0.15);
+$color-text-button-inverse                  : rgb(224, 229, 238);
+$color-text-button-secondary-active         : rgb(0, 112, 210);
+$color-text-button-secondary-disabled       : rgb(216, 221, 230);
+$color-text-button-secondary-hint           : rgb(159, 170, 181);
+$color-text-button-secondary-hover          : rgb(252, 252, 252);
+$color-text-button-secondary                : rgb(255, 255, 255);
+$color-text-link-hover                      : rgb(0, 95, 178);
+$color-text-link                            : rgb(105, 37, 101);
+
+$vui-color-link                             : hsla(196, 99%, 32%, 1); // #0178a3
+
+$color-brand                                : $color-border-brand;
+$color-border-input-active                  : $color-border-brand;
+$shadow-button-focus                        : $color-border-brand;
+// $color-background-input                     : $color-border-brand;
+
+
+$font-family-body                           : 'Roboto-Regular', Arial, sans-serif;
+$font-family-light                          : 'Roboto-Light', Arial, sans-serif;
+$font-family-strong                         : 'Roboto-Bold', Arial, sans-serif;
+$font-family                                : 'Roboto', Arial, sans-serif;
+$font-size-large                            : 1.25rem;
+$font-size-medium                           : 1rem;
+$font-size-small                            : 0.875rem;
+$font-size-x-large                          : 1.5rem;
+$font-size-x-small                          : 0.625rem;
+$font-size-xx-large                         : 2rem;
+$font-weight-bold                           : 700;
+$font-weight-light                          : 300;
+$font-weight-regular                        : 400;
+
+// // Grayscale
+// $color-background-button-brand-active       : grayscale(rgb(72, 25, 69));
+// $color-background-button-brand-disabled     : grayscale(rgb(224, 229, 238));
+// $color-background-button-brand-hover        : grayscale(rgb(87, 31, 83));
+// $color-background-button-brand              : grayscale(rgb(105, 37, 101));
+// $color-background-button-secondary-active   : grayscale(rgb(225, 109, 10));
+// $color-background-button-secondary-disabled : grayscale(rgb(224, 229, 238));
+// $color-background-button-secondary-hover    : grayscale(rgb(244, 118, 11));
+// $color-background-button-secondary          : grayscale(rgb(245, 130, 32));
+// $color-background-secondary                 : grayscale(hsla(28, 91%, 54%, 1));
+// $color-border-secondary                     : grayscale(hsla(28, 91%, 54%, 1));
+// $color-background-secondary-hover           : grayscale(rgb(244, 118, 11));
+// $color-background-button-secondary-active   : grayscale(rgb(225, 109, 10));
+// $color-border-secondary-active              : grayscale(rgb(225, 109, 10));
+// $color-border-brand                         : grayscale(rgb(105, 37, 101));
+// $color-border-button-brand-disabled         : grayscale(rgba(0, 0, 0, 0));
+// $color-border-button-brand                  : grayscale(rgb(105, 37, 101));
+// $color-border-button-default                : grayscale(rgb(216, 221, 230));
+// $color-border-button-inverse-disabled       : grayscale(rgba(255, 255, 255, 0.15));
+// $color-border-button-secondary-disabled     : grayscale(rgba(0, 0, 0, 0));
+// $color-border-button-secondary              : grayscale(rgb(245, 130, 32));
+// $color-text-button-brand-active             : grayscale(rgb(255, 255, 255));
+// $color-text-button-brand-disabled           : grayscale(rgb(255, 255, 255));
+// $color-text-button-brand-hover              : grayscale(rgb(255, 255, 255));
+// $color-text-button-brand                    : grayscale(rgb(255, 255, 255));
+// $color-text-button-default-active           : grayscale(rgb(0, 112, 210));
+// $color-text-button-default-disabled         : grayscale(rgb(216, 221, 230));
+// $color-text-button-default-hint             : grayscale(rgb(159, 170, 181));
+// $color-text-button-default-hover            : grayscale(rgb(0, 112, 210));
+// $color-text-button-default                  : grayscale(rgb(0, 112, 210));
+// $color-text-button-inverse-disabled         : grayscale(rgba(255, 255, 255, 0.15));
+// $color-text-button-inverse                  : grayscale(rgb(224, 229, 238));
+// $color-text-button-secondary-active         : grayscale(rgb(0, 112, 210));
+// $color-text-button-secondary-disabled       : grayscale(rgb(216, 221, 230));
+// $color-text-button-secondary-hint           : grayscale(rgb(159, 170, 181));
+// $color-text-button-secondary-hover          : grayscale(rgb(252, 252, 252));
+// $color-text-button-secondary                : grayscale(rgb(255, 255, 255));
+// $color-text-link-hover                      : grayscale(rgb(0, 95, 178));
+// $color-text-link                            : grayscale(rgb(105, 37, 101));

@@ -1,17 +1,11 @@
-<template lang="jade">
-  .vui-view
-    hello
+<template id="home" lang="jade">
+  .home-view
 </template>
 
 <script>
   import store from '../store'
-  import Hello from '../components/Hello.vue'
 
   export default {
-    components: {
-      Hello
-    },
-
     data () {
       return {
         sharedState: store.state

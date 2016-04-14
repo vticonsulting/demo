@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "advertiser": "Metro Wireless",
+    "intendedAirDate": "04/30/16",
+    "unitRate": "515",
+    "cpp": "245"
+  },
+  {
+    "id": 2,
+    "advertiser": "Piedmont Healthcare",
+    "intendedAirDate": "04/23/16",
+    "unitRate": "500",
+    "cpp": "238"
+  },
+  {
+    "id": 3,
+    "advertiser": "Southeast Ford",
+    "intendedAirDate": "04/23/16",
+    "unitRate": "490",
+    "cpp": "233"
+  },
+  {
+    "id": 4,
+    "advertiser": "Southeast Ford",
+    "intendedAirDate": "05/07/16",
+    "unitRate": "510",
+    "cpp": "243"
+  },
+  {
+    "id": 5,
+    "advertiser": "Papa John's",
+    "intendedAirDate": "05/21/16",
+    "unitRate": "500",
+    "cpp": "238"
+  }
+]
