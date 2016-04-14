@@ -71,7 +71,7 @@
             th.u-width-medium This Year
             th.u-width-medium Last Year
         tbody
-          tr(v-for="(index, program) in programs", :class='(index % 2 === 0) ? "vui-highlight" : ""')
+          tr(v-for="program in programs", :class='($index % 2 === 0) ? "vui-highlight" : ""')
             td {{ program.name }}
             td {{ program.daypart }}
             td {{ program.programTime }}
