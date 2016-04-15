@@ -101,7 +101,6 @@
 
     events: {
       'hide::dropdown' () {
-        console.log('hide::dropdown from PerformanceMenuDropdown')
         this.show = false
       }
     }
