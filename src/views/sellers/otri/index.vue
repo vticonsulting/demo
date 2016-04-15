@@ -22,7 +22,7 @@
 
     data-grid-heading.vui-m-bottom--medium
     .vui-scrollable--x.vui-m-bottom--medium
-      table.vui-table.vui-table--custom-1.vui-no-row-hover
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th(rowspan='2') Advertiser

@@ -154,7 +154,7 @@
   .vui-table:not(.vui-no-row-hover) tbody tr:hover > th
     background-color $vui-color-highlight
 
-  .vui-table--custom-1
+  .vui-table
     border-collapse collapse
     border-spacing $border-width-thick
 

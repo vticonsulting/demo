@@ -84,7 +84,7 @@
         button.vui-button--neutral(@click.prevent='showRejectOrderModal = true') Reject
 
     .vui-scrollable--x
-      table.vui-table.vui-table--custom-1.vui-no-row-hover
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th Program

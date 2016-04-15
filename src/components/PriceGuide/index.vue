@@ -11,26 +11,27 @@
     panel.vui-m-bottom--large(title='View Selection')
 
       // Form
-      form.vui-form--inline(action='')
+      form.vui-grid.vui-grid--vertical-align-end(action='')
 
         // CPP | CPM Radio Fieldset
-        fieldset.vui-form-element
+        fieldset.vui-form-element.vui-m-right--small
+          legend.form-element__legend.vui-form-element__label Metric
+          .vui-form-element__control.vui-grid
+            // CPP Radio Input
+            label.vui-radio(for='cpp')
+              input#cpp(type='radio', name='cpp', v-model='cppOrCpm', value='cpp')
+              span.vui-radio--faux.vui-m-right--xx-small
+              span.vui-form-element__label CPP
 
-          // CPP Radio Input
-          label.vui-radio(for='cpp')
-            input#cpp(type='radio', name='cpp', v-model='cppOrCpm', value='cpp')
-            span.vui-radio--faux.vui-m-right--xx-small
-            span.vui-form-element__label CPP
-
-          // CPM Radio Input
-          label.vui-radio.vui-m-right--large(for='cpm')
-            input#cpm(type='radio', name='cpm', v-model='cppOrCpm', value='cpm')
-            span.vui-radio--faux.vui-m-right--xx-small
-            span.vui-form-element__label CPM
+            // CPM Radio Input
+            label.vui-radio.vui-m-right--large(for='cpm')
+              input#cpm(type='radio', name='cpm', v-model='cppOrCpm', value='cpm')
+              span.vui-radio--faux.vui-m-right--xx-small
+              span.vui-form-element__label CPM
 
         // Quarter Select Fieldset
-        fieldset.vui-form-element
-          legend.vui-form-element__legend.vui-form-element__label Quarter
+        fieldset.vui-form-element.vui-m-right--small
+          label.vui-form-element__label(for='') Quarter
           .vui-form-element__control.vui-m-right--small
             .vui-select_container
               select.vui-select(name='', id='')
@@ -41,8 +42,8 @@
                 option(value='') 2017/Q1
 
         // $0 Spots Checkbox Fieldset
-        fieldset.vui-form-element
-          .vui-form-element__control
+        fieldset.vui-form-element.vui-m-right--small
+          .vui-form-element__control(style='margin-top: -2rem')
             label.vui-checkbox
               input#checkbox-01(type='checkbox', name='options')
               span.vui-checkbox--faux
@@ -80,13 +81,13 @@
           fieldset.vui-form-element
             label.vui-form-element__label Market CPP:
             .vui-form-element__control(v-show='sharedState.activeApp == "reps"')
-              input.vui-input.vui-m-right--xx-small(style='width: 4rem', type='text', v-model='marketCpp | currencyDisplay')
+              input.vui-input.vui-m-right--xx-small(style='width: 5rem', type='text', v-model='sharedState.marketCpp | currencyDisplay')
             .vui-form-element__control(v-else)
               span.vui-form-element__static {{ sharedState.marketCpp | currencyDisplay }}
 
           // Update Market CPP Button Fieldset
           fieldset.vui-form-element(v-show='sharedState.activeApp == "reps"')
-            button.vui-button.vui-button--brand(@click.prevent='updateMarketCpp') Update
+            button.vui-button.vui-button--brand(@click='updateMarketCpp($event)') Update
 
     // Add Program Modal | Manage Premium Clients
     .vui-box.vui-grid.vui-grid--align-spread.vui-grid--vertical-align-middle.vui-theme--default(v-show='sharedState.activeApp == "sellers"')
@@ -121,7 +122,7 @@
       // Price Guide Table
       template(v-for='item in sharedState.priceGuide', transition='expand')
 
-        table.vui-table.vui-no-row-hover.vui-table--custom-1
+        table.vui-table.vui-no-row-hover
           thead
             tr
               th(rowspan='2') Program
@@ -191,7 +192,7 @@
                 | {{ Math.round(averageMonthlyStationCpm(program.months)) | numberWithCommas | formatMoney }}
 
               // Station Premium -- Percent (Program)
-              td.station.premium.percent.vui-text-align--right
+              td.station.premium.percent.vui-text-align--center
                 | {{ averageMonthlyStationPremiumPercent(program.months).toFixed(0) }}
 
               // Station Premium -- Rate (Program)
@@ -262,15 +263,15 @@
                     dropdown.vui-align-middle.dropdown-left.vui-m-right--x-small(text='icon', :weeks='month.weeks', :month='month')
 
                 // Station -- Rate (month)
-                td.station.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "padding-right: 1.5rem" : ""')
+                td.station.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : ""')
                   span(v-show='sharedState.activeApp == "reps"') {{ month.station.rate | numberWithCommas | formatMoney }}
-                  input.vui-input(@keypress='onKeypress($event)', v-show='sharedState.activeApp == "sellers"', type='text', :value.sync='month.station.rate', v-model='month.station.rate | currencyDisplay', style='text-align: right')
+                  input.vui-input(@click="selectContents($event)", @keypress='onKeypress($event)', v-show='sharedState.activeApp == "sellers"', type='text', :value.sync='month.station.rate', v-model='month.station.rate | currencyDisplay', style='text-align: right')
 
                 // Station -- Rating (month)
                 td.station.rating.vui-text-align--right(v-show='cppOrCpm == "cpp"')
                   a(@click.prevent='displayEditRatingsModal(month)', href='#', style='text-decoration: underline')
                     | {{ month.station.rating | formatRating }}
-                  input.vui-text-align--right.vui-input(@keypress='onKeypress($event)', v-show='false', type='text', v-model='month.station.rating')
+                  input.vui-text-align--right.vui-input(@click="selectContents($event)", @keypress='onKeypress($event)', v-show='false', type='text', v-model='month.station.rating')
 
                 // Station -- CPP (month)
                 td.station.cpp.vui-text-align--right(v-show='cppOrCpm == "cpp"')
@@ -285,7 +286,7 @@
                   cpm(:rate.sync='month.station.rate', :impressions.sync='month.station.impressions')
 
                 // Station Premium -- Percent (month) (Percent)
-                td.station.premium.percent.vui-text-align--right
+                td.station.premium.percent.vui-text-align--center
                   //- .form-group
                   //-   .input-group.vui-grid
                   //-     input.vui-input.form-control(type='text', placeholder='Amount')
@@ -293,11 +294,11 @@
 
                   fieldset.vui-form-element
                     .vui-form-element__control.vui-input-icon
-                      input.vui-input.vui-text-align--right(@keypress='onKeypress($event)', @input='month.station.premium.rate = setPremiumRate(month.station.rate, month.station.premium.percent)', v-show='sharedState.activeApp == "sellers"', :value='month.station.premium.percent', v-model='month.station.premium.percent' number)
+                      input.vui-input.vui-text-align--center(@click="selectContents($event)", @keypress='onKeypress($event)', @input='month.station.premium.rate = setPremiumRate(month.station.rate, month.station.premium.percent)', v-show='sharedState.activeApp == "sellers"', :value='month.station.premium.percent', v-model='month.station.premium.percent' number)
                   span(v-show='sharedState.activeApp !== "sellers"') {{ month.station.premium.percent }}
 
                 // Station Premium -- Rate (month)
-                td.station.premium.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "padding-right: 1.5rem" : ""')
+                td.station.premium.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : ""')
                   input.vui-text-align--right.vui-input(@input='month.station.premium.percent = setPremiumPercent(month.station.premium.rate, month.station.rate)', v-show='sharedState.activeApp == "sellers"', :value='month.station.premium.rate' v-model='month.station.premium.rate' number)
                   span(v-show='sharedState.activeApp == "reps"') {{ month.station.premium.rate | numberWithCommas | formatMoney }}
 
@@ -355,8 +356,8 @@
               template(v-for='week in month.weeks', v-if='month.weeks')
 
                 tr.week(v-show='week.expanded', :class='[(week.station.rate !== week.videa.rate) ? "has-changed" : "", (!week.expanded) ? "vui-hide" : ""]')
-                  // Week
 
+                  // Week
                   td.name
                     .vui-grid
                       a.vui-align-middle(@click.prevent='week.expanded = false', href='#')
@@ -364,13 +365,13 @@
                       span.vui-align-middle Week of {{ week.week }}
 
                   // Station -- Rate (week)
-                  td.station.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "padding-right: 1.5rem" : ""')
-                    input.vui-input.vui-text-align--right(@keypress='onKeypress($event)', v-show='sharedState.activeApp == "sellers"', type='text', v-model='week.station.rate | currencyDisplay')
+                  td.station.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : ""')
+                    input.vui-input.vui-text-align--right(@click="selectContents($event)", @keypress='onKeypress($event)', v-show='sharedState.activeApp == "sellers"', type='text', v-model='week.station.rate | currencyDisplay')
                     span(v-show='sharedState.activeApp == "reps"') {{ week.station.rate | numberWithCommas | formatMoney }}
 
                   // Station -- Rating (week)
                   td.station.rating.vui-text-align--right(v-show='cppOrCpm == "cpp"')
-                    input.vui-input.vui-text-align--right(@keypress='onKeypress($event)', v-show='false', type='text', v-model='week.station.rating')
+                    input.vui-input.vui-text-align--right(@click="selectContents($event)", @keypress='onKeypress($event)', v-show='false', type='text', v-model='week.station.rating')
                     a(@click.prevent='displayEditRatingsModal(week)', href='#', style='text-decoration: underline')
                         | {{ month.station.rating | formatRating }}
 
@@ -387,13 +388,13 @@
                     cpm(:rate='week.station.rate', :impressions='week.station.impressions')
 
                   // Station Premium -- Percent (week)
-                  td.station.premium.percent.vui-text-align--right
-                    input.vui-input.vui-text-align--right(@keypress='onKeypress($event)', @input='week.station.premium.rate = setPremiumRate(week.station.rate, week.station.premium.percent)', v-show='sharedState.activeApp == "sellers"', :value='week.station.premium.percent', v-model='week.station.premium.percent' number)
-                    span(v-show='sharedState.activeApp !== "sellers"') {{ week.station.premium.percent | decimalToPercent }}
+                  td.station.premium.percent.vui-text-align--center
+                    input.vui-input.vui-text-align--center(@click="selectContents($event)", @keypress='onKeypress($event)', @input='week.station.premium.rate = setPremiumRate(week.station.rate, week.station.premium.percent)', v-show='sharedState.activeApp == "sellers"', :value='week.station.premium.percent', v-model='week.station.premium.percent' number)
+                    span(v-show='sharedState.activeApp !== "sellers"') {{ week.station.premium.percent  }}
 
                   // Station Premium -- Rate (week)
-                  td.station.premium.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "padding-right: 1.5rem" : ""')
-                    input.vui-text-align--right.vui-input(@keypress='onKeypress($event)',, @input='week.station.premium.percent = week.station.premium.rate / week.station.rate', v-show='sharedState.activeApp == "sellers"', :value='Math.round(week.station.premium.rate)' v-model='week.station.premium.rate' number)
+                  td.station.premium.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : ""')
+                    input.vui-text-align--right.vui-input(@click="selectContents($event)", @keypress='onKeypress($event)',, @input='week.station.premium.percent = week.station.premium.rate / week.station.rate', v-show='sharedState.activeApp == "sellers"', :value='Math.round(week.station.premium.rate)' v-model='week.station.premium.rate' number)
                     span(v-show='sharedState.activeApp == "reps"') {{ week.station.premium.rate | numberWithCommas | formatMoney }}
 
                   // Station Premium -- CPP (week)
@@ -515,7 +516,6 @@
       return {
         context: {},
         acceptedRatesAndRatings: false,
-        marketCpp: 80,
         globalPercent: 0,
         editingPercent: false,
         cppOrCpm: 'cpp',
@@ -610,6 +610,11 @@
           })
       },
 
+      selectContents (event) {
+        event.target.select()
+        // this.select()
+      },
+
       onKeypress (event) {
         if ((event.which !== 46 || $(this).val().indexOf('.') !== -1) && (event.which < 48 || event.which > 57)) {
           event.preventDefault()
@@ -624,8 +629,8 @@
           .replace(/\-\-+/g, '-')        // Replace multiple - with single -
       },
 
-      updateMarketCpp () {
-        this.sharedState.marketCpp = this.marketCpp
+      updateMarketCpp (event) {
+        console.log('Updated')
       },
 
       setGlobalPremiumPercent (percent) {
@@ -642,9 +647,6 @@
             daypart: this.slugify(daypart)
           }
         })
-
-        // console.log(daypart)
-        // this.selected = this.$route.query.daypart
       },
 
       fetchDayparts () {
@@ -903,22 +905,22 @@
     .input-group-addon
       width auto
 
-  .percent
-    .vui-input-icon
-      display inline-block
-      position relative
-    .vui-input-icon:before
-      position absolute
-      content '%'
-      right 0
-      top 0
-      width 38px
-      height 38px
-    input
-      position relative
-      :before
-        display block
-        float right
-        padding-right 1rem
-        content "%"
+  // .percent
+  //   .vui-input-icon
+  //     display inline-block
+  //     position relative
+  //   .vui-input-icon:before
+  //     position absolute
+  //     content '%'
+  //     right 0
+  //     top 0
+  //     width 38px
+  //     height 38px
+  //   input
+  //     position relative
+  //     :before
+  //       display block
+  //       float right
+  //       padding-right 1rem
+  //       content "%"
 </style>

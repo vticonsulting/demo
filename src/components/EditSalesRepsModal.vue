@@ -10,7 +10,7 @@
           input.vui-input(placeholder='Search')
 
         .vui-scrollable--x
-          table.vui-table.vui-table--custom-1.vui-m-bottom--medium
+          table.vui-table.vui-m-bottom--medium
             thead
               tr
                 th

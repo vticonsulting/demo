@@ -4,17 +4,21 @@
     panel.vui-m-bottom--medium(title='View Selection')
       form.vui-grid.vui-grid--vertical-align-end(action='')
         fieldset.vui-form-element
-          label.vui-form-element__label Quick Selection
-          .vui-form-element__control.vui-m-right--small
-            .vui-select_container
-              select.vui-select(name='', id='')
-                option(value='') Quick Selection
-                option(value='') Week
-                option(value='') Month
-                option(value='') Month +2
-                option(value='') Month +5
-                option(value='') Quarter
-                option(value='') Year
+          label.vui-form-element__label Search
+          .vui-form-element__control.vui-m-right--xx-small
+            input.vui-input(type='text', name='searchText', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Search')
+        //- fieldset.vui-form-element
+        //-   label.vui-form-element__label Quick Selection
+        //-   .vui-form-element__control.vui-m-right--small
+        //-     .vui-select_container
+        //-       select.vui-select(name='', id='')
+        //-         option(value='') --
+        //-         option(value='') Week
+        //-         option(value='') Month
+        //-         option(value='') Month +2
+        //-         option(value='') Month +5
+        //-         option(value='') Quarter
+        //-         option(value='') Year
 
         fieldset.vui-form-element
           label.vui-form-element__label Flight Start Date
@@ -53,7 +57,7 @@
 
     //- data-grid-heading.vui-m-bottom--medium
     .vui-scrollable--x.vui-m-bottom--medium
-      table.vui-table.vui-no-row-hover.vui-table--custom-1
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th(rowspan='2') Program

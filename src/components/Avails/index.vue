@@ -2,22 +2,37 @@
   .avails-view
     page-heading.vui-m-bottom--medium(title='Avails')
     panel.vui-m-bottom--large(title='View Selection')
-      form.vui-form--inline(action='')
-        .vui-form-element__control.vui-m-right--small
-          input.vui-input(v-focus='', type='text', name='advertiser', placeholder='Advertiser')
-        .vui-form-element__control.vui-m-right--small
-          input.vui-input(type='text', name='agency', placeholder='Agency')
-        .vui-form-element__control.vui-m-right--small
+
+      form.vui-grid.vui-grid--vertical-align-end(action='')
+        fieldset.vui-form-element.vui-m-right--small
+          label.vui-form-element__label Advertiser
+          .vui-form-element__control
+            input.vui-input(v-focus='', type='text', name='advertiser', placeholder='Advertiser')
+
+        fieldset.vui-form-element.vui-m-right--small
+          label.vui-form-element__label Agency
+          .vui-form-element__control
+            input.vui-input(type='text', name='agency', placeholder='Agency')
+
+        fieldset.vui-form-element.vui-m-right--small
+          label.vui-form-element__label Avail Number
+          .vui-form-element__control
           input.vui-input(type='text', name='availNumber', placeholder='Avail #')
-        .vui-form-element__control.vui-m-right--small
-          .vui-select_container
-            select.vui-select(id='')
-              option All Avails
-              option Pending Buyer Request
-              option Released
-        button.vui-button.vui-button--brand.vui-m-right--x-small Search
+
+        fieldset.vui-form-element.vui-m-right--small
+          label.vui-form-element__label Status
+          .vui-form-element__control
+            .vui-select_container
+              select.vui-select(id='')
+                option All Avails
+                option Pending Buyer Request
+                option Released
+
+        fieldset.vui-form-element
+          button.vui-button.vui-button--brand.vui-m-right--x-small Search
+
     .vui-scrollable--x
-      table.vui-table.vui-no-row-hover.vui-table--custom-1
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th

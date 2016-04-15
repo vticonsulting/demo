@@ -48,7 +48,7 @@
               select.vui-select(id='')
                 option Status
           button.vui-button.vui-button--brand.vui-m-right--x-small Search
-      table.vui-table.vui-no-row-hover.vui-table--custom-1
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th Duplicate

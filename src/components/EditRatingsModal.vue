@@ -22,7 +22,7 @@
 
       .vui-scrollable--x.vui-m-bottom--large(style='height: 20rem; overflow-y: scroll; overflow-x: hidden')
 
-        table.vui-table.vui-no-row-hover.vui-table--custom-1
+        table.vui-table.vui-no-row-hover
           thead
             tr
               th Demo

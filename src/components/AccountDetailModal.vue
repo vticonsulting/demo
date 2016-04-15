@@ -4,7 +4,7 @@
       h3.vui-text-heading--medium Order Details
     .modal-body
       h4.vui-text-heading--small.vui-m-bottom--medium {{ account.advertiser }}
-      table.vui-table.vui-table--custom-1.vui-no-row-hover
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th Order Number

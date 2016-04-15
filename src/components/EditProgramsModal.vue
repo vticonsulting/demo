@@ -13,13 +13,12 @@
                 option Prime Access
                 option Prime
       .vui-scrollable--x
-        table.vui-table.vui-table--custom-1.vui-m-bottom--medium
+        table.vui-table.vui-m-bottom--medium
           thead
             tr
               th Program
               th Time
               th.vui-text-align--center
-                | Select All
                 input(type='checkbox')
           tbody
             tr(v-for='program in programs')

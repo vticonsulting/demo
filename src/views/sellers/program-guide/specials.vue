@@ -4,7 +4,7 @@
     h2.vui-text-heading--label.vui-m-bottom--medium As of April 18, 2016
     data-grid-heading
     .vui-scrollable--x
-      table.vui-table.vui-table--custom-1.vui-no-row-hover
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th(rowspan='2') Sports/Specials

@@ -42,7 +42,7 @@
       .vui-form-element__control
         span.vui-form-element__static {{offer.cpe}}
 
-  table.vui-table.vui-table--custom-1
+  table.vui-table
     thead
       tr
         th Line #

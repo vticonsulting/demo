@@ -197,7 +197,7 @@
             .vui-form-element__control
               input#grpGoal.vui-input(value='0', style='width: 6rem; text-align: right')
 
-      table.vui-table.vui-table--custom-1.vui-no-row-hover
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th Daypart
@@ -261,7 +261,7 @@
           span.vui-align-middle.vui-m-right--xx-small Next
           icon.vui-align-middle(name='arrow-circle-right')
 
-      table#flight-days.vui-table.vui-table--custom-1.vui-table--calendar.vui-m-bottom--large.vui-no-row-hover
+      table#flight-days.vui-table.vui-table--calendar.vui-m-bottom--large.vui-no-row-hover
         thead
           tr
             th(rowspan='2') Week

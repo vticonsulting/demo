@@ -38,7 +38,7 @@
     //-   #lines(style='min-width: 310px; height: 400px; margin: 0 auto')
     data-grid-heading.vui-m-bottom--medium
     .vui-scrollable--x.vui-m-bottom--medium
-      table.vui-table.vui-no-row-hover.vui-table--custom-1
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th(rowspan='2') Sales Region
@@ -54,19 +54,19 @@
             th Last Year
         tbody
           tr.region(v-for='($index, region) in regions', :class='($index % 2 === 1) ? "vui-highlight" : ""')
-            td {{region.name}}
-            td.u-width-large.vui-text-align--right {{region.tyRevenue | numberWithCommas | formatMoney }}
-            td.u-width-large.vui-text-align--right {{region.lyRevenue | numberWithCommas | formatMoney }}
-            td.u-width-large.vui-text-align--right {{region.tySpotVolume | numberWithCommas}}
-            td.u-width-large.vui-text-align--right {{region.lySpotVolume | numberWithCommas}}
-            td.u-width-large.vui-text-align--right {{region.tyAur | numberWithCommas | formatMoney }}
-            td.u-width-large.vui-text-align--right {{region.lyAur | numberWithCommas | formatMoney }}
+            td {{ region.name }}
+            td.u-width-large.vui-text-align--right {{ region.tyRevenue | numberWithCommas | formatMoney }}
+            td.u-width-large.vui-text-align--right {{ region.lyRevenue | numberWithCommas | formatMoney }}
+            td.u-width-large.vui-text-align--right {{ region.tySpotVolume | numberWithCommas }}
+            td.u-width-large.vui-text-align--right {{ region.lySpotVolume | numberWithCommas }}
+            td.u-width-large.vui-text-align--right {{ region.tyAur | numberWithCommas | formatMoney }}
+            td.u-width-large.vui-text-align--right {{ region.lyAur | numberWithCommas | formatMoney }}
 
     // Daypart Analysis
     h1.vui-text-heading--large.vui-m-bottom--large Daypart Analysis
     data-grid-heading.vui-m-bottom--medium
     .vui-scrollable--x.vui-m-bottom--medium
-      table.vui-table.vui-no-row-hover.vui-table--nested-rows.vui-table--custom-1
+      table.vui-table.vui-no-row-hover.vui-table--nested-rows
         thead
           tr
             th(rowspan='2') Daypart
@@ -143,34 +143,49 @@
           tr
             td.vui-text-align--right Total
             td.vui-text-align--right {{ totalVideaRevenue | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpp"') {{ totalVideaCpp | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpm"') {{ totalVideaCpm | numberWithCommas | formatMoney }}
-            td.vui-text-align--right {{ totalVideaAur | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpp"')
+              | {{ averageVideaCpp | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpm"')
+              | {{ averageVideaCpm | numberWithCommas | formatMoney }}
+            td.vui-text-align--right
+              | {{ averageVideaAur | numberWithCommas | formatMoney }}
             td.vui-text-align--right {{ totalVideaVolume | numberWithCommas }}
             td.vui-text-align--right {{ totalNationalRevenue | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpp"') {{ totalNationalCpp | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpm"') {{ totalNationalCpm | numberWithCommas | formatMoney }}
-            td.vui-text-align--right {{ totalNationalAur | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpp"')
+              | {{ averageNationalCpp | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpm"')
+              | {{ averageNationalCpm | numberWithCommas | formatMoney }}
+            td.vui-text-align--right
+              | {{ averageNationalAur | numberWithCommas | formatMoney }}
             td.vui-text-align--right {{ totalNationalVolume | numberWithCommas }}
             td.vui-text-align--right {{ totalLocalRevenue | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpp"') {{ totalLocalCpp | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpm"') {{ totalLocalCpm | numberWithCommas | formatMoney }}
-            td.vui-text-align--right {{ totalLocalAur | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpp"')
+              | {{ averageLocalCpp | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpm"')
+              | {{ averageLocalCpm | numberWithCommas | formatMoney }}
+            td.vui-text-align--right
+              | {{ averageLocalAur | numberWithCommas | formatMoney }}
             td.vui-text-align--right {{ totalLocalVolume | numberWithCommas }}
             td.vui-text-align--right {{ totalPoliticalRevenue | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpp"') {{ totalPoliticalCpp | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpm"') {{ totalPoliticalCpm | numberWithCommas | formatMoney }}
-            td.vui-text-align--right {{ totalPoliticalAur | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpp"')
+              | {{ averagePoliticalCpp | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpm"')
+              | {{ averagePoliticalCpm | numberWithCommas | formatMoney }}
+            td.vui-text-align--right
+              | {{ averagePoliticalAur | numberWithCommas | formatMoney }}
             td.vui-text-align--right {{ totalPoliticalVolume | numberWithCommas }}
 
             td.vui-text-align--right {{ totalTotalRevenue | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpp"') {{ totalTotalCpp | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpm"') {{ totalTotalCpm | numberWithCommas | formatMoney }}
-            td.vui-text-align--right {{ totalTotalAur | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpp"')
+              | {{ totalTotalCpp | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpm"')
+              | {{ totalTotalCpm | numberWithCommas | formatMoney }}
+            td.vui-text-align--right
+              | {{ totalTotalAur | numberWithCommas | formatMoney }}
             td.vui-text-align--right {{ totalTotalVolume | numberWithCommas }}
             td.vui-text-align--right {{ totalStationUniverseSpotVolume | numberWithCommas}}
             td.vui-text-align--right 38%
-        tbody(v-for='($index, daypart) in stationDayparts', :class='($index % 2 === 1) ? "vui-highlight" : ""')
+        tbody(v-for='daypart in stationDayparts', :class='($index % 2 === 1) ? "vui-highlight" : ""')
           tr.daypart
             td
               .vui-grid
@@ -199,9 +214,12 @@
             td.vui-text-align--right {{daypart.political.aur | numberWithCommas | formatMoney }}
             td.vui-text-align--right {{daypart.political.volume | numberWithCommas }}
             td.vui-text-align--right {{( daypart.local.revenue + daypart.political.revenue + daypart.national.revenue + daypart.videaTraditional.revenue) | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpp"') {{( daypart.local.cpp + daypart.political.cpp + daypart.national.cpp + daypart.videaTraditional.cpp)  | numberWithCommas | formatMoney }}
-            td.vui-text-align--right(v-show='cppOrCpm == "cpm"') {{( daypart.local.cpm + daypart.political.cpm + daypart.national.cpm + daypart.videaTraditional.cpm)  | numberWithCommas | formatMoney }}
-            td.vui-text-align--right {{( daypart.local.aur + daypart.political.aur + daypart.national.aur + daypart.videaTraditional.aur)  | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpp"')
+              | {{ Math.round((daypart.local.cpp + daypart.political.cpp + daypart.national.cpp + daypart.videaTraditional.cpp)  / 4) | numberWithCommas | formatMoney }}
+            td.vui-text-align--right(v-show='cppOrCpm == "cpm"')
+              | {{ Math.round((daypart.local.cpm + daypart.political.cpm + daypart.national.cpm + daypart.videaTraditional.cpm) / 4) | numberWithCommas | formatMoney }}
+            td.vui-text-align--right
+              | {{ Math.round((daypart.local.aur + daypart.political.aur + daypart.national.aur + daypart.videaTraditional.aur) / 4) | numberWithCommas | formatMoney }}
             td.vui-text-align--right {{( daypart.local.volume + daypart.political.volume + daypart.national.volume + daypart.videaTraditional.volume)  | numberWithCommas }}
             td.vui-text-align--right {{daypart.stationUniverse.spotVolume | numberWithCommas }}
             td.vui-text-align--right {{daypart.stationUniverse.percentSellout | decimalToPercent}}
@@ -228,10 +246,14 @@
               td.vui-text-align--right(v-show='cppOrCpm == "cpm"') {{detail.political.cpm | numberWithCommas | formatMoney }}
               td.vui-text-align--right {{detail.political.aur | numberWithCommas | formatMoney }}
               td.vui-text-align--right {{detail.political.volume | numberWithCommas }}
-              td.vui-text-align--right {{( detail.local.revenue + detail.political.revenue + detail.national.revenue + detail.videaTraditional.revenue) | numberWithCommas | formatMoney }}
-              td.vui-text-align--right(v-show='cppOrCpm == "cpp"') {{( detail.local.cpp + detail.political.cpp + detail.national.cpp + detail.videaTraditional.cpp)  | numberWithCommas | formatMoney }}
-              td.vui-text-align--right(v-show='cppOrCpm == "cpm"') {{( detail.local.cpm + detail.political.cpm + detail.national.cpm + detail.videaTraditional.cpm)  | numberWithCommas | formatMoney }}
-              td.vui-text-align--right {{( detail.local.aur + detail.political.aur + detail.national.aur + detail.videaTraditional.aur)  | numberWithCommas | formatMoney }}
+              td.vui-text-align--right
+                | {{( detail.local.revenue + detail.political.revenue + detail.national.revenue + detail.videaTraditional.revenue)| numberWithCommas | formatMoney }}
+              td.vui-text-align--right(v-show='cppOrCpm == "cpp"')
+                | {{ (detail.local.cpp + detail.political.cpp + detail.national.cpp + detail.videaTraditional.cpp) / 4  | numberWithCommas | formatMoney }}
+              td.vui-text-align--right(v-show='cppOrCpm == "cpm"')
+                | {{( detail.local.cpm + detail.political.cpm + detail.national.cpm + detail.videaTraditional.cpm) / 4 | numberWithCommas | formatMoney }}
+              td.vui-text-align--right
+                | {{( detail.local.aur + detail.political.aur + detail.national.aur + detail.videaTraditional.aur) / 4 | numberWithCommas | formatMoney }}
               td.vui-text-align--right {{( detail.local.volume + detail.political.volume + detail.national.volume + detail.videaTraditional.volume)  | numberWithCommas }}
               td.vui-text-align--right {{detail.stationUniverse.spotVolume | numberWithCommas }}
               td.vui-text-align--right {{detail.stationUniverse.percentSellout | decimalToPercent}}
@@ -285,22 +307,28 @@
         }, 0)
       },
 
-      totalVideaCpp () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averageVideaCpp () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.videaTraditional.cpp
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
-      totalVideaCpm () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averageVideaCpm () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.videaTraditional.cpm
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
-      totalVideaAur () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averageVideaAur () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.videaTraditional.aur
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
       totalVideaVolume () {
@@ -315,22 +343,28 @@
         }, 0)
       },
 
-      totalLocalCpp () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averageLocalCpp () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.local.cpp
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
-      totalLocalCpm () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averageLocalCpm () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.local.cpm
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
-      totalLocalAur () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averageLocalAur () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.local.aur
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
       totalLocalVolume () {
@@ -345,22 +379,28 @@
         }, 0)
       },
 
-      totalNationalCpp () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averageNationalCpp () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.national.cpp
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
-      totalNationalCpm () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averageNationalCpm () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.national.cpm
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
-      totalNationalAur () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averageNationalAur () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.national.aur
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
       totalNationalVolume () {
@@ -375,22 +415,28 @@
         }, 0)
       },
 
-      totalPoliticalCpp () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averagePoliticalCpp () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.political.cpp
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
-      totalPoliticalCpm () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averagePoliticalCpm () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.political.cpm
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
-      totalPoliticalAur () {
-        return this.stationDayparts.reduce((total, daypart) => {
+      averagePoliticalAur () {
+        let average = this.stationDayparts.reduce((total, daypart) => {
           return total + daypart.political.aur
-        }, 0)
+        }, 0) / this.stationDayparts.length
+
+        return Math.round(average)
       },
 
       totalPoliticalVolume () {
@@ -440,12 +486,6 @@
       }
     },
 
-    filters: {
-      numberWithCommas (number) {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-      }
-    },
-
     methods: {
       fetchStationPerformance () {
         this.$http.get(store.apiHost + '/stationPerformance')
@@ -478,56 +518,6 @@
       this.fetchRegions()
       this.fetchStationDayparts()
       this.sharedState.activeApp = 'sellers'
-    },
-
-    ready () {
-      // Highcharts.setOptions({
-      //   lang: {
-      //     thousandsSep: ','
-      //   }
-      // })
-      // Highcharts.chart('lines', {
-      //   title: {
-      //       text: '',
-      //       x: -20 //center
-      //   },
-      //   xAxis: {
-      //       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      //           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-      //   },
-      //   yAxis: {
-      //       title: {
-      //           text: 'Revenue'
-      //       },
-      //       plotLines: [{
-      //           value: 0,
-      //           width: 1,
-      //           color: '#808080'
-      //       }]
-      //   },
-      //   tooltip: {
-      //       valueSuffix: '°C'
-      //   },
-      //   legend: {
-      //       layout: 'vertical',
-      //       align: 'right',
-      //       verticalAlign: 'middle',
-      //       borderWidth: 0
-      //   },
-      //   series: [{
-      //       name: 'Videa',
-      //       data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-      //   }, {
-      //       name: 'Political',
-      //       data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-      //   }, {
-      //       name: 'National',
-      //       data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-      //   }, {
-      //       name: 'Local',
-      //       data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-      //   }]
-      // })
     }
   }
 </script>

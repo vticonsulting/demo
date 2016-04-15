@@ -17,7 +17,7 @@
           button.vui-button.vui-button--icon-border-filled.vui-m-left--x-small
             icon(name='download', style='width: 1.5rem;height: 1.5rem;color:#0177a2')
           span.vui-assistive-text Export to Excel
-      table.vui-table.vui-table--custom-1.vui-no-row-hover.vui-table--nested-rows.vui-m-bottom--large
+      table.vui-table.vui-no-row-hover.vui-table--nested-rows.vui-m-bottom--large
         thead
           tr
             th Daypart

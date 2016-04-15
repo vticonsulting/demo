@@ -75,7 +75,7 @@
       #wnn.vui-tabs--scoped__content.vui-p-around--x-large.vui-show(role='tabpanel')
 
         .vui-scrollable--x.vui-m-bottom--medium
-          table.vui-table.vui-table--nested-rows.vui-no-row-hover.vui-table--custom-1
+          table.vui-table.vui-table--nested-rows.vui-no-row-hover
             thead
               tr
                 th

@@ -1,22 +1,32 @@
 <template lang="jade">
   .offer-dashboard
 
-    //- breadcrumbs(:config='config.breadcrumbs')
-
     h1.vui-text-heading--large.vui-m-bottom--medium Makegoods Dashboard
 
     panel.vui-m-bottom--large(title='Search Pending Makegoods')
-      form.vui-form--inline
-        fieldset.vui-form-element
-          label.vui-form-element__label(for='') Field
-          .vui-form-element__control
-            input.vui-input(type='text')
+      form.vui-grid.vui-grid--vertical-align-end(action='')
 
         fieldset.vui-form-element
-          button.vui-button.vui-button--brand Search
+          label.vui-form-element__label Advertiser
+          .vui-form-element__control.vui-m-right--xx-small
+            input.vui-input(type='text', name='advertiser', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Search')
+
+        fieldset.vui-form-element
+          label.vui-form-element__label Agency
+          .vui-form-element__control.vui-m-right--xx-small
+            input.vui-input(type='text', name='agency', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Search')
+
+        fieldset.vui-form-element
+          label.vui-form-element__label Campaign
+          .vui-form-element__control.vui-m-right--xx-small
+            input.vui-input(type='text', name='campaign', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Search')
+
+        fieldset.vui-form-element
+          button.vui-button.vui-button--brand.vui-m-right--x-small Search
+
 
     .vui-scrollable--x
-      table.vui-table.vui-table--custom-1.vui-no-row-hover
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th(rowspan='2') Advertiser
@@ -89,9 +99,10 @@
   import Panel from '../../../components/Panel.vue'
   import Icon from '../../../components/Icon.vue'
   import Breadcrumbs from '../../../components/Breadcrumbs.vue'
+  import Datepicker from '../../../components/Datepicker2.vue'
 
   export default {
-    components: {Panel, Icon, Breadcrumbs},
+    components: { Panel, Icon, Breadcrumbs, Datepicker },
 
     props: {
       offerRoute: {
@@ -103,6 +114,8 @@
     data () {
       return {
         sharedState: store.state,
+        fromDate: new Date('2016-04-25T12:24:00'),
+        toDate: new Date('2016-06-05T12:24:00'),
         offers: [],
         config: {
           breadcrumbs: {

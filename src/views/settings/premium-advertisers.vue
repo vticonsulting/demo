@@ -13,7 +13,7 @@
         button.vui-button.vui-button--brand(type='submit') Search
 
     .vui-scrollable--x
-      table.vui-table.vui-table--custom-1.vui-no-row-hover
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th Agency

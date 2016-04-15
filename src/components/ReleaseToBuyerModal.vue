@@ -1,0 +1,59 @@
+<template lang="jade">
+  modal(:show.sync='show', :on-close='close', size='large')
+    .modal-header.vui-m-bottom--large
+      h3.vui-text-heading--medium(v-if='showExportProposal') Export Avail
+      h3.vui-text-heading--medium(v-else) Release To Buyer
+    .modal-body
+      #release-to-buyer(v-if='!showExportProposal')
+        p.vui-text-longform.vui-m-bottom--large
+          | Are you sure you want to submit the avail
+          | to the buyer?
+
+        .vui-form-element.vui-m-bottom--large
+          label.vui-label.vui-label--custom-1(for='') Expiration Date
+          datepicker#endDate(:value.sync='expirationDate', name='expirationDate')
+
+        .vui-text-align--right
+          button.vui-button.vui-button--brand.vui-m-right--x-small(@click.prevent="showExportProposal = true") Submit
+          button.vui-button.vui-button--neutral(@click.prevent='close()') Cancel
+
+      #export-proposal(v-if='showExportProposal')
+        h4.vui-text-heading--small.vui-text-align--center.vui-m-bottom--large
+          | Select a format in which you would like to export your avail.
+
+        .vui-text-align--center
+          button.vui-button.vui-button--neutral.vui-m-right--x-small(@click.prevent='close()') None
+          button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close()') CSV
+          button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close()') XML
+          button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close()') Both XML and CSV
+</template>
+
+<script>
+  import Datepicker from './Datepicker2.vue'
+  import Modal from './Modal.vue'
+
+  export default {
+    components: { Datepicker, Modal },
+
+    props: ['show'],
+
+    data () {
+      return {
+        comment: '',
+        showExportProposal: false,
+        expirationDate: new Date('2016-04-22T09:24:00')
+      }
+    },
+
+    methods: {
+      close () {
+        this.show = false
+        this.comment = ''
+      },
+
+      showExportProposal () {
+        this.showExportProposal = true
+      }
+    }
+  }
+</script>

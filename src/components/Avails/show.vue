@@ -53,47 +53,6 @@
         .vui-form-element__control
           span {{ avail.primaryDemo }}
 
-
-      //- .vui-form-element
-      //-   label.vui-form-element__label Client
-      //-   .vui-form-element__control
-      //-     span.vui-form-element__static Piedmont Healthcare
-      //- .vui-form-element
-      //-   label.vui-form-element__label Product
-      //-   .vui-form-element__control
-      //-     span.vui-form-element__static HEA
-      //- .vui-form-element
-      //-   label.vui-form-element__label Estimate
-      //-   .vui-form-element__control
-      //-     span.vui-form-element__static 57
-      //- .vui-form-element
-      //-   label.vui-form-element__label Campaign Name
-      //-   .vui-form-element__control
-      //-     span.vui-form-element__static PIE-HEA-57
-      //- .vui-form-element
-      //-   label.vui-form-element__label Expiration Date
-      //-   .vui-form-element__control
-      //-     span.vui-form-element__static 02/20/16
-      //- .vui-form-element
-      //-   label.vui-form-element__label Start Date
-      //-   .vui-form-element__control
-      //-     span.vui-form-element__static 02/29/16
-      //- .vui-form-element
-      //-   label.vui-form-element__label End Date
-      //-   .vui-form-element__control
-      //-     span.vui-form-element__static 03/27/16
-      //- .vui-form-element
-      //-   label.vui-form-element__label Gross Market Budget
-      //-   .vui-form-element__control
-      //-     span.vui-form-element__static $53,190
-      //- .vui-form-element
-      //-   label.vui-form-element__label Target GRP Goal
-      //-   .vui-form-element__control
-      //-     span.vui-form-element__static 94.0
-      //- .vui-form-element
-      //-   label.vui-form-element__label Primary Target
-      //-   .vui-form-element__control
-      //-     span.vui-form-element__static M18-49
     .vui-box.vui-grid.vui-grid--align-spread.vui-m-bottom--large.vui-wrap.vui-theme--default
       .vui-col--padded-medium(style='width:50%')
 
@@ -127,7 +86,6 @@
           label.vui-form-element__label(for='') Due Date
           .vui-form-element__control
             span(v-if='!editing') {{ avail.dueDate }}
-            //- input.vui-input(type= 'text', v-if='editing', v-model='avail.dueDate')
             datepicker#dueDate(:value.sync='dueDate', name='dueDate', v-if='editing')
       .vui-col--padded-medium(style='width:50%')
         fieldset.vui-form-element.vui-m-bottom--small
@@ -152,7 +110,7 @@
           .buttons(v-if='editing')
             button.vui-button.vui-button--small.vui-button--brand.vui-m-right--xx-small(@click.prevent='editing = false') Save
             button.vui-button.vui-button--small.vui-button.vui-button--neutral(@click.prevent='editing = false') Cancel
-      table.vui-table.vui-table--custom-1.vui-m-bottom--medium.vui-no-row-hover
+      table.vui-table.vui-m-bottom--medium.vui-no-row-hover
         thead
           tr
             th(rowspan='2')
@@ -200,15 +158,12 @@
       //- daypart-selector
       .vui-scrollable--x.vui-m-bottom--large
         #daypart-selector
-          //- button.vui-button.vui-max-small-buttons--stretch(v-for='($index, daypart) in dayparts', @click.prevent='selectDaypart(daypart)', :class="(daypart.id == selectedDaypart.id) ? 'vui-button--brand' : 'vui-button--neutral'", style="white-space: nowrap", :disabled='disabled')
-          //-   | {{daypart.name}}
-
           button.vui-button.vui-max-small-buttons--stretch(v-for='daypart in avail.dayparts', @click.prevent='selectDaypart(daypart)', :class="(daypart.id == selectedDaypart.id) ? 'vui-button--brand' : 'vui-button--neutral'")
             | {{ daypart.name }}
 
     .avail-programs.vui-scrollable--x.vui-m-bottom--medium
       h3.vui-text-heading--small.vui-m-bottom--small {{ selectedDaypart.name }}
-      table.vui-table.vui-table--custom-1.vui-table--nested-rows.vui-no-row-hover
+      table.vui-table.vui-table--nested-rows.vui-no-row-hover
         thead
           tr
             th Program
@@ -276,9 +231,9 @@
 
     .vui-text-align--right(v-if='! $route.query.version')
       .buttons
-        button.vui-button.vui-button.vui-button--secondary.vui-m-right--x-small(@click="showSubmitToBuyerModal = true") Release to Buyer
+        button.vui-button.vui-button.vui-button--secondary.vui-m-right--x-small(@click="showReleaseToBuyerModal = true") Release to Buyer
         button.vui-button.vui-button.vui-button--brand(@click.prevent='editAvail(avail.id)', href='#') Edit Avail
-    submit-to-buyer-modal(:show.sync="showSubmitToBuyerModal")
+    release-to-buyer-modal(:show.sync="showReleaseToBuyerModal")
 </template>
 
 <script>
@@ -288,7 +243,7 @@
   import Datepicker from '../Datepicker2.vue'
   import DaypartSelector from '../DaypartSelector.vue'
   import Icon from '../Icon.vue'
-  import SubmitToBuyerModal from '../SubmitToBuyerModal.vue'
+  import ReleaseToBuyerModal from '../ReleaseToBuyerModal.vue'
 
   let Highcharts = require('highcharts')
 
@@ -299,7 +254,7 @@
       Datepicker,
       DaypartSelector,
       Icon,
-      SubmitToBuyerModal,
+      ReleaseToBuyerModal,
       text: {
         props: ['value'],
         template: '<input type="text" v-model="value" />'
@@ -324,7 +279,7 @@
         sharedState: store.state,
         expirationDate: new Date('2016-04-22T03:24:00'),
         dueDate: new Date('2016-04-22T03:24:00'),
-        showSubmitToBuyerModal: false,
+        showReleaseToBuyerModal: false,
         selectedDaypart: require('./selected.json'),
         editing: false,
         avail: {},
@@ -452,13 +407,6 @@
     created () {
       this.fetchAvail(this.$route.params.id)
       this.fetchDayparts()
-    },
-
-    ready () {
-      marked('**test**')
-      this.$nextTick(function () {
-        // this.selectedDaypart = this.avail.dayparts[0]
-      })
     }
   }
 </script>

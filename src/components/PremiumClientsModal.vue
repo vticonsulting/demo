@@ -35,7 +35,7 @@
       p.vui-m-bottom--large Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin vitae augue vitae vestibulum. Duis non porta tortor. Aenean sed metus placerat, accumsan diam et, tincidunt nulla. Pellentesque id dui faucibus, ullamcorper leo at, ultrices augue. Nullam tincidunt risus mi, vel vulputate metus volutpat sit amet. Maecenas accumsan finibus velit at suscipit. Duis pellentesque facilisis imperdiet.
 
       .vui-scrollable--x
-        table.vui-table.vui-table--custom-1.vui-no-row-hover
+        table.vui-table.vui-no-row-hover
           thead
             tr
               th Agency

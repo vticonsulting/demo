@@ -7,7 +7,7 @@
     button.vui-align-middle.vui-button.vui-button--brand(@click.prevent='showEditSalesRepsModal = true', href='#') Edit Sales Reps
 
     .vui-scrollable--x
-      table.vui-table.vui-table--custom-1
+      table.vui-table
         thead
           tr
             th Rep

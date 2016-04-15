@@ -10,7 +10,7 @@
         button.vui-button.vui-button--brand Search
 
     .vui-scrollable--x.vui-m-bottom--large
-      table.vui-table.vui-table--custom-1.vui-no-row-hover
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th Sports/Specials
@@ -22,7 +22,7 @@
 
     h3.vui-text-heading--small.vui-m-bottom--medium Add Sports/Specials Notification
 
-    table.vui-table.vui-table--custom-1.vui-no-row-hover
+    table.vui-table.vui-no-row-hover
       thead
         tr
           th Program Name

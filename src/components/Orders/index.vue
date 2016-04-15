@@ -49,7 +49,7 @@
 
     i.fa.fa-spinner.fa-spin(v-show='loading')
     .vui-scrollable--x(v-show='!loading')
-      table.vui-table.vui-no-row-hover.vui-table--custom-1(border='0', cellpadding='0', cellspacing='0')
+      table.vui-table.vui-no-row-hover(border='0', cellpadding='0', cellspacing='0')
         thead
           tr
             th(v-for='column in gridColumns')

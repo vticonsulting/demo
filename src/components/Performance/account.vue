@@ -43,7 +43,7 @@
             span.vui-text-heading--medium {{ settings.stationAudienceShare | decimalToPercent }}
 
     .vui-scrollable--x
-      table.vui-table.vui-table--custom-1.vui-no-row-hover
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th.vui-text-align--center.u-width-x-small Order Count

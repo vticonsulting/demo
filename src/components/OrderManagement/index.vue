@@ -2,7 +2,7 @@
   .order-management-view
     h1.vui-text-heading--large.vui-m-bottom--medium Accept/Reject Orders
     .vui-scrollable--x
-      table.vui-table.vui-table--custom-1.vui-no-row-hover
+      table.vui-table.vui-no-row-hover
         thead
           tr
             th.u-width-medium Order #

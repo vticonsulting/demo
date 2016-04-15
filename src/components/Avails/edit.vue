@@ -59,7 +59,7 @@
         | considered when generating need rates.
 
       .vui-scrollable--x.vui-m-bottom--large
-        table.vui-table.vui-table--custom-1.vui-no-row-hover.vui-m-bottom--large
+        table.vui-table.vui-no-row-hover.vui-m-bottom--large
           thead
             tr
               th(rowspan='2') Daypart
@@ -76,30 +76,7 @@
                 input.vui-input(type='text', v-model='daypart.marketCompetitive.low')
               td.u-width-medium
                 input.vui-input(type='text', v-model='daypart.marketCompetitive.high')
-            //- tr
-            //-   td Prime Access
-            //-   td.u-width-small
-            //-     input.vui-input(type='text')
-            //-   td.u-width-small
-            //-     input.vui-input(type='text')
-            //- tr
-            //-   td Prime
-            //-   td.u-width-small
-            //-     input.vui-input(type='text')
-            //-   td.u-width-small
-            //-     input.vui-input(type='text')
-            //- tr
-            //-   td Late News
-            //-   td.u-width-small
-            //-     input.vui-input(type='text')
-            //-   td.u-width-small
-            //-     input.vui-input(type='text')
-            //- tr
-            //-   td Sports and Specials
-            //-   td.u-width-small
-            //-     input.vui-input(type='text')
-            //-   td.u-width-small
-            //-     input.vui-input(type='text')
+
         .vui-grid.vui-grid--align-spread
           a(@click.prevent='showAvail(avail.id)', href='#')
             icon.vui-m-right--xx-small(name='arrow-circle-left')
@@ -121,15 +98,12 @@
 
       .vui-scrollable--x.vui-m-bottom--large
         .daypart-selector
-          //- button.vui-button.vui-max-small-buttons--stretch(v-for='($index, daypart) in dayparts', @click.prevent='selectDaypart(daypart)', :class="(daypart.id == selectedDaypart.id) ? 'vui-button--brand' : 'vui-button--neutral'", style="white-space: nowrap", :disabled='disabled')
-          //-   | {{daypart.name}}
-
           button.vui-button.vui-max-small-buttons--stretch(v-for='daypart in avail.dayparts', @click.prevent='selectDaypart(daypart)', :class="(daypart.id == selectedDaypart.id) ? 'vui-button--brand' : 'vui-button--neutral'")
-            | {{ daypart.name}}
+            | {{ daypart.name }}
 
       .avail-programs.vui-scrollable--x.vui-m-bottom--large
         h3.vui-text-heading--small.vui-m-bottom--small {{ selectedDaypart.name }}
-        table.vui-table.vui-table--custom-1.vui-no-row-hover.vui-m-bottom--medium.vui-table--nested-rows
+        table.vui-table.vui-no-row-hover.vui-m-bottom--medium.vui-table--nested-rows
           thead
             tr
               th
@@ -138,6 +112,7 @@
                   span.vui-align-middle
                     icon(name="sort", style="color: hsla(192, 9%, 89%, .5)")
               th.u-width-small Buyer Rating
+
           tbody(v-if='selectedDaypart', v-for='program in selectedDaypart.programs')
             tr
               td
@@ -159,15 +134,13 @@
         p.vui-text-body--small
           sup.vui-m-right--xx-small 1
           span Saved changes are viewable by all station users and assigned reps.
+
     #rates-and-ratings(v-show="activeTab == 'rates-and-ratings'")
       h2.vui-text-heading--medium Rates and Ratings
       p.vui-m-bottom--medium Adjust your rates and ratings using the worksheet below.
 
       .vui-scrollable--x.vui-m-bottom--large
         .daypart-selector
-          //- button.vui-button.vui-max-small-buttons--stretch(v-for='($index, daypart) in dayparts', @click.prevent='selectDaypart(daypart)', :class="(daypart.id == selectedDaypart.id) ? 'vui-button--brand' : 'vui-button--neutral'", style="white-space: nowrap", :disabled='disabled')
-          //-   | {{daypart.name}}
-
           button.vui-button.vui-max-small-buttons--stretch(v-for='daypart in avail.dayparts', @click.prevent='selectDaypart(daypart)', :class="(daypart.id == selectedDaypart.id) ? 'vui-button--brand' : 'vui-button--neutral'")
             | {{ daypart.name }}
 
@@ -177,7 +150,8 @@
           a.vui-text-align--right(@click.prevent='showEditProgramsModal = true', href='#')
             icon.vui-m-right--xx-small(name='edit')
             | Add Programs
-        table.vui-table.vui-no-row-hover.vui-table--custom-1.vui-table--nested-rows.vui-m-bottom--large
+
+        table.vui-table.vui-no-row-hover.vui-m-bottom--large
           thead
             tr
               th(rowspan='2') Program
@@ -187,8 +161,8 @@
               th(colspan='4') Videa
               th(colspan='4') Buyer
             tr
-              th Rate
-              th Rating
+              th.u-width-large Rate
+              th.u-width-large Rating
               th
                 | CPP
                 sup 1
@@ -200,9 +174,13 @@
               th Need Goal
               th Need Low
               th Need High
+
+          // Programs
           tbody(v-if='selectedDaypart', v-for='program in selectedDaypart.programs')
+
             tr.program
-              td
+
+              td.name
                 span.vui-grid
                   a.vui-align-middle.vui-m-right--x-small(href='#', @click.prevent='program.expanded = !program.expanded')
                     icon.vui-align-middle.vui-m-right--x-small(v-if='program.months', :name="(program.expanded) ? 'caret-lower-right' : 'caret-right'")
@@ -216,62 +194,158 @@
                       span {{ program.name }}
                       br
                       span {{ program.time }}
+
+              // Flight Start Date(program)
               td {{ program.flightStartDate }}
+
+              // Flight End Date (program)
               td {{ program.flightEndDate }}
+
+              // Rate (program)
               td.u-width-small
-                input.vui-text-align--right.vui-input(v-model='program.rate')
+                input.vui-input.vui-text-align--right(@keypress='onKeypress($event)', type='text', :value.sync='program.rate', v-model='program.rate | currencyDisplay')
+
+              // Rating (program)
               td.u-width-small
-                input.vui-text-align--right.vui-input(:value='program.rating | formatRating')
-              td.vui-text-align--right.u-width-small {{ program.avgCpp | numberWithCommas | formatMoney }}
+                input.vui-text-align--right.vui-input(:value.sync='program.rating', v-model='program.rating | formatRating')
+
+              // Average CPP
+              td.vui-text-align--right.u-width-small
+                cpp(:rate='program.rate', :rating='program.rating')
+                //- {{ program.avgCpp | numberWithCommas | formatMoney }}
+
+              // Rating (program)
               td.vui-text-align--right.u-width-small.u-highlight {{ program.rating | formatRating }}
+
+              // Videa -- Need Goal (program)
               td.vui-text-align--right.u-width-small.u-highlight {{ program.videa.needGoal | numberWithCommas | formatMoney }}
+
+              // Videa -- Need Low (program)
               td.vui-text-align--right.u-width-small.u-highlight {{ program.videa.needLow | numberWithCommas | formatMoney }}
+
+              // Videa -- Need High (program)
               td.vui-text-align--right.u-width-small.u-highlight {{ program.videa.needHigh | numberWithCommas | formatMoney }}
+
+              // Buyer --  Rating (program)
               td.vui-text-align--right.u-width-small {{ program.buyer.rating | formatRating }}
+
+              // Buyer --  Need Goal (program)
               td.vui-text-align--right.u-width-small {{ program.buyer.needGoal | numberWithCommas | formatMoney }}
+
+              // Buyer --  Need Low (program)
               td.vui-text-align--right.u-width-small {{ program.buyer.needLow | numberWithCommas | formatMoney }}
+
+              // Buyer --  Need High (program)
               td.vui-text-align--right.u-width-small {{ program.buyer.needHigh | numberWithCommas | formatMoney }}
+
+            // Months
             template(v-for='month in program.months')
+
               tr.month(v-show='program.expanded')
-                td
+
+                // Month
+                td.name
                   .vui-grid.vui-grid--align-spread
-                    span {{ month.month }}
-                    a(@click.prevent='', href='#')
-                      icon(name='calendar-plus-o')
+                    span.vui-align-middle(style='font-weight: 500') {{ month.month }}
+                    dropdown.vui-align-middle.dropdown-left.vui-m-right-x-small(text='icon', :weeks='month.weeks', :month='month')
+
+                // Flight Start Date (month)
                 td.u-width-small {{ month.flightStartDate }}
+
+                // Flight End Date (month)
                 td.u-width-small {{ month.flightEndDate }}
+
+                // Rate (month)
                 td.u-width-small
-                  input.vui-text-align--right.vui-input(v-model='month.rate')
+                  input.vui-input.vui-text-align--right(@keypress='onKeypress($event)', type='text', :value.sync='month.rate', v-model='month.rate | currencyDisplay')
+
+                // Rating (month)
                 td.u-width-small
-                  input.vui-text-align--right.vui-input(:value='month.rating | formatRating')
-                td.vui-text-align--right.u-width-small {{ month.avgCpp | numberWithCommas | formatMoney }}
-                td.vui-text-align--right.u-width-small.u-highlight {{ month.rating | formatRating }}
+                  input.vui-text-align--right.vui-input(:value.sync='month.rating', v-model='month.rating | formatRating')
+
+                // Average CPP (month)
+                td.vui-text-align--right.u-width-small
+                  cpp(:rate.sync='month.rate', :rating.sync='month.rating')
+                  //- {{ month.avgCpp | numberWithCommas | formatMoney }}
+
+                // Videa Rating (month)
+                td.vui-text-align--right.u-width-small.u-highlight {{ month.videa.rating | formatRating }}
+
+                // Videa Need Goal (month)
                 td.vui-text-align--right.u-width-small.u-highlight {{ month.videa.needGoal | numberWithCommas | formatMoney }}
+
+                // Videa Need Low (month)
                 td.vui-text-align--right.u-width-small.u-highlight {{ month.videa.needLow | numberWithCommas | formatMoney }}
+
+                // Videa Need High (month)
                 td.vui-text-align--right.u-width-small.u-highlight {{ month.videa.needHigh | numberWithCommas | formatMoney }}
+
+                // Buyer Rating (month)
                 td.vui-text-align--right.u-width-small {{ month.buyer.rating | formatRating }}
+
+                // Buyer Need Goal(month)
                 td.vui-text-align--right.u-width-small {{ month.buyer.needGoal | numberWithCommas | formatMoney }}
+
+                // Buyer Need Low (month)
                 td.vui-text-align--right.u-width-small {{ month.buyer.needLow | numberWithCommas | formatMoney }}
+
+                // Buyer Need High (month)
                 td.vui-text-align--right.u-width-small {{ month.buyer.needHigh | numberWithCommas | formatMoney }}
+
+              // Weeks
               template(v-for='week in month.weeks')
-                tr.week(v-show='month.expanded')
-                  td
-                    .vui-grid.vui-grid--align-spread
-                      span {{ week.week }}
+
+
+                tr.week(v-show='week.expanded', :class='[(!week.expanded) ? "vui-hide" : ""]')
+
+                  // Week
+                  td.name
+                    .vui-grid
+                      a.vui-align-middle(@click.prevent='week.expanded = false', href='#')
+                        icon.vui-m-right--x-small(name='times-circle')
+                      span.vui-align-middle {{ week.week }}
+
+                  // Flight Start Date (week)
                   td.u-width-small {{ week.flightStartDate }}
+
+                  // Flight End Date (week)
                   td.u-width-small {{ week.flightEndDate }}
+
+                  // Rate (week)
                   td.u-width-small
-                    input.vui-text-align--right.vui-input(v-model='week.rate')
+                    input.vui-input.vui-text-align--right(@keypress='onKeypress($event)', type='text', :value.sync='week.rate', v-model='week.rate | currencyDisplay')
+
+                  // Rating (week)
                   td.u-width-small
-                    input.vui-text-align--right.vui-input(:value='week.rating | formatRating')
-                  td.vui-text-align--right.u-width-small {{ week.avgCpp | numberWithCommas | formatMoney }}
-                  td.vui-text-align--right.u-width-small.u-highlight {{ week.rating | formatRating }}
+                    input.vui-text-align--right.vui-input(:value.sync='week.rating', v-model='week.rating | formatRating')
+
+                  // Average CPP (week)
+                  td.vui-text-align--right.u-width-small
+                    cpp(:rate='week.rate', :rating='week.rating')
+                    //-{{ week.avgCpp | numberWithCommas | formatMoney }}
+
+                  // Videa Rating (week)
+                  td.vui-text-align--right.u-width-small.u-highlight {{ week.videa.rating | formatRating }}
+
+                  // Videa Need Goal (week)
                   td.vui-text-align--right.u-width-small.u-highlight {{ week.videa.needGoal | numberWithCommas | formatMoney }}
+
+                  // Videa Need Low (week)
                   td.vui-text-align--right.u-width-small.u-highlight {{ week.videa.needLow | numberWithCommas | formatMoney }}
+
+                  // Videa Need High (week)
                   td.vui-text-align--right.u-width-small.u-highlight {{ week.videa.needHigh | numberWithCommas | formatMoney }}
+
+                  // Buyer Rating (week)
                   td.vui-text-align--right.u-width-small {{ week.buyer.rating | formatRating }}
+
+                  // Buyer Need Goal (week)
                   td.vui-text-align--right.u-width-small {{ week.buyer.needGoal | numberWithCommas | formatMoney }}
+
+                  // Buyer Need Low
                   td.vui-text-align--right.u-width-small {{ week.buyer.needLow | numberWithCommas | formatMoney }}
+
+                  // Buyer Need High
                   td.vui-text-align--right.u-width-small {{ week.buyer.needHigh | numberWithCommas | formatMoney }}
 
       .vui-grid.vui-grid--align-spread
@@ -282,9 +356,11 @@
           button.vui-button.vui-button--neutral.vui-m-right--x-small(@click.prevent="setActiveTab('buyer-ratings')", href='#') Cancel
           button.vui-button.vui-button--brand(@click.prevent='showAvail(avail.id)', href='#', style='color: #fff !important')
             | Save Changes and Continue
-            sup 1
+            sup 2
       p.vui-text-body--small
         sup.vui-m-right--xx-small 1
+        span Nielsen source or data derived from Nielsen <br>
+        sup.vui-m-right--xx-small 2
         span Saved changes are viewable by all station users and assigned reps.
 
     edit-programs-modal(:show.sync="showEditProgramsModal")
@@ -295,12 +371,13 @@
   import Icon from '../Icon.vue'
   import PageHeading from '../PageHeading.vue'
   import Panel from '../Panel.vue'
+  import Cpp from '../Cpp.vue'
   import DaypartSelector from '../DaypartSelector.vue'
+  import Dropdown from '../AddWeekDropdown.vue'
   import StepWizard from '../StepWizard.vue'
   import EditProgramsModal from '../EditProgramsModal.vue'
 
   let Highcharts = require('highcharts')
-
   require('highcharts/modules/exporting')(Highcharts)
 
   export default {
@@ -308,6 +385,8 @@
       Icon,
       PageHeading,
       Panel,
+      Cpp,
+      Dropdown,
       DaypartSelector,
       StepWizard,
       EditProgramsModal
@@ -440,6 +519,12 @@
         this.$route.router.go({
           name: this.availsRoute
         })
+      },
+
+      onKeypress (event) {
+        if ((event.which !== 46 || $(this).val().indexOf('.') !== -1) && (event.which < 48 || event.which > 57)) {
+          event.preventDefault()
+        }
       }
     },
 
@@ -459,3 +544,11 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  .vui-table tr.month > td:first-child
+    padding-left 4rem
+
+  .vui-table tr.week > td:first-child
+    padding-left 2.5rem
+</style>

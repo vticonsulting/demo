@@ -110,7 +110,6 @@
 
       showSelectedWeeks () {
         console.log(this.selectedWeeks)
-        // alert( JSON.stringify(this.selectedWeeks) )
         this.selectedWeeks.forEach((week) => {
           week.expanded = true
           this.$dispatch('selected::weeks', week)

@@ -59,14 +59,14 @@
             "cpp": 191,
             "rating": 2.5,
             "needGoal": 315,
-            "needLow": 185,
-            "needHigh": 240
+            "needLow": 389,
+            "needHigh": 420
           },
           "buyer": {
-            "rating": 2.4,
+            "rating": 2.1,
             "needGoal": 315,
-            "needLow": 185,
-            "needHigh": 240
+            "needLow": 389,
+            "needHigh": 420
           },
           "onTheBooks": {
             "minRate": 280,
@@ -96,15 +96,15 @@
                 "rate": 325,
                 "cpp": 191,
                 "rating": 2.5,
-                "needGoal": 270,
-                "needLow": 125,
-                "needHigh": 240
+                "needGoal": 315,
+                "needLow": 389,
+                "needHigh": 420
               },
               "buyer": {
-                "rating": 2.4,
+                "rating": 2.1,
                 "needGoal": 315,
-                "needLow": 185,
-                "needHigh": 240
+                "needLow": 389,
+                "needHigh": 420
               },
               "onTheBooks": {
                 "minRate": 280,
@@ -134,15 +134,15 @@
                 "rate": 325,
                 "cpp": 191,
                 "rating": 2.5,
-                "needGoal": 270,
-                "needLow": 125,
-                "needHigh": 240
+                "needGoal": 315,
+                "needLow": 389,
+                "needHigh": 420
               },
               "buyer": {
-                "rating": 2.4,
+                "rating": 2.1,
                 "needGoal": 315,
-                "needLow": 185,
-                "needHigh": 240
+                "needLow": 389,
+                "needHigh": 420
               },
               "onTheBooks": {
                 "minRate": 280,
@@ -172,15 +172,15 @@
                 "rate": 325,
                 "cpp": 191,
                 "rating": 2.5,
-                "needGoal": 270,
-                "needLow": 125,
-                "needHigh": 240
+                "needGoal": 315,
+                "needLow": 389,
+                "needHigh": 420
               },
               "buyer": {
-                "rating": 2.4,
+                "rating": 2.1,
                 "needGoal": 315,
-                "needLow": 185,
-                "needHigh": 240
+                "needLow": 389,
+                "needHigh": 420
               },
               "onTheBooks": {
                 "minRate": 280,
@@ -214,15 +214,15 @@
             "rate": 325,
             "cpp": 191,
             "rating": 2.5,
-            "needGoal": 270,
-            "needLow": 125,
-            "needHigh": 240
+            "needGoal": 315,
+            "needLow": 389,
+            "needHigh": 420
           },
           "buyer": {
-            "rating": 2.4,
+            "rating": 2.1,
             "needGoal": 315,
-            "needLow": 185,
-            "needHigh": 240
+            "needLow": 389,
+            "needHigh": 420
           },
           "onTheBooks": {
             "minRate": 280,
@@ -252,15 +252,15 @@
                 "rate": 325,
                 "cpp": 191,
                 "rating": 2.1,
-                "needGoal": 270,
-                "needLow": 125,
-                "needHigh": 240
+                "needGoal": 315,
+                "needLow": 389,
+                "needHigh": 420
               },
               "buyer": {
                 "rating": 2.1,
                 "needGoal": 315,
-                "needLow": 185,
-                "needHigh": 240
+                "needLow": 389,
+                "needHigh": 420
               },
               "onTheBooks": {
                 "minRate": 280,
@@ -321,16 +321,16 @@
           "videa": {
             "rate": 325,
             "cpp": 191,
-            "rating": 2.5,
+            "rating": 1.8,
             "needGoal": 270,
-            "needLow": 125,
-            "needHigh": 240
+            "needLow": 333,
+            "needHigh": 360
           },
           "buyer": {
-            "rating": 2.4,
-            "needGoal": 315,
-            "needLow": 185,
-            "needHigh": 240
+            "rating": 1.8,
+            "needGoal": 270,
+            "needLow": 333,
+            "needHigh": 360
           },
           "onTheBooks": {
             "minRate": 280,
@@ -361,14 +361,14 @@
                 "cpp": 191,
                 "rating": 2.5,
                 "needGoal": 270,
-                "needLow": 125,
-                "needHigh": 240
+                "needLow": 333,
+                "needHigh": 360
               },
               "buyer": {
-                "rating": 2.4,
-                "needGoal": 315,
-                "needLow": 185,
-                "needHigh": 240
+                "rating": 1.8,
+                "needGoal": 270,
+                "needLow": 333,
+                "needHigh": 360
               },
               "onTheBooks": {
                 "minRate": 280,
@@ -399,14 +399,14 @@
                 "cpp": 191,
                 "rating": 2.5,
                 "needGoal": 270,
-                "needLow": 125,
-                "needHigh": 240
+                "needLow": 333,
+                "needHigh": 360
               },
               "buyer": {
-                "rating": 2.4,
-                "needGoal": 315,
-                "needLow": 185,
-                "needHigh": 240
+                "rating": 1.8,
+                "needGoal": 270,
+                "needLow": 333,
+                "needHigh": 360
               },
               "onTheBooks": {
                 "minRate": 280,
@@ -437,14 +437,14 @@
                 "cpp": 191,
                 "rating": 2.5,
                 "needGoal": 270,
-                "needLow": 125,
-                "needHigh": 240
+                "needLow": 333,
+                "needHigh": 360
               },
               "buyer": {
-                "rating": 2.4,
-                "needGoal": 315,
-                "needLow": 185,
-                "needHigh": 240
+                "rating": 1.8,
+                "needGoal": 270,
+                "needLow": 333,
+                "needHigh": 360
               },
               "onTheBooks": {
                 "minRate": 280,
@@ -475,14 +475,14 @@
                 "cpp": 191,
                 "rating": 2.5,
                 "needGoal": 270,
-                "needLow": 125,
-                "needHigh": 240
+                "needLow": 333,
+                "needHigh": 360
               },
               "buyer": {
-                "rating": 2.4,
-                "needGoal": 315,
-                "needLow": 185,
-                "needHigh": 240
+                "rating": 1.8,
+                "needGoal": 270,
+                "needLow": 333,
+                "needHigh": 360
               },
               "onTheBooks": {
                 "minRate": 280,
@@ -513,14 +513,14 @@
                 "cpp": 191,
                 "rating": 2.5,
                 "needGoal": 270,
-                "needLow": 125,
-                "needHigh": 240
+                "needLow": 333,
+                "needHigh": 360
               },
               "buyer": {
-                "rating": 2.4,
-                "needGoal": 315,
-                "needLow": 185,
-                "needHigh": 240
+                "rating": 1.8,
+                "needGoal": 270,
+                "needLow": 333,
+                "needHigh": 360
               },
               "onTheBooks": {
                 "minRate": 280,
@@ -553,16 +553,16 @@
           "videa": {
             "rate": 325,
             "cpp": 191,
-            "rating": 2.5,
+            "rating": 1.8,
             "needGoal": 270,
-            "needLow": 125,
-            "needHigh": 240
+            "needLow": 333,
+            "needHigh": 360
           },
           "buyer": {
-            "rating": 2.4,
-            "needGoal": 315,
-            "needLow": 185,
-            "needHigh": 240
+            "rating": 1.8,
+            "needGoal": 270,
+            "needLow": 333,
+            "needHigh": 360
           },
           "onTheBooks": {
             "minRate": 280,
@@ -598,7 +598,7 @@
         "needHigh": 440
       },
       "buyer": {
-        "rating": 2.0,
+        "rating": 2,
         "needGoal": 300,
         "needLow": 370,
         "needHigh": 400
@@ -639,7 +639,7 @@
       "length": ":30",
       "rate": 228,
       "rating": 1.1,
-      "avgCpp": 152,
+      "avgCpp": 207,
       "expanded": false,
       "videa": {
         "rate": 325,
