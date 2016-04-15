@@ -16,5 +16,5 @@ export default {
       email: 'seller@videa.tv'
     }
   },
-  apiHost: 'http://localhost:3000'
+  apiHost: 'https://intense-falls-98650.herokuapp.com'
 }
