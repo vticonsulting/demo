@@ -155,6 +155,7 @@
     events: {
       'hide::dropdown' () {
         this.show = false
+        return true
       }
     }
   }
