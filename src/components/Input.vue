@@ -3,7 +3,7 @@
     label.vui-form-element__label(v-if='!hideLabel') {{ label }}
     .vui-form-element__control.vui-form-element__control--with-addon
       input.vui-input.vui-text-align--right(:type='type', :for='id', :name='id', :required='required', style='padding-right: 1.5rem')
-      span.vui-input-group-addon %
+      //- span.vui-input-group-addon %
 </template>
 
 <script>

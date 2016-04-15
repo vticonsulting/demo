@@ -52,7 +52,6 @@
             th(rowspan='2') Buy Line<br>Number
             th(rowspan='2') Spot<br>Number
             th(rowspan='2') Program<br>Placed
-            th(rowspan='2') Status
             th(rowspan='2') Priority
             th(rowspan='2') Air Day
             th(rowspan='2') Air Date
@@ -91,8 +90,6 @@
             td.vui-text-align--center {{ preempt.buyLine }}
             td.vui-text-align--center {{ preempt.spotNumber }}
             td {{ preempt.programPlaced }}
-            td
-              span.vui-badge(:class='preempt.status') {{ preempt.status }}
             td.vui-text-align--center {{ preempt.priority }}
             td {{ preempt.airDay }}
             td {{ preempt.airDate }}
@@ -213,11 +210,12 @@
         fieldset.vui-form-element
           label.vui-form-element__label Makegood Comments
           .vui-form-element__control
-            textarea.vui-textarea(style='height: 6rem')
-              | Offer STP -- Please Advise
-
+            div(v-if='!editing', style="box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.16);border: 1px solid #ccc; min-height: 11.5rem; background: rgba(250, 255, 189, 0.2);padding: 1rem") Offer STP -- Please Advise
+            //- textarea.vui-textarea(style='height: 6rem')
+            //-   | Offer STP -- Please Advise
+            span.vui-form-element__help This field is Read only
       .vui-col--padded
-        table.vui-table.vui-no-row-hover(style='width: 350px')
+        table.vui-table.vui-no-row-hover(style='width: 350px; margin-top: 3.5rem')
           thead
             tr
               th Totals

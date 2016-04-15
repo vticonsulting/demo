@@ -122,8 +122,8 @@
               template(v-if='program.details', v-for='detail in program.details')
                 tr.detail(v-show='program.expanded')
                   td
-                    .vui-form-element
-                      .vui-form-element__control
+                    .vui-grid
+                      .vui-form-element__control.vui-m-right--x-small
                         label.vui-checkbox
                           input#checkbox-01(type='checkbox', name='options', checked='true')
                           span.vui-checkbox--faux

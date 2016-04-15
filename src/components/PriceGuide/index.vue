@@ -92,9 +92,9 @@
     // Add Program Modal | Manage Premium Clients
     .vui-box.vui-grid.vui-grid--align-spread.vui-grid--vertical-align-middle.vui-theme--default(v-show='sharedState.activeApp == "sellers"')
 
-      a.vui-align-middle(@click.prevent='', href='#') View Previously Accepted Rates and Ratings
+      //- a.vui-align-middle(@click.prevent='', href='#') View Previously Accepted Rates and Ratings
 
-      .vui-grid
+      .vui-grid(style='display: none')
         .vui-align-middle.vui-m-right--xx-small Premium percent for daypart
 
         .vui-align-middle.vui-m-right--xx-small
@@ -107,12 +107,12 @@
             icon(name='pencil')
           a(v-show='editingPercent', href='#', @click.prevent='updateDayparts($event)') Update Dayparts
 
-      span.vui-align-middle
+      span.vui-align-middle.vui-col--bump-left
         a.vui-m-right--medium(v-link='{ name: "settings.specials" }')
           icon.vui-align-middle(name='plus-circle')
           span.vui-align-middle Add a Program
 
-      a.vui-align-middle(v-link='{ "name": "settings.premium-advertisers" }', href='#')
+      a.vui-align-middle(@click.prevent='showPremiumClientsModal = true')
           icon.vui-align-middle(name='pencil')
           span.vui-align-middle(name='edit') Edit Premium Advertisers
 
@@ -127,7 +127,7 @@
             tr
               th(rowspan='2') Program
               th(colspan='3') Station
-              th(colspan='3') Station Premium
+              th(colspan='2') Station Premium
               th(colspan='4') Videa
               th(colspan='3') On the Books
             tr
@@ -139,7 +139,7 @@
               th.u-width-medium(v-show='cppOrCpm == "cpm"') CPM <sup>1</sup>
 
               // Station Premium
-              th.u-width-medium.vui-text-align--center %
+              th.u-width-medium.vui-text-align--center.vui-hide %
               th.u-width-large(style='min-width:6rem') Rate
               th.u-width-medium(v-show='cppOrCpm == "cpp"', style='min-width:6rem;max-width:6rem') CPP <sup>1</sup>
               th.u-width-medium(v-show='cppOrCpm == "cpm"') CPM <sup>1</sup>
@@ -172,7 +172,7 @@
                     span {{ program.time }}
 
               // Station -- Rate (Program)
-              td.station.rate.vui-text-align--right
+              td.station.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : "padding-right: 1.5rem"')
                 | {{ Math.round(averageMonthlyStationRate(program.months)) | numberWithCommas | formatMoney }}
 
               // Station -- Rating (Program)
@@ -192,11 +192,11 @@
                 | {{ Math.round(averageMonthlyStationCpm(program.months)) | numberWithCommas | formatMoney }}
 
               // Station Premium -- Percent (Program)
-              td.station.premium.percent.vui-text-align--center
+              td.station.premium.percent.vui-text-align--center.vui-hide
                 | {{ averageMonthlyStationPremiumPercent(program.months).toFixed(0) }}
 
               // Station Premium -- Rate (Program)
-              td.station.premium.rate.vui-text-align--right
+              td.station.premium.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : "padding-right: 1.5rem"')
                 | {{ Math.round(averageMonthlyStationPremiumRate(program.months)) | numberWithCommas | formatMoney }}
 
               // Station Premium -- CPP (Program)
@@ -286,7 +286,7 @@
                   cpm(:rate.sync='month.station.rate', :impressions.sync='month.station.impressions')
 
                 // Station Premium -- Percent (month) (Percent)
-                td.station.premium.percent.vui-text-align--center
+                td.station.premium.percent.vui-text-align--center.vui-hide
                   //- .form-group
                   //-   .input-group.vui-grid
                   //-     input.vui-input.form-control(type='text', placeholder='Amount')
@@ -299,7 +299,7 @@
 
                 // Station Premium -- Rate (month)
                 td.station.premium.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : ""')
-                  input.vui-text-align--right.vui-input(@input='month.station.premium.percent = setPremiumPercent(month.station.premium.rate, month.station.rate)', v-show='sharedState.activeApp == "sellers"', :value='month.station.premium.rate' v-model='month.station.premium.rate' number)
+                  input.vui-text-align--right.vui-input(@input='month.station.premium.percent = setPremiumPercent(month.station.premium.rate, month.station.rate)', v-show='sharedState.activeApp == "sellers"', :value='month.station.premium.rate' v-model='month.station.premium.rate | currencyDisplay')
                   span(v-show='sharedState.activeApp == "reps"') {{ month.station.premium.rate | numberWithCommas | formatMoney }}
 
                 // Station Premium -- CPP (month)
@@ -388,13 +388,13 @@
                     cpm(:rate='week.station.rate', :impressions='week.station.impressions')
 
                   // Station Premium -- Percent (week)
-                  td.station.premium.percent.vui-text-align--center
+                  td.station.premium.percent.vui-text-align--center.vui-hide
                     input.vui-input.vui-text-align--center(@click="selectContents($event)", @keypress='onKeypress($event)', @input='week.station.premium.rate = setPremiumRate(week.station.rate, week.station.premium.percent)', v-show='sharedState.activeApp == "sellers"', :value='week.station.premium.percent', v-model='week.station.premium.percent' number)
                     span(v-show='sharedState.activeApp !== "sellers"') {{ week.station.premium.percent  }}
 
                   // Station Premium -- Rate (week)
                   td.station.premium.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : ""')
-                    input.vui-text-align--right.vui-input(@click="selectContents($event)", @keypress='onKeypress($event)',, @input='week.station.premium.percent = week.station.premium.rate / week.station.rate', v-show='sharedState.activeApp == "sellers"', :value='Math.round(week.station.premium.rate)' v-model='week.station.premium.rate' number)
+                    input.vui-text-align--right.vui-input(@click="selectContents($event)", @keypress='onKeypress($event)',, @input='week.station.premium.percent = week.station.premium.rate / week.station.rate', v-show='sharedState.activeApp == "sellers"', :value='Math.round(week.station.premium.rate)' v-model='week.station.premium.rate | currencyDisplay')
                     span(v-show='sharedState.activeApp == "reps"') {{ week.station.premium.rate | numberWithCommas | formatMoney }}
 
                   // Station Premium -- CPP (week)
@@ -576,7 +576,7 @@
             {
               agency: 'Huges-Martin Agency',
               advertiser: 'Piedmont Healthcare',
-              premium: true
+              premium: false
             },
             {
               agency: 'Mullberry Way Group',

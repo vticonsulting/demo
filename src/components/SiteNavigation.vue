@@ -6,9 +6,9 @@
         li
           a(v-link="{ name: 'sellers.orders' }") Orders
         li
-          a(v-link="{ name: 'sellers.otri' }") OTRI
-        li
           a(v-link="{ name: 'sellers.program-guide' }") Program Guide
+        li
+          a(v-link="{ name: 'sellers.otri' }") OTRI
         li
           //- a(v-link="{ name: 'sellers.performance.account' }") Account Performance
           //- TODO Need to Highlight the Parent with the 'active' class, when subnav is selected.

@@ -57,7 +57,7 @@
           "videa": {
             "rate": 325,
             "cpp": 191,
-            "rating": 2.5,
+            "rating": 2.1,
             "needGoal": 315,
             "needLow": 389,
             "needHigh": 420
@@ -95,7 +95,7 @@
               "videa": {
                 "rate": 325,
                 "cpp": 191,
-                "rating": 2.5,
+                "rating": 2.1,
                 "needGoal": 315,
                 "needLow": 389,
                 "needHigh": 420
@@ -133,7 +133,7 @@
               "videa": {
                 "rate": 325,
                 "cpp": 191,
-                "rating": 2.5,
+                "rating": 2.1,
                 "needGoal": 315,
                 "needLow": 389,
                 "needHigh": 420
@@ -171,7 +171,7 @@
               "videa": {
                 "rate": 325,
                 "cpp": 191,
-                "rating": 2.5,
+                "rating": 2.1,
                 "needGoal": 315,
                 "needLow": 389,
                 "needHigh": 420
@@ -213,7 +213,7 @@
           "videa": {
             "rate": 325,
             "cpp": 191,
-            "rating": 2.5,
+            "rating": 2.1,
             "needGoal": 315,
             "needLow": 389,
             "needHigh": 420
@@ -359,7 +359,7 @@
               "videa": {
                 "rate": 325,
                 "cpp": 191,
-                "rating": 2.5,
+                "rating": 2.1,
                 "needGoal": 270,
                 "needLow": 333,
                 "needHigh": 360
