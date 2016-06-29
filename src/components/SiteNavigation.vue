@@ -64,13 +64,13 @@
                 label.vui-form-element__label(for='input-01', style='color: white') Username
                 .vui-form-element__control.vui-input-has-icon.vui-input-has-icon--left
                   svg.vui-icon.vui-input__icon(aria-hidden='true', style='color: hsla(214, 66%, 34%, 1)')
-                    use(xlink:href='/assets/icons.svg#icon-envelope')
+                    use(xlink:href='/Content/assets/icons.svg#icon-envelope')
                   input.vui-input(v-model='sharedState.user.email' type='email', placeholder='john.doe@email.com', style='min-width: 14rem')
               .vui-form-element.vui-size--1-of-3.vui-align-bottom
                 label.vui-form-element__label(for='input-01', style='color: white') Password
                 .vui-form-element__control.vui-input-has-icon.vui-input-has-icon--left
                   svg.vui-icon.vui-input__icon(aria-hidden='true', style='color: hsla(214, 66%, 34%, 1)')
-                    use(xlink:href='/assets/icons.svg#icon-lock')
+                    use(xlink:href='/Content/assets/icons.svg#icon-lock')
                   input.vui-input(type='password', placeholder='Password', style='min-width: 14rem')
               .vui-form-element.vui-size--1-of-3.vui-align-bottom
                 button.vui-button.vui-button--secondary.vui-m-right--x-small(@click.prevent='fakeIt()') Login

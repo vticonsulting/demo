@@ -5,7 +5,7 @@ module.exports = {
   build: {
     index: path.resolve(__dirname, 'public/index.html'),
     assetsRoot: path.resolve(__dirname, 'public'),
-    assetsSubDirectory: 'assets',
+    assetsSubDirectory: 'Content/assets',
     assetsPublicPath: '/',
     productionSourceMap: true
   },

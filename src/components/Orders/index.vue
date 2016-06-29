@@ -62,7 +62,7 @@
               td
                 a(href='#', @click.prevent='toggleDetail(order, $event)')
                   svg.vui-icon.vui-icon--small(style="width: 1rem; height: 1rem;")
-                    use(xlink:href="/assets/icons.svg#icon-{{ order.expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
+                    use(xlink:href="/Content/assets/icons.svg#icon-{{ order.expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
                 a(@click.prevent='showOrder(order.id)', href='#') {{ order.id }}
               td  {{ order.advertiser }}
               td {{ order.agency }}

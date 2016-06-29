@@ -21,7 +21,7 @@
             td
               a(v-if='order.versions.length !== 1', href='#', @click.prevent='toggleExpanded()')
                 svg.vui-icon.vui-icon--x-small(style="width: 1rem; height: 1rem;margin-left: -1rem")
-                  use(xlink:href="/assets/icons.svg#icon-{{ expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
+                  use(xlink:href="/Content/assets/icons.svg#icon-{{ expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
               a.vui-align-middle(@click.prevent='showDetail(order.id)', href='#') {{order.id}}
             td
               span.vui-badge.new(:class='order.status') {{order.status}}

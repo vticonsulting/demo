@@ -90,7 +90,7 @@
             td
               a(v-if='avail.versions', href='#', @click.prevent='toggleDetail(avail, $event)')
                 svg.vui-icon.vui-icon--x-small(style="width: 1rem; height: 1rem;margin-left: -1rem")
-                  use(xlink:href="/assets/icons.svg#icon-{{ avail.expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
+                  use(xlink:href="/Content/assets/icons.svg#icon-{{ avail.expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
               a.vui-align-middle(@click.prevent='showAvail(avail.id)', href='#') {{avail.id}}
             td
               span.vui-badge(:class='avail.availStatus')  {{avail.availStatus}}

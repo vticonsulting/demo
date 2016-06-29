@@ -8,7 +8,7 @@
         .vui-grid.vui-grid--align-spread.vui-m-bottom--large
           a(v-link='{ name: "sellers.makegoods" }')
             svg.vui-icon.vui-icon--x-small.vui-align-middle.vui-m-right--xx-small
-              use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='/assets/icons.svg#icon-arrow-circle-left')
+              use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='/Content/assets/icons.svg#icon-arrow-circle-left')
             | Back to Makegoods Dashboard
       .vui-col.vui-align-middle
         fieldset.vui-form-element.vui-m-bottom--large.vui-text-align--right(v-if='sharedState.activeApp !== "reps"')

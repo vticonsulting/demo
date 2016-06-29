@@ -9,7 +9,7 @@
         button#stationSelector.vui-button.vui-button--inverse.vui-button--small.vui-m-right--x-small(v-if='sharedState.activeApp !== "buyers"')
           | WVVV
           svg.vui-icon(style='width: 18px; height: 18px;color:hsla(28, 91%, 54%, 1);')
-            use(xlink:href='/assets/icons.svg#icon-caret-down', xmlns:xlink='http://www.w3.org/1999/xlink')
+            use(xlink:href='/Content/assets/icons.svg#icon-caret-down', xmlns:xlink='http://www.w3.org/1999/xlink')
 </template>
 
 <script>

@@ -1,4 +1,4 @@
-<style lang="scss" src="../node_modules/@victortolbert/vui/dist/vui.css"></style>
+<style lang="scss" src="../node_modules/videa-ui-css/dist/vui.css"></style>
 
 <template lang="jade">
   #app(@click='closeDropdownsAndPopovers()')
