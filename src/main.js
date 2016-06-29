@@ -5,6 +5,10 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import VueValidator from 'vue-validator'
 import VueDependOn from 'vue-dependon'
+import VueFire from 'vuefire'
+import Firebase from 'firebase'
+import selectize from 'selectize'
+import VueSelectize from 'vue-selectize'
 
 import Components from './components'
 import Directives from './directives'
@@ -18,6 +22,8 @@ Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueValidator)
 Vue.use(VueDependOn)
+Vue.use(VueFire)
+Vue.use(VueSelectize)
 
 Components.registerAllGlobalComponents()
 Directives.registerAllGlobalDirectives()
@@ -36,6 +42,7 @@ Router.beforeEach(function () {
   window.scrollTo(0, 0)
 })
 
+window.$ = $
 window.Vue = Vue
 window.noUiSlider = require('nouislider')
 

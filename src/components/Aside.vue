@@ -11,9 +11,9 @@
       <div class="aside-content">
         <div class="aside-header vui-grid vui-grid--align-spread">
           <h4 class="aside-title vui-text-heading--medium">{{header}}</h4>
-          <button type="button" class="vui-button vui-button--neutral" @click='close'>
+<!--           <button type="button" class="vui-button vui-button--neutral" @click='close'>
             <span>&times;</span>
-          </button>
+          </button> -->
         </div>
         <div class="aside-body">
           <slot></slot>
@@ -52,7 +52,8 @@
         let backdrop = document.createElement('div')
         const body = document.body
         backdrop.className = 'aside-backdrop'
-        const scrollBarWidth = getScrollBarWidth()
+        // const scrollBarWidth = getScrollBarWidth()
+        const scrollBarWidth = 0
         if (val) {
           body.appendChild(backdrop)
           body.classList.add('modal-open')
@@ -85,7 +86,7 @@
 </script>
 
 <style lang="stylus">
-  @import '../variables'
+  @import '../design-tokens'
 
   .aside-open
     transition transform 0.3s
@@ -95,8 +96,8 @@
 
   .aside
     position fixed
-    top 0
-    bottom 0
+    top 10rem
+    // bottom 10rem
     z-index $z-index-overlay
     overflow auto
     background $white
@@ -179,7 +180,7 @@
   .aside .aside-dialog .aside-header
     border-bottom 1px solid $vui-color-brand-7
     min-height $spacing-medium
-    padding $spacing-xx-small $spacing-medium
+    padding $spacing-medium $spacing-medium
     background $vui-color-brand-11
     color $white
 
@@ -192,12 +193,12 @@
 
   .aside .aside-dialog .aside-body
     position relative
-    padding $spacing-medium
+    padding $spacing-xx-large
 
   .aside .aside-dialog .aside-footer
     padding $spacing-medium
     text-align right
-    border-top 1px solid $vui-color-brand-7
+    // border-top 1px solid $vui-color-brand-7
 
   .aside .aside-dialog .aside-footer .btn+.btn
     margin-left $spacing-xx-small
@@ -215,7 +216,7 @@
     right 0
     bottom 0
     left 0
-    z-index $z-index-overlay
+    z-index $z-index-dialog
     opacity 0
     transition opacity 0.3s ease
     background-color $black

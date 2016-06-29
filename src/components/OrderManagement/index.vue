@@ -16,12 +16,12 @@
             th.u-width-medium Currency
             th.u-width-large Revenue
             th.u-width-large Share
-        tbody(v-for='(index, order) in orders')
-          tr(:class='(index % 2 === 0) ? "vui-highlight" : ""')
+        tbody(v-for='order in orders')
+          tr(:class='($index % 2 === 1) ? "vui-highlight" : ""')
             td
               a(v-if='order.versions.length !== 1', href='#', @click.prevent='toggleExpanded()')
                 svg.vui-icon.vui-icon--x-small(style="width: 1rem; height: 1rem;margin-left: -1rem")
-                  use(xlink:href="#icon-{{ expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
+                  use(xlink:href="/assets/icons.svg#icon-{{ expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
               a.vui-align-middle(@click.prevent='showDetail(order.id)', href='#') {{order.id}}
             td
               span.vui-badge.new(:class='order.status') {{order.status}}
@@ -108,7 +108,7 @@
 
     methods: {
       fetchOrders () {
-        this.$http.get(store.apiHost + '/orderManagement')
+        this.$http.get(store.apiHost + '/orders')
           .then((response) => {
             this.orders = response.data
           }, (response) => {

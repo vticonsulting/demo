@@ -1,9 +1,8 @@
 <template lang="jade">
   .price-guide-view
-
     // Page Heading
     h1.vui-text-heading--large Price Guide
-    h2.vui-text-heading--label.vui-m-bottom--medium Videa Pricing was last updated on April 17, 2016 at 04:31 PM
+    h2.vui-text-heading--label.vui-m-bottom--medium Videa Pricing was last updated on {{ lastUpdated }} at 08:30 AM
 
     p.vui-text-longform.vui-m-bottom--medium Use the Price Guide to review your rates and to either accept the Videa rates or override the Videa rates. The price is set prior to avail in the price guide. If you accept the Videa rates, know that Videa updates the rates every Sunday.
 
@@ -36,9 +35,9 @@
             .vui-select_container
               select.vui-select(name='', id='')
                 option(value='') Quarter
-                option(value='', selected) 2016/Q2
+                option(value='') 2016/Q2
                 option(value='') 2016/Q3
-                option(value='') 2016/Q4
+                option(value='', selected) 2016/Q4
                 option(value='') 2017/Q1
 
         // $0 Spots Checkbox Fieldset
@@ -51,7 +50,7 @@
 
         // Submit Button Fieldset
         fieldset.vui-form-element
-          button.vui-button.vui-button--brand.vui-m-right--x-small Submit
+          button.vui-button.vui-button--brand.vui-m-right--x-small(@click.prevent='') Submit
 
     // Daypart Selector
     #daypart-selector.vui-m-bottom--large
@@ -73,32 +72,40 @@
 
     // Market CPP
     .vui-grid.vui-grid--align-end
-      h4.vui-text-heading--small.vui-m-bottom--small
 
-        form.vui-form--inline
+      form.vui-form--inline.vui-m-bottom--x-small(:class='(sharedState.activeApp == "reps") ? "vui-grid vui-grid--align-end" : ""')
 
-          // Market CPP Input Fieldset
-          fieldset.vui-form-element
-            label.vui-form-element__label Market CPP:
-            .vui-form-element__control(v-show='sharedState.activeApp == "reps"')
-              input.vui-input.vui-m-right--xx-small(style='width: 5rem', type='text', v-model='sharedState.marketCpp | currencyDisplay')
-            .vui-form-element__control(v-else)
-              span.vui-form-element__static {{ sharedState.marketCpp | currencyDisplay }}
+        // Market CPP Input Fieldset
+        //- fieldset.vui-form-element
+        //-   label.vui-form-element__label Market CPP:
+        //-   .vui-form-element__control(v-show='sharedState.activeApp == "reps"')
+        //-     input.vui-input.vui-m-right--xx-small(style='width: 5rem', type='text', v-model='sharedState.marketCpp | currencyDisplay')
+        //-   .vui-form-element__control(v-else)
+        //-     span.vui-form-element__static {{ sharedState.marketCpp | currencyDisplay }}
 
-          // Update Market CPP Button Fieldset
-          fieldset.vui-form-element(v-show='sharedState.activeApp == "reps"')
-            button.vui-button.vui-button--brand(@click='updateMarketCpp($event)') Update
+        .vui-media
+          .vui-media__body
+            .vui-align-middle(v-show='sharedState.activeApp == "reps"')
+              span.vui-m-right--xx-small Market CPP
+              input.vui-input.vui-m-right--xx-small(@click.prevent='', style='width: 5rem', type='text', v-model='sharedState.marketCpp | currencyDisplay')
+            p.vui-align-middle(v-else)
+              span.vui-m-right--xx-small Market CPP
+              span.vui-text-heading--medium {{ sharedState.marketCpp | currencyDisplay }}
+
+        // Update Market CPP Button Fieldset
+        fieldset.vui-form-element(v-show='sharedState.activeApp == "reps"')
+          button.vui-button.vui-button--brand(@click.prevent='updateMarketCpp($event)') Update
 
     // Add Program Modal | Manage Premium Clients
     .vui-box.vui-grid.vui-grid--align-spread.vui-grid--vertical-align-middle.vui-theme--default(v-show='sharedState.activeApp == "sellers"')
 
       //- a.vui-align-middle(@click.prevent='', href='#') View Previously Accepted Rates and Ratings
 
-      .vui-grid(style='display: none')
+      .vui-grid.vui-hide
         .vui-align-middle.vui-m-right--xx-small Premium percent for daypart
 
         .vui-align-middle.vui-m-right--xx-small
-          input#global-premium-percent.vui-align-middle.vui-input.vui-input--small.vui-text-align--right(style='width: 3.25rem', v-show='editingPercent', v-model='sharedState.globalPremiumPercent')
+          input#global-premium-percent.vui-align-middle.vui-input.vui-input--small.vui-text-align--center(style='width: 3.25rem', v-show='editingPercent', v-model='sharedState.globalPremiumPercent')
           span.vui-align-middle.vui-form-element__static(v-show='!editingPercent') {{ sharedState.globalPremiumPercent }}
         .vui-align-middle.vui-m-right--small %
 
@@ -112,7 +119,7 @@
           icon.vui-align-middle(name='plus-circle')
           span.vui-align-middle Add a Program
 
-      a.vui-align-middle(@click.prevent='showPremiumClientsModal = true')
+      a.vui-align-middle.vui-hide(@click.prevent='showPremiumClientsModal = true')
           icon.vui-align-middle(name='pencil')
           span.vui-align-middle(name='edit') Edit Premium Advertisers
 
@@ -127,12 +134,12 @@
             tr
               th(rowspan='2') Program
               th(colspan='3') Station
-              th(colspan='2') Station Premium
+              th.vui-hide(colspan='2') Station Premium
               th(colspan='4') Videa
               th(colspan='3') On the Books
             tr
               // Station
-              th.u-width-large(style='min-width:5rem') Rate
+              th.u-width-large(style='min-width: 5rem; padding-left: 0.5rem') Rate
               th.u-width-medium.vui-text-align--center(v-show='cppOrCpm == "cpp"') A25-54 <sup>1</sup>
               th.u-width-medium(v-show='cppOrCpm == "cpp"') CPP <sup>1</sup>
               th.u-width-medium(v-show='cppOrCpm == "cpm"') Imp (000)
@@ -140,9 +147,9 @@
 
               // Station Premium
               th.u-width-medium.vui-text-align--center.vui-hide %
-              th.u-width-large(style='min-width:6rem') Rate
-              th.u-width-medium(v-show='cppOrCpm == "cpp"', style='min-width:6rem;max-width:6rem') CPP <sup>1</sup>
-              th.u-width-medium(v-show='cppOrCpm == "cpm"') CPM <sup>1</sup>
+              th.u-width-large.vui-hide(style='min-width:6rem') Rate
+              th.u-width-medium.vui-hide(v-show='cppOrCpm == "cpp"', style='min-width:6rem;max-width:6rem') CPP <sup>1</sup>
+              th.u-width-medium.vui-hide(v-show='cppOrCpm == "cpm"') CPM <sup>1</sup>
 
               // Videa
               th.u-width-small Accept<br>Rate
@@ -173,38 +180,41 @@
 
               // Station -- Rate (Program)
               td.station.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : "padding-right: 1.5rem"')
-                | {{ Math.round(averageMonthlyStationRate(program.months)) | numberWithCommas | formatMoney }}
+                | {{ avg(program.months, 'station', 'rate').toFixed(0) | numberWithCommas | formatMoney }}
+
 
               // Station -- Rating (Program)
               td.station.rating.vui-text-align--right(v-show='cppOrCpm == "cpp"')
-                | {{ averageMonthlyStationRating(program.months) | formatRating }}
+                | {{ avg(program.months, 'station', 'rating') | formatRating }}
 
               // Station -- CPP (Program)
               td.station.cpp.vui-text-align--right(v-show='cppOrCpm == "cpp"')
-                cpp(:rate="averageMonthlyStationRate(program.months)", :rating="averageMonthlyStationRating(program.months)")
+                cpp(:rate="avg(program.months, 'station', 'rate')", :rating="avg(program.months, 'station', 'rating')")
 
               // Station -- Impressions (Program)
               td.station.impressions.vui-text-align--right(v-show='cppOrCpm == "cpm"')
-                | {{ Math.round(averageMonthlyStationImpressions(program.months)) | formatRating }}
+                | {{ Math.round(avg(program.months, 'station', 'impressions')) | formatRating }}
 
               // Station -- CPM (Program)
               td.station.cpm.vui-text-align--right(v-show='cppOrCpm == "cpm"')
-                | {{ Math.round(averageMonthlyStationCpm(program.months)) | numberWithCommas | formatMoney }}
+                cpm(:rate="avg(program.months, 'station', 'rate')", :impressions="avg(program.months, 'station', 'impressions')")
 
               // Station Premium -- Percent (Program)
               td.station.premium.percent.vui-text-align--center.vui-hide
-                | {{ averageMonthlyStationPremiumPercent(program.months).toFixed(0) }}
+                //- | {{ averageMonthlyStationPremiumPercent(program.months).toFixed(0) }}
+                | {{ avg(program.months, 'station', 'premium_percent').toFixed(0) }}
 
               // Station Premium -- Rate (Program)
-              td.station.premium.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : "padding-right: 1.5rem"')
-                | {{ Math.round(averageMonthlyStationPremiumRate(program.months)) | numberWithCommas | formatMoney }}
+              td.station.premium.rate.vui-text-align--right.vui-hide(:style='(sharedState.activeApp == "reps") ? "" : "padding-right: 1.5rem"')
+                | {{ Math.round(avg(program.months, 'station', 'premium_rate')) | numberWithCommas | formatMoney }}
 
               // Station Premium -- CPP (Program)
-              td.station.premium.cpp.vui-text-align--right(v-show='cppOrCpm == "cpp"')
+              td.station.premium.cpp.vui-text-align--right.vui-hide(v-show='cppOrCpm == "cpp"')
+                //- cpp(:rate="avg(program.months, 'station', 'premium_rate')", :rating="avg(program.months, 'station', 'premium_rating')")
                 | {{ Math.round(averageMonthlyStationPremiumCpp(program.months)) | numberWithCommas | formatMoney }}
 
               // Station Premium -- CPM (Program)
-              td.station.premium.cpm.vui-text-align--right(v-show='cppOrCpm == "cpm"')
+              td.station.premium.cpm.vui-text-align--right.vui-hide(v-show='cppOrCpm == "cpm"')
                 | {{ Math.round(averageMonthlyStationPremiumCpm(program.months)) | numberWithCommas | formatMoney }}
 
               // Videa -- Accept Videa Rate (Program)
@@ -217,19 +227,19 @@
 
               // Videa -- Rate (Program)
               td.videa.rate.vui-text-align--right.vui-highlight
-                | {{ Math.round(averageMonthlyVideaRate (program.months)) | numberWithCommas | formatMoney }}
+                | {{ Math.round(avg(program.months, 'videa', 'rate')) | numberWithCommas | formatMoney }}
 
               // Videa -- Rating (Program)
               td.videa.rating.vui-text-align--right.vui-highlight(v-show='cppOrCpm == "cpp"')
-                | {{ averageMonthlyVideaRating(program.months) | formatRating }}
+                | {{ avg(program.months, 'videa', 'rating') | formatRating }}
 
               // Videa -- CPP (Program)
               td.videa.cpp.vui-text-align--right.vui-highlight(v-show='cppOrCpm == "cpp"')
-                cpp(:rate="averageMonthlyVideaRate(program.months)", :rating="averageMonthlyVideaRating(program.months)")
+                cpp(:rate="avg(program.months, 'videa', 'rate')", :rating="avg(program.months, 'videa', 'rating')")
 
               // Videa -- Impressions (Program)
               td.videa.impressions.vui-text-align--right.vui-highlight(v-show='cppOrCpm == "cpm"')
-                | {{ Math.round(averageMonthlyVideaImpressions(program.months)) | formatRating }}
+                | {{ Math.round(avg(program.months, 'videa', 'impressions')) | formatRating }}
 
               // Videa -- CPM (Program)
               td.videa.cpm.vui-text-align--right.vui-highlight(v-show='cppOrCpm == "cpm"')
@@ -237,19 +247,19 @@
 
               // On The Books -- (Program)
               td.on-the-books.rate.min-max.vui-text-align--right
-                | {{ Math.round(averageMonthlyOnTheBooksRateMin(program.months)) | numberWithCommas | formatMoney }}
+                | {{ Math.round(avg(program.months, 'onTheBooks', 'minRate')) | numberWithCommas | formatMoney }}
                 | /
-                | {{ Math.round(averageMonthlyOnTheBooksRateMax(program.months)) | numberWithCommas | formatMoney }}
+                | {{ Math.round(avg(program.months, 'onTheBooks', 'maxRate')) | numberWithCommas | formatMoney }}
 
               // On The Books -- (Program)
               td.on-the-books.rate.vui-text-align--right
-                | {{ Math.round(averageMonthlyOnTheBooksRate(program.months)) | numberWithCommas | formatMoney }}
+                | {{ Math.round(avg(program.months, 'onTheBooks', 'aur')) | numberWithCommas | formatMoney }}
                 | /
-                | {{ Math.round(averageMonthlyOnTheBooksRateLastYear(program.months)) | numberWithCommas | formatMoney }}
+                | {{ Math.round(avg(program.months, 'onTheBooks', 'lyAur')) | numberWithCommas | formatMoney }}
 
               // On The Books -- (Program)
               td.on-the-books.sell-out-percent.vui-text-align--right
-                | {{ averageMonthlyOnTheBooksSelloutPercent(program.months) | decimalToPercent }}
+                | {{ avg(program.months, 'onTheBooks', 'sellOutPercent') | decimalToPercent }}
 
             // Months
             template(v-for='month in program.months', v-if='program.months')
@@ -298,16 +308,16 @@
                   span(v-show='sharedState.activeApp !== "sellers"') {{ month.station.premium.percent }}
 
                 // Station Premium -- Rate (month)
-                td.station.premium.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : ""')
+                td.station.premium.rate.vui-text-align--right.vui-hide(:style='(sharedState.activeApp == "reps") ? "" : ""')
                   input.vui-text-align--right.vui-input(@input='month.station.premium.percent = setPremiumPercent(month.station.premium.rate, month.station.rate)', v-show='sharedState.activeApp == "sellers"', :value='month.station.premium.rate' v-model='month.station.premium.rate | currencyDisplay')
                   span(v-show='sharedState.activeApp == "reps"') {{ month.station.premium.rate | numberWithCommas | formatMoney }}
 
                 // Station Premium -- CPP (month)
-                td.station.premium.cpp.vui-text-align--right(v-show='cppOrCpm == "cpp"')
+                td.station.premium.cpp.vui-text-align--right.vui-hide(v-show='cppOrCpm == "cpp"')
                   cpp(:rate='month.station.premium.rate', :rating='month.station.premium.rating')
 
                 // Station Premium -- CPM (month)
-                td.station.premium.cpm.vui-text-align--right(v-show='cppOrCpm == "cpm"')
+                td.station.premium.cpm.vui-text-align--right.vui-hide(v-show='cppOrCpm == "cpm"')
                   cpm(:rate='month.station.premium.rate', :impressions='month.station.impressions')
 
                 // Videa -- Accept Videa Rate (month)
@@ -393,16 +403,16 @@
                     span(v-show='sharedState.activeApp !== "sellers"') {{ week.station.premium.percent  }}
 
                   // Station Premium -- Rate (week)
-                  td.station.premium.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : ""')
+                  td.station.premium.rate.vui-text-align--right.vui-hide(:style='(sharedState.activeApp == "reps") ? "" : ""')
                     input.vui-text-align--right.vui-input(@click="selectContents($event)", @keypress='onKeypress($event)',, @input='week.station.premium.percent = week.station.premium.rate / week.station.rate', v-show='sharedState.activeApp == "sellers"', :value='Math.round(week.station.premium.rate)' v-model='week.station.premium.rate | currencyDisplay')
                     span(v-show='sharedState.activeApp == "reps"') {{ week.station.premium.rate | numberWithCommas | formatMoney }}
 
                   // Station Premium -- CPP (week)
-                  td.station.premium.cpp.vui-text-align--right(v-show='cppOrCpm == "cpp"')
+                  td.station.premium.cpp.vui-text-align--right.vui-hide(v-show='cppOrCpm == "cpp"')
                     cpp(:rate='week.station.premium.rate', :rating='week.station.premium.rating')
 
                   // Station Premium -- CPM (week)
-                  td.station.premium.cpm.vui-text-align--right(v-show='cppOrCpm == "cpm"')
+                  td.station.premium.cpm.vui-text-align--right.vui-hide(v-show='cppOrCpm == "cpm"')
                     cpm(:rate='week.station.premium.rate', :impressions='week.station.impressions')
 
                   // Videa -- Accept Videa Rate (week)
@@ -423,7 +433,7 @@
 
                   // Videa -- CPP (week)
                   td.videa.cpp.vui-text-align--right.vui-highlight(v-show='cppOrCpm == "cpp"')
-                    | {{ week.videa.cpp | numberWithCommas | formatMoney }}
+                    cpp(:rate='week.videa.rate', :rating='week.videa.rating')
 
                   // Videa -- Impressions (week)
                   td.videa.impressions.vui-text-align--right.vui-highlight(v-show='cppOrCpm == "cpm"')
@@ -479,6 +489,9 @@
 </template>
 
 <script>
+  import $ from 'jquery'
+  import moment from 'moment'
+  import accounting from 'accounting'
   import store from '../../store'
   import Panel from '../Panel.vue'
   import Cpp from '../Cpp.vue'
@@ -515,6 +528,7 @@
     data () {
       return {
         context: {},
+        lastUpdated: null,
         acceptedRatesAndRatings: false,
         globalPercent: 0,
         editingPercent: false,
@@ -587,8 +601,44 @@
         }
       }
     },
-
+    // http://vuejs.org/guide/reactivity.html#Inside-Computed-Properties
     computed: {
+      tester () {
+        let { programs } = this.sharedState.priceGuide[0]
+        let { months } = programs[0]
+        let { weeks } = months[0]
+
+        return this.sharedState.priceGuide.map((daypart) => {
+          return daypart.programs.map((program) => {
+            return program.months.map((month) => {
+              return month.weeks
+            })
+          })
+        })
+
+        // return weeks.map((week) => {
+        //   return week.station.premium_percent
+        // })
+
+        // return weeks.each(function (week) {
+        //   return week.station.rate
+        // })
+      },
+
+      formattedMoney: {
+        get () {
+          return accounting.formatMoney(12345678)
+        }
+      },
+
+      currentDate: {
+        cache: true,
+        get () {
+          // return Date.now() + ' Current Date'
+          return moment().format('MMMM DD, YYYY')
+        }
+      },
+
       expandedDayparts () {
         return this.sharedState.priceGuide.filter(function (daypart) {
           return daypart.expanded
@@ -598,6 +648,7 @@
       allDaypartsExpanded () {
         return this.sharedState.priceGuide.length === this.expandedDayparts.length
       }
+
     },
 
     methods: {
@@ -696,46 +747,21 @@
         return value.toFixed(0)
       },
 
-      updateDayparts () {
+      updateDayparts (event) {
         var vm = this
         this.editingPercent = false
+        $('.percent input').each(function () {
+          $(this).val(vm.sharedState.globalPremiumPercent)
+        })
       },
 
-      averageMonthlyStationRate (months) {
-        return months.reduce((total, month) => {
-          return total + month.station.rate
-        }, 0) / months.length
-      },
+      avg (arr, group, measure) {
+        // let weeks = arr[group][measure].pr
+        let average = arr.reduce((prev, current) => {
+          return prev + current[group][measure]
+        }, 0) / arr.length
 
-      averageMonthlyStationRating (months) {
-        return months.reduce((total, month) => {
-          return total + month.station.rating
-        }, 0) / months.length
-      },
-
-      averageMonthlyStationImpressions (months) {
-        return months.reduce((total, month) => {
-          return total + month.station.impressions
-        }, 0) / months.length
-      },
-
-      averageMonthlyStationCpm (months) {
-        return months.reduce((total, month) => {
-          console.log(month.station.cpm)
-          return total + (month.station.rate / month.station.impressions)
-        }, 0) / months.length
-      },
-
-      averageMonthlyStationPremiumPercent (months) {
-        return months.reduce((total, month) => {
-          return total + month.station.premium.percent
-        }, 0) / months.length
-      },
-
-      averageMonthlyStationPremiumRate (months) {
-        return months.reduce((total, month) => {
-          return total + month.station.premium.rate
-        }, 0) / months.length
+        return average
       },
 
       averageMonthlyStationPremiumCpp (months) {
@@ -750,63 +776,15 @@
         }, 0) / months.length
       },
 
-      averageMonthlyVideaRate (months) {
-        return months.reduce((total, month) => {
-          return total + month.videa.rate
-        }, 0) / months.length
-      },
-
-      averageMonthlyVideaRating (months) {
-        return months.reduce((total, month) => {
-          return total + month.videa.rating
-        }, 0) / months.length
-      },
-
       averageMonthlyVideaCpp (months) {
         return months.reduce((total, month) => {
           return total + (month.videa.rate / month.videa.rating)
         }, 0) / months.length
       },
 
-      averageMonthlyVideaImpressions (months) {
-        return months.reduce((total, month) => {
-          return total + month.videa.impressions
-        }, 0) / months.length
-      },
-
       averageMonthlyVideaCpm (months) {
         return months.reduce((total, month) => {
           return total + (month.videa.rate / month.videa.impressions)
-        }, 0) / months.length
-      },
-
-      averageMonthlyOnTheBooksRateMin (months) {
-        return months.reduce((total, month) => {
-          return total + month.onTheBooks.minRate
-        }, 0) / months.length
-      },
-
-      averageMonthlyOnTheBooksRateMax (months) {
-        return months.reduce((total, month) => {
-          return total + month.onTheBooks.maxRate
-        }, 0) / months.length
-      },
-
-      averageMonthlyOnTheBooksRate (months) {
-        return months.reduce((total, month) => {
-          return total + month.onTheBooks.aur
-        }, 0) / months.length
-      },
-
-      averageMonthlyOnTheBooksRateLastYear (months) {
-        return months.reduce((total, month) => {
-          return total + month.onTheBooks.lyAur
-        }, 0) / months.length
-      },
-
-      averageMonthlyOnTheBooksSelloutPercent (months) {
-        return months.reduce((total, month) => {
-          return total + month.onTheBooks.sellOutPercent
         }, 0) / months.length
       },
 
@@ -847,6 +825,8 @@
     },
 
     ready () {
+      this.lastUpdated = moment().format('MMMM DD, YYYY')
+
       // THE SCRIPT THAT CHECKS IF THE KEY PRESSED IS A NUMERIC OR DECIMAL VALUE.
       function isNumber (evt, element) {
         var charCode = (evt.which) ? evt.which : event.keyCode
@@ -862,65 +842,3 @@
   }
 </script>
 
-<style lang="stylus" scoped>
-  .vui-table tr.month > td:first-child
-    padding-left 4rem
-
-  .has-changed td.videa.rate,
-  .has-changed td.videa.cpp,
-  .has-changed td.videa.cpm
-    // color hsla(349, 72%, 45%, 1) !important
-    // background-color rgba(255, 221, 225, 0.5)
-    // text-decoration line-through
-
-  .has-changed td.station.rate,
-  .has-changed td.station.cpp,
-  .has-changed td.station.cpm,
-  .has-changed td.station.premium.percent,
-  .has-changed td.station.premium.percent input,
-  // .has-changed td.station.premium.rate,
-  .has-changed td.station.premium.cpp,
-  .has-changed td.station.premium.cpm,
-  // .has-changed td.station.premium.rate input
-    // color rgba(4, 132, 75, 1) !important
-    // background rgba(217, 255, 223, 0.5)
-
-  .vui-table tr.week > td:first-child
-    padding-left 2.5rem
-
-  td.rate
-    // background: red
-
-  // tbody td:first-child
-  //   position relative
-  //   z-index 1
-
-  // .vui-dropdown
-  //   z-index 4000
-
-  .input-group
-    display table
-    vertical-align middle
-
-    .input-group-addon
-      width auto
-
-  // .percent
-  //   .vui-input-icon
-  //     display inline-block
-  //     position relative
-  //   .vui-input-icon:before
-  //     position absolute
-  //     content '%'
-  //     right 0
-  //     top 0
-  //     width 38px
-  //     height 38px
-  //   input
-  //     position relative
-  //     :before
-  //       display block
-  //       float right
-  //       padding-right 1rem
-  //       content "%"
-</style>

@@ -47,7 +47,7 @@
             .vui-select_container
               select.vui-select(id='')
                 option Status
-          button.vui-button.vui-button--brand.vui-m-right--x-small Search
+          button.vui-button.vui-button--brand.vui-m-right--x-small(@click.prevent='') Search
       table.vui-table.vui-no-row-hover
         thead
           tr

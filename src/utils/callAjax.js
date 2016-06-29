@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 export default (url, callback) => {
   var httpRequest = new XMLHttpRequest()
   httpRequest.onreadystatechange = function () {

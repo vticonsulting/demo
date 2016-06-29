@@ -33,7 +33,7 @@
             th(colspan='4') Current
             th(colspan='4') Purchased
           tr
-            th.u-width-xx-small Expected<br>Delivery %
+            th.u-width-xx-small(style='padding-left: 0.5rem') Expected<br>Delivery %
             th.u-width-xx-small
               | Current<br>GRPs
               sup 1
@@ -96,7 +96,7 @@
         sortOrder: 1,
         searchKey: '',
         reverse: false,
-        startDate: new Date('2016-02-01T12:24:00'),
+        startDate: new Date('2016-04-28T12:24:00'),
         endDate: new Date('2016-06-26T03:24:00'),
         columns: [
           { name: 'advertiser' },

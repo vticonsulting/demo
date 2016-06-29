@@ -41,7 +41,7 @@
       return {
         comment: '',
         showExportProposal: false,
-        expirationDate: new Date('2016-04-22T09:24:00')
+        expirationDate: new Date('2016-06-07T09:24:00')
       }
     },
 

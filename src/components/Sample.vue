@@ -81,13 +81,3 @@
     }
   }
 </script>
-
-<style>
-.xhr-profile-pic {
-    margin-top: 10px;
-}
-
-.xhr-input-hide {
-    display: none;
-}
-</style>

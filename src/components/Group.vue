@@ -32,8 +32,3 @@
   }
 </script>
 
-<style lang="stylus" scoped>
-  span
-    display inline-block
-    border 1px solid #ccc
-</style>

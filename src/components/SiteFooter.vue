@@ -39,25 +39,3 @@
   }
 </script>
 
-<style lang="stylus">
-
-  @import '../variables'
-  .vui-text-heading--small
-    color $vui-color-brand-8
-
-  .vui-site-footer
-    background-color $vui-color-brand-2
-    background-color $vui-color-brand-4
-    color white
-    text-align center
-    padding $spacing-medium
-
-    .v-link-active
-      color $vui-color-brand-6 !important
-      // color $vui-color-brand-5 !important
-
-  .vui-navigation--footer a
-    color #fff
-    text-decoration underline
-
-</style>

@@ -56,6 +56,14 @@ export default {
       name: 'reps.order-management.order',
       component: require('./views/reps/order-management/show.vue')
     },
+    '/reps/makegoods': {
+      name: 'reps.makegoods',
+      component: require('./views/reps/makegoods/index.vue')
+    },
+    '/reps/makegoods/:id': {
+      name: 'reps.makegood',
+      component: require('./views/reps/makegoods/show.vue')
+    },
     '/sellers/orders': {
       name: 'sellers.orders',
       component: require('./views/sellers/orders/index.vue')

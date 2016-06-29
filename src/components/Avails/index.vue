@@ -29,7 +29,7 @@
                 option Released
 
         fieldset.vui-form-element
-          button.vui-button.vui-button--brand.vui-m-right--x-small Search
+          button.vui-button.vui-button--brand.vui-m-right--x-small(@click.prevent='') Search
 
     .vui-scrollable--x
       table.vui-table.vui-no-row-hover
@@ -86,11 +86,11 @@
                 span.vui-align-middle
                   icon(name="sort", style="color: hsla(192, 9%, 89%, .5)")
         tbody(v-for='(index, avail) in avails')
-          tr(:class='(index % 2 === 0) ? "vui-highlight" : ""')
+          tr(:class='(index % 2 === 1) ? "vui-highlight" : ""')
             td
               a(v-if='avail.versions', href='#', @click.prevent='toggleDetail(avail, $event)')
                 svg.vui-icon.vui-icon--x-small(style="width: 1rem; height: 1rem;margin-left: -1rem")
-                  use(xlink:href="#icon-{{ avail.expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
+                  use(xlink:href="/assets/icons.svg#icon-{{ avail.expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
               a.vui-align-middle(@click.prevent='showAvail(avail.id)', href='#') {{avail.id}}
             td
               span.vui-badge(:class='avail.availStatus')  {{avail.availStatus}}
@@ -193,10 +193,3 @@
     }
   }
 </script>
-
-<style lang="stylus">
-  .vui-highlight
-    // background-color rgb(206, 229, 235)
-    background-color #cce4ea
-
-</style>

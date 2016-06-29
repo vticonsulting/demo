@@ -23,8 +23,8 @@
 
         fieldset.vui-form-element
           label.vui-form-element__label Search
-          .vui-form-element__control.vui-m-right--xx-small
-            input.vui-input(type='text', name='searchText', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Search')
+          .vui-form-element__control.vui-m-right--small
+            input.vui-input(type='text', name='searchText', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Search', style='width: 24rem')
 
         //- fieldset.vui-form-element
         //-   .vui-form-element__control.vui-m-right--small
@@ -35,17 +35,17 @@
         //-         option Campaign
 
         fieldset.vui-form-element
-          label.vui-form-element__label.vui-m-right--x-small(for='fromDate') From
+          label.vui-form-element__label.vui-m-right--x-small(for='fromDate') Flight Start Date
           .vui-form-element__control.vui-m-right--small
             datepicker#fromDate(:value.sync='fromDate', name='fromDate')
 
         fieldset.vui-form-element
-          label.vui-form-element__label.vui-m-right--x-small(for='fromDate') To
+          label.vui-form-element__label.vui-m-right--x-small(for='fromDate') Flight End Date
           .vui-form-element__control.vui-m-right--small
             datepicker#toDate(:value.sync='toDate', name='toDate')
 
         fieldset.vui-form-element
-          button.vui-button.vui-button--brand.vui-m-right--x-small Search
+          button.vui-button.vui-button--brand.vui-m-right--x-small(@click.prevent='') Search
 
     i.fa.fa-spinner.fa-spin(v-show='loading')
     .vui-scrollable--x(v-show='!loading')
@@ -57,12 +57,12 @@
                 span {{column.title}}
                 icon.vui-icon--sort-arrow(name='sort-asc')
         tbody
-          template(v-for='(index, order) in orders | orderBy sortKey sortOrder | filterBy searchKey')
-            tr(:class='(index % 2 === 0) ? "vui-highlight" : ""')
+          template(v-for='order in orders | orderBy sortKey sortOrder | filterBy searchKey')
+            tr(:class='($index % 2 === 1) ? "vui-highlight" : ""')
               td
                 a(href='#', @click.prevent='toggleDetail(order, $event)')
                   svg.vui-icon.vui-icon--small(style="width: 1rem; height: 1rem;")
-                    use(xlink:href="#icon-{{ order.expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
+                    use(xlink:href="/assets/icons.svg#icon-{{ order.expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
                 a(@click.prevent='showOrder(order.id)', href='#') {{ order.id }}
               td  {{ order.advertiser }}
               td {{ order.agency }}
@@ -72,7 +72,7 @@
               td.vui-text-align--right {{ order.revenue | numberWithCommas | formatMoney }}
               td.vui-text-align--right {{ order.share | decimalToPercent }}
               td {{ order.orderDate }}
-            tr.animated(v-show='order.expanded', transition='expand')
+            tr.animated(v-show='order.expanded')
               td.expanded(colspan='9')
                 .vui-box.vui-theme--shade.vui-grid.vui-grid--align-spread.vui-m-top--medium
                   span
@@ -96,16 +96,16 @@
                   thead
                     tr
                       th Daypart
-                      th.u-width-small AUR
-                      th.u-width-small # of Spots
-                      th.u-width-medium Revenue
-                      th.u-width-small
+                      th.vui-text-align--right.u-width-small AUR
+                      th.vui-text-align--right.u-width-small # of Spots
+                      th.vui-text-align--right.u-width-medium Revenue
+                      th.vui-text-align--right.u-width-small
                         | CPP
                         sup 1
-                      th.u-width-small
+                      th.vui-text-align--right.u-width-small
                         | Rating
                         sup 1
-                      th.u-width-small
+                      th.vui-text-align--right.u-width-small(style='padding-right: 1rem')
                         | GRPs
                         sup 1
                   tbody(v-for='daypart in order.dayparts')
@@ -178,8 +178,8 @@
         sortOrder: 1,
         searchKey: '',
         eventMsg: null,
-        fromDate: new Date('2016-04-25T12:24:00'),
-        toDate: new Date('2016-06-05T12:24:00'),
+        fromDate: new Date('2016-09-26T12:24:00'),
+        toDate: new Date('2016-12-25T12:24:00'),
         columns: [
           { name: 'advertiser' },
           { name: 'agency' },
@@ -232,6 +232,9 @@
         // NOTE: Do I really need to use jQuery here?
         var $element = $(event.target).closest('tr')
         order.expanded = !order.expanded
+
+        console.log(order.expanded)
+
         // if (order.expanded) {
         //   $element.css({ 'backgroundColor': '#cee5eb'})
         // } else {

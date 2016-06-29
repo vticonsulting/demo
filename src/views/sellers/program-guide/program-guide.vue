@@ -5,8 +5,8 @@
       form.vui-grid.vui-grid--vertical-align-end(action='')
         fieldset.vui-form-element
           label.vui-form-element__label Search
-          .vui-form-element__control.vui-m-right--xx-small
-            input.vui-input(type='text', name='searchText', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Search')
+          .vui-form-element__control.vui-m-right--small
+            input.vui-input(type='text', name='searchText', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Search', style='width: 24rem')
         //- fieldset.vui-form-element
         //-   label.vui-form-element__label Quick Selection
         //-   .vui-form-element__control.vui-m-right--small
@@ -70,12 +70,12 @@
               sup 1
             th.u-width-small.vui-text-align--center(rowspan='2') Spot #
           tr
-            th.u-width-medium This Year
+            th.u-width-medium(style='padding-left: 0.5rem') This Year
             th.u-width-medium Last Year
             th.u-width-medium This Year
             th.u-width-medium Last Year
         tbody
-          tr(v-for="program in programs", :class='($index % 2 === 0) ? "vui-highlight" : ""')
+          tr(v-for="program in programs", :class='($index % 2 === 1) ? "vui-highlight" : ""')
             td {{ program.name }}
             td {{ program.daypart }}
             td {{ program.programTime }}

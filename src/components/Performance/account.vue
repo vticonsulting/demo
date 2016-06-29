@@ -61,7 +61,7 @@
             td.vui-text-align--right {{ totalSpotVolumeTy | numberWithCommas }}
             td
         tbody
-          tr(v-for='account in accounts', :class='($index % 2 === 0) ? "vui-highlight" : ""')
+          tr(v-for='account in accounts', :class='($index % 2 === 1) ? "vui-highlight" : ""')
             td.vui-text-align--center {{ account.orderCount }}
             td
               a(href='#', @click.prevent="showAccountDetail(account)") {{ account.advertiser }}
@@ -155,7 +155,7 @@
     },
 
     created () {
-      this.fetchAccountPerformance()
+      // this.fetchAccountPerformance()
       this.fetchAccounts()
     }
   }

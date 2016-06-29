@@ -9,8 +9,8 @@
         li.vui-tabs--scoped__item.vui-text-heading--label(v-if="sharedState.activeApp == 'sellers'" title='Display Settings', role='presentation', v-link-active)
           a#display-settings__item.vui-tabs--scoped__link(v-link="{ name: 'settings.display', activeClass: 'vui-active', exact: true  }", role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-scoped-2') Display Settings
 
-        li.vui-tabs--scoped__item.vui-text-heading--label(v-if="sharedState.activeApp == 'sellers'" title='Premium Advertisers', role='presentation', v-link-active)
-          a#premium-advertisers__item.vui-tabs--scoped__link(v-link="{ name: 'settings.premium-advertisers', activeClass: 'vui-active', exact: true  }", role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-scoped-3') Premium Advertisers
+        //- li.vui-tabs--scoped__item.vui-text-heading--label(v-if="sharedState.activeApp == 'sellers'" title='Premium Advertisers', role='presentation', v-link-active)
+        //-   a#premium-advertisers__item.vui-tabs--scoped__link(v-link="{ name: 'settings.premium-advertisers', activeClass: 'vui-active', exact: true  }", role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-scoped-3') Premium Advertisers
 
         li.vui-tabs--scoped__item.vui-text-heading--label(v-if="sharedState.activeApp == 'sellers'" title='Sports Specials', role='presentation', v-link-active)
           a#specials-settings__item.vui-tabs--scoped__link(v-link="{ name: 'settings.specials', activeClass: 'vui-active', exact: true  }", role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-scoped-4') Sports and Specials

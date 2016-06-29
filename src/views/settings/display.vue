@@ -11,7 +11,7 @@
           fieldset.vui-form-element.vui-m-bottom--large
             label.vui-form-element__label(for='stationAudienceShare') Station Audience Share
             .vui-form-element__control
-              input#stationAudienceShare.vui-input(type='text', :value='sharedState.settings.stationAudienceShare | decimalToPercent')
+              input#stationAudienceShare.vui-input(type='text', v-model='sharedState.settings.stationAudienceShare | percentDisplay')
             .vui-form-element__help Format xx.xx%
           fieldset.vui-form-element.vui-m-bottom--large
             legend.form-element__legend.vui-form-element__label Select a view format
@@ -64,37 +64,66 @@
           legend.vui-form-element__label Additional Demographics
 
           .vui-grid.vui-grid--align-spread.vui-p-around--x-large
-            div
-              template(v-for='($index, demographic) in demographics', :value='$index')
-                fieldset.vui-form-element.vui-m-bottom--small(v-for='value in demographic')
-                  //- legend.vui-form-element__legend.vui-form-element__label {{ $key | toTitleCase }}
-                  .vui-form-element__control(v-for='item in value')
-                    label.vui-checkbox
-                      input(type='checkbox', name='options', id='checkbox-01', :checked='item.checked')
-                      span.vui-checkbox--faux
-                      span.vui-form-element__label M{{ item.group }}
-            div
-              template(v-for='($index, demographic) in demographics', :value='$index')
-                fieldset.vui-form-element.vui-m-bottom--small(v-for='value in demographic')
-                  //- legend.vui-form-element__legend.vui-form-element__label {{ $key | toTitleCase }}
-                  .vui-form-element__control(v-for='item in value')
-                    label.vui-checkbox
-                      input(type='checkbox', name='options', id='checkbox-01', :checked='item.checked')
-                      span.vui-checkbox--faux
-                      span.vui-form-element__label F{{ item.group }}
-            div
-              template(v-for='($index, demographic) in demographics', :value='$index')
-                fieldset.vui-form-element.vui-m-bottom--small(v-for='value in demographic')
-                  //- legend.vui-form-element__legend.vui-form-element__label {{ $key | toTitleCase }}
-                  .vui-form-element__control(v-for='item in value')
-                    label.vui-checkbox
-                      input(type='checkbox', name='options', id='checkbox-01', :checked='item.checked')
-                      span.vui-checkbox--faux
-                      span.vui-form-element__label A{{ item.group }}
+            div(v-for="demoGroup in demographics")
+              fieldset.vui-form-element.vui-m-bottom--small(v-for='value in demoGroup')
+                .vui-form-element__control(v-for='item in value')
+                  label.vui-checkbox
+                    input(type='checkbox', name='options', id='checkbox-01', :checked='item.checked')
+                    span.vui-checkbox--faux
+                    span.vui-form-element__label {{ item.group }}
+
+            //- div
+            //-   fieldset.vui-form-element.vui-m-bottom--small(v-for='demographic in demographics')
+            //-     .vui-form-element__control
+            //-       label.vui-checkbox
+            //-         input(type='checkbox', name='options', id='checkbox-01', :checked='demographic.checked')
+            //-         span.vui-checkbox--faux
+            //-         span.vui-form-element__label {{ demographic.group }}
+            //- div
+            //-   fieldset.vui-form-element.vui-m-bottom--small(v-for='demographic in demographics')
+            //-     .vui-form-element__control
+            //-       label.vui-checkbox
+            //-         input(type='checkbox', name='options', id='checkbox-01', :checked='demographic.checked')
+            //-         span.vui-checkbox--faux
+            //-         span.vui-form-element__label {{ demographic.group }}
+            //- div
+            //-   fieldset.vui-form-element.vui-m-bottom--small(v-for='demographic in demographics')
+            //-     .vui-form-element__control
+            //-       label.vui-checkbox
+            //-         input(type='checkbox', name='options', id='checkbox-01', :checked='demographic.checked')
+            //-         span.vui-checkbox--faux
+            //-         span.vui-form-element__label {{ demographic.group }}
+            //- div
+            //-   template(v-for='($index, demographic) in demographics', :value='$index')
+            //-     fieldset.vui-form-element.vui-m-bottom--small(v-for='value in demographic')
+            //-       //- legend.vui-form-element__legend.vui-form-element__label {{ $key | toTitleCase }}
+            //-       .vui-form-element__control(v-for='item in value')
+            //-         label.vui-checkbox
+            //-           input(type='checkbox', name='options', id='checkbox-01', :checked='item.checked')
+            //-           span.vui-checkbox--faux
+            //-           span.vui-form-element__label M{{ item.group }}
+            //- div
+            //-   template(v-for='($index, demographic) in demographics', :value='$index')
+            //-     fieldset.vui-form-element.vui-m-bottom--small(v-for='value in demographic')
+            //-       //- legend.vui-form-element__legend.vui-form-element__label {{ $key | toTitleCase }}
+            //-       .vui-form-element__control(v-for='item in value')
+            //-         label.vui-checkbox
+            //-           input(type='checkbox', name='options', id='checkbox-01', :checked='item.checked')
+            //-           span.vui-checkbox--faux
+            //-           span.vui-form-element__label F{{ item.group }}
+            //- div
+            //-   template(v-for='($index, demographic) in demographics', :value='$index')
+            //-     fieldset.vui-form-element.vui-m-bottom--small(v-for='value in demographic')
+            //-       //- legend.vui-form-element__legend.vui-form-element__label {{ $key | toTitleCase }}
+            //-       .vui-form-element__control(v-for='item in value')
+            //-         label.vui-checkbox
+            //-           input(type='checkbox', name='options', id='checkbox-01', :checked='item.checked')
+            //-           span.vui-checkbox--faux
+            //-           span.vui-form-element__label A{{ item.group }}
 
       .vui-form-element
-        button.vui-button.vui-button--brand.vui-m-right--xx-small() Save
-        button.vui-button.vui-button--neutral() Cancel
+        button.vui-button.vui-button--brand.vui-m-right--xx-small(@click.prevent='') Save
+        button.vui-button.vui-button--neutral(@click.prevent='') Cancel
 </template>
 
 <script>
@@ -109,7 +138,8 @@
         sharedState: store.state,
         newpassword: '',
         activeTab: '#display-settings',
-        demographics: [
+        demographics: require('./demos.json'),
+        demographics2: [
           {
             'teen': [
               {

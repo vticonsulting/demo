@@ -1,5 +1,6 @@
 <template lang="jade">
   .order-management-show-view
+
     h2.vui-text-heading--large {{order.advertiser}} Details
     .vui-grid.vui-grid--align-spread.vui-m-bottom--large
       a(@click.prevent='showSummary()')
@@ -16,7 +17,7 @@
       fieldset.vui-form-element
         label.vui-form-element__label Order #
         .vui-form-element__control
-          span.vui-form-element__static {{ order.videaOrderNo }}
+          span.vui-form-element__static {{ order.id }}
 
       fieldset.vui-form-element
         label.vui-form-element__label Advertiser
@@ -82,7 +83,17 @@
       .buttons
         button.vui-button--brand.vui-m-right--x-small(@click.prevent='showAcceptOrderModal = true') Accept
         button.vui-button--neutral(@click.prevent='showRejectOrderModal = true') Reject
+    .vui-grid.vui-grid--align-end.vui-m-bottom--medium(v-if='sharedState.activeApp == "reps"')
+      .buttons
+        form.vui-form--inline
+          fieldset.vui-form-element
+            label.vui-form-element__label(for='') Share
+            .vui-form-element__control
+              //- input.vui-input(type='text', style='width: 5rem')
+              input#stationAudienceShare.vui-input(type='text', style='width: 5rem', v-model='order.share | percentDisplay')
 
+          fieldset.vui-form-element
+            button.vui-button--brand(@click.prevent='') Update
     .vui-scrollable--x
       table.vui-table.vui-no-row-hover
         thead
@@ -151,7 +162,7 @@
 
     methods: {
       fetchOrder (id) {
-        this.$http.get(store.apiHost + '/orderManagement/' + id)
+        this.$http.get(store.apiHost + '/orders/' + id)
           .then((response) => {
             this.order = response.data
           }, (response) => {

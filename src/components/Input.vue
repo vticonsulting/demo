@@ -37,16 +37,3 @@
     }
   }
 </script>
-
-<style lang="stylus">
-  .vui-form-element__control--with-addon
-    position relative
-
-    .vui-input ~ span
-      display inline-block
-      height 3px
-      position absolute
-      top 20%
-      right 0.5rem
-      transition all 0.125s ease
-</style>

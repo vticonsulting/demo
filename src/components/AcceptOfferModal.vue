@@ -14,9 +14,7 @@
   import Modal from './Modal.vue'
 
   export default {
-    components: {
-      Modal
-    },
+    components: { Modal },
 
     props: ['show'],
 

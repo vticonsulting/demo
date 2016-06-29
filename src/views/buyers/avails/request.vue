@@ -175,7 +175,7 @@
   .vui-grid.vui-grid--align-spread
     // Dayparts
     .dayparts.vui-m-bottom--large.vui-size--2-of-5.vui-p-right--large
-      h2.vui-text-heading--medium.vui-m-bottom--medium Dayparts <span class='required'>*</span>
+      h2.vui-text-heading--medium.vui-m-bottom--medium Parameters <span class='required'>*</span>
 
       .vui-box(style='background-color: #ccc')
         form.vui-form--inline(action='')
@@ -191,7 +191,7 @@
             label.vui-form-element__label(for='grossBudget')
               | Gross Budget <span class='required'>*</span>
             .vui-form-element__control
-              input#grossBudget.vui-input(v-model=' grossBudget | formatMoney', style='width: 6rem; text-align: right')
+              input#grossBudget.vui-input(v-model='grossBudget | currencyDisplay', style='width: 6rem; text-align: right')
           .vui-form-element
             label.vui-form-element__label(for='grpGoal') GRP Goal
             .vui-form-element__control
@@ -227,14 +227,14 @@
 
     .flight-days.vui-m-bottom--large.vui-size--3-of-5
       .vui-grid.vui-grid--align-spread
-        h2.vui-text-heading--medium.vui-m-bottom--medium Flight Days <span class='required'>*</span>
+        h2.vui-text-heading--medium.vui-m-bottom--medium Flight Dates <span class='required'>*</span>
 
         .vui-grid.vui-grid--align-end.vui-grid--vertical-align-center
           .vui-grid.vui-align-middle.vui-m-right--medium
-            span.vui-align-middle.table-legend.table-legend--selected.vui-m-right--x-small
+            span.vui-align-middle.vui-table-legend.vui-table-legend--selected.vui-m-right--x-small
             span.vui-align-middle Selected
           .vui-grid.vui-align-middle
-            span.vui-align-middle.table-legend.table-legend--unselected.vui-m-right--x-small
+            span.vui-align-middle.vui-table-legend.vui-table-legend--unselected.vui-m-right--x-small
             span.vui-align-middle Unselected
 
       .vui-box.vui-m-bottom--xx-small(style='background-color: #ccc')
@@ -265,9 +265,9 @@
         thead
           tr
             th(rowspan='2') Week
-            th.vui-text-align--center(@click='monthClick($event)', colspan='7') May 2016
+            th.vui-text-align--center(@click='monthClick($event)', colspan='7') November 2016
           tr
-            th.vui-text-align--center.monday(@click='dayOfWeekHeaderRowClick("monday")') Mon
+            th.vui-text-align--center.monday(@click='dayOfWeekHeaderRowClick("monday")', style='padding-left: 0.5rem') Mon
             th.vui-text-align--center.tuesday(@click='dayOfWeekHeaderRowClick("tuesday")') Tue
             th.vui-text-align--center.wednesday(@click='dayOfWeekHeaderRowClick("wednesday")') Wed
             th.vui-text-align--center.thursdey(@click='dayOfWeekHeaderRowClick("thursday")') Thu
@@ -277,55 +277,28 @@
         tbody
           tr
             td(@click='weekNumberClick') Week 1
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 25
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 26
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 27
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 28
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 29
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 30
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 01
+            td.vui-text-align--center.monday(@click='dayOfWeekClick') 14
+            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 15
+            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 16
+            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 17
+            td.vui-text-align--center.friday(@click='dayOfWeekClick') 18
+            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 19
+            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 20
           tr
             td(@click='weekNumberClick') Week 2
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 02
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 03
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 04
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 05
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 06
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 07
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 08
-          tr
-            td(@click='weekNumberClick') Week 3
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 09
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 10
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 11
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 12
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 13
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 14
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 15
-          tr
-            td(@click='weekNumberClick') Week 4
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 16
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 17
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 18
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 19
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 20
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 21
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 22
-          tr
-            td(@click='weekNumberClick') Week 5
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 23
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 24
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 25
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 26
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 27
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 28
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 29
+            td.vui-text-align--center.monday(@click='dayOfWeekClick') 21
+            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 22
+            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 23
+            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 24
+            td.vui-text-align--center.friday(@click='dayOfWeekClick') 25
+            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 26
+            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 27
         thead
           tr
             th(rowspan='2') Week
-            th.vui-text-align--center(@click='monthClick($event)', colspan='7') June 2016
+            th.vui-text-align--center(@click='monthClick($event)', colspan='7') December 2016
           tr
-            th.vui-text-align--center.monday(@click='dayOfWeekHeaderRowClick()') Mon
+            th.vui-text-align--center.monday(@click='dayOfWeekHeaderRowClick()', style='padding-left: 0.5rem') Mon
             th.vui-text-align--center.tuesday(@click='dayOfWeekHeaderRowClick()') Tue
             th.vui-text-align--center.wednesday(@click='dayOfWeekHeaderRowClick()') Wed
             th.vui-text-align--center.thursday(@click='dayOfWeekHeaderRowClick()') Thu
@@ -334,22 +307,49 @@
             th.vui-text-align--center.sunday(@click='dayOfWeekHeaderRowClick()') Sun
         tbody
           tr
-            td(@click='weekNumberClick') Week 6
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 30
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 31
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 01
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 02
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 03
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 04
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 05
+            td(@click='weekNumberClick') Week 3
+            td.vui-text-align--center.monday(@click='dayOfWeekClick') 28
+            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 29
+            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 30
+            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 01
+            td.vui-text-align--center.friday(@click='dayOfWeekClick') 02
+            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 03
+            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 04
+          tr
+            td(@click='weekNumberClick') Week 4
+            td.vui-text-align--center.monday(@click='dayOfWeekClick') 05
+            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 06
+            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 07
+            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 08
+            td.vui-text-align--center.friday(@click='dayOfWeekClick') 09
+            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 10
+            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 11
+        tr
+          td(@click='weekNumberClick') Week 5
+          td.vui-text-align--center.monday(@click='dayOfWeekClick') 12
+          td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 13
+          td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 14
+          td.vui-text-align--center.thursday(@click='dayOfWeekClick') 15
+          td.vui-text-align--center.friday(@click='dayOfWeekClick') 16
+          td.vui-text-align--center.saturday(@click='dayOfWeekClick') 17
+          td.vui-text-align--center.sunday(@click='dayOfWeekClick') 18
+        tr
+          td(@click='weekNumberClick') Week 6
+          td.vui-text-align--center.monday(@click='dayOfWeekClick') 19
+          td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 20
+          td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 21
+          td.vui-text-align--center.thursday(@click='dayOfWeekClick') 22
+          td.vui-text-align--center.friday(@click='dayOfWeekClick') 23
+          td.vui-text-align--center.saturday(@click='dayOfWeekClick') 24
+          td.vui-text-align--center.sunday(@click='dayOfWeekClick') 25
       .vui-text-align--right
         button.vui-m-right--xx-small.vui-button.vui-button--brand(v-link='{ name: "buyers.avails.request.summary" }', :disabled='daypartMixTotal !== 100') Submit
         button.vui-button.vui-button--neutral Cancel
 </template>
 
 <script>
+  import $ from 'jquery'
   import store from '../../../store'
-
   import Button from '../../../components/Button.vue'
   import Datepicker from '../../../components/Datepicker2.vue'
   import PageHeading from '../../../components/PageHeading.vue'
@@ -375,7 +375,7 @@
       let ageRange = document.getElementById('age-range')
 
       noUiSlider.create(ageRange, {
-        start: [25, 54],
+        start: [25.0, 54.0],
         tooltips: true,
         step: 1,
         connect: true,
@@ -402,8 +402,8 @@
     data () {
       return {
         sharedState: store.state,
-        startDate: new Date('2016-04-25T12:24:00'),
-        endDate: new Date('2016-06-05T12:24:00'),
+        startDate: new Date('2016-11-14T12:24:00'),
+        endDate: new Date('2016-12-25T12:24:00'),
         grossBudget: 0,
         USstate: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
         asyncTemplate: '{{ item.formatted_address }}',
@@ -865,290 +865,3 @@
     }
   }
 </script>
-
-<style lang="stylus">
-  @import '../../../variables'
-
-  .foo-select
-    min-width 300px
-
-  .vui-selected
-    background hsla(188, 40%, 56%, 0.5)
-
-  .table-legend
-    dipslay inline-block
-    width 1rem
-    height 1rem
-    border 1px solid #eee
-
-    &--selected
-      background-color hsla(188, 40%, 56%, 0.5)
-
-    &--unselected
-      background-color $white
-
-  /* Functional styling
-   * These styles are required for noUiSlider to function.
-   * You don't need to change these rules to apply your design.
-   */
-  .noUi-target,
-  .noUi-target *
-    touch-action none
-    user-select none
-    box-sizing border-box
-
-  .noUi-target
-    position relative
-    direction ltr
-
-  .noUi-base
-    width 100%
-    height 100%
-    position relative
-    z-index 1 /* Fix 401 */
-
-  .noUi-origin
-    position absolute
-    right 0
-    top 0
-    left 0
-    bottom 0
-
-  .noUi-handle
-    position relative
-    z-index 1
-
-  .noUi-stacking .noUi-handle
-  /* This class is applied to the lower origin when
-     its values is > 50%. */
-    z-index 10
-
-  .noUi-state-tap .noUi-origin
-    transition left 0.3s, top 0.3s
-
-  .noUi-state-drag *
-    cursor inherit !important
-
-  /* Painting and performance
-   * Browsers can paint handles in their own layer.
-   */
-  .noUi-base,
-  .noUi-handle
-    transform translate3d(0,0,0)
-
-  /* Slider size and handle placement
-   */
-  .noUi-horizontal
-    height 18px
-
-  .noUi-horizontal .noUi-handle
-    width 34px
-    height 28px
-    left -17px
-    top -6px
-
-  .noUi-vertical
-    width 18px
-
-  .noUi-vertical .noUi-handle
-    width 28px
-    height 34px
-    left -6px
-    top -17px
-
-  /* Styling
-   */
-  .noUi-background
-    background #FAFAFA
-    box-shadow inset 0 1px 1px #f0f0f0
-
-  .noUi-connect
-    background $vui-color-brand-11
-    box-shadow inset 0 0 3px rgba(51,51,51,0.45)
-    transition background 450ms
-
-  .noUi-origin
-    border-radius 2px
-
-  .noUi-target
-    border-radius 4px
-    border 1px solid #D3D3D3
-    box-shadow inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB
-
-  .noUi-target.noUi-connect
-    box-shadow inset 0 0 3px rgba(51,51,51,0.45), 0 3px 6px -5px #BBB
-
-  /* Handles and cursors
-   */
-  .noUi-draggable
-    cursor w-resize
-
-  .noUi-vertical .noUi-draggable
-    cursor n-resize
-
-  .noUi-handle
-    border 1px solid #D9D9D9
-    border-radius 3px
-    background $white
-    cursor default
-    box-shadow inset 0 0 1px $white,
-          inset 0 1px 7px #EBEBEB,
-          0 3px 6px -3px #BBB
-
-  .noUi-active
-    box-shadow inset 0 0 1px $white,
-          inset 0 1px 7px #DDD,
-          0 3px 6px -3px #BBB
-
-  /* Handle stripes
-   */
-  .noUi-handlebefore,
-  .noUi-handleafter
-    content ''
-    display block
-    position absolute
-    height 14px
-    width 1px
-    background #E8E7E6
-    left 14px
-    top 6px
-
-  .noUi-handleafter
-    left 17px
-
-  .noUi-vertical .noUi-handlebefore,
-  .noUi-vertical .noUi-handleafter
-    width 14px
-    height 1px
-    left 6px
-    top 14px
-
-  .noUi-vertical .noUi-handleafter
-    top 17px
-
-  /* Disabled state
-   */
-  [disabled].noUi-connect,
-  [disabled] .noUi-connect
-    background #B8B8B8
-
-  [disabled].noUi-origin,
-  [disabled] .noUi-handle
-    cursor not-allowed
-
-  /* Base
-   *
-   */
-  .noUi-pips,
-  .noUi-pips *
-  -moz-box-sizing border-box
-    box-sizing border-box
-
-  .noUi-pips
-    position absolute
-    color #999
-
-  /* Values
-   *
-   */
-  .noUi-value
-    width 40px
-    position absolute
-    text-align center
-
-  .noUi-value-sub
-    color #ccc
-    font-size 10px
-
-  /* Markings
-   *
-   */
-  .noUi-marker
-    position absolute
-    background #CCC
-
-  .noUi-marker-sub
-    background #AAA
-
-  .noUi-marker-large
-    background #AAA
-
-  /* Horizontal layout
-   *
-   */
-  .noUi-pips-horizontal
-    padding 10px 0
-    height 50px
-    top 100%
-    left 0
-    width 100%
-
-  .noUi-value-horizontal
-    margin-left -20px
-    padding-top 20px
-
-  .noUi-value-horizontal.noUi-value-sub
-    padding-top 15px
-
-  .noUi-marker-horizontal.noUi-marker
-    margin-left -1px
-    width 2px
-    height 5px
-
-  .noUi-marker-horizontal.noUi-marker-sub
-    height 10px
-
-  .noUi-marker-horizontal.noUi-marker-large
-    height 15px
-
-  /**
-   *  Vertical layout
-   *
-   */
-  .noUi-pips-vertical
-    padding 0 10px
-    height 100%
-    top 0
-    left 100%
-
-  .noUi-value-vertical
-    width 15px
-    margin-left 20px
-    margin-top -5px
-
-  .noUi-marker-vertical.noUi-marker
-    width 5px
-    height 2px
-    margin-top -1px
-
-  .noUi-marker-vertical.noUi-marker-sub
-    width 10px
-
-  .noUi-marker-vertical.noUi-marker-large
-    width 15px
-
-  /**
-   * Tooltip
-   *
-   */
-  .noUi-tooltip
-    display block
-    position absolute
-    border 1px solid #D9D9D9
-    border-radius 3px
-    background $white
-    padding 5px
-    text-align center
-
-  .noUi-horizontal .noUi-handle-lower .noUi-tooltip
-    bottom -3.45rem
-
-  .noUi-horizontal .noUi-handle-upper .noUi-tooltip
-    bottom -3.45rem
-
-  .noUi-vertical .noUi-handle-lower .noUi-tooltip
-    left 120%
-
-  .noUi-vertical .noUi-handle-upper .noUi-tooltip
-    right 120%
-</style>

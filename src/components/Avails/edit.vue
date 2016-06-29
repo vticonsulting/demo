@@ -544,11 +544,3 @@
     }
   }
 </script>
-
-<style lang="stylus">
-  .vui-table tr.month > td:first-child
-    padding-left 4rem
-
-  .vui-table tr.week > td:first-child
-    padding-left 2.5rem
-</style>

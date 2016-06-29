@@ -1,6 +1,6 @@
 <template lang="jade">
   svg.vui-icon.vui-icon--x-small.vui-align-middle(:class='')
-    use(xlink:href='#icon-{{ name }}')
+    use(xlink:href='/assets/icons.svg#icon-{{ name }}')
 </template>
 
 <script>

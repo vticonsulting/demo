@@ -1,7 +1,7 @@
 <template lang="jade">
   #sportsAndSpecials.vui-p-around--x-large.vui-tabs--scoped__content.vui-show(role='tabpanel', v-show="activeTab == '#sportsAndSpecials'")
     h1.vui-text-heading--medium Sports / Specials
-    h2.vui-text-heading--label.vui-m-bottom--medium As of April 18, 2016
+    h2.vui-text-heading--label.vui-m-bottom--medium As of {{ lastUpdated }}
     data-grid-heading
     .vui-scrollable--x
       table.vui-table.vui-no-row-hover
@@ -13,14 +13,14 @@
             th(colspan='2') Videa
             th(colspan='2') Total
           tr
-            th This Year
+            th(style='padding-left: 0.5rem') This Year
             th Last Year
             th.vui-text-align--center Spots Sold
             th Revenue
             th.vui-text-align--center Spots Available
             th Revenue
         tbody
-          tr(v-for='(index, sportSpecial) in sportsAndSpecials', :class='(index % 2 === 0) ? "vui-highlight" : ""')
+          tr(v-for='(index, sportSpecial) in sportsAndSpecials', :class='(index % 2 === 1) ? "vui-highlight" : ""')
             td {{ sportSpecial.sportsSpecialsName }}
             td.u-width-xx-small {{ sportSpecial.formattedAirDate }}
             td.vui-text-align--right.u-width-xx-small {{ sportSpecial.aurTy | numberWithCommas | formatMoney }}
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+  import moment from 'moment'
   import store from '../../../store'
   import PageHeading from '../../../components/PageHeading.vue'
   import DataGridHeading from '../../../components/DataGridHeading.vue'
@@ -43,6 +44,7 @@
 
     data () {
       return {
+        lastUpdated: null,
         sharedState: store.state,
         sortKey: 'programName',
         activeTab: '#sportsAndSpecials',
@@ -97,6 +99,10 @@
       this.fetchPricing()
       this.fetchSportsAndSpecials()
       this.sharedState.activeApp = 'sellers'
+    },
+
+    ready () {
+      this.lastUpdated = moment().format('MMMM DD, YYYY')
     }
   }
 </script>

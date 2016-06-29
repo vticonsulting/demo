@@ -4,7 +4,7 @@
     p.vui-text-longform.vui-m-bottom--large Select the reps you'd like to have access to your Price Guide
 
     .vui-grid.vui-grid--align-spread.vui-m-bottom--large
-    button.vui-align-middle.vui-button.vui-button--brand(@click.prevent='showEditSalesRepsModal = true', href='#') Edit Sales Reps
+      button.vui-align-middle.vui-button.vui-button--brand(@click.prevent='showEditSalesRepsModal = true', href='#') Edit Sales Reps
 
     .vui-scrollable--x
       table.vui-table

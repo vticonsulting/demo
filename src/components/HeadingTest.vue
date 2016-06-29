@@ -10,25 +10,6 @@
     </main>
 </template>
 
-<style>
-  html {
-    font-size: 1em;
-  }
-
-  /**
-   * Headings are always ‘just a bit bigger’ than body copy.
-   */
-  h1, h2, h3, h4, h5, h6 {
-    font-size: 1.25rem;
-  }
-
-  .c-heading-page {}
-  .c-heading-main {}
-  .c-heading-sub {}
-  .c-heading-banner {}
-  .c-heading-section {}
-</style>
-
 <script>
   export default {
     data () {

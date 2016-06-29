@@ -33,8 +33,3 @@
 
   }
 </script>
-
-<style lang="stylus">
-  .vui-docked_container
-    padding 0
-</style>

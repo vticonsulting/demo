@@ -67,7 +67,7 @@
           label.vui-form-element__label(for='') Gross Market Budget
           .vui-form-element__control
             span(v-if='!editing') {{ avail.grossMarketBudget | formatMoney | numberWithCommas }}
-            input.vui-input(v-if='editing', v-model='avail.grossMarketBudget')
+            input.vui-input(v-if='editing', v-model='avail.grossMarketBudget | currencyDisplay')
             span#errorSample1.vui-form-element__help(v-if='error') This field is required
 
         fieldset.vui-form-element.vui-m-bottom--small
@@ -121,7 +121,7 @@
             th(colspan='3')
               | Goals
           tr
-            th
+            th(style='padding-left: 0.5rem')
               a.vui-grid.vui-grid--align-spread(@click.prevent='', href="#")
                 span.vui-align-middle CPP
                 span.vui-align-middle
@@ -151,7 +151,7 @@
               input.vui-input.vui-text-align--right(v-if='editing', type='text', v-model='daypartGoal.mix')
       .vui-text-align--right(v-if='editing')
         .buttons
-          button.vui-button.vui-button.vui-button--small.vui-button--brand(@click.prevent='editing = false') Save
+          button.vui-button.vui-button.vui-button--small.vui-button--brand.vui-m-right--xx-small(@click.prevent='editing = false') Save
           button.vui-button.vui-button.vui-button--small.vui-button--neutral(@click.prevent='editing = false') Cancel
     #avail.vui-m-bottom--medium
       h2.vui-text-heading--medium.vui-m-bottom--small Avail
@@ -277,8 +277,8 @@
     data () {
       return {
         sharedState: store.state,
-        expirationDate: new Date('2016-04-22T03:24:00'),
-        dueDate: new Date('2016-04-22T03:24:00'),
+        expirationDate: new Date('2016-06-07T06:24:00'),
+        dueDate: new Date('2016-06-07T06:24:00'),
         showReleaseToBuyerModal: false,
         selectedDaypart: require('./selected.json'),
         editing: false,
@@ -410,23 +410,3 @@
     }
   }
 </script>
-
-<style lang="stylus">
-  .vui-label--custom-1
-    width 50%
-    font-weight 700
-    display inline-block
-
-  .vui-flexbox,
-  .vui-flex-item
-    display flex
-
-  .vui-flex-item
-    flex 1 1 0%
-    padding 1em
-    margin 1em
-    background-color white
-    box-shadow 0 7px 3px -3px rgba(0, 0, 0, 0.1),
-      0 0 15px 0 rgba(0, 0, 0, 0.1)
-
-</style>
