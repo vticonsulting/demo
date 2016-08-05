@@ -1,6 +1,6 @@
 <template lang="jade">
   .program-guide-view
-    h1.vui-text-heading--large.vui-m-bottom--medium Program Guide
+    h1.vui-text-heading--large.vui-m-bottom--medium Program Revenue
     .vui-tabs--scoped
       ul.vui-tabs--scoped__nav(role='tablist')
         li.vui-tabs--scoped__item.vui-text-heading--label(title='Program Guide', role='presentation' v-link-active)

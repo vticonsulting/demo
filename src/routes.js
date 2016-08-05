@@ -90,6 +90,10 @@ export default {
         }
       }
     },
+    '/sellers/program-revenue': {
+      name: 'sellers.program-revenue',
+      component: require('./views/sellers/program-revenue/index.vue')
+    },
     '/sellers/performance/account': {
       name: 'sellers.performance.account',
       component: require('./views/sellers/performance/account.vue')

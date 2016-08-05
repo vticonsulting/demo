@@ -7,18 +7,24 @@
       ul.dropdown-menu.dropdown__list.vui-dropdown__list(role='menu', v-if="sharedState.activeApp == 'sellers'")
         li.dropdown-item.vui-dropdown__item
           a(@click.prevent='clicked("sellers.order-management")', role='menuitem')
-            p.vui-truncate Accept/Reject Orders
+            p.vui-truncate Order Dashboard
         li.dropdown-item.vui-dropdown__item
           a(@click.prevent='clicked("sellers.makegoods")', role='menuitem')
-            p.vui-truncate Makegoods Dashboard
+            p.vui-truncate Makegood Dashboard
+        li.dropdown-item.vui-dropdown__item
+          a(@click.prevent='clicked("sellers.orders")', role='menuitem')
+            p.vui-truncate Order Reporting
 
       ul.dropdown-menu.dropdown__list.vui-dropdown__list(role='menu', v-if="sharedState.activeApp == 'reps'")
         li.dropdown-item.vui-dropdown__item
           a(@click.prevent='clicked("reps.order-management")', role='menuitem')
-            p.vui-truncate Accept/Reject Orders
+            p.vui-truncate Order Dashboard
         li.dropdown-item.vui-dropdown__item
           a(@click.prevent='clicked("reps.makegoods")', role='menuitem')
             p.vui-truncate Makegoods Dashboard
+        li.dropdown-item.vui-dropdown__item
+          a(@click.prevent='clicked("reps.orders")', role='menuitem')
+            p.vui-truncate Order Reporting
 </template>
 
 <script>

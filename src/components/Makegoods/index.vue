@@ -1,7 +1,7 @@
 <template lang="jade">
   .offer-dashboard
 
-    h1.vui-text-heading--large.vui-m-bottom--medium Makegoods Dashboard
+    h1.vui-text-heading--large.vui-m-bottom--medium Makegood Dashboard
 
     panel.vui-m-bottom--large(title='Search Pending Makegoods')
       form.vui-grid.vui-grid--vertical-align-end(action='')

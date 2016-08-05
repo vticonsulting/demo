@@ -1,6 +1,7 @@
 <template lang="jade">
   .orders-view
-    page-heading.vui-m-bottom--medium(title='Orders')
+    page-heading.vui-m-bottom--medium(title='Order Reporting')
+    p.vui-m-bottom--medium Order Reporting - The order information below reflects the data from your station's traffic system. Videa updates traffic information once each day; as a result, data may not be current.
     panel.vui-m-bottom--large(title='View Selection')
       //- form.vui-form--inline(action='')
       //-   fieldset.vui-form--compound
@@ -24,7 +25,7 @@
         fieldset.vui-form-element
           label.vui-form-element__label Search
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='searchText', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Search', style='width: 24rem')
+            input.vui-input(type='text', name='searchText', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Advertiser of Agency', style='width: 24rem')
 
         //- fieldset.vui-form-element
         //-   .vui-form-element__control.vui-m-right--small

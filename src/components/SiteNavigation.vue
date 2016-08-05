@@ -4,35 +4,20 @@
 
       ul.vui-grid.vui-grow(v-if="sharedState.activeApp == 'sellers'")
         li
-          a(v-link="{ name: 'sellers.orders' }") Orders
+          order-management-dropdown(text='Order Management')
         li
-          a(v-link="{ name: 'sellers.program-guide' }") Program Guide
-        li
-          a(v-link="{ name: 'sellers.otri' }") OTRI
-        li
-          //- a(v-link="{ name: 'sellers.performance.account' }") Account Performance
-          //- TODO Need to Highlight the Parent with the 'active' class, when subnav is selected.
-          performance-dropdown(text='Performance')
-        //- li.vui-dropdown-trigger.vui-dropdown-trigger--click(:class='{ "vui-is-open": show}')
-        //-   a(@click='toggle($event)') Performance
-        //-   .vui-dropdown.vui-dropdown--left
-        //-     ul.vui-dropdown__list
-        //-       li.vui-dropdown__item
-        //-         a(v-link="{ name: 'sellers.performance.account' }") Account Performance
-        //-       li.vui-dropdown__item
-        //-         a(v-link="{ name: 'sellers.performance.station' }") Station Performance
+          a(v-link="{ name: 'sellers.performance.account' }") Account Performance
         //- li
-        //-   a(v-link="{ name: 'sellers.performance.station' }") Station Performance
-      ul.vui-grid(v-if="sharedState.activeApp == 'sellers'")
+        //-   a(v-link="{ name: 'sellers.orders' }") Orders
+        li
+          a(v-link="{ name: 'sellers.program-revenue' }") Program Revenue
+        //- li
+        //-   performance-dropdown(text='Performance')
         li
           a(v-link="{ name: 'sellers.price-guide' }") Price Guide
         li
           a(v-link="{ name: 'sellers.avails' }") Avails
-        li
-          //- a(v-link="{ name: 'sellers.order-management' }") Order Management
-          order-management-dropdown(text='Order Management')
-        //- li
-        //-   a(v-link="{ name: 'sellers.makegoods' }") Makegoods
+
 
       ul.vui-grid.vui-grow(v-if="sharedState.activeApp == 'reps'")
         li
@@ -41,11 +26,9 @@
           a(v-link="{ name: 'reps.orders' }") Orders
         li
           a(v-link="{ name: 'reps.performance' }") Performance
-      ul.vui-grid(v-if="sharedState.activeApp == 'reps'")
         li
-          a(v-link="{ name: 'reps.price-guide' }") Price Guide
+          a(v-link="{ name: 'reps.price-guide' }") Program Revenue
         li
-          //- a(v-link="{ name: 'reps.order-management' }") Order Management
           order-management-dropdown(text='Order Management')
 
       ul.vui-grid.vui-grow(v-if="sharedState.activeApp == 'buyers'")
@@ -76,12 +59,12 @@
                 button.vui-button.vui-button--secondary.vui-m-right--x-small(@click.prevent='fakeIt()') Login
               //- button.vui-button.vui-button--secondary(type='button') Login
 
-      //- ul.actions.vui-align-middle(v-if="sharedState.activeApp == 'sellers' || sharedState.activeApp == 'reps' || sharedState.activeApp == 'buyers'")
-      //-   li
-      //-     button.vui-button.vui-button--brand(v-link="{ name: 'settings' }", style='color: white !important; white-space: nowrap')
-      //-       icon.vui-m-right--x-small(name='cog')
-      //-       | Settings
-      //-       span.vui-assistive-text Settings
+      ul.actions.vui-align-middle(v-if="sharedState.activeApp == 'sellers' || sharedState.activeApp == 'reps' || sharedState.activeApp == 'buyers'")
+        li
+          button.vui-button.vui-button--brand(v-link="{ name: 'settings' }", style='color: white !important; white-space: nowrap')
+            icon.vui-m-right--x-small(name='cog')
+            | Settings
+            span.vui-assistive-text Settings
 
 </template>
 

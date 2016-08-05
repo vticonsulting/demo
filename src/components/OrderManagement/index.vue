@@ -1,7 +1,8 @@
 <template lang="jade">
   .order-management-view
-    h1.vui-text-heading--large.vui-m-bottom--medium Accept/Reject Orders
-    .vui-scrollable--x
+    h1.vui-text-heading--large.vui-m-bottom--medium Order Dashboard
+    p.vui-m-bottom--medium Click an Order Number below to accept/reject new orders, modify orders, and update share information. Not that sales representatives can only view orders and update share information.
+    .vui-scrollable--x.vui-m-bottom--medium
       table.vui-table.vui-no-row-hover
         thead
           tr
@@ -54,6 +55,7 @@
                     td {{ version.submittedBy }}
                     td: a(@click.prevent='showDetail(order.id, version.id)', href='#') View
                     //- td: a(v-link='{ name: route, params: { id: order.id }, query: { version: version.id } }') View
+    p Accepted and Rejected Orders displayed for 60 days
 </template>
 
 <script>
