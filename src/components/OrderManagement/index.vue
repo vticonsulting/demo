@@ -55,7 +55,9 @@
                     td {{ version.submittedBy }}
                     td: a(@click.prevent='showDetail(order.id, version.id)', href='#') View
                     //- td: a(v-link='{ name: route, params: { id: order.id }, query: { version: version.id } }') View
-    p Accepted and Rejected Orders displayed for 60 days
+    .vui-align-middle
+      sup.vui-m-right--xx-small *
+      span(style="font-weight: normal") Accepted and Rejected Orders displayed for 60 days
 </template>
 
 <script>
