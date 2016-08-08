@@ -21,15 +21,13 @@
 
       ul.vui-grid.vui-grow(v-if="sharedState.activeApp == 'reps'")
         li
-          a(v-link="{ name: 'reps.avails' }") Avails
-        li
-          a(v-link="{ name: 'reps.orders' }") Orders
-        li
-          a(v-link="{ name: 'reps.performance' }") Performance
-        li
-          a(v-link="{ name: 'reps.price-guide' }") Program Revenue
-        li
           order-management-dropdown(text='Order Management')
+        li
+          a(v-link="{ name: 'reps.performance' }") Account Performance
+        li
+          a(v-link="{ name: 'reps.price-guide' }") Price Guide
+        li
+          a(v-link="{ name: 'reps.avails' }") Avails
 
       ul.vui-grid.vui-grow(v-if="sharedState.activeApp == 'buyers'")
         li

@@ -21,7 +21,7 @@
             p.vui-truncate Order Dashboard
         li.dropdown-item.vui-dropdown__item
           a(@click.prevent='clicked("reps.makegoods")', role='menuitem')
-            p.vui-truncate Makegoods Dashboard
+            p.vui-truncate Makegood Dashboard
         li.dropdown-item.vui-dropdown__item
           a(@click.prevent='clicked("reps.orders")', role='menuitem')
             p.vui-truncate Order Reporting
