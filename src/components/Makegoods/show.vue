@@ -44,7 +44,7 @@
 
     .vui-grid.vui-m-bottom--large
 
-    h2.vui-text-heading--medium.vui-m-bottom--small Preempts
+    h2.vui-text-heading--medium.vui-m-bottom--small Pre-empt(s)
     .vui-scrollable--x.vui-m-bottom--large
       table.vui-table.vui-no-row-hover
         thead
@@ -124,7 +124,7 @@
             td
               //- textarea.vui-textarea(style='width: 300px', v-model='makegood.comment')
 
-    h2.vui-text-heading--medium.vui-m-bottom--small Makegood Spots Offered
+    h2.vui-text-heading--medium.vui-m-bottom--small Makegood Spot(s) Offered
     .vui-scrollable--x.vui-m-bottom--large
       table.vui-table.vui-no-row-hover
         thead
@@ -224,12 +224,12 @@
               th.u-width-small GRPs
           tbody
             tr
-              td Preempts
+              td Pre-empt
               td.vui-text-align--center 2
               td.vui-text-align--right $1,100
               td.vui-text-align--right 3.6
             tr
-              td Makegoods
+              td Makegood(s)
               td.vui-text-align--center 2
               td.vui-text-align--right $1,100
               td.vui-text-align--right 3.6

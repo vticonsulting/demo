@@ -3,8 +3,23 @@
 
     h1.vui-text-heading--large.vui-m-bottom--medium Makegood Dashboard
 
-    panel.vui-m-bottom--large(title='Search Pending Makegoods')
+    panel.vui-m-bottom--large(title='View Selection')
       form.vui-grid.vui-grid--vertical-align-end(action='')
+        fieldset.vui-form-element
+          label.vui-form-element__label Offer Status
+          .vui-form-element__control.vui-m-right--small
+            input.vui-input(type='text', name='offer-status', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Pending')
+
+        fieldset.vui-form-element
+          label.vui-form-element__label Offer Type
+          .vui-form-element__control.vui-m-right--small
+            input.vui-input(type='text', name='offer-status', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='All Offer Types')
+
+        fieldset.vui-form-element
+          label.vui-form-element__label Agency
+          .vui-form-element__control.vui-m-right--small
+            input.vui-input(type='text', name='agency', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Agency')
+
 
         fieldset.vui-form-element
           label.vui-form-element__label Advertiser
@@ -12,14 +27,24 @@
             input.vui-input(type='text', name='advertiser', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Advertiser')
 
         fieldset.vui-form-element
-          label.vui-form-element__label Agency
-          .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='agency', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Agency')
-
-        fieldset.vui-form-element
-          label.vui-form-element__label Campaign
+          label.vui-form-element__label Campaign Name
           .vui-form-element__control.vui-m-right--small
             input.vui-input(type='text', name='campaign', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Campaign')
+
+        fieldset.vui-form-element
+          label.vui-form-element__label Agency Status
+          .vui-form-element__control.vui-m-right--small
+            input.vui-input(type='text', name='campaign', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='All Agency Statuses')
+
+        fieldset.vui-form-element
+          label.vui-form-element__label Station Status
+          .vui-form-element__control.vui-m-right--small
+            input.vui-input(type='text', name='campaign', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='All Station Statuses')
+
+        fieldset.vui-form-element
+          label.vui-form-element__label MG Transfers
+          .vui-form-element__control.vui-m-right--small
+            input.vui-input(type='text', name='campaign', v-model='searchKey', debounce='500', v-el:search-key='', placeholder="All MG's & Transferred")
 
         fieldset.vui-form-element
           button.vui-button.vui-button--brand.vui-m-right--x-small(@click.prevent='') Search
