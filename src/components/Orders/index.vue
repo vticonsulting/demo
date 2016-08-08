@@ -25,7 +25,7 @@
         fieldset.vui-form-element
           label.vui-form-element__label Search
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='searchText', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Advertiser of Agency', style='width: 24rem')
+            input.vui-input(type='text', name='searchText', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Advertiser or Agency', style='width: 24rem')
 
         //- fieldset.vui-form-element
         //-   .vui-form-element__control.vui-m-right--small
