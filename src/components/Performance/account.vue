@@ -1,7 +1,7 @@
 <template lang="jade">
   .account-performance-view
     page-heading.vui-m-bottom--medium(title='Account Performance')
-    panel.vui-m-bottom--large(title='View Selection Panel')
+    panel.vui-m-bottom--large(title='View Selection')
       form.vui-form--inline(action='')
         label.vui-radio(for='q1')
           input#q1(type='radio', name='when')
