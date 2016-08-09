@@ -59,7 +59,7 @@
         fieldset.vui-form-element.vui-m-bottom--small
           label.vui-form-element__label Expiration Date
           .vui-form-element__control
-            span(v-if='!editing') {{ avail.expirationDate }}
+            span(v-if='!editing') {{ expirationDate }}
             //- input.vui-input(type='text', v-if='editing', v-model='avail.dueDate')
             datepicker#expirationDate(:value.sync='expirationDate', name='expirationDate', v-if='editing')
 
@@ -243,6 +243,7 @@
   import Datepicker from '../Datepicker2.vue'
   import DaypartSelector from '../DaypartSelector.vue'
   import Icon from '../Icon.vue'
+  import moment from 'moment'
   import ReleaseToBuyerModal from '../ReleaseToBuyerModal.vue'
 
   let Highcharts = require('highcharts')
@@ -277,7 +278,7 @@
     data () {
       return {
         sharedState: store.state,
-        expirationDate: new Date('2016-06-07T06:24:00'),
+        expirationDate: moment().add(14, 'days').format('MM/DD/YY'),
         dueDate: new Date('2016-06-07T06:24:00'),
         showReleaseToBuyerModal: false,
         selectedDaypart: require('./selected.json'),
