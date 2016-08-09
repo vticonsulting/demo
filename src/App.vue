@@ -1,5 +1,3 @@
-<style lang="scss" src="../../vui/dist/vui.css"></style>
-
 <template lang="jade">
   #app(@click='closeDropdownsAndPopovers()')
     site-header
