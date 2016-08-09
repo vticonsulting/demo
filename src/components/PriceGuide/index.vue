@@ -460,7 +460,7 @@
                     | {{ week.onTheBooks.sellOutPercent | decimalToPercent }}
 
     // Table Footer Flex Container
-    .vui-grid.vui-grid--align-spread
+    .vui-grid.vui-grid--align-spread.vui-m-bottom--medium
 
       // Flex Item
       p.vui-text-body--small
@@ -481,7 +481,19 @@
         // Submit Button
         fieldset.vui-form-element
           .vui-form-element__control
-            button.vui-button.vui-button--brand(:disabled='!acceptedRatesAndRatings') Submit
+            button.vui-button.vui-button--brand(:disabled='!acceptedRatesAndRatings', @click='submitted') Submit
+
+    .vui-notify.vui-notify--alert.vui-theme--success(role='alert', v-show='submitAccepted')
+      button.vui-button.vui-button--icon-inverse.vui-notify__close
+        svg.vui-button__icon(aria-hidden='true')
+          use(xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#close')
+        span.vui-assistive-text Close
+      span.vui-assistive-text Success
+      h2
+        svg.vui-icon.icon-text-email.vui-icon--small.vui-m-right--x-small(aria-hidden='true')
+          use(xlink:href='/assets/icons/custom-sprite/svg/symbols.svg#custom19')
+        | Your rates and ratings are now saved in the Videa platform
+
 
     premium-clients-modal(:show.sync='showPremiumClientsModal', :account='account')
     edit-ratings-modal(:show.sync='showEditRatingsModal', :heading='heading', :data.sync='context')
@@ -530,6 +542,7 @@
         context: {},
         lastUpdated: null,
         acceptedRatesAndRatings: false,
+        submitAccepted: false,
         globalPercent: 0,
         editingPercent: false,
         cppOrCpm: 'cpp',
@@ -652,6 +665,13 @@
     },
 
     methods: {
+      submitted () {
+        this.submitAccepted = true
+        setTimeout(() => {
+          this.submitAccepted = false
+        }, 3000)
+      },
+
       fetchPriceGuide (daypart) {
         this.$http.get(store.apiHost + '/priceGuide?daypart=' + daypart)
           .then((response) => {

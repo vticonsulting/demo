@@ -42,7 +42,7 @@
       fieldset.vui-form-element
         label.vui-form-element__label Share
         .vui-form-element__control
-          span.vui-form-element__static {{ order.share | decimalToPercent }}
+          span.vui-form-element__static {{ sharedState["share"+order.id] | decimalToPercent }}
 
       fieldset.vui-form-element
         label.vui-form-element__label Total Spots
@@ -90,7 +90,8 @@
             label.vui-form-element__label(for='') Share
             .vui-form-element__control
               //- input.vui-input(type='text', style='width: 5rem')
-              input#stationAudienceShare.vui-input(type='text', style='width: 5rem', v-model='order.share | percentDisplay')
+              //- input#stationAudienceShare.vui-input(type='text', style='width: 5rem', v-model='order.share | percentDisplay')
+              input#stationAudienceShare.vui-input(type='text', style='width: 5rem', v-model='sharedState["share"+order.id] | percentDisplay')
 
           fieldset.vui-form-element
             button.vui-button--brand(@click.prevent='') Update
@@ -162,7 +163,7 @@
 
     methods: {
       fetchOrder (id) {
-        this.$http.get(store.apiHost + '/orders/' + id)
+        this.$http.get(store.apiHost + '/orderManagement/' + id)
           .then((response) => {
             this.order = response.data
           }, (response) => {

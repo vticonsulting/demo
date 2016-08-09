@@ -34,7 +34,8 @@
             td {{order.flightEndDate}}
             td {{order.currency}}
             td.vui-text-align--right {{ order.revenue | numberWithCommas | formatMoney }}
-            td.vui-text-align--right {{ order.share | decimalToPercent }}
+            //- td.vui-text-align--right {{ order.share | decimalToPercent }}
+            td.vui-text-align--right {{ sharedState['share'+order.id] | decimalToPercent }}
           tr(v-if='order.versions.length !== 1', v-show='expanded')
             td.expanded(colspan='11')
               .vui-box.vui-theme--shade.vui-grid.vui-grid--align-spread.vui-m-top--medium

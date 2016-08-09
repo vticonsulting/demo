@@ -14,6 +14,12 @@ export default {
     settings: {
       stationAudienceShare: 0.3
     },
+    share135001: 0.31,
+    share133529: 0.49,
+    share131642: 0.40,
+    share131634: 0.35,
+    share131542: 0.46,
+    share134787: 0.21,
     orders: [
       { id: 135001, share: 0.31 },
       { id: 133529, share: 0.49 },

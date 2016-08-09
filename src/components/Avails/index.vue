@@ -57,11 +57,6 @@
                   icon(name="sort", style="color: hsla(192, 9%, 89%, .5)")
             th
               a.vui-grid.vui-grid--align-spread(@click.prevent='', href="#")
-                span.vui-align-middle Agency
-                span.vui-align-middle
-                  icon(name="sort", style="color: hsla(192, 9%, 89%, .5)")
-            th
-              a.vui-grid.vui-grid--align-spread(@click.prevent='', href="#")
                 span.vui-align-middle Product
                 span.vui-align-middle
                   icon(name="sort", style="color: hsla(192, 9%, 89%, .5)")
@@ -82,7 +77,12 @@
                   icon(name="sort", style="color: hsla(192, 9%, 89%, .5)")
             th
               a.vui-grid.vui-grid--align-spread(@click.prevent='', href="#")
-                span.vui-align-middle Updated
+                span.vui-align-middle Agency
+                span.vui-align-middle
+                  icon(name="sort", style="color: hsla(192, 9%, 89%, .5)")
+            th
+              a.vui-grid.vui-grid--align-spread(@click.prevent='', href="#")
+                span.vui-align-middle Last Updated
                 span.vui-align-middle
                   icon(name="sort", style="color: hsla(192, 9%, 89%, .5)")
         tbody(v-for='(index, avail) in avails')
@@ -96,11 +96,11 @@
               span.vui-badge(:class='avail.availStatus')  {{avail.availStatus}}
             td {{avail.releasedDate}}
             td {{avail.advertiser}}
-            td {{avail.agency}}
             td {{avail.product}}
             td {{avail.estimateNumber}}
             td {{avail.flightStartDate}}
             td {{avail.flightEndDate}}
+            td {{avail.agency}}
             td {{avail.lastUpdated}}
           tr(v-show='avail.expanded')
             td.expanded(colspan='10')

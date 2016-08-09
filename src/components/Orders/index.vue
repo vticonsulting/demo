@@ -2,6 +2,7 @@
   .orders-view
     page-heading.vui-m-bottom--medium(title='Order Reporting')
     p.vui-m-bottom--medium Order Reporting - The order information below reflects the data from your station's traffic system. Videa updates traffic information once each day; as a result, data may not be current.
+
     panel.vui-m-bottom--large(title='View Selection')
       //- form.vui-form--inline(action='')
       //-   fieldset.vui-form--compound
@@ -64,14 +65,15 @@
                 a(href='#', @click.prevent='toggleDetail(order, $event)')
                   svg.vui-icon.vui-icon--small(style="width: 1rem; height: 1rem;")
                     use(xlink:href="/Content/assets/icons.svg#icon-{{ order.expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
-                a(@click.prevent='showOrder(order.id)', href='#') {{ order.id }}
-              td  {{ order.advertiser }}
+                span {{ order.advertiser }}
               td {{ order.agency }}
               td {{ order.cpe }}
               td {{ order.flightStartDate }}
               td {{ order.flightEndDate }}
               td.vui-text-align--right {{ order.revenue | numberWithCommas | formatMoney }}
-              td.vui-text-align--right {{ order.share | decimalToPercent }}
+              //- td.vui-text-align--right {{ order.share | decimalToPercent }}
+              td.vui-text-align--right {{ sharedState['share'+order.id] | decimalToPercent }}
+              td {{ order.id }}
               td {{ order.orderDate }}
             tr.animated(v-show='order.expanded')
               td.expanded(colspan='9')
@@ -193,7 +195,6 @@
           { name: 'orderDate' }
         ],
         gridColumns: [
-          { field: 'orderId', title: 'Order #' },
           { field: 'advertiser', title: 'Advertiser' },
           { field: 'agency', title: 'Agency' },
           { field: 'cpe', title: 'CPE' },
@@ -201,6 +202,7 @@
           { field: 'flightEndDate', title: 'End' },
           { field: 'revenue', title: 'Revenue' },
           { field: 'share', title: 'Share' },
+          { field: 'orderId', title: 'Videa Order #' },
           { field: 'orderDate', title: 'Order Date' }
         ],
         orders: []

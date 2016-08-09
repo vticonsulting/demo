@@ -1,6 +1,6 @@
 <template lang="jade">
   .vui-dropdown-trigger.vui-dropdown-trigger--site-nav.vui-dropdown-trigger--click(:class='{ "vui-is-open": show, dropdown: !dropup, dropup: dropup}', aria-expanded='{{show}}')
-    a(aria-live='assertive', aria-expanded='{{show}}', aria-haspopup='true', @click.prevent='toggle($event)', :disabled='disabled', v-link-activem, style='margin-right: 0')
+    a(aria-live='assertive', aria-expanded='{{show}}', aria-haspopup='true', @click.prevent='toggle($event)', :disabled='disabled', v-link-active, style='margin-right: 0')
       span.vui-m-right--xx-small(style='color: white') {{ text }}
       icon(name='caret-down', style='color: #4296b4; margin-right: 0')
     .vui-dropdown.vui-dropdown--site-nav

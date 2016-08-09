@@ -50,7 +50,7 @@
             th Advertiser
             th Agency
             th.u-width-x-small Revenue
-            th.vui-text-align--right.u-width-x-small Buyer Market Budget
+            th.vui-text-align--right.u-width-x-small Market Budget
             th.vui-text-align--center.u-width-x-small Spot Volume
             th.u-width-x-small Share
         tfoot

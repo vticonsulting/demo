@@ -237,9 +237,11 @@
     fieldset.vui-form-element.vui-m-bottom--large.vui-text-align--right(v-if='sharedState.activeApp !== "reps"')
       button.vui-button.vui-button--neutral.vui-m-right--xx-small(@click.prevent='showRejectOfferModal = true') Reject Offer
       button.vui-button.vui-button--brand.vui-m-right--xx-small(@click.prevent='showAcceptOfferModal = true') Accept Offer
+      //- button.vui-button.vui-button--secondary.vui-m-right--xx-small(@click.prevent='showTransferOpenPreemptsModal = true') Transfer Open Preempts
 
     accept-offer-modal(:show.sync='showAcceptOfferModal')
-    reject-offer-modal(:show.sync='showRejectOfferModal')
+    accept-offer-modal(:show.sync='showAcceptOfferModal')
+    //- transfer-open-prempts-modal(:show.sync='showTransferOpenPreemptsModal')
 </template>
 
 <script>
@@ -247,11 +249,13 @@
   import Icon from '../Icon.vue'
   import AcceptOfferModal from '../AcceptOfferModal.vue'
   import RejectOfferModal from '../RejectOfferModal.vue'
+  import TransferOpenPremptsModal from '../TransferOpenPreemptsModal.vue'
+
   import Timeline from '../Timeline.vue'
   import Breadcrumbs from '../Breadcrumbs.vue'
 
   export default {
-    components: { Icon, AcceptOfferModal, RejectOfferModal, Timeline, Breadcrumbs },
+    components: { Icon, AcceptOfferModal, RejectOfferModal, Timeline, Breadcrumbs, TransferOpenPremptsModal },
 
     props: {
       ordersRoute: {
@@ -265,6 +269,7 @@
         sharedState: store.state,
         showRejectOfferModal: false,
         showAcceptOfferModal: false,
+        showTransferOpenPreemptsModal: false,
         offer: {},
         makegoods: [
           {
