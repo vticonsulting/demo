@@ -306,7 +306,7 @@
                       "week": "11/14/16 - 11/18/16",
                       "expanded": false,
                       "length": ":30",
-                      "rate": 465,
+                      "rate": 475,
                       "rating": 2.1,
                       "avgCpp": 221,
                       "station": {
@@ -344,7 +344,7 @@
                       "week": "11/21/16 - 11/25/16",
                       "expanded": false,
                       "length": ":30",
-                      "rate": 400,
+                      "rate": 475,
                       "rating": 2.1,
                       "avgCpp": 190,
                       "station": {
@@ -17682,7 +17682,7 @@
               "expanded": true,
               "acceptRate": true,
               "station": {
-                "rate": 450,
+                "rate": 465,
                 "rating": 2.1,
                 "cpp": 265,
                 "impressions": 10.4,
@@ -17747,7 +17747,7 @@
                 ]
               },
               "videa": {
-                "rate": 450,
+                "rate": 465,
                 "rating": 2.1,
                 "cpp": 265,
                 "impressions": 10.4
@@ -22194,7 +22194,7 @@
           "spotLength": ":30"
         },
         {
-          "avgRate": 475,
+          "avgRate": 465,
           "avgRating": 2.1,
           "avgCpp": 226,
           "daypart": "Early Morning",
@@ -22210,7 +22210,7 @@
     },
     {
       "name": "Network 23 News This Morning",
-      "avgRate": 500,
+      "avgRate": 475,
       "avgRating": 2,
       "avgCpp": 250,
       "daypart": "Early Morning",
