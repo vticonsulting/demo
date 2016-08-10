@@ -279,7 +279,7 @@
       return {
         sharedState: store.state,
         expirationDate: new Date(moment().add(14, 'days').toISOString()),
-        dueDate: new Date(moment().subtract(5, 'days').toISOString()),
+        dueDate: new Date(moment().add(5, 'days').toISOString()),
         showReleaseToBuyerModal: false,
         selectedDaypart: require('./selected.json'),
         editing: false,
