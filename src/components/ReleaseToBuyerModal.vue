@@ -12,7 +12,6 @@
         .vui-form-element.vui-m-bottom--large
           label.vui-label.vui-label--custom-1(for='') Expiration Date
           datepicker#endDate(:value.sync='expirationDate', name='expirationDate')
-
         .vui-text-align--right
           button.vui-button.vui-button--brand.vui-m-right--x-small(@click.prevent="showExportProposal = true") Submit
           button.vui-button.vui-button--neutral(@click.prevent='close()') Cancel
@@ -29,6 +28,7 @@
 </template>
 
 <script>
+  import moment from 'moment'
   import Datepicker from './Datepicker2.vue'
   import Modal from './Modal.vue'
 
@@ -41,7 +41,7 @@
       return {
         comment: '',
         showExportProposal: false,
-        expirationDate: new Date('2016-06-07T09:24:00')
+        expirationDate: new Date(moment().add(14, 'days').toISOString())
       }
     },
 

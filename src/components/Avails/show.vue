@@ -59,7 +59,7 @@
         fieldset.vui-form-element.vui-m-bottom--small
           label.vui-form-element__label Expiration Date
           .vui-form-element__control
-            span(v-if='!editing') {{ expirationDate }}
+            span(v-if='!editing') {{ expirationDate | formatDate }}
             //- input.vui-input(type='text', v-if='editing', v-model='avail.dueDate')
             datepicker#expirationDate(:value.sync='expirationDate', name='expirationDate', v-if='editing')
 
@@ -85,7 +85,7 @@
         fieldset.vui-form-element.vui-m-bottom--small
           label.vui-form-element__label(for='') Due Date
           .vui-form-element__control
-            span(v-if='!editing') {{ avail.dueDate }}
+            span(v-if='!editing') {{ dueDate | formatDate }}
             datepicker#dueDate(:value.sync='dueDate', name='dueDate', v-if='editing')
       .vui-col--padded-medium(style='width:50%')
         fieldset.vui-form-element.vui-m-bottom--small
@@ -278,8 +278,8 @@
     data () {
       return {
         sharedState: store.state,
-        expirationDate: moment().add(14, 'days').format('MM/DD/YY'),
-        dueDate: new Date('2016-06-07T06:24:00'),
+        expirationDate: new Date(moment().add(14, 'days').toISOString()),
+        dueDate: new Date(moment().subtract(5, 'days').toISOString()),
         showReleaseToBuyerModal: false,
         selectedDaypart: require('./selected.json'),
         editing: false,
