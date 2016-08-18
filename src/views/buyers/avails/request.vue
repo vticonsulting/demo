@@ -84,9 +84,9 @@
       // Stations
       fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
         label.vui-form-element__label Stations <span class='required'>*</span>
-          #stations(style='width: 450px;height: 150px; overflow-y: scroll; border: 1px solid #d8dde6; margin-top: 0.5rem')
-            template(v-for='market in markets')
-              stations(v-if='selectedMarket == market.id && market.id !== "none"', :stations='market.stations')
+        #stations(style='width: 450px;height: 10.75rem; overflow-y: scroll; border: 1px solid #d8dde6')
+          template(v-for='market in markets')
+            checkbox-list(v-if='selectedMarket == market.id && market.id !== "none"', :items='market.stations')
 
       // Spot Length
       fieldset.vui-form-element.vui-size--1-of-3
@@ -322,7 +322,7 @@
   import Icon from '../../../components/Icon.vue'
   import MarketsTypeahead from '../../../components/MarketsTypeahead.vue'
   import PageHeading from '../../../components/PageHeading.vue'
-  import Stations from '../../../components/Stations.vue'
+  import CheckboxList from '../../../components/CheckboxList.vue'
   import Typeahead from '../../../components/Typeahead.vue'
 
   export default {
@@ -332,7 +332,7 @@
       Icon,
       MarketsTypeahead,
       PageHeading,
-      Stations,
+      CheckboxList,
       Typeahead
     },
 
@@ -588,14 +588,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  #stations .vui-form-element {
-    border-bottom: 1px solid #eee;
-    padding: 0.5rem 0 0.5rem 0.5rem;
-
-    &:hover {
-      background-color: #eee;
-    }
-  }
-</style>
