@@ -4,7 +4,7 @@
 #avails-request
   // Page Heading
   page-heading.vui-m-bottom--medium(title='Request Avails')
-  .primary-information.vui-m-bottom--large
+  .primary-information.vui-m-bottom--xx-large
     .vui-grid.vui-grid--align-spread
       div
         h2.vui-text-heading--medium Primary Information
@@ -14,7 +14,6 @@
         button.vui-button.vui-button--neutral Cancel
 
     .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
-
       // Client
       fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large.vui-m-bottom--large
         label.vui-form-element__label(for='client') Client <span class='required'>*</span>
@@ -37,7 +36,6 @@
           input#estimate.vui-input(type='text')
 
     .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
-
       // Campain Name
       fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
         label.vui-form-element__label(for='campaign-name') Campaign Name
@@ -60,6 +58,10 @@
             input#persons(type='radio', name='gender', checked='true')
             span.vui-radio--faux
             span.vui-form-element__label Persons
+          label.vui-radio(for='household')
+            input#household(type='radio', name='gender')
+            span.vui-radio--faux
+            span.vui-form-element__label HH
 
       // Age Range
       fieldset.vui-form-element.vui-size--1-of-3.vui-m-bottom--xx-large.vui-p-right--large
@@ -67,55 +69,24 @@
         .vui-form-element__control
           #age-range
 
-    .vui-box.vui-grid.vui-grid--align-spread.vui-m-bottom--xx-large.vui-theme--default
-
-      //- // Market
-      //- fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
-      //-   label.vui-form-element__label(for='market') Market <span class='required'>*</span>
-      //-   .vui-form-element__control
-      //-     .vui-select_container
-      //-       typeahead(:data='markets', placeholder='Type or select an option')
-
-      //- // Station
-      //- fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
-      //-   label.vui-form-element__label Station <span class='required'>*</span>
-      //-   .vui-form-element__control
-      //-     .vui-select_container
-      //-       select#market.vui-select
-      //-         option
-      //-         option WVVV
-
-      //- // Market
-      //- fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
-      //-   label.vui-form-element__label(for='market') Market <span class='required'>*</span>
-      //-   .vui-form-element__control
-      //-     .vui-select_container
-      //-       select(v-model="selectedCity" id="city")
-      //-         option(v-for="location in locations", :value="location.city") {{ location.city }}
-
-      //- // Station
-      //- fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
-      //-   label.vui-form-element__label Station <span class='required'>*</span>
-      //-   .vui-form-element__control
-      //-     .vui-select_container
-      //-       select(v-dependOn="locations.city". id="station")
-      //-         option(v-for="station in loadedStationOptions", :value="station")  {{ station }}
-
+    .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
       // Market
       fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
         label.vui-form-element__label(for='market') Market <span class='required'>*</span>
         .vui-form-element__control
           .vui-select_container
-            select.vui-select#city(v-dependOn='locations.country', v-model='selectedCity')
-              option(v-for='city in loadedCityOptions', :value="city") {{ city }}
+            select#markets.vui-select(v-model='selectedMarket')
+              option(value='none') Select Market
+              option(value='atl') Atlanta
+              option(value='bos') Boston
+              option(value='was') Washington
 
-      // Station
+      // Stations
       fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
-        label.vui-form-element__label Station <span class='required'>*</span>
-        .vui-form-element__control
-          .vui-select_container
-            select.vui-select#station(v-dependOn='addresses.city')
-              option(v-for='station in loadedStationOptions', :value="station") {{ station }}
+        label.vui-form-element__label Stations <span class='required'>*</span>
+          #stations(style='width: 450px;height: 150px; overflow-y: scroll; border: 1px solid #d8dde6; margin-top: 0.5rem')
+            template(v-for='market in markets')
+              stations(v-if='selectedMarket == market.id && market.id !== "none"', :stations='market.stations')
 
       // Spot Length
       fieldset.vui-form-element.vui-size--1-of-3
@@ -213,11 +184,6 @@
         tbody
           tr(v-for='(index, daypart) in dayparts')
             td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""') {{ daypart.name }}
-            //- td.vui-text-align--center(@click.prevent='toggleUnplanned(daypart.name);toggleDaypartSelection($event)', style='cursor: pointer', :class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""')
-            //-   .vui-form-element
-            //-     label.vui-checkbox(for='{{daypart.id}}')
-            //-       input(id='{{daypart.id}}', type='checkbox', v-model='unplannedDayparts', value='{{daypart.name}}', checked='{{daypart.unplanned}}')
-            //-       span.vui-checkbox--faux
             td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""')
               input.vui-input.vui-text-align--right(v-model='daypart.targetCpp', number)
             td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""')
@@ -225,6 +191,7 @@
             td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""')
               input.vui-input.vui-text-align--right(v-model='daypart.targetGrp', number)
 
+    // Flight Days
     .flight-days.vui-m-bottom--large.vui-size--3-of-5
       .vui-grid.vui-grid--align-spread
         h2.vui-text-heading--medium.vui-m-bottom--medium Flight Dates <span class='required'>*</span>
@@ -352,18 +319,20 @@
   import store from '../../../store'
   import Button from '../../../components/Button.vue'
   import Datepicker from '../../../components/Datepicker2.vue'
-  import PageHeading from '../../../components/PageHeading.vue'
   import Icon from '../../../components/Icon.vue'
   import MarketsTypeahead from '../../../components/MarketsTypeahead.vue'
+  import PageHeading from '../../../components/PageHeading.vue'
+  import Stations from '../../../components/Stations.vue'
   import Typeahead from '../../../components/Typeahead.vue'
 
   export default {
     components: {
       Button,
       Datepicker,
-      PageHeading,
       Icon,
       MarketsTypeahead,
+      PageHeading,
+      Stations,
       Typeahead
     },
 
@@ -405,9 +374,6 @@
         startDate: new Date('2016-11-14T12:24:00'),
         endDate: new Date('2016-12-25T12:24:00'),
         grossBudget: 0,
-        USstate: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
-        asyncTemplate: '{{ item.formatted_address }}',
-        githubTemplate: '<img width="18px" height="18px" :src="item.avatar_url"/> <span>{{item.login}}</span>',
         selected: '',
         advertiser: '',
         selectButtonText: 'Select',
@@ -420,7 +386,6 @@
           }
         ],
         selectedAdvertiser: '',
-        selectedMarket: '',
         unplannedDayparts: [],
         selectedDayparts: [
           'earlyMorning',
@@ -439,284 +404,72 @@
           { id: 'weekend', name: 'Weekend', unplanned: false, targetCpp: null, daypartMix: null, targetGrp: null },
           { id: 'overnight', name: 'Overnight', unplanned: false, targetCpp: null, daypartMix: null, targetGrp: null }
         ],
+        selectedMarket: 'none',
         markets: [
-          'Abilene-Sweetwater',
-          'Albany, GA',
-          'Albany-Schenectady-Troy',
-          'Albuquerque-Santa Fe',
-          'Alexandria, LA',
-          'Alpena',
-          'Amarillo',
-          'Anchorage',
-          'Atlanta',
-          'Augusta-Aiken',
-          'Austin',
-          'Bakersfield',
-          'Baltimore',
-          'Bangor',
-          'Baton Rouge',
-          'Beaumont-Port Arthur',
-          'Bend, OR',
-          'Billings',
-          'Biloxi-Gulfport',
-          'Binghamton',
-          'Birmingham (Ann and Tusc)',
-          'Bluefield-Beckley-Oak Hill',
-          'Boise',
-          'Boston (Manchester)',
-          'Bowling Green',
-          'Buffalo',
-          'Burlington-Plattsburgh',
-          'Butte-Bozeman',
-          'Casper-Riverton',
-          'Cedar Rapids-Wtrlo-IWC&Dub',
-          'Champaign&Sprngfld-Decatur',
-          'Charleston, SC',
-          'Charleston-Huntington',
-          'Charlotte',
-          'Charlottesville',
-          'Chattanooga',
-          'Cheyenne-Scottsbluff',
-          'Chicago',
-          'Chico-Redding',
-          'Cincinnati',
-          'Clarksburg-Weston',
-          'Cleveland-Akron (Canton)',
-          'Colorado Springs-Pueblo',
-          'Columbia,SC',
-          'Columbia-Jefferson City',
-          'Columbus,GA (Opelika,AL)',
-          'Columbus,OH',
-          'Columbus-Tupelo-W Pnt-Hstn',
-          'Corpus Christi',
-          'Dallas-Ft. Worth',
-          'Davenport-R.Island-Moline',
-          'Dayton',
-          'Denver',
-          'Des Moines-Ames',
-          'Detroit',
-          'Dothan',
-          'Duluth-Superior',
-          'El Paso (Las Cruces)',
-          'Elmira (Corning)',
-          'Erie',
-          'Eugene',
-          'Eureka',
-          'Evansville',
-          'Fairbanks',
-          'Fargo-Valley City',
-          'Flint-Saginaw-Bay City',
-          'Fresno-Visalia',
-          'Ft. Myers-Naples',
-          'Ft. Smith-Fay-Sprngdl-Rgrs',
-          'Ft. Wayne',
-          'Gainesville',
-          'Glendive',
-          'Grand Junction-Montrose',
-          'Grand Rapids-Kalmzoo-B.Crk',
-          'Great Falls',
-          'Green Bay-Appleton',
-          'Greensboro-H.Point-W.Salem',
-          'Greenville-N.Bern-Washngtn',
-          'Greenvll-Spart-Ashevll-And',
-          'Greenwood-Greenville',
-          'Harlingen-Wslco-Brnsvl-McA',
-          'Harrisburg-Lncstr-Leb-York',
-          'Harrisonburg',
-          'Hartford & New Haven',
-          'Hattiesburg-Laurel',
-          'Helena',
-          'Honolulu',
-          'Houston',
-          'Huntsville-Decatur (Flor)',
-          'Idaho Fals-Pocatllo(Jcksn)',
-          'Indianapolis',
-          'Jackson,MS',
-          'Jackson,TN',
-          'Jacksonville',
-          'Johnstown-Altoona-St Colge',
-          'Jonesboro',
-          'Joplin-Pittsburg',
-          'Juneau',
-          'Kansas City',
-          'Knoxville',
-          'La Crosse-Eau Claire',
-          'Lafayette,IN',
-          'Lafayette,LA',
-          'Lake Charles',
-          'Lansing',
-          'Laredo',
-          'Las Vegas',
-          'Lexington',
-          'Lima',
-          'Lincoln & Hastings-Krny',
-          'Little Rock-Pine Bluff',
-          'Los Angeles',
-          'Louisville',
-          'Lubbock',
-          'Macon',
-          'Madison',
-          'Mankato',
-          'Marquette',
-          'Medford-Klamath Falls',
-          'Memphis',
-          'Meridian',
-          'Miami-Ft. Lauderdale',
-          'Milwaukee',
-          'Minneapolis-St. Paul',
-          'Minot-Bsmrck-Dcknsn(Wlstn)',
-          'Missoula',
-          'Mobile-Pensacola (Ft Walt)',
-          'Monroe-El Dorado',
-          'Monterey-Salinas',
-          'Montgomery-Selma',
-          'Myrtle Beach-Florence',
-          'Nashville',
-          'New Orleans',
-          'New York',
-          'Norfolk-Portsmth-Newpt Nws',
-          'North Platte',
-          'Odessa-Midland',
-          'Oklahoma City',
-          'Omaha',
-          'Orlando-Daytona Bch-Melbrn',
-          'Ottumwa-Kirksville',
-          'Paducah-Cape Girard-Harsbg',
-          'Palm Springs',
-          'Panama City',
-          'Parkersburg',
-          'Peoria-Bloomington',
-          'Philadelphia',
-          'Phoenix (Prescott)',
-          'Pittsburgh',
-          'Portland,OR',
-          'Portland-Auburn',
-          'Presque Isle',
-          'Providence-New Bedford',
-          'Quincy-Hannibal-Keokuk',
-          'Raleigh-Durham (Fayetvlle)',
-          'Rapid City',
-          'Reno',
-          'Richmond-Petersburg',
-          'Roanoke-Lynchburg',
-          'Rochester,NY',
-          'Rochestr-Mason City-Austin',
-          'Rockford',
-          'Sacramnto-Stkton-Modesto',
-          'Salisbury',
-          'Salt Lake City',
-          'San Angelo',
-          'San Antonio',
-          'San Diego',
-          'San Francisco-Oak-San Jose',
-          'SantaBarbra-SanMar-SanLuOb',
-          'Savannah',
-          'Seattle-Tacoma',
-          'Sherman-Ada',
-          'Shreveport',
-          'Sioux City',
-          'Sioux Falls(Mitchell)',
-          'South Bend-Elkhart',
-          'Spokane',
-          'Springfield,MO',
-          'Springfield-Holyoke',
-          'St. Joseph',
-          'St. Louis',
-          'Syracuse',
-          'Tallahassee-Thomasville',
-          'Tampa-St. Pete (Sarasota)',
-          'Terre Haute',
-          'Toledo',
-          'Topeka',
-          'Traverse City-Cadillac',
-          'Tri-Cities, TN-VA',
-          'Tucson (Sierra Vista)',
-          'Tulsa',
-          'Twin Falls',
-          'Tyler-Longview(Lfkn&Ncgd)',
-          'Utica',
-          'Victoria',
-          'Waco-Temple-Bryan',
-          'Washington,DC (Hagrstwn)',
-          'Watertown',
-          'Wausau-Rhinelander',
-          'West Palm Beach-Ft. Pierce',
-          'Wheeling-Steubenville',
-          'Wichita Falls & Lawton',
-          'Wichita-Hutchinson Plus',
-          'Wilkes Barre-Scranton-Hztn',
-          'Wilmington',
-          'Yakima-Pasco-Rchlnd-Knnwck',
-          'Youngstown',
-          'Yuma-El Centro',
-          'Zanesville'
-        ],
-        locations: [
           {
-            country: 'FooCountry',
-            city: ['Select Market', 'Atlanta', 'Washington']
-          }
-        ],
-        addresses: [
-          {
-            city: 'Select Market',
-            station: ['', '--']
+            id: 'none',
+            stations: []
           },
           {
-            city: 'Atlanta',
-            station: ['WXIA', 'ABCD']
+            id: 'atl',
+            stations: [
+              {
+                id: 1,
+                name: 'WSB'
+              },
+              {
+                id: 2,
+                name: 'WGCL'
+              },
+              {
+                id: 3,
+                name: 'WAGA'
+              },
+              {
+                id: 4,
+                name: 'WXIA'
+              },
+              {
+                id: 5,
+                name: 'WUPA'
+              }
+            ]
           },
           {
-            city: 'Washington',
-            station: ['WVVV', 'WXYZ']
+            id: 'bos',
+            stations: [
+              {
+                id: 1,
+                name: 'WAAA'
+              },
+              {
+                id: 2,
+                name: 'WAAB'
+              },
+              {
+                id: 3,
+                name: 'WAAC'
+              }
+            ]
+          },
+          {
+            id: 'was',
+            stations: [
+              {
+                id: 1,
+                name: 'WVVV'
+              },
+              {
+                id: 2,
+                name: 'WAAB'
+              },
+              {
+                id: 3,
+                name: 'WAAC'
+              }
+            ]
           }
-        ],
-        selectedCountry: null,
-        selectedCity: null,
-        loadedCityOptions: null,
-        loadedStationOptions: null
-        // markets: [
-        //   {
-        //     marketId: 125,
-        //     name: 'Albuquerque-Santa Fe'
-        //   },
-        //   {
-        //     marketId: 81,
-        //     name: 'Birmingham (Ann and Tusc)'
-        //   },
-        //   {
-        //     marketId: 27,
-        //     name: 'Buffalo'
-        //   },
-        //   {
-        //     marketId: 123,
-        //     name: 'Cincinnati'
-        //   },
-        //   {
-        //     marketId: 32,
-        //     name: 'Jacksonville'
-        //   },
-        //   {
-        //     marketId: 126,
-        //     name: 'Kansas City'
-        //   },
-        //   {
-        //     marketId: 24,
-        //     name: 'Milwaukee'
-        //   },
-        //   {
-        //     marketId: 124,
-        //     name: 'Oklahoma City'
-        //   },
-        //   {
-        //     marketId: 11,
-        //     name: 'Tulsa'
-        //   },
-        //   {
-        //     marketId: 122,
-        //     name: 'West Palm Beach-Ft. Pierce'
-        //   }
-        // ]
+        ]
       }
     },
 
@@ -730,12 +483,6 @@
       testDayparts () {
         return this.dayparts.reduce((memo, daypart) => {
           let selected = false
-
-          // for (var i = 0; i < this.selectedDayparts.length; i++) {
-          //     if (this.selectedDayparts[i] === daypart.id) {
-          //         selected = true
-          //     }
-          // }
 
           this.selectedDayparts.forEach(function (selectedDaypart) {
             if (selectedDaypart === daypart.id) selected = true
@@ -754,17 +501,6 @@
     },
 
     methods: {
-
-      googleCallback (items, targetVM) {
-        const that = targetVM
-        that.reset()
-        that.query = items.formatted_address
-      },
-
-      githubCallback (items) {
-        window.open(items.html_url, '_blank')
-      },
-
       selectOrDeselectAllWeeks () {
         let days = $('#flight-days').find('tbody td:not(:first-child)')
 
@@ -830,8 +566,6 @@
           days.addClass('vui-selected')
           this.weekClicked = true
         }
-        console.log(this.weekClicked)
-        // document.getElementsByClassName('myElement')
       },
 
       foundDaypart (daypart) {
@@ -851,17 +585,17 @@
       toggleDaypartSelection (event) {
         console.log($(event.target).toggleClass('vui-selected'))
       }
-      // isExist (arr, str) {
-      //   for (var i = 0; i < arr.length; i++) {
-      //      if (arr[i] === 'kamal') {
-      //       // Return index
-      //       return i;
-      //     } else {
-      //       /* If value is not found return -1. */
-      //       return -1;
-      //     }
-      //   }
-      // }
     }
   }
 </script>
+
+<style lang="scss">
+  #stations .vui-form-element {
+    border-bottom: 1px solid #eee;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+
+    &:hover {
+      background-color: #eee;
+    }
+  }
+</style>
