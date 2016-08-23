@@ -196,7 +196,7 @@
       "totalGrpGoal": 800,
       "primaryDemo": "A25-54",
       "lastUpdatedBy": "Brian Reed",
-      "shareGoal": 0.3,
+      "shareGoal": 0.25,
       "dueDate": "06/07/16",
       "notes": "6a start time / 12a cutoff\nno animation",
       "daypartGoals": [
@@ -209,13 +209,13 @@
         {
           "daypart": "Early News",
           "cpp": 215,
-          "grps": 260,
+          "grps": 320,
           "mix": 0.4
         },
         {
           "daypart": "Late Fringe",
           "cpp": 125,
-          "grps": 220,
+          "grps": 160,
           "mix": 0.2
         }
       ],
