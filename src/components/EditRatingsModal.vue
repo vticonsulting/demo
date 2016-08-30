@@ -14,12 +14,6 @@
               span.vui-m-right--xx-small Station Rate
               span.vui-text-heading--medium  ${{data.station.rate}}
 
-        .vui-media
-          .vui-media__body
-            p.vui-align-middle
-              span.vui-m-right--xx-small Station Premium Rate
-              span.vui-text-heading--medium  ${{data.station.premium.rate}}
-
       .vui-scrollable--x.vui-m-bottom--large(style='height: 20rem; overflow-y: scroll; overflow-x: hidden')
 
         table.vui-table.vui-no-row-hover
