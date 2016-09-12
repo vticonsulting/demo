@@ -32,7 +32,7 @@
       .vui-form-element
         label.vui-form-element__label Expiration Date
         .vui-form-element__control
-          span.vui-form-element__static {{avail.expirationDate}}
+          span.vui-form-element__static {{ expirationDate | formatDate }}
 
       .vui-form-element
         label.vui-form-element__label Start Date
@@ -145,6 +145,7 @@
 <script>
   import store from '../../../store'
   import Icon from '../../../components/Icon.vue'
+  import moment from 'moment'
 
   export default {
     components: {
@@ -154,6 +155,7 @@
     data () {
       return {
         sharedState: store.state,
+        expirationDate: new Date(moment().add(14, 'days').toISOString()),
         loading: false,
         loadingMessage: null,
         loadingMessages: [

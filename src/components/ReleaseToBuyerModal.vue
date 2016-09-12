@@ -22,9 +22,9 @@
 
         .vui-text-align--center
           button.vui-button.vui-button--neutral.vui-m-right--x-small(@click.prevent='close()') None
-          button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close()') CSV
-          button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close()') XML
-          button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close()') Both XML and CSV
+          button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='exportAvail()') CSV
+          button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='exportAvail()') XML
+          button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='exportAvail()') Both XML and CSV
 </template>
 
 <script>
@@ -49,6 +49,11 @@
       close () {
         this.show = false
         this.comment = ''
+      },
+
+      exportAvail () {
+        download('hello world', 'piedmont-healthcare-avail.xml', 'text/xml')
+        setTimeout(() => this.close(), 300)
       },
 
       showExportProposal () {

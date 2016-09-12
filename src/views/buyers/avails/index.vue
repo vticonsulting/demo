@@ -117,7 +117,7 @@
             td {{ avail.station }}
             td {{ avail.flightStartDate }}
             td {{ avail.flightEndDate }}
-            td {{ avail.expirationDate }}
+            td {{ (avail.id == 65733 ) ? expirationDate : avail.expirationDate | formatDate }}
 </template>
 
 <script>
@@ -126,6 +126,7 @@
   import PageHeading from '../../../components/PageHeading.vue'
   import Panel from '../../../components/Panel.vue'
   import Icon from '../../../components/Icon.vue'
+  import moment from 'moment'
 
   export default {
     components: {
@@ -137,6 +138,7 @@
 
     data () {
       return {
+        expirationDate: new Date(moment().add(14, 'days').toISOString()),
         sharedState: store.state,
         startDate: new Date('2015-09-28T03:24:00'),
         endDate: new Date('2016-03-27T03:24:00'),
