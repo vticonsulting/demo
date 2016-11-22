@@ -92,8 +92,8 @@
                 span {{offer.makegoodNumber}}
             td
               span.vui-badge(:class='offer.offerStatus') {{offer.offerStatus}}
-            td {{offer.dateMakegoodSent}}
-            td {{offer.dateTimeOfferDue}}
+            td {{ offer.makegoodNumber == 12676 ? dateMakegoodSent : offer.dateMakegoodSent }}
+            td {{ offer.makegoodNumber == 12676 ? dateTimeOfferDue : offer.dateTimeOfferDue }}
             td.vui-text-align--right {{offer.makegoodTotal | numberWithCommas | formatMoney }}
             td {{offer.offerType}}
 
@@ -125,6 +125,7 @@
   import Icon from '../Icon.vue'
   import Breadcrumbs from '../Breadcrumbs.vue'
   import Datepicker from '../Datepicker2.vue'
+  import moment from 'moment'
 
   export default {
     components: { Panel, Icon, Breadcrumbs, Datepicker },
@@ -141,6 +142,8 @@
         sharedState: store.state,
         fromDate: new Date('2016-04-25T12:24:00'),
         toDate: new Date('2016-06-05T12:24:00'),
+        dateMakegoodSent: moment().add(-3, 'days').format('MM/DD/YY'),
+        dateTimeOfferDue: moment().add(-1, 'days').format('MM/DD/YY'),
         offers: [],
         config: {
           breadcrumbs: {

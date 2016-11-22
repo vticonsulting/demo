@@ -94,14 +94,14 @@
               a.vui-align-middle(@click.prevent='showAvail(avail.id)', href='#') {{avail.id}}
             td
               span.vui-badge(:class='avail.availStatus')  {{avail.availStatus}}
-            td {{avail.releasedDate}}
+            td {{ avail.id == 65733 ? releasedDate : avail.releasedDate}}
             td {{avail.advertiser}}
             td {{avail.product}}
             td {{avail.estimateNumber}}
             td {{avail.flightStartDate}}
             td {{avail.flightEndDate}}
             td {{avail.agency}}
-            td {{avail.lastUpdated}}
+            td {{ avail.id == 65733 ? lastUpdated : avail.lastUpdated}}
           tr(v-show='avail.expanded')
             td.expanded(colspan='10')
               .vui-box.vui-theme--shade.vui-grid.vui-grid--align-spread.vui-m-top--medium
@@ -117,11 +117,10 @@
                 tbody
                   tr(v-for='version in avail.versions | orderBy "id" -1')
                     td {{ version.id }}
-                    td {{ version.dateSubmitted }}
+                    td {{ avail.id == 65733 ? dateSubmitted : version.dateSubmitted }}
                     td {{ version.timeSubmitted }}
                     td {{ version.submittedBy }}
                     td
-                      //- a(v-link="{ name: 'reps.avail', params: { id: avail.id }, query: { version: version.id } }") View
                       a(@click.prevent='showAvail(avail.id, version.id)', href='#') View
 </template>
 
@@ -131,6 +130,7 @@
   import Icon from '../Icon.vue'
   import PageHeading from '../PageHeading.vue'
   import Panel from '../Panel.vue'
+  import moment from 'moment'
 
   export default {
     components: {Icon, PageHeading, Panel},
@@ -147,7 +147,10 @@
         apiHost: store.apiHost,
         application: 'reps',
         avails: [],
-        testDate: new Date('05 October 2011 14:48 UTC').toISOString()
+        testDate: new Date('05 October 2011 14:48 UTC').toISOString(),
+        releasedDate: moment().format('MM/DD/YY'),
+        lastUpdated: moment().startOf('day').hour(7).format('MM/DD/YY HH:mm A'),
+        dateSubmitted: moment().add(-1, 'days').format('MM/DD/YY')
       }
     },
 

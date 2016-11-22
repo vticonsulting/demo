@@ -35,10 +35,10 @@
             .vui-select_container
               select.vui-select(name='', id='')
                 option(value='') Quarter
-                option(value='') 2016/Q2
                 option(value='') 2016/Q3
-                option(value='', selected) 2016/Q4
-                option(value='') 2017/Q1
+                option(value='') 2016/Q4
+                option(value='', selected) 2017/Q1
+                option(value='') 2017/Q2
 
         // $0 Spots Checkbox Fieldset
         fieldset.vui-form-element.vui-m-right--small
@@ -68,7 +68,7 @@
       button.vui-button.vui-max-small-buttons--stretch(:disabled='false', @click.prevent='selectDaypart("overnight")', :class="(selected == 'overnight') ? 'vui-button--brand' : 'vui-button--neutral'") Overnight
 
     // table-header
-    h3.vui-text-heading--medium.vui-m-bottom--small {{ selected | toTitleCase }} | Q4 2016
+    h3.vui-text-heading--medium.vui-m-bottom--small {{ selected | toTitleCase }} | Q1 2017
 
     // Market CPP
     .vui-grid.vui-grid--align-end

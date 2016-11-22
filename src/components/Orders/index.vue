@@ -74,7 +74,7 @@
               //- td.vui-text-align--right {{ order.share | decimalToPercent }}
               td.vui-text-align--right {{ sharedState['share'+order.id] | decimalToPercent }}
               td {{ order.id }}
-              td {{ order.orderDate }}
+              td {{ order.id == 135001 ? orderDate : order.orderDate }}
             tr.animated(v-show='order.expanded')
               td.expanded(colspan='9')
                 .vui-box.vui-theme--shade.vui-grid.vui-grid--align-spread.vui-m-top--medium
@@ -142,6 +142,7 @@
   import PageHeading from '../PageHeading.vue'
   import Paging from '../Paging.vue'
   import Datepicker from '../Datepicker2.vue'
+  import moment from 'moment'
 
   export default {
     components: {
@@ -181,8 +182,9 @@
         sortOrder: 1,
         searchKey: '',
         eventMsg: null,
-        fromDate: new Date('2016-09-26T12:24:00'),
-        toDate: new Date('2016-12-25T12:24:00'),
+        fromDate: new Date('2016-12-26T12:24:00'),
+        toDate: new Date('2017-03-26T12:24:00'),
+        orderDate: moment().format('MM/DD/YY'),
         columns: [
           { name: 'advertiser' },
           { name: 'agency' },

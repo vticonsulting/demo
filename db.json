@@ -184,12 +184,12 @@
       "product": "HEA",
       "estimateNumber": 57,
       "cpe": "PIE-HEA-57",
-      "campaignName": "WASHI WVVV PHC-HEA-57 Q2'16",
+      "campaignName": "WASHI WVVV PHC-HEA-57 Q1'17",
       "market": "Washington",
       "station": "WVVV",
       "expirationDate": "06/07/16",
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/25/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/26/17",
       "agency": "Hughes-Martin Agency",
       "lastUpdated": "05/24/16 04:50 PM",
       "grossMarketBudget": 140000,
@@ -240,8 +240,8 @@
               "id": 1,
               "name": "Network 23 6a News",
               "time": "M-F / 06:00 AM - 07:00 AM",
-              "flightStartDate": "11/14/16",
-              "flightEndDate": "12/16/16",
+              "flightStartDate": "02/13/17",
+              "flightEndDate": "03/24/17",
               "length": ":30",
               "rate": 447,
               "rating": 2.1,
@@ -263,9 +263,9 @@
               },
               "months": [
                 {
-                  "month": "November",
-                  "flightStartDate": "11/14/16",
-                  "flightEndDate": "11/25/16",
+                  "month": "February",
+                  "flightStartDate": "02/13/17",
+                  "flightEndDate": "03/24/17",
                   "length": ":30",
                   "rate": 475,
                   "rating": 2.1,
@@ -303,7 +303,7 @@
                   },
                   "weeks": [
                     {
-                      "week": "11/14/16 - 11/18/16",
+                      "week": "02/13/17 - 02/17/17",
                       "expanded": false,
                       "length": ":30",
                       "rate": 500,
@@ -341,7 +341,7 @@
                       }
                     },
                     {
-                      "week": "11/21/16 - 11/25/16",
+                      "week": "02/20/17 - 02/24/17",
                       "expanded": false,
                       "length": ":30",
                       "rate": 500,
@@ -381,9 +381,9 @@
                   ]
                 },
                 {
-                  "month": "December",
-                  "flightStartDate": "11/28/16",
-                  "flightEndDate": "12/23/16",
+                  "month": "March",
+                  "flightStartDate": "02/27/17",
+                  "flightEndDate": "03/24/17",
                   "length": ":30",
                   "rate": 433,
                   "rating": 2.1,
@@ -421,7 +421,7 @@
                   },
                   "weeks": [
                     {
-                      "week": "11/28/16 - 12/02/16",
+                      "week": "02/27/17 - 03/03/17",
                       "expanded": false,
                       "length": ":30",
                       "rate": 465,
@@ -459,7 +459,7 @@
                       }
                     },
                     {
-                      "week": "12/05/16 - 12/09/16",
+                      "week": "03/06/16 - 03/10/16",
                       "expanded": false,
                       "length": ":30",
                       "rate": 465,
@@ -497,7 +497,7 @@
                       }
                     },
                     {
-                      "week": "12/12/16 - 12/16/16",
+                      "week": "03/13/17 - 03/17/17",
                       "expanded": false,
                       "length": ":30",
                       "rate": 465,
@@ -535,7 +535,7 @@
                       }
                     },
                     {
-                      "week": "12/19/16 - 12/23/16",
+                      "week": "03/20/17 - 03/24/17",
                       "expanded": false,
                       "length": ":30",
                       "rate": 465,
@@ -580,8 +580,8 @@
               "id": 2,
               "name": "Network 23 News This Morning",
               "time": "M-F / 07:00 AM - 08:00 AM",
-              "flightStartDate": "11/14/16",
-              "flightEndDate": "12/23/16",
+              "flightStartDate": "02/13/17",
+              "flightEndDate": "03/24/17",
               "length": ":30",
               "rate": 380,
               "rating": 1.8,
@@ -603,9 +603,9 @@
               },
               "months": [
                 {
-                  "month": "May",
-                  "flightStartDate": "05/09/16",
-                  "flightEndDate": "05/27/16",
+                  "month": "February",
+                  "flightStartDate": "02/13/17",
+                  "flightEndDate": "02/24/17",
                   "length": ":30",
                   "rate": 390,
                   "rating": 1.8,
@@ -759,9 +759,9 @@
                   ]
                 },
                 {
-                  "month": "June",
-                  "flightStartDate": "05/30/16",
-                  "flightEndDate": "06/03/16",
+                  "month": "March",
+                  "flightStartDate": "02/27/17",
+                  "flightEndDate": "03/24/17",
                   "length": ":30",
                   "rate": 360,
                   "rating": 1.8,
@@ -804,8 +804,8 @@
               "id": 3,
               "name": "Network 23 News This Morning",
               "time": "M-F / 08:00 AM - 09:00 AM",
-              "flightStartDate": "11/14/16",
-              "flightEndDate": "12/23/16",
+              "flightStartDate": "02/13/17",
+              "flightEndDate": "03/24/17",
               "length": ":30",
               "rate": 450,
               "rating": 2.2,
@@ -830,8 +830,8 @@
               "id": 4,
               "name": "Network 23 Weekend News-Sat",
               "time": "Sat / 09:00 AM - 10:00 AM",
-              "flightStartDate": "11/19/16",
-              "flightEndDate": "12/24/16",
+              "flightStartDate": "02/18/17",
+              "flightEndDate": "03/25/17",
               "length": ":30",
               "rate": 200,
               "rating": 0.9,
@@ -856,8 +856,8 @@
               "id": 5,
               "name": "Network 23 Weekend News-Sun",
               "time": "Sun / 09:00 AM - 10:00 AM",
-              "flightStartDate": "11/20/16",
-              "flightEndDate": "12/25/16",
+              "flightStartDate": "02/19/17",
+              "flightEndDate": "03/26/17",
               "length": ":30",
               "rate": 228,
               "rating": 1.1,
@@ -1845,19 +1845,19 @@
       "expanded": false,
       "status": "expired",
       "availStatus": "released",
-      "releasedDate": "05/20/16",
+      "releasedDate": "11/17/16",
       "advertiser": "Metro Wireless",
       "product": "GEN",
       "estimateNumber": 23,
       "cpe": "SAM GAL 23233",
-      "campaignName": "WASHI WVVV MEW-GEN-23 Q2'16",
+      "campaignName": "WASHI WVVV MEW-GEN-23 Q1'17",
       "market": "Washington",
       "station": "WVVV",
-      "expirationDate": "04/22/16",
-      "flightStartDate": "10/10/16",
-      "flightEndDate": "11/20/16",
+      "expirationDate": "11/17/16",
+      "flightStartDate": "01/09/17",
+      "flightEndDate": "02/19/17",
       "agency": "The Media Masters Group",
-      "lastUpdated": "05/20/16 08:47 AM",
+      "lastUpdated": "11/17/16 08:47 AM",
       "grossMarketBudget": 53190,
       "totalGrpGoal": 94,
       "primaryDemo": "M 18-49",
@@ -2157,19 +2157,19 @@
       "expanded": false,
       "status": "expired",
       "availStatus": "released",
-      "releasedDate": "05/19/16",
+      "releasedDate": "10/15/16",
       "advertiser": "Sun Valley Bank",
       "product": "GEN",
       "estimateNumber": 459,
       "cpe": "SAM GAL 23233",
-      "campaignName": "WASHI WVVV SUN-GEN-459 Q2'16",
+      "campaignName": "WASHI WVVV SUN-GEN-459 Q1'17",
       "market": "Washington",
       "station": "WVVV",
-      "expirationDate": "02/06/16",
-      "flightStartDate": "10/31/16",
-      "flightEndDate": "12/25/16",
+      "expirationDate": "10/15/16",
+      "flightStartDate": "01/30/16",
+      "flightEndDate": "03/26/16",
       "agency": "Mullberry Way Group",
-      "lastUpdated": "05/19/16 12:12 PM",
+      "lastUpdated": "10/15/16 12:12 PM",
       "grossMarketBudget": 53190,
       "totalGrpGoal": 940,
       "primaryDemo": "M 18-49",
@@ -2480,19 +2480,19 @@
       "expanded": false,
       "status": "expired",
       "availStatus": "released",
-      "releasedDate": "05/11/16",
+      "releasedDate": "10/13/16",
       "advertiser": "Southeast Ford",
       "product": "END",
       "estimateNumber": 22,
       "cpe": "SAM GAL 23233",
-      "campaignName": "WASHI WVVV FSE-END-22 Q2'16",
+      "campaignName": "WASHI WVVV FSE-END-22 Q1'17",
       "market": "Washington",
       "station": "WVVV",
-      "expirationDate": "02/08/16",
-      "flightStartDate": "10/10/16",
-      "flightEndDate": "11/20/16",
+      "expirationDate": "10/13/16",
+      "flightStartDate": "01/09/16",
+      "flightEndDate": "02/19/17",
       "agency": "Auto Advertising Partners",
-      "lastUpdated": "05/11/16 11:14 AM",
+      "lastUpdated": "10/13/16 11:14 AM",
       "grossMarketBudget": 53190,
       "totalGrpGoal": 94,
       "primaryDemo": "M 18-49",
@@ -2792,19 +2792,19 @@
       "expanded": false,
       "status": "expired",
       "availStatus": "released",
-      "releasedDate": "05/11/16",
+      "releasedDate": "09/23/16",
       "advertiser": "Papa John's Pizza",
       "product": "HOL",
       "estimateNumber": 8,
       "cpe": "SAM GAL 23233",
-      "campaignName": "WASHI WVVV PJP-HOL-8 Q2'16",
+      "campaignName": "WASHI WVVV PJP-HOL-8 Q1'17",
       "market": "Washington",
       "station": "WVVV",
-      "expirationDate": "02/06/16",
-      "flightStartDate": "09/26/16",
-      "flightEndDate": "10/30/16",
+      "expirationDate": "09/23/16",
+      "flightStartDate": "12/26/16",
+      "flightEndDate": "01/29/17",
       "agency": "Zone Group Advertising",
-      "lastUpdated": "05/11/16 03:31 PM",
+      "lastUpdated": "09/23/16 03:31 PM",
       "grossMarketBudget": 53190,
       "totalGrpGoal": 94,
       "primaryDemo": "M 18-49",
@@ -3104,19 +3104,19 @@
       "expanded": false,
       "status": "expired",
       "availStatus": "released",
-      "releasedDate": "05/03/16",
+      "releasedDate": "09/19/16",
       "advertiser": "Community Loans, LLC.",
       "product": "QTR",
       "estimateNumber": 3567,
       "cpe": "SAM GAL 23233",
-      "campaignName": "WASHI WVVV CLI-QTR-3567 Q2'16",
+      "campaignName": "WASHI WVVV CLI-QTR-3567 Q1'17",
       "market": "Washington",
       "station": "WVVV",
-      "expirationDate": "02/01/16",
-      "flightStartDate": "09/26/16",
-      "flightEndDate": "10/30/16",
+      "expirationDate": "09/19/16",
+      "flightStartDate": "12/26/16",
+      "flightEndDate": "01/29/17",
       "agency": "Vanthrop & Associates",
-      "lastUpdated": "05/03/16 10:12 AM",
+      "lastUpdated": "09/19/16 10:12 AM",
       "grossMarketBudget": 53190,
       "totalGrpGoal": 94,
       "primaryDemo": "M 18-49",
@@ -4316,8 +4316,8 @@
       "id": 12676,
       "orderId": 131542,
       "stationOrderNumber": 154703,
-      "flightStartDate": "10/03/16",
-      "flightEndDate": "11/20/16",
+      "flightStartDate": "01/09/17",
+      "flightEndDate": "02/12/17",
       "overdue": true,
       "product": "",
       "estimate": 57,
@@ -4344,7 +4344,7 @@
       "stationNotes": "",
       "agency": "The Media Masters Group",
       "advertiser": "Metro Wireless",
-      "campaignName": "WASHI WVVV MEW-GEN-23 Q2'16",
+      "campaignName": "WASHI WVVV MEW-GEN-23 Q1'17",
       "cpe": "MEW-GEN-23",
       "videaOrderDetail": "V00012543",
       "videaOrderNumber": 131542,
@@ -4356,7 +4356,7 @@
           "status": "confirmed",
           "priority": 1,
           "airDay": "Tuesday",
-          "airDate": "10/04/16",
+          "airDate": "01/10/17",
           "airTime": "05:00 PM",
           "spotLength": ":30",
           "spotRate": 550,
@@ -4370,7 +4370,7 @@
           "status": "confirmed",
           "priority": 1,
           "airDay": "Thursday",
-          "airDate": "10/06/16",
+          "airDate": "01/12/17",
           "airTime": "05:00 PM",
           "spotLength": ":30",
           "spotRate": 550,
@@ -4397,8 +4397,8 @@
       "id": 12389,
       "orderId": 131642,
       "stationOrderNumber": 178269,
-      "flightStartDate": "10/10/16",
-      "flightEndDate": "11/20/16",
+      "flightStartDate": "01/09/17",
+      "flightEndDate": "02/19/17",
       "overdue": false,
       "product": "",
       "estimate": 57,
@@ -4413,8 +4413,8 @@
       "scheduleType": "Weekly",
       "makegoodTotal": 300,
       "makegoodNumber": 12389,
-      "dateMakegoodSent": "05/23/16",
-      "dateTimeOfferDue": "05/25/16",
+      "dateMakegoodSent": "11/22/16",
+      "dateTimeOfferDue": "11/24/16",
       "stationAction": "Accept/Reject",
       "offerType": "Makegood",
       "offerStatus": "pending",
@@ -4425,7 +4425,7 @@
       "stationNotes": "",
       "agency": "Auto Advertising Partners",
       "advertiser": "Southeast Ford",
-      "campaignName": "WASHI WVVV FSE-END-22 Q2'16",
+      "campaignName": "WASHI WVVV FSE-END-22 Q1'17",
       "cpe": "FSE-END-22",
       "videaOrderDetail": "V00012321",
       "videaOrderNumber": 131642
@@ -4434,8 +4434,8 @@
       "id": 12674,
       "orderId": 131542,
       "stationOrderNumber": 154703,
-      "flightStartDate": "10/03/16",
-      "flightEndDate": "11/20/16",
+      "flightStartDate": "01/09/17",
+      "flightEndDate": "02/12/17",
       "overdue": false,
       "product": "",
       "estimate": 57,
@@ -4450,8 +4450,8 @@
       "scheduleType": "Weekly",
       "makegoodTotal": 0,
       "makegoodNumber": 12674,
-      "dateMakegoodSent": "04/13/16",
-      "dateTimeOfferDue": "04/15/16",
+      "dateMakegoodSent": "11/09/16",
+      "dateTimeOfferDue": "11/11/16",
       "stationAction": "N/A",
       "offerType": "Bonus",
       "offerStatus": "confirmed",
@@ -4462,7 +4462,7 @@
       "stationNotes": "",
       "agency": "The Media Masters Group",
       "advertiser": "Metro Wireless",
-      "campaignName": "WASHI WVVV MEW-GEN-23 Q2'16",
+      "campaignName": "WASHI WVVV MEW-GEN-23 Q1'17",
       "cpe": "MEW-GEN-23",
       "videaOrderDetail": "V00012543",
       "videaOrderNumber": 131542
@@ -4471,8 +4471,8 @@
       "id": 12375,
       "orderId": 133529,
       "stationOrderNumber": 193847,
-      "flightStartDate": "09/26/16",
-      "flightEndDate": "10/30/16",
+      "flightStartDate": "12/26/16",
+      "flightEndDate": "01/29/17",
       "overdue": false,
       "product": "",
       "estimate": 57,
@@ -4487,8 +4487,8 @@
       "scheduleType": "Weekly",
       "makegoodTotal": 2500,
       "makegoodNumber": 12375,
-      "dateMakegoodSent": "04/05/16",
-      "dateTimeOfferDue": "04/07/16",
+      "dateMakegoodSent": "10/31/16",
+      "dateTimeOfferDue": "11/02/16",
       "stationAction": "N/A",
       "offerType": "Program Change",
       "offerStatus": "confirmed",
@@ -4499,7 +4499,7 @@
       "stationNotes": "",
       "agency": "Zone Group Advertising",
       "advertiser": "Papa John's Pizza",
-      "campaignName": "WASHI WVVV PJP-HOL-8 Q2'16",
+      "campaignName": "WASHI WVVV PJP-HOL-8 Q1'17",
       "cpe": "PJP-HOL-8",
       "videaOrderDetail": "V00012341",
       "videaOrderNumber": 133529
@@ -4521,16 +4521,16 @@
       "salesPerson": "Brian Reed",
       "cpe": "PHC-HEA-57",
       "campaign": "PIE-HEA-57 Q116",
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/25/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/26/17",
       "revenue": 37189,
       "revenueBy": [
         {
-          "month": "nov",
+          "month": "feb",
           "revenue": 13866
         },
         {
-          "month": "dec",
+          "month": "mar",
           "revenue": 23323
         }
       ],
@@ -4560,7 +4560,7 @@
                   "expanded": false,
                   "dates": [
                     {
-                      "date": "11/14/16",
+                      "date": "02/13/17",
                       "spotLength": ":30",
                       "aur": 475,
                       "numberOfSpots": 3,
@@ -4569,7 +4569,7 @@
                       "grps": 6.3
                     },
                     {
-                      "date": "11/21/16",
+                      "date": "02/20/17",
                       "spotLength": ":30",
                       "aur": 475,
                       "numberOfSpots": 3,
@@ -4578,7 +4578,7 @@
                       "grps": 6.3
                     },
                     {
-                      "date": "11/28/16",
+                      "date": "02/27/17",
                       "spotLength": ":30",
                       "aur": 465,
                       "numberOfSpots": 3,
@@ -4587,7 +4587,7 @@
                       "grps": 6.3
                     },
                     {
-                      "date": "12/05/16",
+                      "date": "03/06/17",
                       "spotLength": ":30",
                       "aur": 465,
                       "numberOfSpots": 3,
@@ -4596,7 +4596,7 @@
                       "grps": 6.3
                     },
                     {
-                      "date": "12/12/16",
+                      "date": "03/13/17",
                       "spotLength": ":30",
                       "aur": 400,
                       "numberOfSpots": 3,
@@ -4605,7 +4605,7 @@
                       "grps": 6.3
                     },
                     {
-                      "date": "12/19/16",
+                      "date": "03/20/17",
                       "spotLength": ":30",
                       "aur": 400,
                       "numberOfSpots": 3,
@@ -5551,8 +5551,8 @@
       "salesPerson": "Jessica Bond",
       "cpe": "PJP-HOL-8",
       "campaign": "Q1 `16 LO",
-      "flightStartDate": "09/26/16",
-      "flightEndDate": "10/30/16",
+      "flightStartDate": "12/26/16",
+      "flightEndDate": "01/29/17",
       "revenue": "10650",
       "revenueBy": [
         {
@@ -5563,7 +5563,7 @@
       "demo": "A18-49",
       "share": ".4940",
       "spots": 15,
-      "orderDate": "05/06/16",
+      "orderDate": "11/05/16",
       "expanded": false,
       "dayparts": [
         {
@@ -6269,8 +6269,8 @@
       "salesPerson": "Eleanor Vine",
       "cpe": "FSE-END-22",
       "campaign": "Year-End 2015",
-      "flightStartDate": "10/10/16",
-      "flightEndDate": "11/20/16",
+      "flightStartDate": "01/09/17",
+      "flightEndDate": "02/19/17",
       "revenue": "41450",
       "revenueBy": [
         {
@@ -6285,7 +6285,7 @@
       "demo": "A25-54",
       "share": ".40",
       "spots": 59,
-      "orderDate": "05/02/16",
+      "orderDate": "10/21/16",
       "expanded": false,
       "dayparts": [
         {
@@ -7416,8 +7416,8 @@
       "salesPerson": "Brian Reed",
       "cpe": "CLI-QTR-3567",
       "campaign": "1Q16",
-      "flightStartDate": "09/26/16",
-      "flightEndDate": "10/30/16",
+      "flightStartDate": "12/26/16",
+      "flightEndDate": "01/29/17",
       "revenue": "19100",
       "revenueBy": [
         {
@@ -8272,8 +8272,8 @@
       "salesPerson": "Jessica Bond",
       "cpe": "MEW-GEN-23",
       "campaign": "Q1`16 DI",
-      "flightStartDate": "10/10/16",
-      "flightEndDate": "11/20/16",
+      "flightStartDate": "01/09/17",
+      "flightEndDate": "02/12/17",
       "revenue": "41000",
       "revenueBy": [
         {
@@ -9331,8 +9331,8 @@
       "salesPerson": "Emily Jackson",
       "cpe": "SUN-GEN-459",
       "campaign": "SUN-GEN-459 Q116",
-      "flightStartDate": "10/31/16",
-      "flightEndDate": "12/25/16",
+      "flightStartDate": "01/30/17",
+      "flightEndDate": "03/26/17",
       "revenue": "52215",
       "revenueBy": [
         {
@@ -11770,8 +11770,8 @@
       "salesOfficeLocation": "Atlanta",
       "salesPerson": "Brian Reed",
       "videaOrderNo": 135001,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/25/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/26/17",
       "revenue": 37189,
       "share": 0.31,
       "spots": 113,
@@ -11787,8 +11787,8 @@
               "name": "Network 23 6a News",
               "time": "M-F / 06:00 AM — 07:00 AM",
               "length": ":30",
-              "flightStartDate": "11/14/16",
-              "flightEndDate": "11/25/16",
+              "flightStartDate": "02/13/17",
+              "flightEndDate": "02/24/17",
               "rate": 475,
               "weeklySpots": 3,
               "weekdayCounts": [
@@ -11834,8 +11834,8 @@
               "name": "Network 23 6a News",
               "time": "M-F / 06:00 AM — 07:00 AM",
               "length": ":30",
-              "flightStartDate": "11/21/16",
-              "flightEndDate": "12/09/16",
+              "flightStartDate": "02/20/17",
+              "flightEndDate": "03/10/17",
               "rate": 465,
               "weeklySpots": 3,
               "weekdayCounts": [
@@ -11881,8 +11881,8 @@
               "name": "Network 23 6a News",
               "time": "M-F / 06:00 AM — 07:00 AM",
               "length": ":30",
-              "flightStartDate": "12/12/16",
-              "flightEndDate": "12/23/16",
+              "flightStartDate": "03/13/17",
+              "flightEndDate": "03/24/17",
               "rate": 400,
               "weeklySpots": 3,
               "weekdayCounts": [
@@ -11928,8 +11928,8 @@
               "name": "Network 23 News This Morning",
               "time": "M-F / 07:00 AM — 08:00 AM",
               "length": ":30",
-              "flightStartDate": "12/12/16",
-              "flightEndDate": "12/23/16",
+              "flightStartDate": "03/13/17",
+              "flightEndDate": "03/24/17",
               "rate": 360,
               "weeklySpots": 4,
               "weekdayCounts": [
@@ -11975,8 +11975,8 @@
               "name": "Network 23 News This Morning",
               "time": "M-F / 07:00 AM — 08:00 AM",
               "length": ":30",
-              "flightStartDate": "11/14/16",
-              "flightEndDate": "12/09/16",
+              "flightStartDate": "02/13/17",
+              "flightEndDate": "03/10/17",
               "rate": 390,
               "weeklySpots": 4,
               "weekdayCounts": [
@@ -12022,8 +12022,8 @@
               "name": "Network 23 News @ 5",
               "time": "M-F / 05:00 PM — 06:00 PM",
               "length": ":30",
-              "flightStartDate": "11/14/16",
-              "flightEndDate": "12/16/16",
+              "flightStartDate": "02/13/17",
+              "flightEndDate": "03/17/17",
               "rate": 624,
               "weeklySpots": 2,
               "weekdayCounts": [
@@ -12069,8 +12069,8 @@
               "name": "Network 23 News @ 6",
               "time": "M-F / 06:00 PM — 07:00 PM",
               "length": ":30",
-              "flightStartDate": "11/14/16",
-              "flightEndDate": "12/02/16",
+              "flightStartDate": "02/13/17",
+              "flightEndDate": "03/03/17",
               "rate": 652,
               "weeklySpots": 2,
               "weekdayCounts": [
@@ -12116,8 +12116,8 @@
               "name": "Network 23 News @ 6",
               "time": "M-F / 06:00 PM — 07:00 PM",
               "length": ":30",
-              "flightStartDate": "12/05/16",
-              "flightEndDate": "12/09/16",
+              "flightStartDate": "03/06/17",
+              "flightEndDate": "03/10/17",
               "rate": 652,
               "weeklySpots": 3,
               "weekdayCounts": [
@@ -12163,8 +12163,8 @@
               "name": "Network 23 News @ 6",
               "time": "M-F / 06:00 PM — 07:00 PM",
               "length": ":30",
-              "flightStartDate": "12/12/16",
-              "flightEndDate": "12/23/16",
+              "flightStartDate": "03/13/17",
+              "flightEndDate": "03/24/17",
               "rate": 675,
               "weeklySpots": 3,
               "weekdayCounts": [
@@ -12210,8 +12210,8 @@
               "name": "Seinfeld",
               "time": "M-F / 11:00 PM — 11:30 PM",
               "length": ":30",
-              "flightStartDate": "11/14/16",
-              "flightEndDate": "12/23/16",
+              "flightStartDate": "02/13/17",
+              "flightEndDate": "03/24/17",
               "rate": 125,
               "weeklySpots": 3,
               "weekdayCounts": [
@@ -12257,8 +12257,8 @@
               "name": "Seinfeld",
               "time": "M-F / 11:30 PM — 12:00 AM",
               "length": ":30",
-              "flightStartDate": "11/14/16",
-              "flightEndDate": "12/02/16",
+              "flightStartDate": "02/13/17",
+              "flightEndDate": "03/03/17",
               "rate": 100,
               "weeklySpots": 3,
               "weekdayCounts": [
@@ -16717,7 +16717,7 @@
           },
           "months": [
             {
-              "month": "October",
+              "month": "January",
               "expanded": true,
               "acceptRate": true,
               "station": {
@@ -16804,7 +16804,7 @@
               },
               "weeks": [
                 {
-                  "week": "09/26/16",
+                  "week": "12/26/16",
                   "expanded": false,
                   "acceptRate": true,
                   "station": {
@@ -16891,7 +16891,7 @@
                   }
                 },
                 {
-                  "week": "10/03/16",
+                  "week": "01/02/17",
                   "expanded": false,
                   "acceptRate": true,
                   "station": {
@@ -16978,7 +16978,7 @@
                   }
                 },
                 {
-                  "week": "10/10/16",
+                  "week": "01/09/17",
                   "expanded": false,
                   "acceptRate": true,
                   "station": {
@@ -17065,7 +17065,7 @@
                   }
                 },
                 {
-                  "week": "10/17/16",
+                  "week": "01/16/17",
                   "expanded": false,
                   "acceptRate": true,
                   "station": {
@@ -17152,7 +17152,7 @@
                   }
                 },
                 {
-                  "week": "10/24/16",
+                  "week": "01/23/17",
                   "expanded": false,
                   "acceptRate": true,
                   "station": {
@@ -17241,7 +17241,7 @@
               ]
             },
             {
-              "month": "November",
+              "month": "February",
               "expanded": true,
               "acceptRate": true,
               "station": {
@@ -17328,7 +17328,7 @@
               },
               "weeks": [
                 {
-                  "week": "10/31/16",
+                  "week": "01/30/17",
                   "expanded": false,
                   "acceptRate": true,
                   "station": {
@@ -17415,7 +17415,7 @@
                   }
                 },
                 {
-                  "week": "11/07/16",
+                  "week": "02/06/17",
                   "expanded": false,
                   "acceptRate": true,
                   "station": {
@@ -17502,7 +17502,7 @@
                   }
                 },
                 {
-                  "week": "11/14/16",
+                  "week": "02/13/17",
                   "expanded": false,
                   "acceptRate": true,
                   "station": {
@@ -17589,7 +17589,7 @@
                   }
                 },
                 {
-                  "week": "11/21/16",
+                  "week": "02/20/17",
                   "expanded": false,
                   "acceptRate": true,
                   "station": {
@@ -17678,7 +17678,7 @@
               ]
             },
             {
-              "month": "December",
+              "month": "March",
               "expanded": true,
               "acceptRate": true,
               "station": {
@@ -22174,8 +22174,8 @@
       "daypart": "Early Morning",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "06:00:00 AM",
       "endTime": "07:00:00 AM",
       "spotLength": ":30",
@@ -22187,8 +22187,8 @@
           "daypart": "Early Morning",
           "active": true,
           "expanded": false,
-          "flightStartDate": "11/14/16",
-          "flightEndDate": "11/25/16",
+          "flightStartDate": "02/13/17",
+          "flightEndDate": "02/24/17",
           "startTime": "06:00:00 AM",
           "endTime": "07:00:00 AM",
           "spotLength": ":30"
@@ -22200,8 +22200,8 @@
           "daypart": "Early Morning",
           "active": true,
           "expanded": false,
-          "flightStartDate": "11/28/16",
-          "flightEndDate": "12/23/16",
+          "flightStartDate": "02/27/17",
+          "flightEndDate": "03/24/17",
           "startTime": "06:00:00 AM",
           "endTime": "07:00:00 AM",
           "spotLength": ":30"
@@ -22216,8 +22216,8 @@
       "daypart": "Early Morning",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "07:00:00 AM",
       "endTime": "08:00:00 AM",
       "spotLength": ":30"
@@ -22230,8 +22230,8 @@
       "daypart": "Early Morning",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "08:00:00 AM",
       "endTime": "09:00:00 AM",
       "spotLength": ":30"
@@ -22244,8 +22244,8 @@
       "daypart": "Early Morning",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/19/16",
-      "flightEndDate": "12/24/16",
+      "flightStartDate": "02/18/17",
+      "flightEndDate": "03/25/17",
       "startTime": "09:00:00 AM",
       "endTime": "10:00:00 AM",
       "spotLength": ":30"
@@ -22258,8 +22258,8 @@
       "daypart": "Early Morning",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/20/16",
-      "flightEndDate": "12/25/16",
+      "flightStartDate": "02/19/17",
+      "flightEndDate": "03/26/17",
       "startTime": "09:00:00 AM",
       "endTime": "10:00:00 AM",
       "spotLength": ":30"
@@ -22272,8 +22272,8 @@
       "daypart": "Early News",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "05:00:00 PM",
       "endTime": "06:00:00 PM",
       "spotLength": ":30"
@@ -22286,8 +22286,8 @@
       "daypart": "Early News",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "06:00:00 PM",
       "endTime": "07:00:00 PM",
       "spotLength": ":30"
@@ -22300,8 +22300,8 @@
       "daypart": "Early News",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/19/16",
-      "flightEndDate": "12/24/16",
+      "flightStartDate": "02/18/17",
+      "flightEndDate": "03/25/17",
       "startTime": "05:00:00 PM",
       "endTime": "06:00:00 PM",
       "spotLength": ":30"
@@ -22314,8 +22314,8 @@
       "daypart": "Early News",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/20/16",
-      "flightEndDate": "12/25/16",
+      "flightStartDate": "02/19/17",
+      "flightEndDate": "03/26/17",
       "startTime": "06:00:00 PM",
       "endTime": "07:00:00 PM",
       "spotLength": ":30"
@@ -22328,8 +22328,8 @@
       "daypart": "Late Fringe",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "11:00:00 PM",
       "endTime": "11:30:00 PM",
       "spotLength": ":30"
@@ -22342,8 +22342,8 @@
       "daypart": "Late Fringe",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "11:30:00 PM",
       "endTime": "12:00:00 AM",
       "spotLength": ":30"
@@ -22356,8 +22356,8 @@
       "daypart": "Late Fringe",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "12:00:00 AM",
       "endTime": "12:30:00 AM",
       "spotLength": ":30"
@@ -22370,8 +22370,8 @@
       "daypart": "Late Fringe",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "12:30:00 AM",
       "endTime": "01:00:00 AM",
       "spotLength": ":30"
@@ -22384,8 +22384,8 @@
       "daypart": "Late Fringe",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "01:00:00 AM",
       "endTime": "01:30:00 AM",
       "spotLength": ":30"
@@ -22398,8 +22398,8 @@
       "daypart": "Late Fringe",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "01:30:00 AM",
       "endTime": "02:00:00 AM",
       "spotLength": ":30"
@@ -22412,8 +22412,8 @@
       "daypart": "Late Fringe",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "11:00:00 PM",
       "endTime": "11:30:00 PM",
       "spotLength": ":30"
@@ -22426,8 +22426,8 @@
       "daypart": "Late Fringe",
       "active": true,
       "expanded": false,
-      "flightStartDate": "11/14/16",
-      "flightEndDate": "12/23/16",
+      "flightStartDate": "02/13/17",
+      "flightEndDate": "03/24/17",
       "startTime": "11:30:00 PM",
       "endTime": "12:00:00 AM",
       "spotLength": ":30"

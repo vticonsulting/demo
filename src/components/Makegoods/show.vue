@@ -40,7 +40,7 @@
       fieldset.vui-form-element
         label.vui-form-element__label(for='') Offer Sent
         .vui-form-element__control
-          span.vui-show--inline-block.vui-m-top--x-small.vui-align-middle {{ offer.dateMakegoodSent }}
+          span.vui-show--inline-block.vui-m-top--x-small.vui-align-middle {{ offer.makegoodNumber == 12676 ? dateMakegoodSent : offer.dateMakegoodSent }}
 
     .vui-grid.vui-m-bottom--large
 
@@ -61,30 +61,30 @@
               .vui-grid.vui-grid--align-spread
                 a.vui-align-middle(@click.prevent='', href='#')
                   icon(name='arrow-circle-left')
-                span.vui-align-middle October
+                span.vui-align-middle January
             th.vui-text-align--center.u-width-xx-large(colspan='4')
-              span November
+              span February
             th.vui-text-align--center.u-width-xx-large(colspan='4')
               .vui-grid.vui-grid--align-spread
-                span.vui-align-middle December
+                span.vui-align-middle March
                 a.vui-align-middle(@click.prevent='', href='#')
                   icon(name='arrow-circle-right')
             th(rowspan='2') Spot<br>Rate
             th(rowspan='2') Buyer<br>Rating
             th(rowspan='2') Comment
           tr
-            th.vui-text-align--center.u-width-xx-large(style='padding-left: 0.5rem') 03
-            th.vui-text-align--center.u-width-xx-large 10
-            th.vui-text-align--center.u-width-xx-large 17
-            th.vui-text-align--center.u-width-xx-large 24
-            th.vui-text-align--center.u-width-xx-large 31
-            th.vui-text-align--center.u-width-xx-large 07
-            th.vui-text-align--center.u-width-xx-large 14
-            th.vui-text-align--center.u-width-xx-large 21
-            th.vui-text-align--center.u-width-xx-large 28
+            th.vui-text-align--center.u-width-xx-large(style='padding-left: 0.5rem') 02
+            th.vui-text-align--center.u-width-xx-large 09
+            th.vui-text-align--center.u-width-xx-large 16
+            th.vui-text-align--center.u-width-xx-large 23
+            th.vui-text-align--center.u-width-xx-large 30
+            th.vui-text-align--center.u-width-xx-large 06
+            th.vui-text-align--center.u-width-xx-large 13
+            th.vui-text-align--center.u-width-xx-large 20
+            th.vui-text-align--center.u-width-xx-large 27
             th.vui-text-align--center.u-width-xx-large 05
-            th.vui-text-align--center.u-width-xx-large 12
-            th.vui-text-align--center.u-width-xx-large 19
+            th.vui-text-align--center.u-width-xx-large 13
+            th.vui-text-align--center.u-width-xx-large 20
 
           tr(v-for='preempt in offer.preempts')
             td.vui-text-align--center {{ preempt.buyLine }}
@@ -96,9 +96,9 @@
             td {{ preempt.airTime }}
             td.vui-text-align--center {{ preempt.spotLength }}
             td.vui-text-align--center.vui-highlight
-              input.vui-input.vui-text-align--center(type='text', style='width: 50px', value='1', :disabled='sharedState.activeApp == "reps"')
-            td.vui-text-align--center.vui-highlight
               input.vui-input.vui-text-align--center(type='text', style='width: 50px', :disabled='sharedState.activeApp == "reps"')
+            td.vui-text-align--center.vui-highlight
+              input.vui-input.vui-text-align--center(type='text', style='width: 50px', value='1', :disabled='sharedState.activeApp == "reps"')
             td.vui-text-align--center.vui-highlight
               input.vui-input.vui-text-align--center(type='text', style='width: 50px', :disabled='sharedState.activeApp == "reps"')
             td.vui-text-align--center.vui-highlight
@@ -140,30 +140,30 @@
               .vui-grid.vui-grid--align-spread
                 a.vui-align-middle(@click.prevent='', href='#')
                   icon(name='arrow-circle-left')
-                span.vui-align-middle October
+                span.vui-align-middle January
             th.vui-text-align--center.u-width-xx-large(colspan='4')
-              span November
+              span February
             th.vui-text-align--center.u-width-xx-large(colspan='4')
               .vui-grid.vui-grid--align-spread
-                span.vui-align-middle December
+                span.vui-align-middle March
                 a.vui-align-middle(@click.prevent='', href='#')
                   icon(name='arrow-circle-right')
             th(rowspan='2') Spot<br>Rate
             th(rowspan='2') Station<br>Rating
             th(rowspan='2') MG Comment
           tr
-            th.vui-text-align--center.u-width-xx-large(style='padding-left: 0.5rem') 03
-            th.vui-text-align--center.u-width-xx-large 10
-            th.vui-text-align--center.u-width-xx-large 17
-            th.vui-text-align--center.u-width-xx-large 24
-            th.vui-text-align--center.u-width-xx-large 31
-            th.vui-text-align--center.u-width-xx-large 07
-            th.vui-text-align--center.u-width-xx-large 14
-            th.vui-text-align--center.u-width-xx-large 21
-            th.vui-text-align--center.u-width-xx-large 28
+            th.vui-text-align--center.u-width-xx-large(style='padding-left: 0.5rem') 02
+            th.vui-text-align--center.u-width-xx-large 09
+            th.vui-text-align--center.u-width-xx-large 16
+            th.vui-text-align--center.u-width-xx-large 23
+            th.vui-text-align--center.u-width-xx-large 30
+            th.vui-text-align--center.u-width-xx-large 06
+            th.vui-text-align--center.u-width-xx-large 13
+            th.vui-text-align--center.u-width-xx-large 20
+            th.vui-text-align--center.u-width-xx-large 27
             th.vui-text-align--center.u-width-xx-large 05
-            th.vui-text-align--center.u-width-xx-large 12
-            th.vui-text-align--center.u-width-xx-large 19
+            th.vui-text-align--center.u-width-xx-large 13
+            th.vui-text-align--center.u-width-xx-large 20
 
           tr(v-for='makegood in offer.makegoods')
             td.vui-text-align--center {{ makegood.lineNumber }}
@@ -182,11 +182,11 @@
             td.vui-text-align--center.vui-highlight
               input.vui-input.vui-text-align--center(type='text', style='width: 50px', :disabled='sharedState.activeApp == "reps"')
             td.vui-text-align--center.vui-highlight
+              input.vui-input.vui-text-align--center(type='text', style='width: 50px', value='1', :disabled='sharedState.activeApp == "reps"')
+            td.vui-text-align--center.vui-highlight
+              input.vui-input.vui-text-align--center(type='text', style='width: 50px', value='1', :disabled='sharedState.activeApp == "reps"')
+            td.vui-text-align--center.vui-highlight
               input.vui-input.vui-text-align--center(type='text', style='width: 50px', :disabled='sharedState.activeApp == "reps"')
-            td.vui-text-align--center.vui-highlight
-              input.vui-input.vui-text-align--center(type='text', style='width: 50px', value='1', :disabled='sharedState.activeApp == "reps"')
-            td.vui-text-align--center.vui-highlight
-              input.vui-input.vui-text-align--center(type='text', style='width: 50px', value='1', :disabled='sharedState.activeApp == "reps"')
             td.vui-text-align--center.vui-highlight
               input.vui-input.vui-text-align--center(type='text', style='width: 50px', :disabled='sharedState.activeApp == "reps"')
             td.vui-text-align--center.vui-highlight
@@ -253,6 +253,7 @@
 
   import Timeline from '../Timeline.vue'
   import Breadcrumbs from '../Breadcrumbs.vue'
+  import moment from 'moment'
 
   export default {
     components: { Icon, AcceptOfferModal, RejectOfferModal, Timeline, Breadcrumbs, TransferOpenPremptsModal },
@@ -266,6 +267,7 @@
 
     data () {
       return {
+        dateMakegoodSent: moment().add(-3, 'days').format('MM/DD/YY'),
         sharedState: store.state,
         showRejectOfferModal: false,
         showAcceptOfferModal: false,

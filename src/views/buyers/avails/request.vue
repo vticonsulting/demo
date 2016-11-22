@@ -232,7 +232,7 @@
         thead
           tr
             th(rowspan='2') Week
-            th.vui-text-align--center(@click='monthClick($event)', colspan='7') November 2016
+            th.vui-text-align--center(@click='monthClick($event)', colspan='7') February 2017
           tr
             th.vui-text-align--center.monday(@click='dayOfWeekHeaderRowClick("monday")', style='padding-left: 0.5rem') Mon
             th.vui-text-align--center.tuesday(@click='dayOfWeekHeaderRowClick("tuesday")') Tue
@@ -244,26 +244,26 @@
         tbody
           tr
             td(@click='weekNumberClick') Week 1
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 14
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 15
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 16
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 17
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 18
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 19
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 20
+            td.vui-text-align--center.monday(@click='dayOfWeekClick') 13
+            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 14
+            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 15
+            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 16
+            td.vui-text-align--center.friday(@click='dayOfWeekClick') 17
+            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 18
+            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 19
           tr
             td(@click='weekNumberClick') Week 2
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 21
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 22
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 23
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 24
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 25
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 26
+            td.vui-text-align--center.monday(@click='dayOfWeekClick') 20
+            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 21
+            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 22
+            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 23
+            td.vui-text-align--center.friday(@click='dayOfWeekClick') 24
+            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 25
             td.vui-text-align--center.sunday(@click='dayOfWeekClick') 27
         thead
           tr
             th(rowspan='2') Week
-            th.vui-text-align--center(@click='monthClick($event)', colspan='7') December 2016
+            th.vui-text-align--center(@click='monthClick($event)', colspan='7') March 2017
           tr
             th.vui-text-align--center.monday(@click='dayOfWeekHeaderRowClick()', style='padding-left: 0.5rem') Mon
             th.vui-text-align--center.tuesday(@click='dayOfWeekHeaderRowClick()') Tue
@@ -275,40 +275,40 @@
         tbody
           tr
             td(@click='weekNumberClick') Week 3
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 28
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 29
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 30
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 01
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 02
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 03
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 04
+            td.vui-text-align--center.monday(@click='dayOfWeekClick') 27
+            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 28
+            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 01
+            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 02
+            td.vui-text-align--center.friday(@click='dayOfWeekClick') 03
+            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 04
+            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 05
           tr
             td(@click='weekNumberClick') Week 4
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 05
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 06
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 07
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 08
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 09
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 10
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 11
+            td.vui-text-align--center.monday(@click='dayOfWeekClick') 06
+            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 07
+            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 08
+            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 09
+            td.vui-text-align--center.friday(@click='dayOfWeekClick') 10
+            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 11
+            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 12
         tr
           td(@click='weekNumberClick') Week 5
-          td.vui-text-align--center.monday(@click='dayOfWeekClick') 12
-          td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 13
-          td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 14
-          td.vui-text-align--center.thursday(@click='dayOfWeekClick') 15
-          td.vui-text-align--center.friday(@click='dayOfWeekClick') 16
-          td.vui-text-align--center.saturday(@click='dayOfWeekClick') 17
-          td.vui-text-align--center.sunday(@click='dayOfWeekClick') 18
+          td.vui-text-align--center.monday(@click='dayOfWeekClick') 13
+          td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 14
+          td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 15
+          td.vui-text-align--center.thursday(@click='dayOfWeekClick') 16
+          td.vui-text-align--center.friday(@click='dayOfWeekClick') 17
+          td.vui-text-align--center.saturday(@click='dayOfWeekClick') 18
+          td.vui-text-align--center.sunday(@click='dayOfWeekClick') 19
         tr
           td(@click='weekNumberClick') Week 6
-          td.vui-text-align--center.monday(@click='dayOfWeekClick') 19
-          td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 20
-          td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 21
-          td.vui-text-align--center.thursday(@click='dayOfWeekClick') 22
-          td.vui-text-align--center.friday(@click='dayOfWeekClick') 23
-          td.vui-text-align--center.saturday(@click='dayOfWeekClick') 24
-          td.vui-text-align--center.sunday(@click='dayOfWeekClick') 25
+          td.vui-text-align--center.monday(@click='dayOfWeekClick') 20
+          td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 21
+          td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 22
+          td.vui-text-align--center.thursday(@click='dayOfWeekClick') 23
+          td.vui-text-align--center.friday(@click='dayOfWeekClick') 24
+          td.vui-text-align--center.saturday(@click='dayOfWeekClick') 25
+          td.vui-text-align--center.sunday(@click='dayOfWeekClick') 26
       .vui-text-align--right
         button.vui-m-right--xx-small.vui-button.vui-button--brand(v-link='{ name: "buyers.avails.request.summary" }', :disabled='daypartMixTotal !== 100') Submit
         button.vui-button.vui-button--neutral Cancel
@@ -371,8 +371,8 @@
     data () {
       return {
         sharedState: store.state,
-        startDate: new Date('2016-11-14T12:24:00'),
-        endDate: new Date('2016-12-25T12:24:00'),
+        startDate: new Date('2017-02-13T12:24:00'),
+        endDate: new Date('2017-03-26T12:24:00'),
         grossBudget: 0,
         selected: '',
         advertiser: '',
