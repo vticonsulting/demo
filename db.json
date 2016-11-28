@@ -1443,7 +1443,7 @@
         {
           "id": 1,
           "dateSubmitted": "05/17/16",
-          "timeSubmitted": "09:34 PM",
+          "timeSubmitted": "09:34 AM",
           "submittedBy": "Brian Reed",
           "dayparts": [
             {
@@ -7406,7 +7406,7 @@
       "status": "accepted",
       "type": "Original",
       "currency": "Trade",
-      "orderDate": "05/02/16",
+      "orderDate": "10/13/16",
       "demo": "A25-54",
       "advertiser": "Community Loans, Inc.",
       "agency": "Vanthrop and Associates",
@@ -8262,7 +8262,7 @@
       "status": "new",
       "type": "Original",
       "currency": "Cash",
-      "orderDate": "04/29/16",
+      "orderDate": "10/01/16",
       "demo": "A18-49",
       "advertiser": "Metro Wireless",
       "agency": "The Media Masters Group",
@@ -9321,7 +9321,7 @@
       "status": "new",
       "type": "Revision",
       "currency": "Cash",
-      "orderDate": "04/19/16",
+      "orderDate": "09/26/16",
       "demo": "A25-54",
       "advertiser": "Sun Valley Bank",
       "agency": "Mullberry Way Group",
@@ -17855,7 +17855,7 @@
           },
           "months": [
             {
-              "month": "November",
+              "month": "January",
               "expanded": true,
               "acceptRate": true,
               "station": {
@@ -17942,7 +17942,7 @@
               }
             },
             {
-              "month": "December",
+              "month": "February",
               "expanded": true,
               "acceptRate": true,
               "station": {
@@ -18025,6 +18025,93 @@
               },
               "otherSources": {
                 "shareBuilders": 498,
+                "mktCpp": 200
+              }
+            },
+            {
+              "month": "March",
+              "expanded": true,
+              "acceptRate": true,
+              "station": {
+                "rate": 465,
+                "rating": 2.1,
+                "cpp": 265,
+                "impressions": 10.4,
+                "premiumPercentDividedByRate": 0.15,
+                "premium_rate": 450,
+                "premium_percent": 0,
+                "premium_rating": 2.1,
+                "premium": {
+                  "rate": 450,
+                  "percent": 0,
+                  "rating": 2.1
+                },
+                "demos": [
+                  {
+                    "name": "A25-54",
+                    "rating": 2.1,
+                    "cpp": 272,
+                    "premiumCpp": 0,
+                    "videaRating": 2.1,
+                    "videaCpp": 272
+                  },
+                  {
+                    "name": "W25-54",
+                    "rating": 2.1,
+                    "cpp": 272,
+                    "premiumCpp": 0,
+                    "videaRating": 2.1,
+                    "videaCpp": 272
+                  },
+                  {
+                    "name": "M25-54",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  },
+                  {
+                    "name": "A18-49",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  },
+                  {
+                    "name": "A18-34",
+                    "rating": 1,
+                    "cpp": 463,
+                    "premiumCpp": 0,
+                    "videaRating": 1,
+                    "videaCpp": 463
+                  },
+                  {
+                    "name": "A25-49",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  }
+                ]
+              },
+              "videa": {
+                "rate": 465,
+                "rating": 2.1,
+                "cpp": 265,
+                "impressions": 10.4
+              },
+              "onTheBooks": {
+                "minRate": 275,
+                "maxRate": 510,
+                "aur": 355,
+                "sellOutPercent": 0.55,
+                "lyAur": 350
+              },
+              "otherSources": {
+                "shareBuilders": 304,
                 "mktCpp": 200
               }
             }
@@ -18119,7 +18206,7 @@
           },
           "months": [
             {
-              "month": "November",
+              "month": "January",
               "expanded": true,
               "acceptRate": true,
               "station": {
@@ -18206,7 +18293,7 @@
               }
             },
             {
-              "month": "December",
+              "month": "February",
               "expanded": true,
               "acceptRate": true,
               "station": {
@@ -18289,6 +18376,93 @@
               },
               "otherSources": {
                 "shareBuilders": 498,
+                "mktCpp": 200
+              }
+            },
+            {
+              "month": "March",
+              "expanded": true,
+              "acceptRate": true,
+              "station": {
+                "rate": 465,
+                "rating": 2.1,
+                "cpp": 265,
+                "impressions": 10.4,
+                "premiumPercentDividedByRate": 0.15,
+                "premium_rate": 450,
+                "premium_percent": 0,
+                "premium_rating": 2.1,
+                "premium": {
+                  "rate": 450,
+                  "percent": 0,
+                  "rating": 2.1
+                },
+                "demos": [
+                  {
+                    "name": "A25-54",
+                    "rating": 2.1,
+                    "cpp": 272,
+                    "premiumCpp": 0,
+                    "videaRating": 2.1,
+                    "videaCpp": 272
+                  },
+                  {
+                    "name": "W25-54",
+                    "rating": 2.1,
+                    "cpp": 272,
+                    "premiumCpp": 0,
+                    "videaRating": 2.1,
+                    "videaCpp": 272
+                  },
+                  {
+                    "name": "M25-54",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  },
+                  {
+                    "name": "A18-49",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  },
+                  {
+                    "name": "A18-34",
+                    "rating": 1,
+                    "cpp": 463,
+                    "premiumCpp": 0,
+                    "videaRating": 1,
+                    "videaCpp": 463
+                  },
+                  {
+                    "name": "A25-49",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  }
+                ]
+              },
+              "videa": {
+                "rate": 465,
+                "rating": 2.1,
+                "cpp": 265,
+                "impressions": 10.4
+              },
+              "onTheBooks": {
+                "minRate": 275,
+                "maxRate": 510,
+                "aur": 355,
+                "sellOutPercent": 0.55,
+                "lyAur": 350
+              },
+              "otherSources": {
+                "shareBuilders": 304,
                 "mktCpp": 200
               }
             }
@@ -18383,7 +18557,7 @@
           },
           "months": [
             {
-              "month": "November",
+              "month": "January",
               "expanded": true,
               "acceptRate": true,
               "station": {
@@ -18470,7 +18644,7 @@
               }
             },
             {
-              "month": "December",
+              "month": "February",
               "expanded": true,
               "acceptRate": true,
               "station": {
@@ -18553,6 +18727,93 @@
               },
               "otherSources": {
                 "shareBuilders": 180,
+                "mktCpp": 200
+              }
+            },
+            {
+              "month": "March",
+              "expanded": true,
+              "acceptRate": true,
+              "station": {
+                "rate": 465,
+                "rating": 2.1,
+                "cpp": 265,
+                "impressions": 10.4,
+                "premiumPercentDividedByRate": 0.15,
+                "premium_rate": 450,
+                "premium_percent": 0,
+                "premium_rating": 2.1,
+                "premium": {
+                  "rate": 450,
+                  "percent": 0,
+                  "rating": 2.1
+                },
+                "demos": [
+                  {
+                    "name": "A25-54",
+                    "rating": 2.1,
+                    "cpp": 272,
+                    "premiumCpp": 0,
+                    "videaRating": 2.1,
+                    "videaCpp": 272
+                  },
+                  {
+                    "name": "W25-54",
+                    "rating": 2.1,
+                    "cpp": 272,
+                    "premiumCpp": 0,
+                    "videaRating": 2.1,
+                    "videaCpp": 272
+                  },
+                  {
+                    "name": "M25-54",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  },
+                  {
+                    "name": "A18-49",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  },
+                  {
+                    "name": "A18-34",
+                    "rating": 1,
+                    "cpp": 463,
+                    "premiumCpp": 0,
+                    "videaRating": 1,
+                    "videaCpp": 463
+                  },
+                  {
+                    "name": "A25-49",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  }
+                ]
+              },
+              "videa": {
+                "rate": 465,
+                "rating": 2.1,
+                "cpp": 265,
+                "impressions": 10.4
+              },
+              "onTheBooks": {
+                "minRate": 275,
+                "maxRate": 510,
+                "aur": 355,
+                "sellOutPercent": 0.55,
+                "lyAur": 350
+              },
+              "otherSources": {
+                "shareBuilders": 304,
                 "mktCpp": 200
               }
             }
@@ -18647,7 +18908,7 @@
           },
           "months": [
             {
-              "month": "November",
+              "month": "January",
               "expanded": true,
               "acceptRate": true,
               "station": {
@@ -18734,7 +18995,7 @@
               }
             },
             {
-              "month": "December",
+              "month": "February",
               "expanded": true,
               "acceptRate": true,
               "station": {
@@ -18817,6 +19078,93 @@
               },
               "otherSources": {
                 "shareBuilders": 218,
+                "mktCpp": 200
+              }
+            },
+            {
+              "month": "March",
+              "expanded": true,
+              "acceptRate": true,
+              "station": {
+                "rate": 465,
+                "rating": 2.1,
+                "cpp": 265,
+                "impressions": 10.4,
+                "premiumPercentDividedByRate": 0.15,
+                "premium_rate": 450,
+                "premium_percent": 0,
+                "premium_rating": 2.1,
+                "premium": {
+                  "rate": 450,
+                  "percent": 0,
+                  "rating": 2.1
+                },
+                "demos": [
+                  {
+                    "name": "A25-54",
+                    "rating": 2.1,
+                    "cpp": 272,
+                    "premiumCpp": 0,
+                    "videaRating": 2.1,
+                    "videaCpp": 272
+                  },
+                  {
+                    "name": "W25-54",
+                    "rating": 2.1,
+                    "cpp": 272,
+                    "premiumCpp": 0,
+                    "videaRating": 2.1,
+                    "videaCpp": 272
+                  },
+                  {
+                    "name": "M25-54",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  },
+                  {
+                    "name": "A18-49",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  },
+                  {
+                    "name": "A18-34",
+                    "rating": 1,
+                    "cpp": 463,
+                    "premiumCpp": 0,
+                    "videaRating": 1,
+                    "videaCpp": 463
+                  },
+                  {
+                    "name": "A25-49",
+                    "rating": 1.6,
+                    "cpp": 289,
+                    "premiumCpp": 0,
+                    "videaRating": 1.6,
+                    "videaCpp": 289
+                  }
+                ]
+              },
+              "videa": {
+                "rate": 465,
+                "rating": 2.1,
+                "cpp": 265,
+                "impressions": 10.4
+              },
+              "onTheBooks": {
+                "minRate": 275,
+                "maxRate": 510,
+                "aur": 355,
+                "sellOutPercent": 0.55,
+                "lyAur": 350
+              },
+              "otherSources": {
+                "shareBuilders": 304,
                 "mktCpp": 200
               }
             }

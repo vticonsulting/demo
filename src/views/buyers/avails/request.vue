@@ -259,7 +259,7 @@
             td.vui-text-align--center.thursday(@click='dayOfWeekClick') 23
             td.vui-text-align--center.friday(@click='dayOfWeekClick') 24
             td.vui-text-align--center.saturday(@click='dayOfWeekClick') 25
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 27
+            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 26
         thead
           tr
             th(rowspan='2') Week

@@ -82,7 +82,7 @@
             th.vui-text-align--center.u-width-xx-large 13
             th.vui-text-align--center.u-width-xx-large 20
             th.vui-text-align--center.u-width-xx-large 27
-            th.vui-text-align--center.u-width-xx-large 05
+            th.vui-text-align--center.u-width-xx-large 06
             th.vui-text-align--center.u-width-xx-large 13
             th.vui-text-align--center.u-width-xx-large 20
 
@@ -161,7 +161,7 @@
             th.vui-text-align--center.u-width-xx-large 13
             th.vui-text-align--center.u-width-xx-large 20
             th.vui-text-align--center.u-width-xx-large 27
-            th.vui-text-align--center.u-width-xx-large 05
+            th.vui-text-align--center.u-width-xx-large 06
             th.vui-text-align--center.u-width-xx-large 13
             th.vui-text-align--center.u-width-xx-large 20
 
