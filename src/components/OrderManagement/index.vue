@@ -1,7 +1,7 @@
 <template lang="jade">
   .order-management-view
     h1.vui-text-heading--large.vui-m-bottom--medium Order Dashboard
-    p.vui-m-bottom--medium Click an Order Number below to accept/reject new orders, modify orders, and update share information. Not that sales representatives can only view orders and update share information.
+    p.vui-m-bottom--medium Click an Order Number below to accept/reject new orders, modify orders, and update share information. Note that sales representatives can only view orders and update share information.
     .vui-scrollable--x.vui-m-bottom--medium
       table.vui-table.vui-no-row-hover
         thead
