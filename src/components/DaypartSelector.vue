@@ -1,17 +1,13 @@
-<template lang="jade">
+<template lang="pug">
 .vui-scrollable--x.vui-m-bottom--large
   #daypart-selector
-    button.vui-button.vui-max-small-buttons--stretch(v-for='($index, daypart) in dayparts', @click.prevent='selectDaypart(daypart)', :class="(daypart.id == selectedDaypart.id) ? 'vui-button--brand' : 'vui-button--neutral'", style='white-space: nowrap', :disabled='disabled')
+    button.vui-button.vui-max-small-buttons--stretch(v-for='daypart in dayparts', @click.prevent='selectDaypart(daypart)', :class="(daypart.id == selectedDaypart.id) ? 'vui-button--brand' : 'vui-button--neutral'", style='white-space: nowrap', :disabled='disabled')
       | {{daypart.name}}
 </template>
 
 <script>
   // https://github.com/vasanthk/js-bits/blob/master/js/array-filter-map-reduce.js
-  import Icon from './Icon.vue'
-
   export default {
-    components: { Icon },
-
     props: ['disabled'],
 
     data () {
@@ -83,7 +79,6 @@
 
     methods: {
       selectDaypart (daypart) {
-        this.$dispatch('selected-daypart', daypart)
         this.selectedDaypart = daypart
       }
     }

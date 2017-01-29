@@ -1,10 +1,10 @@
-<template lang="jade">
+<template lang="pug">
   makegood(makegoods-route='sellers.makegoods')
 </template>
 
 <script>
-  import store from '../../../store'
-  import Makegood from '../../../components/Makegoods/show.vue'
+  import store from 'store'
+  import Makegood from 'components/Makegoods/show'
 
   export default {
     components: { Makegood },

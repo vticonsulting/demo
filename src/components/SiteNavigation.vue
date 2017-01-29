@@ -1,65 +1,55 @@
-<template lang="jade">
+<template lang="pug">
   nav.vui-site-navigation
     .vui-container.vui-grid.vui-grid--align-spread.vui-grid--vertical-align-center
 
-      ul.vui-grid.vui-grow(v-if="sharedState.activeApp == 'sellers'")
+      ul.vui-grid.vui-grow(v-if='sharedState.activeApp == "sellers"')
         li
           order-management-dropdown(text='Order Management')
         li
-          a(v-link="{ name: 'sellers.performance.account' }") Account Performance
-        //- li
-        //-   a(v-link="{ name: 'sellers.orders' }") Orders
+          reporting-dropdown(text='Reporting')
         li
-          a(v-link="{ name: 'sellers.program-revenue' }") Program Revenue
-        //- li
-        //-   performance-dropdown(text='Performance')
+          router-link(:to='{ name: "sellers.price-guide" }') Price Guide
         li
-          a(v-link="{ name: 'sellers.price-guide' }") Price Guide
+          router-link(:to='{ name: "sellers.avails" }') Avails
         li
-          a(v-link="{ name: 'sellers.avails' }") Avails
+          router-link(:to='{ name: "sellers.campaign-performance" }') Campaign Performance
 
-
-      ul.vui-grid.vui-grow(v-if="sharedState.activeApp == 'reps'")
+      ul.vui-grid.vui-grow(v-if='sharedState.activeApp == "reps"')
         li
           order-management-dropdown(text='Order Management')
         li
-          a(v-link="{ name: 'reps.performance' }") Account Performance
+          router-link(:to='{ name: "reps.performance" }') Account Performance
         li
-          a(v-link="{ name: 'reps.price-guide' }") Price Guide
+          router-link(:to='{ name: "reps.price-guide" }') Price Guide
         li
-          a(v-link="{ name: 'reps.avails' }") Avails
+          router-link(:to='{ name: "reps.avails" }') Avails
 
-      ul.vui-grid.vui-grow(v-if="sharedState.activeApp == 'buyers'")
+      ul.vui-grid.vui-grow(v-if='sharedState.activeApp == "buyers"')
         li
-          a(v-link="{ name: 'buyers.avails.request' }") Request Avails
+          router-link(:to='{ name: "buyers.avails.request" }') Request Avails
         li
-          a(v-link="{ name: 'buyers.avails', exact: true }") Avails
+          router-link(:to='{ name: "buyers.avails", exact: true }') Avails
 
-      form.vui-form--compound.vui-align-middle(v-if="sharedState.activeApp == 'login'")
+      form.vui-form--compound.vui-align-middle(v-if='sharedState.activeApp == "login"')
         fieldset.vui-form--compound
-          //- legend.vui-form-element__label Location
           .form-element__group
-            //- .vui-form-element__row.vui-m-top--medium(style='margin-bottom: 2rem')
             .vui-form-element__row(style='margin-bottom: 1rem')
               .vui-form-element.vui-size--1-of-3.vui-align-bottom
                 label.vui-form-element__label(for='input-01', style='color: white') Username
                 .vui-form-element__control.vui-input-has-icon.vui-input-has-icon--left
-                  svg.vui-icon.vui-input__icon(aria-hidden='true', style='color: hsla(214, 66%, 34%, 1)')
-                    use(xlink:href='/Content/assets/icons.svg#icon-envelope')
+                  icon.vui-input__icon(name='envelope', style='color: hsla(214, 66%, 34%, 1)')
                   input.vui-input(v-model='sharedState.user.email' type='email', placeholder='john.doe@email.com', style='min-width: 14rem')
               .vui-form-element.vui-size--1-of-3.vui-align-bottom
                 label.vui-form-element__label(for='input-01', style='color: white') Password
                 .vui-form-element__control.vui-input-has-icon.vui-input-has-icon--left
-                  svg.vui-icon.vui-input__icon(aria-hidden='true', style='color: hsla(214, 66%, 34%, 1)')
-                    use(xlink:href='/Content/assets/icons.svg#icon-lock')
+                  icon.vui-input__icon(name='lock', style='color: hsla(214, 66%, 34%, 1)')
                   input.vui-input(type='password', placeholder='Password', style='min-width: 14rem')
               .vui-form-element.vui-size--1-of-3.vui-align-bottom
-                button.vui-button.vui-button--secondary.vui-m-right--x-small(@click.prevent='fakeIt()') Login
-              //- button.vui-button.vui-button--secondary(type='button') Login
+                button.vui-button.vui-button--secondary.vui-m-right--x-small(@click.prevent='fakeIt') Login
 
-      ul.actions.vui-align-middle(v-if="sharedState.activeApp == 'sellers' || sharedState.activeApp == 'reps' || sharedState.activeApp == 'buyers'")
+      ul.actions.vui-align-middle(v-if='sharedState.activeApp == "sellers" || sharedState.activeApp == "reps" || sharedState.activeApp == "buyers"')
         li
-          button.vui-button.vui-button--brand(v-link="{ name: 'settings' }", style='color: white !important; white-space: nowrap')
+          router-link.vui-button.vui-button--brand(tag='button', :to='{ name: "settings.user" }', style='color: white !important; white-space: nowrap')
             icon.vui-m-right--x-small(name='cog')
             | Settings
             span.vui-assistive-text Settings
@@ -67,13 +57,13 @@
 </template>
 
 <script>
-  import store from '../store'
-  import Icon from '../components/Icon.vue'
-  import PerformanceDropdown from '../components/PerformanceMenuDropdown.vue'
-  import OrderManagementDropdown from '../components/OrderManagementDropdown.vue'
+  import store from 'store'
+  import PerformanceDropdown from 'components/PerformanceMenuDropdown'
+  import OrderManagementDropdown from 'components/OrderManagementDropdown'
+  import ReportingDropdown from 'components/ReportingDropdown'
 
   export default {
-    components: { Icon, PerformanceDropdown, OrderManagementDropdown },
+    components: { PerformanceDropdown, OrderManagementDropdown, ReportingDropdown },
 
     props: {
       text: {
@@ -101,16 +91,14 @@
       toggle (e) {
         this.show = !this.show
         if (this.show) {
-          this.$dispatch('shown::dropdown')
           e.stopPropagation()
         } else {
-          this.$dispatch('hidden::dropdown')
         }
       },
 
       clicked (route) {
         this.show = false
-        this.$route.router.go({
+        this.$router.push({
           name: route
         })
       },
@@ -118,17 +106,17 @@
       fakeIt () {
         if (this.sharedState.user.email.toLowerCase().includes('sell')) {
           this.sharedState.user.name = 'Seller User'
-          this.$route.router.go({
+          this.$router.push({
             name: 'sellers.orders'
           })
         } else if (this.sharedState.user.email.toLowerCase().includes('buy')) {
           this.sharedState.user.name = 'Buyer User'
-          this.$route.router.go({
+          this.$router.push({
             name: 'buyers.avails.request'
           })
         } else if (this.sharedState.user.email.toLowerCase().includes('rep')) {
           this.sharedState.user.name = 'Rep User'
-          this.$route.router.go({
+          this.$router.push({
             name: 'reps.avails'
           })
         }

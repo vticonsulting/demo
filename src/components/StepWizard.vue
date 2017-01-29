@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   ol.steps
     li.steps__item.steps__item--done.steps__item--first(:class="{'steps__item--active' : activeTab !== 'market-competitive'}")
       a.steps__link(@click.prevent="setActiveTab('market-competitive')", :class="{'done': activeTab == 'market-competitive' }", style='cursor: pointer') Market Competitive
@@ -18,7 +18,6 @@
 
     methods: {
       setActiveTab (tab) {
-        this.$dispatch('activate-tab', tab)
         this.activeTab = tab
       }
     }

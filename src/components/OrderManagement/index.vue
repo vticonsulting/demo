@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .order-management-view
     h1.vui-text-heading--large.vui-m-bottom--medium Order Dashboard
     p.vui-m-bottom--medium Click an Order Number below to accept/reject new orders, modify orders, and update share information. Note that sales representatives can only view orders and update share information.
@@ -17,12 +17,11 @@
             th.u-width-medium Currency
             th.u-width-large Revenue
             th.u-width-large Share
-        tbody(v-for='order in orders')
-          tr(:class='($index % 2 === 1) ? "vui-highlight" : ""')
+        tbody(v-for='(order, index) in orders')
+          tr(:class='(index % 2 === 1) ? "vui-highlight" : ""')
             td
               a(v-if='order.versions.length !== 1', href='#', @click.prevent='toggleExpanded()')
-                svg.vui-icon.vui-icon--x-small(style="width: 1rem; height: 1rem;margin-left: -1rem")
-                  use(xlink:href="/Content/assets/icons.svg#icon-{{ expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
+                icon(:name='expanded ? "caret-lower-right" : "caret-right"', style='margin-left: -1rem')
               a.vui-align-middle(@click.prevent='showDetail(order.id)', href='#') {{order.id}}
             td
               span.vui-badge.new(:class='order.status') {{order.status}}
@@ -49,25 +48,22 @@
                     th Submitted By
                     th
                 tbody
-                  tr(v-for='version in order.versions | orderBy "id" -1')
+                  tr(v-for='version in order.versions')
                     td.vui-text-align--center {{ version.id }}
                     td {{ version.dateSubmitted }}
                     td {{ version.timeSubmitted }}
                     td {{ version.submittedBy }}
                     td: a(@click.prevent='showDetail(order.id, version.id)', href='#') View
-                    //- td: a(v-link='{ name: route, params: { id: order.id }, query: { version: version.id } }') View
+                    //- td: a(router-link='{ name: route, params: { id: order.id }, query: { version: version.id } }') View
     .vui-align-middle
       sup.vui-m-right--xx-small *
       span(style="font-weight: normal") Accepted and Rejected Orders displayed for 60 days
 </template>
 
 <script>
-  import store from '../../store'
-  import Icon from '../Icon.vue'
+  import store from 'store'
 
   export default {
-    components: { Icon },
-
     props: {
       detailRoute: {
         type: String,
@@ -106,9 +102,9 @@
     },
 
     computed: {
-      sharedState () {
-        return store.state
-      }
+      // sharedState () {
+      //   return store.state
+      // }
     },
 
     methods: {
@@ -133,7 +129,7 @@
           routeInfo.query = { version: version }
         }
 
-        this.$route.router.go(routeInfo)
+        this.$router.push(routeInfo)
       },
 
       toggleExpanded () {

@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .terms-view
     h1.vui-text-heading--large.vui-m-bottom--medium Videa Platform Terms of Use Agreement
     p
@@ -106,7 +106,7 @@
 </template>
 
 <script>
-  import store from '../store'
+  import store from 'store'
 
   export default {
     data () {

@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .otri-view
     page-heading.vui-m-bottom--medium(title='On Track Ratings Indicator')
 
@@ -10,12 +10,12 @@
         fieldset.vui-form-element
           label.vui-form-element__label Flight Start Date
           .vui-form-element__control.vui-m-right--small
-            datepicker#startDate(:value.sync='startDate', name='startDate')
+            datepicker#startDate(:value='startDate', name='startDate')
 
         fieldset.vui-form-element
           label.vui-form-element__label Flight End Date
           .vui-form-element__control.vui-m-right--small
-            datepicker#endDate(:value.sync='endDate', name='endDate')
+            datepicker#endDate(:value='endDate', name='endDate')
 
         fieldset.vui-form-element
           button.vui-button.vui-button--brand Search
@@ -74,16 +74,9 @@
 </template>
 
 <script>
-  import store from '../../../store'
-  import DataGridHeading from '../../../components/DataGridHeading.vue'
-  import Icon from '../../../components/Icon.vue'
-  import Datepicker from '../../../components/Datepicker2.vue'
-  import Panel from '../../../components/Panel.vue'
-  import PageHeading from '../../../components/PageHeading.vue'
+  import store from 'store'
 
   export default {
-    components: { DataGridHeading, Datepicker, Panel, PageHeading, Icon },
-
     created () {
       this.fetchOtri()
       this.sharedState.activeApp = 'sellers'

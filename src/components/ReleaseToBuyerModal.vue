@@ -1,5 +1,5 @@
-<template lang="jade">
-  modal(:show.sync='show', :on-close='close', size='large')
+<template lang="pug">
+  modal(:show='show', :on-close='close', size='large')
     .modal-header.vui-m-bottom--large
       h3.vui-text-heading--medium(v-if='showExportProposal') Export Avail
       h3.vui-text-heading--medium(v-else) Release To Buyer
@@ -11,7 +11,7 @@
 
         .vui-form-element.vui-m-bottom--large
           label.vui-label.vui-label--custom-1(for='') Expiration Date
-          datepicker#endDate(:value.sync='expirationDate', name='expirationDate')
+          datepicker#endDate(:value='expirationDate', name='expirationDate')
         .vui-text-align--right
           button.vui-button.vui-button--brand.vui-m-right--x-small(@click.prevent="showExportProposal = true") Submit
           button.vui-button.vui-button--neutral(@click.prevent='close()') Cancel
@@ -29,12 +29,8 @@
 
 <script>
   import moment from 'moment'
-  import Datepicker from './Datepicker2.vue'
-  import Modal from './Modal.vue'
 
   export default {
-    components: { Datepicker, Modal },
-
     props: ['show'],
 
     data () {

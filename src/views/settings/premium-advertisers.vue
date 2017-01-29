@@ -1,9 +1,8 @@
-<template lang="jade">
+<template lang="pug">
   #premium-advertisers.vui-p-around--x-large.vui-tabs--scoped__content(role='tabpanel', aria-labelledby='tab-scoped-3__item', v-show="activeTab == '#premium-advertisers'")
     h2.vui-text-heading--medium.vui-m-bottom--medium Premium Advertisers
     p.vui-text-longform.vui-m-bottom--large Manage your premium advertisers. Premium clients will be affected by the premium pricing on the price guide.
 
-    //- panel.vui-m-bottom--large(title='View Selection')
     form.vui-form--inline.vui-m-bottom--large
       fieldset.vui-form-element
         label.vui-form-element__label(for='search')
@@ -30,13 +29,9 @@
 </template>
 
 <script>
-  import store from '../../store'
-  import PageHeading from '../../components/PageHeading.vue'
-  import Panel from '../../components/Panel.vue'
+  import store from 'store'
 
   export default {
-    components: { PageHeading, Panel },
-
     data () {
       return {
         sharedState: store.state,

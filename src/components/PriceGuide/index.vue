@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .price-guide-view
     // Page Heading
     h1.vui-text-heading--large Price Guide
@@ -76,25 +76,18 @@
       form.vui-form--inline.vui-m-bottom--x-small(:class='(sharedState.activeApp == "reps") ? "vui-grid vui-grid--align-end" : ""')
 
         // Market CPP Input Fieldset
-        //- fieldset.vui-form-element
-        //-   label.vui-form-element__label Market CPP:
-        //-   .vui-form-element__control(v-show='sharedState.activeApp == "reps"')
-        //-     input.vui-input.vui-m-right--xx-small(style='width: 5rem', type='text', v-model='sharedState.marketCpp | currencyDisplay')
-        //-   .vui-form-element__control(v-else)
-        //-     span.vui-form-element__static {{ sharedState.marketCpp | currencyDisplay }}
-
         .vui-media
           .vui-media__body
-            .vui-align-middle(v-show='sharedState.activeApp == "reps"')
+            .vui-align-middle(v-if='sharedState.activeApp == "reps"')
               span.vui-m-right--xx-small Market CPP
-              input.vui-input.vui-m-right--xx-small(@click.prevent='', style='width: 5rem', type='text', v-model='sharedState.marketCpp | currencyDisplay')
+              input.vui-input.vui-m-right--xx-small(@click.prevent='', style='width: 5rem', type='text', v-model='sharedState.marketCpp')
             p.vui-align-middle(v-else)
               span.vui-m-right--xx-small Market CPP
-              span.vui-text-heading--medium {{ sharedState.marketCpp | currencyDisplay }}
+              span.vui-text-heading--medium {{ sharedState.marketCpp }}
 
         // Update Market CPP Button Fieldset
         fieldset.vui-form-element(v-show='sharedState.activeApp == "reps"')
-          button.vui-button.vui-button--brand(@click.prevent='updateMarketCpp($event)') Update
+          button.vui-button.vui-button--brand(@click.prevent='updateMarketCpp') Update
 
     // Add Program Modal | Manage Premium Clients
     .vui-box.vui-grid.vui-grid--align-spread.vui-grid--vertical-align-middle.vui-theme--default(v-show='sharedState.activeApp == "sellers"')
@@ -112,10 +105,10 @@
         .vui-align-middle
           a(v-show='!editingPercent', href='#', @click.prevent='editingPercent = true')
             icon(name='pencil')
-          a(v-show='editingPercent', href='#', @click.prevent='updateDayparts($event)') Update Dayparts
+          a(v-show='editingPercent', href='#', @click.prevent='updateDayparts') Update Dayparts
 
       span.vui-align-middle.vui-col--bump-left
-        a.vui-m-right--medium(v-link='{ name: "settings.specials" }')
+        router-link.vui-m-right--medium(:to='{ name: "settings.specials" }')
           icon.vui-align-middle(name='plus-circle')
           span.vui-align-middle Add a Program
 
@@ -270,18 +263,18 @@
                 td.name
                   .vui-grid.vui-grid--align-spread
                     span.vui-align-middle(style='font-weight: 500') {{ month.month }}
-                    dropdown.vui-align-middle.dropdown-left.vui-m-right--x-small(text='icon', :weeks='month.weeks', :month='month')
+                    add-week-dropdown.vui-align-middle.dropdown-left.vui-m-right--x-small(text='icon', :weeks='month.weeks', :month='month')
 
                 // Station -- Rate (month)
                 td.station.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : ""')
                   span(v-show='sharedState.activeApp == "reps"') {{ month.station.rate | numberWithCommas | formatMoney }}
-                  input.vui-input(@click="selectContents($event)", @keypress='onKeypress($event)', v-show='sharedState.activeApp == "sellers"', type='text', :value.sync='month.station.rate', v-model='month.station.rate | currencyDisplay', style='text-align: right')
+                  input.vui-input(@click='selectContents', @keypress='onKeypress', v-show='sharedState.activeApp == "sellers"', type='text', :value='month.station.rate', v-model='month.station.rate', style='text-align: right')
 
                 // Station -- Rating (month)
                 td.station.rating.vui-text-align--right(v-show='cppOrCpm == "cpp"')
                   a(@click.prevent='displayEditRatingsModal(month)', href='#', style='text-decoration: underline')
                     | {{ month.station.rating | formatRating }}
-                  input.vui-text-align--right.vui-input(@click="selectContents($event)", @keypress='onKeypress($event)', v-show='false', type='text', v-model='month.station.rating')
+                  input.vui-text-align--right.vui-input(@click='selectContents', @keypress='onKeypress', v-show='false', type='text', v-model='month.station.rating')
 
                 // Station -- CPP (month)
                 td.station.cpp.vui-text-align--right(v-show='cppOrCpm == "cpp"')
@@ -293,7 +286,7 @@
 
                 // Station -- CPM (month)
                 td.station.cpm.vui-text-align--right(v-show='cppOrCpm == "cpm"')
-                  cpm(:rate.sync='month.station.rate', :impressions.sync='month.station.impressions')
+                  cpm(:rate='month.station.rate', :impressions='month.station.impressions')
 
                 // Station Premium -- Percent (month) (Percent)
                 td.station.premium.percent.vui-text-align--center.vui-hide
@@ -304,12 +297,12 @@
 
                   fieldset.vui-form-element
                     .vui-form-element__control.vui-input-icon
-                      input.vui-input.vui-text-align--center(@click="selectContents($event)", @keypress='onKeypress($event)', @input='month.station.premium.rate = setPremiumRate(month.station.rate, month.station.premium.percent)', v-show='sharedState.activeApp == "sellers"', :value='month.station.premium.percent', v-model='month.station.premium.percent' number)
+                      input.vui-input.vui-text-align--center(@click='selectContents', @keypress='onKeypress', @input='month.station.premium.rate = setPremiumRate(month.station.rate, month.station.premium.percent)', v-show='sharedState.activeApp == "sellers"', :value='month.station.premium.percent', v-model='month.station.premium.percent' number)
                   span(v-show='sharedState.activeApp !== "sellers"') {{ month.station.premium.percent }}
 
                 // Station Premium -- Rate (month)
                 td.station.premium.rate.vui-text-align--right.vui-hide(:style='(sharedState.activeApp == "reps") ? "" : ""')
-                  input.vui-text-align--right.vui-input(@input='month.station.premium.percent = setPremiumPercent(month.station.premium.rate, month.station.rate)', v-show='sharedState.activeApp == "sellers"', :value='month.station.premium.rate' v-model='month.station.premium.rate | currencyDisplay')
+                  input.vui-text-align--right.vui-input(@input='month.station.premium.percent = setPremiumPercent(month.station.premium.rate, month.station.rate)', v-show='sharedState.activeApp == "sellers"', :value='month.station.premium.rate' v-model='month.station.premium.rate')
                   span(v-show='sharedState.activeApp == "reps"') {{ month.station.premium.rate | numberWithCommas | formatMoney }}
 
                 // Station Premium -- CPP (month)
@@ -325,7 +318,7 @@
                   .vui-form-element
                     .vui-form-element__control
                       label.vui-checkbox
-                        input.vui-input(type='checkbox', @change='acceptVideaRate(month)', :value.sync='month.acceptRate', v-model='month.acceptRate', :disabled='sharedState.activeApp == "reps"', :checked='month.station.rate == month.videa.rate')
+                        input.vui-input(type='checkbox', @change='acceptVideaRate(month)', :value='month.acceptRate', v-model='month.acceptRate', :disabled='sharedState.activeApp == "reps"', :checked='month.station.rate == month.videa.rate')
                         span.vui-checkbox--faux
 
                 // Videa -- Rate (month)
@@ -376,12 +369,12 @@
 
                   // Station -- Rate (week)
                   td.station.rate.vui-text-align--right(:style='(sharedState.activeApp == "reps") ? "" : ""')
-                    input.vui-input.vui-text-align--right(@click="selectContents($event)", @keypress='onKeypress($event)', v-show='sharedState.activeApp == "sellers"', type='text', v-model='week.station.rate | currencyDisplay')
+                    input.vui-input.vui-text-align--right(@click='selectContents', @keypress='onKeypress', v-show='sharedState.activeApp == "sellers"', type='text', v-model='week.station.rate')
                     span(v-show='sharedState.activeApp == "reps"') {{ week.station.rate | numberWithCommas | formatMoney }}
 
                   // Station -- Rating (week)
                   td.station.rating.vui-text-align--right(v-show='cppOrCpm == "cpp"')
-                    input.vui-input.vui-text-align--right(@click="selectContents($event)", @keypress='onKeypress($event)', v-show='false', type='text', v-model='week.station.rating')
+                    input.vui-input.vui-text-align--right(@click='selectContents', @keypress='onKeypress', v-show='false', type='text', v-model='week.station.rating')
                     a(@click.prevent='displayEditRatingsModal(week)', href='#', style='text-decoration: underline')
                         | {{ month.station.rating | formatRating }}
 
@@ -399,12 +392,12 @@
 
                   // Station Premium -- Percent (week)
                   td.station.premium.percent.vui-text-align--center.vui-hide
-                    input.vui-input.vui-text-align--center(@click="selectContents($event)", @keypress='onKeypress($event)', @input='week.station.premium.rate = setPremiumRate(week.station.rate, week.station.premium.percent)', v-show='sharedState.activeApp == "sellers"', :value='week.station.premium.percent', v-model='week.station.premium.percent' number)
+                    input.vui-input.vui-text-align--center(@click='selectContents', @keypress='onKeypress', @input='week.station.premium.rate = setPremiumRate(week.station.rate, week.station.premium.percent)', v-show='sharedState.activeApp == "sellers"', :value='week.station.premium.percent', v-model='week.station.premium.percent' number)
                     span(v-show='sharedState.activeApp !== "sellers"') {{ week.station.premium.percent  }}
 
                   // Station Premium -- Rate (week)
                   td.station.premium.rate.vui-text-align--right.vui-hide(:style='(sharedState.activeApp == "reps") ? "" : ""')
-                    input.vui-text-align--right.vui-input(@click="selectContents($event)", @keypress='onKeypress($event)',, @input='week.station.premium.percent = week.station.premium.rate / week.station.rate', v-show='sharedState.activeApp == "sellers"', :value='Math.round(week.station.premium.rate)' v-model='week.station.premium.rate | currencyDisplay')
+                    input.vui-text-align--right.vui-input(@click='selectContents', @keypress='onKeypress', @input='week.station.premium.percent = week.station.premium.rate / week.station.rate', v-show='sharedState.activeApp == "sellers"', :value='Math.round(week.station.premium.rate)' v-model='week.station.premium.rate')
                     span(v-show='sharedState.activeApp == "reps"') {{ week.station.premium.rate | numberWithCommas | formatMoney }}
 
                   // Station Premium -- CPP (week)
@@ -420,7 +413,7 @@
                     .vui-form-element
                       .vui-form-element__control
                         label.vui-checkbox
-                          input.vui-input(type='checkbox', @change='acceptVideaRate(week)', :value.sync='week.acceptRate', v-model='week.acceptRate', :disabled='sharedState.activeApp == "reps"', :checked='week.station.rate == week.videa.rate')
+                          input.vui-input(type='checkbox', @change='acceptVideaRate(week)', :value='week.acceptRate', v-model='week.acceptRate', :disabled='sharedState.activeApp == "reps"', :checked='week.station.rate == week.videa.rate')
                           span.vui-checkbox--faux
 
                   // Videa -- Rate (week)
@@ -485,48 +478,44 @@
 
     .vui-notify.vui-notify--alert.vui-theme--success(role='alert', v-show='submitAccepted')
       button.vui-button.vui-button--icon-inverse.vui-notify__close
-        svg.vui-button__icon(aria-hidden='true')
-          use(xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#close')
+        //- svg.vui-button__icon(aria-hidden='true')
+        //-   use(xlink:href='/assets/icons/utility-sprite/svg/symbols.svg#close')
         span.vui-assistive-text Close
       span.vui-assistive-text Success
       h2
-        svg.vui-icon.icon-text-email.vui-icon--small.vui-m-right--x-small(aria-hidden='true')
-          use(xlink:href='/assets/icons/custom-sprite/svg/symbols.svg#custom19')
+        //- svg.vui-icon.icon-text-email.vui-icon--small.vui-m-right--x-small(aria-hidden='true')
+        //-   use(xlink:href='/assets/icons/custom-sprite/svg/symbols.svg#custom19')
         | Your rates and ratings are now saved in the Videa platform
 
 
-    premium-clients-modal(:show.sync='showPremiumClientsModal', :account='account')
-    edit-ratings-modal(:show.sync='showEditRatingsModal', :heading='heading', :data.sync='context')
-    add-program-modal(:show.sync='showAddProgramModal')
+    premium-clients-modal(:show='showPremiumClientsModal', :account='account')
+    //- edit-ratings-modal(:show='showEditRatingsModal', :heading='heading', :data='context')
+    add-program-modal(:show='showAddProgramModal')
 </template>
 
 <script>
   import $ from 'jquery'
   import moment from 'moment'
   import accounting from 'accounting'
-  import store from '../../store'
-  import Panel from '../Panel.vue'
-  import Cpp from '../Cpp.vue'
-  import Cpm from '../Cpm.vue'
-  import Icon from '../Icon.vue'
-  import DaypartSelector from '../DaypartSelector.vue'
-  import PremiumClientsModal from '../PremiumClientsModal.vue'
-  import EditRatingsModal from '../EditRatingsModal.vue'
-  import AddProgramModal from '../AddProgramModal.vue'
-  import Dropdown from '../AddWeekDropdown.vue'
-  import PremiumPercentDropdown from '../ApplyPremiumPercentDropdown.vue'
+  import store from 'store'
+
+  import Cpp from 'components/Cpp'
+  import Cpm from 'components/Cpm'
+
+  import PremiumClientsModal from 'components/PremiumClientsModal'
+  import EditRatingsModal from 'components/EditRatingsModal'
+  import AddProgramModal from 'components/AddProgramModal'
+  import AddWeekDropdown from 'components/AddWeekDropdown'
+  import PremiumPercentDropdown from 'components/ApplyPremiumPercentDropdown'
 
   export default {
     components: {
-      Panel,
       Cpp,
       Cpm,
-      DaypartSelector,
       PremiumClientsModal,
       EditRatingsModal,
       AddProgramModal,
-      Icon,
-      Dropdown,
+      AddWeekDropdown,
       PremiumPercentDropdown
     },
 
@@ -712,7 +701,7 @@
         this.fetchPriceGuide(daypart)
         this.selected = daypart
 
-        Router.go({
+        this.$router.push({
           name: this.routeName,
           query: {
             daypart: this.slugify(daypart)
@@ -844,7 +833,12 @@
       this.fetchDayparts()
     },
 
-    ready () {
+    mounted () {
+      // 103. Replace ready with mounted, then use Vue.nextTick if you need an in-document guarantee
+      //   Line 847: src/components/PriceGuide/index.vue
+      //   Reason: ready lifecycle hook has been removed
+      //   More info: http://vuejs.org/guide/migration.html#ready
+
       this.lastUpdated = moment().format('MMMM DD, YYYY')
 
       // THE SCRIPT THAT CHECKS IF THE KEY PRESSED IS A NUMERIC OR DECIMAL VALUE.

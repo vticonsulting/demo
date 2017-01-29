@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   #program-guide.vui-p-around--x-large.vui-tabs--scoped__content.vui-show(role='tabpanel', v-show="activeTab == '#program-guide'")
 
     panel.vui-m-bottom--medium(title='View Selection')
@@ -6,29 +6,17 @@
         fieldset.vui-form-element
           label.vui-form-element__label Search
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='searchText', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Search', style='width: 24rem')
-        //- fieldset.vui-form-element
-        //-   label.vui-form-element__label Quick Selection
-        //-   .vui-form-element__control.vui-m-right--small
-        //-     .vui-select_container
-        //-       select.vui-select(name='', id='')
-        //-         option(value='') --
-        //-         option(value='') Week
-        //-         option(value='') Month
-        //-         option(value='') Month +2
-        //-         option(value='') Month +5
-        //-         option(value='') Quarter
-        //-         option(value='') Year
+            input.vui-input(type='text', name='searchText', v-model='searchKey', ref='searchKey=', placeholder='Search', style='width: 24rem')
 
         fieldset.vui-form-element
           label.vui-form-element__label Flight Start Date
           .vui-form-element__control.vui-m-right--small
-            datepicker#startDate(:value.sync='startDate', name='startDate')
+            datepicker#startDate(:value='startDate', name='startDate')
 
         fieldset.vui-form-element
           label.vui-form-element__label Flight End Date
           .vui-form-element__control.vui-m-right--small
-            datepicker#endDate(:value.sync='endDate', name='endDate')
+            datepicker#endDate(:value='endDate', name='endDate')
 
         fieldset.vui-form-element
           button.vui-button.vui-button--brand Search
@@ -55,7 +43,6 @@
             span.vui-m-right--xx-small Videa Overall AUR
             span.vui-text-heading--medium  $757
 
-    //- data-grid-heading.vui-m-bottom--medium
     .vui-scrollable--x.vui-m-bottom--medium
       table.vui-table.vui-no-row-hover
         thead
@@ -75,7 +62,7 @@
             th.u-width-medium This Year
             th.u-width-medium Last Year
         tbody
-          tr(v-for="program in programs", :class='($index % 2 === 1) ? "vui-highlight" : ""')
+          tr(v-for="(program, index) in programs", :class='(index % 2 === 1) ? "vui-highlight" : ""')
             td {{ program.name }}
             td {{ program.daypart }}
             td {{ program.programTime }}
@@ -89,19 +76,15 @@
     p.vui-text-body--small
       sup.vui-m-right--xx-small 1
       span Nielsen source or data derived from Nielsen
-    spot-detail-modal(:show.sync="showSpotDetailModal", :program.sync='selectedProgram')
+    spot-detail-modal(:show="showSpotDetailModal", :program='selectedProgram')
 </template>
 
 <script>
-  import store from '../../../store'
-  import PageHeading from '../../../components/PageHeading.vue'
-  import Datepicker from '../../../components/Datepicker2.vue'
-  import DataGridHeading from '../../../components/DataGridHeading.vue'
-  import Panel from '../../../components/Panel.vue'
-  import SpotDetailModal from '../../../components/SpotDetailModal.vue'
+  import store from 'store'
+  import SpotDetailModal from 'components/SpotDetailModal'
 
   export default {
-    components: { PageHeading, DataGridHeading, Datepicker, Panel, SpotDetailModal },
+    components: { SpotDetailModal },
 
     created () {
       this.fetchPricing()

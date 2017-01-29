@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   h1.vui-text-heading--medium Bonus Offer Details
 
   .vui-grid.vui-grid--align-spread
@@ -97,14 +97,11 @@
 </template>
 
 <script>
-  import store from '../../../store'
-  import Icon from '../../../components/Icon.vue'
-  import TransferOpenPremptsModal from '../../../components/TransferOpenPreemptsModal.vue'
-  import Timeline from '../../../components/Timeline.vue'
-  import Breadcrumbs from '../../../components/Breadcrumbs.vue'
+  import store from 'store'
+  import TransferOpenPremptsModal from 'components/TransferOpenPreemptsModal'
 
   export default {
-    components: { Icon, TransferOpenPremptsModal, Timeline, Breadcrumbs },
+    components: { TransferOpenPremptsModal },
 
     props: {
       ordersRoute: {
@@ -177,7 +174,7 @@
       },
 
       showOffers () {
-        this.$route.router.go({
+        this.$route.router.push({
           name: this.offersRoute
         })
       }

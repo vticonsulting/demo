@@ -1,5 +1,5 @@
-<template lang="jade">
-  modal(:show.sync='show', :on-close='close', size='large')
+<template lang="pug">
+  modal(:show='show', :on-close='close', size='large')
 
     .modal-header.vui-m-bottom--large
 
@@ -69,10 +69,10 @@
             .vui-form-element__row
               .vui-form-element.vui-size--1-of-2
                 label.vui-form-element__label(for='input-02') Start Date
-                datepicker(:value.sync='fromDate', name='fromDate')
+                datepicker(:value='fromDate', name='fromDate')
               .vui-form-element.vui-size--1-of-2
                 label.vui-form-element__label(for='input-01') End Date
-                datepicker(:value.sync='toDate', name='toDate')
+                datepicker(:value='toDate', name='toDate')
 
         // Start Time | End Time Fieldset Group
         fieldset.vui-form--compound.vui-m-bottom--small
@@ -133,12 +133,7 @@
 </template>
 
 <script>
-  import Modal from './Modal.vue'
-  import Datepicker from './Datepicker2.vue'
-
   export default {
-    components: { Modal, Datepicker },
-
     props: ['show'],
 
     data () {

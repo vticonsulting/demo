@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   span {{Math.round(cpp) | formatMoney}}
 </template>
 

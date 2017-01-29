@@ -1,27 +1,22 @@
-<template lang="jade">
+<template lang="pug">
   .program-guide-view
     h1.vui-text-heading--large.vui-m-bottom--medium Program Revenue
     .vui-tabs--scoped
       ul.vui-tabs--scoped__nav(role='tablist')
-        li.vui-tabs--scoped__item.vui-text-heading--label(title='Program Guide', role='presentation' v-link-active)
-          a.vui-tabs--scoped__link(v-link="{ name: 'sellers.program-guide.program-guide', activeClass: 'vui-active', exact: true }", href='#', role='tab', tabindex='0', aria-selected='true', aria-controls='tab-default-1')
-            | Program Guide
-        li.vui-tabs--scoped__item.vui-text-heading--label(title='Sports and Specials', role='presentation' v-link-active)
-          a.vui-tabs--scoped__link(v-link="{ name: 'sellers.program-guide.specials', activeClass: 'vui-active', exact: true }", href='#', role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-default-2')
-            | Sports / Specials
+        router-link.vui-tabs--scoped__item.vui-text-heading--label(:to='{ name: "sellers.program-guide.program-guide" }', tag='li', title='Program Guide', role='presentation', active-class='vui-active', exact)
+          a.vui-tabs--scoped__link(role='tab', tabindex='0', aria-selected='true', aria-controls='tab-default-1') Program Guide
+        router-link.vui-tabs--scoped__item.vui-text-heading--label(:to='{ name: "sellers.program-guide.specials" }', tag='li', title='Sports and Specials', role='presentation', active-class='vui-active', exact)
+          a.vui-tabs--scoped__link(role='tab', tabindex='0', aria-selected='true', aria-controls='tab-default-1') Sports / Specials
       router-view
-    spot-detail-modal(:show.sync="showSpotDetailModal", :program='selectedProgram')
+    spot-detail-modal(:show='showSpotDetailModal', :program='selectedProgram')
 </template>
 
 <script>
-  import store from '../../../store'
-  import PageHeading from '../../../components/PageHeading.vue'
-  import DataGridHeading from '../../../components/DataGridHeading.vue'
-  import Panel from '../../../components/Panel.vue'
-  import SpotDetailModal from '../../../components/SpotDetailModal.vue'
+  import store from 'store'
+  import SpotDetailModal from 'components/SpotDetailModal'
 
   export default {
-    components: { PageHeading, DataGridHeading, Panel, SpotDetailModal },
+    components: { SpotDetailModal },
 
     created () {
       this.fetchPricing()

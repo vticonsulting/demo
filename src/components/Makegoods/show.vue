@@ -1,14 +1,11 @@
-<template lang="jade">
+<template lang="pug">
   .program-guide-view
-
-    //- breadcrumbs
     .vui-grid
       .vui-col.vui-align-middle
-        h2.vui-text-heading--large Makegood Offer Details
+        h2.vui-text-heading--large Makegood Offer Details ( Show )
         .vui-grid.vui-grid--align-spread.vui-m-bottom--large
-          a(v-link='{ name: "sellers.makegoods" }')
-            svg.vui-icon.vui-icon--x-small.vui-align-middle.vui-m-right--xx-small
-              use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='/Content/assets/icons.svg#icon-arrow-circle-left')
+          router-link(:to='{ name: "sellers.makegoods" }')
+            icon(name='arrow-circle-left')
             | Back to Makegoods Dashboard
       .vui-col.vui-align-middle
         fieldset.vui-form-element.vui-m-bottom--large.vui-text-align--right(v-if='sharedState.activeApp !== "reps"')
@@ -16,11 +13,6 @@
           button.vui-button.vui-button--brand.vui-m-right--xx-small(@click.prevent='showAcceptOfferModal = true') Accept Offer
 
     .vui-box.vui-grid.vui-grid--align-spread.vui-m-bottom--large.vui-wrap.vui-theme--default
-
-      //- fieldset.vui-form-element
-      //-   label.vui-form-element__label(for='') Videa Order Number
-      //-   .vui-form-element__control
-      //-     span.vui-form-element__static {{offer.videaOrderNumber}}
 
       fieldset.vui-form-element
         label.vui-form-element__label(for='') Offer Status
@@ -239,24 +231,20 @@
       button.vui-button.vui-button--brand.vui-m-right--xx-small(@click.prevent='showAcceptOfferModal = true') Accept Offer
       //- button.vui-button.vui-button--secondary.vui-m-right--xx-small(@click.prevent='showTransferOpenPreemptsModal = true') Transfer Open Preempts
 
-    accept-offer-modal(:show.sync='showAcceptOfferModal')
-    accept-offer-modal(:show.sync='showAcceptOfferModal')
-    //- transfer-open-prempts-modal(:show.sync='showTransferOpenPreemptsModal')
+    accept-offer-modal(:show='showAcceptOfferModal')
+    accept-offer-modal(:show='showAcceptOfferModal')
+    //- transfer-open-prempts-modal(:show='showTransferOpenPreemptsModal')
 </template>
 
 <script>
-  import store from '../../store'
-  import Icon from '../Icon.vue'
-  import AcceptOfferModal from '../AcceptOfferModal.vue'
-  import RejectOfferModal from '../RejectOfferModal.vue'
-  import TransferOpenPremptsModal from '../TransferOpenPreemptsModal.vue'
-
-  import Timeline from '../Timeline.vue'
-  import Breadcrumbs from '../Breadcrumbs.vue'
   import moment from 'moment'
+  import store from 'store'
+  import AcceptOfferModal from 'components/AcceptOfferModal'
+  import RejectOfferModal from 'components/RejectOfferModal'
+  import TransferOpenPremptsModal from 'components/TransferOpenPreemptsModal'
 
   export default {
-    components: { Icon, AcceptOfferModal, RejectOfferModal, Timeline, Breadcrumbs, TransferOpenPremptsModal },
+    components: { AcceptOfferModal, RejectOfferModal, TransferOpenPremptsModal },
 
     props: {
       ordersRoute: {
@@ -272,6 +260,7 @@
         showRejectOfferModal: false,
         showAcceptOfferModal: false,
         showTransferOpenPreemptsModal: false,
+        editing: false,
         offer: {},
         makegoods: [
           {
@@ -332,7 +321,7 @@
       },
 
       showOffers () {
-        this.$route.router.go({
+        this.$router.push({
           name: this.offersRoute
         })
       }

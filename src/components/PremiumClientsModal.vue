@@ -1,5 +1,5 @@
-<template lang="jade">
-  modal(:show.sync='show', :on-close='close', size='large')
+<template lang="pug">
+  modal(:show='show', :on-close='close', size='large')
     .modal-header.vui-m-bottom--large
       h3.vui-text-heading--medium Premium Advertisers
     .modal-body
@@ -58,12 +58,7 @@
 </template>
 
 <script>
-  import Modal from './Modal.vue'
-  import Panel from './Panel.vue'
-
   export default {
-    components: { Modal, Panel },
-
     props: ['show', 'account'],
 
     data () {

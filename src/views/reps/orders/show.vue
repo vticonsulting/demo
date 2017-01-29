@@ -1,10 +1,10 @@
-<template lang="jade">
+<template lang="pug">
   order(orders-route='reps.orders')
 </template>
 
 <script>
-  import store from '../../../store'
-  import Order from '../../../components/Orders/show.vue'
+  import store from 'store'
+  import Order from 'components/Orders/show'
 
   export default {
     components: { Order },

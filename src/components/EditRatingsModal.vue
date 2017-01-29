@@ -1,5 +1,5 @@
-<template lang="jade">
-  modal(:show.sync='show', :on-close='close', size='large')
+<template lang="pug">
+  modal(:show='show', :on-close='close', size='large')
 
     .modal-header.vui-m-bottom--large
       h3.vui-text-heading--medium Edit Ratings
@@ -33,10 +33,10 @@
                 sup 1
 
           tbody
-            tr(v-for='demo in data.station.demos', :class='($index % 2 === 0) ? "vui-highlight" : ""')
+            tr(v-for='(demo, index) in data.station.demos', :class='(index % 2 === 0) ? "vui-highlight" : ""')
               td {{ demo.name }}
               td
-                input.vui-input.vui-text-align--right(:value.sync='demo.rating | formatRating', v-model='demo.rating')
+                input.vui-input.vui-text-align--right(:value='demo.rating | formatRating', v-model='demo.rating')
               td.vui-text-align--right
                 cpp(:rate='data.station.rate', :rating='demo.rating')
               td.vui-text-align--right
@@ -51,12 +51,11 @@
 </template>
 
 <script>
-  import store from '../store'
-  import Modal from './Modal.vue'
-  import Cpp from './Cpp.vue'
+  import store from 'store'
+  import Cpp from 'components/Cpp'
 
   export default {
-    components: { Modal, Cpp },
+    components: { Cpp },
 
     props: {
       show: Boolean,
@@ -95,32 +94,6 @@
             checked: false
           }
         ]
-        // demos: [
-        //   {
-        //     name: 'A25-54',
-        //     rating: 2.1
-        //   },
-        //   {
-        //     name: 'W25-54',
-        //     rating: 1.7
-        //   },
-        //   {
-        //     name: 'M25-54',
-        //     rating: 1.6
-        //   },
-        //   {
-        //     name: 'A18-49',
-        //     rating: 1.6
-        //   },
-        //   {
-        //     name: 'A18-34',
-        //     rating: 1.0
-        //   },
-        //   {
-        //     name: 'A25-49',
-        //     rating: 1.6
-        //   }
-        // ]
       }
     },
 
@@ -135,9 +108,6 @@
       },
 
       saveEditedRatings (context) {
-        // context.station.rating =
-        this.$dispatch('saved::edit-ratings')
-        console.log(context.station.demos[0].rating)
         this.close()
       }
     }

@@ -1,0 +1,133 @@
+---
+pages:
+  - path: '/'
+    name: 'home'
+    component: views
+  - path: '/buyers/avails'
+    name: 'buyers.avails'
+    component: views/buyers/avails
+  - path: '/buyers/avails/request'
+    name: 'buyers.avails.request'
+    component: views/buyers/avails/request
+  - path: '/buyers/avails/request/summary'
+    name: 'buyers.avails.request.summary'
+    component: views/buyers/avails/summary
+  - path: '/privacy'
+    name: 'privacy'
+    component: views/privacy
+  - path: '/reps/avails'
+    name: 'reps.avails'
+    component: views/reps/avails
+  - path: '/reps/avails/:id'
+    name: 'reps.avail'
+    component: views/reps/avails/show
+  - path: '/reps/avails/:id/edit'
+    name: 'reps.avail.edit'
+    component: views/reps/avails/edit
+  - path: '/reps/orders'
+    name: 'reps.orders'
+    component: views/reps/orders
+  - path: '/reps/orders/:id'
+    name: 'reps.order'
+    component: views/reps/orders/show
+  - path: '/reps/performance'
+    name: 'reps.performance'
+    component: views/reps/performance
+  - path: '/reps/price-guide'
+    name: 'reps.price-guide'
+    component: views/reps/price-guide
+  - path: '/reps/order-management'
+    name: 'reps.order-management'
+    component: views/reps/order-management
+  - path: '/reps/order-management/:id'
+    name: 'reps.order-management.order'
+    component: views/reps/order-management/show
+  - path: '/reps/makegoods'
+    name: 'reps.makegoods'
+    component: views/reps/makegoods
+  - path: '/reps/makegoods/:id'
+    name: 'reps.makegood'
+    component: views/reps/makegoods/show
+  - path: '/sellers/active-orders'
+    name: 'sellers.active-orders'
+    component: views/sellers/active-orders
+  - path: '/sellers/campaign-performance'
+    name: 'sellers.campaign-performance'
+    component: views/sellers/campaign-performance
+  - path: '/sellers/orders'
+    name: 'sellers.orders'
+    component: views/sellers/orders
+  - path: '/sellers/orders/:id'
+    name: 'sellers.order'
+    component: views/sellers/orders/show
+  - path: '/sellers/open-preempts'
+    name: 'sellers.open-preempts'
+    component: views/sellers/open-preempts
+  - path: '/sellers/otri'
+    name: 'sellers.otri'
+    component: views/sellers/otri
+  - path: '/sellers/program-guide'
+    name: 'sellers.program-guide'
+    component: views/sellers/program-guide
+    children:
+      - path: '/'
+        name: 'sellers.program-guide.program-guide'
+        component: views/sellers/program-guide/program-guide
+      - path: '/specials'
+        name: 'sellers.program-guide.specials'
+        component: views/sellers/program-guide/specials
+  - path: '/sellers/program-revenue'
+    name: 'sellers.program-revenue'
+    component: views/sellers/program-revenue
+  - path: '/sellers/performance/account'
+    name: 'sellers.performance.account'
+    component: views/sellers/performance/account
+  - path: '/sellers/performance/station'
+    name: 'sellers.performance.station'
+    component: views/sellers/performance/station
+  - path: '/sellers/price-guide'
+    name: 'sellers.price-guide'
+    component: views/sellers/price-guide
+  - path: '/sellers/avails'
+    name: 'sellers.avails'
+    component: views/sellers/avails
+  - path: '/sellers/avails/:id'
+    name: 'sellers.avail'
+    component: views/sellers/avails/show
+  - path: '/sellers/avails/:id/edit'
+    name: 'sellers.avail.edit'
+    component: views/sellers/avails/edit
+  - path: '/sellers/order-management'
+    name: 'sellers.order-management'
+    component: views/sellers/order-management
+  - path: '/sellers/order-management/:id'
+    name: 'sellers.order-management.order'
+    component: views/sellers/order-management/show
+  - path: '/sellers/makegoods'
+    name: 'sellers.makegoods'
+    component: views/sellers/makegoods
+  - path: '/sellers/makegoods/:id'
+    name: 'sellers.makegood'
+    component: views/sellers/makegoods/show
+  - path: '/settings'
+    name: 'settings'
+    component: views/settings
+    children:
+      - path: '/'
+        name: 'settings.user'
+        component: views/settings/user
+      - path: '/specials'
+        name: 'settings.specials'
+        component: views/settings/specials
+      - path: '/premium-advertisers'
+        name: 'settings.premium-advertisers'
+        component: views/settings/premium-advertisers
+      - path: '/reps'
+        name: 'settings.reps'
+        component: views/settings/reps
+      - path: '/display'
+        name: 'settings.display'
+        component: views/settings/display
+  - path: '/terms'
+    name: 'terms'
+    component: views/terms

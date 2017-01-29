@@ -1,9 +1,9 @@
-<template lang="jade">
+<template lang="pug">
   #avails
     .vui-scrollable--x.vui-m-bottom--large
       .vui-grid.vui-grid--align-spread.vui-m-bottom--medium
         h1.vui-text-heading--large Avails
-        button.vui-button.vui-button--secondary(v-link="{ name: 'buyers.avails.request' }") Request New Avail
+        router-link.vui-button.vui-button--secondary(tag='button', :to='{ name: "buyers.avails.request" }') Request New Avail
 
       panel.vui-m-bottom--large(title='Search')
         form.vui-form--inline(action='')
@@ -23,8 +23,7 @@
                 option Product...
           .vui-form-element
             input.vui-input(placeholder='Estimate', style='width: 8rem')
-          //- .vui-form-element
-          //-   input.vui-input(placeholder='Campaign Name', style='width: 9rem')
+
           .vui-form-element__control.vui-m-right--small
             .vui-select_container
               select.vui-select(id='')
@@ -37,12 +36,11 @@
                 option WVVV
 
           .vui-form-element__control.vui-m-right--small
-            datepicker#startDate(:value.sync='startDate', name='startDate')
+            datepicker#startDate(:value='startDate', name='startDate')
 
           .vui-form-element__control.vui-m-right--small
-            datepicker#endDate(:value.sync='endDate', name='endDate')
-          //- .vui-form-element
-          //-   input.vui-input(type='date', value='2015-09-28', placeholder='Expiration Date')
+            datepicker#endDate(:value='endDate', name='endDate')
+
           .vui-form-element__control.vui-m-right--small
             .vui-select_container
               select.vui-select(id='')
@@ -103,7 +101,7 @@
                 span.vui-align-middle
                   icon(name='sort', style='color: hsla(192, 9%, 89%, .5)')
         tbody
-          tr(v-for='(index, avail) in avails', :class='(index % 2 === 0) ? "vui-highlight" : ""')
+          tr(v-for='(avail, index) in avails', :class='(index % 2 === 0) ? "vui-highlight" : ""')
             td.vui-text-align--center
               a(@click.prevent='duplicate == true', href='#')
                 icon(name='copy')
@@ -121,21 +119,10 @@
 </template>
 
 <script>
-  import store from '../../../store'
-  import Datepicker from '../../../components/Datepicker2.vue'
-  import PageHeading from '../../../components/PageHeading.vue'
-  import Panel from '../../../components/Panel.vue'
-  import Icon from '../../../components/Icon.vue'
+  import store from 'store'
   import moment from 'moment'
 
   export default {
-    components: {
-      Datepicker,
-      PageHeading,
-      Panel,
-      Icon
-    },
-
     data () {
       return {
         expirationDate: new Date(moment().add(14, 'days').toISOString()),

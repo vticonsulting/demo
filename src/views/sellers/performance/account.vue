@@ -1,10 +1,10 @@
-<template lang="jade">
+<template lang="pug">
   account-performance
 </template>
 
 <script>
-  import store from '../../../store'
-  import AccountPerformance from '../../../components/Performance/account.vue'
+  import store from 'store'
+  import AccountPerformance from 'components/Performance/account'
 
   export default {
     components: { AccountPerformance },

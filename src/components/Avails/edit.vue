@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .avails-edit-view
     .vui-m-bottom--large
       h1.vui-text-heading--large.vui-align-middle Avail ID {{avail.id}} &mdash; Edit
@@ -121,7 +121,7 @@
                   br
                   | {{ program.time }}
               td.u-width-small
-                input.vui-input(type='text', v-model='program.buyer.rating | formatRating', style='text-align: right')
+                input.vui-input(type='text', v-model='program.buyer.rating', style='text-align: right')
         .vui-grid.vui-grid--align-spread
           a(@click.prevent="setActiveTab('market-competitive')", href='#')
             icon.vui-m-right--xx-small(name='arrow-circle-left')
@@ -203,11 +203,11 @@
 
               // Rate (program)
               td.u-width-small
-                input.vui-input.vui-text-align--right(@keypress='onKeypress($event)', type='text', :value.sync='program.rate', v-model='program.rate | currencyDisplay')
+                input.vui-input.vui-text-align--right(@keypress='onKeypress', type='text', :value='program.rate', v-model='program.rate')
 
               // Rating (program)
               td.u-width-small
-                input.vui-text-align--right.vui-input(:value.sync='program.rating', v-model='program.rating | formatRating')
+                input.vui-text-align--right.vui-input(:value='program.rating', v-model='program.rating')
 
               // Average CPP
               td.vui-text-align--right.u-width-small
@@ -247,7 +247,7 @@
                 td.name
                   .vui-grid.vui-grid--align-spread
                     span.vui-align-middle(style='font-weight: 500') {{ month.month }}
-                    dropdown.vui-align-middle.dropdown-left.vui-m-right-x-small(text='icon', :weeks='month.weeks', :month='month')
+                    add-week-dropdown.vui-align-middle.dropdown-left.vui-m-right-x-small(text='icon', :weeks='month.weeks', :month='month')
 
                 // Flight Start Date (month)
                 td.u-width-small {{ month.flightStartDate }}
@@ -257,15 +257,15 @@
 
                 // Rate (month)
                 td.u-width-small
-                  input.vui-input.vui-text-align--right(@keypress='onKeypress($event)', type='text', :value.sync='month.rate', v-model='month.rate | currencyDisplay')
+                  input.vui-input.vui-text-align--right(@keypress='onKeypress', type='text', :value='month.rate', v-model='month.rate')
 
                 // Rating (month)
                 td.u-width-small
-                  input.vui-text-align--right.vui-input(:value.sync='month.rating', v-model='month.rating | formatRating')
+                  input.vui-text-align--right.vui-input(:value='month.rating', v-model='month.rating')
 
                 // Average CPP (month)
                 td.vui-text-align--right.u-width-small
-                  cpp(:rate.sync='month.rate', :rating.sync='month.rating')
+                  cpp(:rate='month.rate', :rating='month.rating')
                   //- {{ month.avgCpp | numberWithCommas | formatMoney }}
 
                 // Videa Rating (month)
@@ -313,11 +313,11 @@
 
                   // Rate (week)
                   td.u-width-small
-                    input.vui-input.vui-text-align--right(@keypress='onKeypress($event)', type='text', :value.sync='week.rate', v-model='week.rate | currencyDisplay')
+                    input.vui-input.vui-text-align--right(@keypress='onKeypress', type='text', :value='week.rate', v-model='week.rate')
 
                   // Rating (week)
                   td.u-width-small
-                    input.vui-text-align--right.vui-input(:value.sync='week.rating', v-model='week.rating | formatRating')
+                    input.vui-text-align--right.vui-input(:value='week.rating', v-model='week.rating')
 
                   // Average CPP (week)
                   td.vui-text-align--right.u-width-small
@@ -363,34 +363,21 @@
         sup.vui-m-right--xx-small 2
         span Saved changes are viewable by all station users and assigned reps.
 
-    edit-programs-modal(:show.sync="showEditProgramsModal")
+    edit-programs-modal(:show="showEditProgramsModal")
 </template>
 
 <script>
-  import store from '../../store'
-  import Icon from '../Icon.vue'
-  import PageHeading from '../PageHeading.vue'
-  import Panel from '../Panel.vue'
-  import Cpp from '../Cpp.vue'
-  import DaypartSelector from '../DaypartSelector.vue'
-  import Dropdown from '../AddWeekDropdown.vue'
-  import StepWizard from '../StepWizard.vue'
-  import EditProgramsModal from '../EditProgramsModal.vue'
+  import store from 'store'
+  import Cpp from 'components/Cpp'
+  import AddWeekDropdown from 'components/AddWeekDropdown'
+  import StepWizard from 'components/StepWizard'
+  import EditProgramsModal from 'components/EditProgramsModal'
 
   let Highcharts = require('highcharts')
   require('highcharts/modules/exporting')(Highcharts)
 
   export default {
-    components: {
-      Icon,
-      PageHeading,
-      Panel,
-      Cpp,
-      Dropdown,
-      DaypartSelector,
-      StepWizard,
-      EditProgramsModal
-    },
+    components: { Cpp, AddWeekDropdown, StepWizard, EditProgramsModal },
 
     props: {
       availRoute: {
@@ -491,12 +478,10 @@
       },
 
       selectDaypart (daypart) {
-        this.$dispatch('selected-daypart', daypart)
         this.selectedDaypart = daypart
       },
 
       setActiveTab (tab) {
-        this.$dispatch('activate-tab', tab)
         this.activeTab = tab
       },
 
@@ -512,11 +497,11 @@
           routeInfo.query = { version: version }
         }
 
-        this.$route.router.go(routeInfo)
+        this.$router.push(routeInfo)
       },
 
       showAvails () {
-        this.$route.router.go({
+        this.$router.push({
           name: this.availsRoute
         })
       },

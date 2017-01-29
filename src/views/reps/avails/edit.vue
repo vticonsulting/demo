@@ -1,10 +1,10 @@
-<template lang="jade">
+<template lang="pug">
   avail-edit(avails-route='reps.avails', avail-route='reps.avail')
 </template>
 
 <script>
-  import store from '../../../store'
-  import AvailEdit from '../../../components/Avails/edit.vue'
+  import store from 'store'
+  import AvailEdit from 'components/Avails/edit'
 
   export default {
     components: { AvailEdit },

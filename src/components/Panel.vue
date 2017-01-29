@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .vui-panel
     .vui-panel__heading.vui-grid.vui-grid--align-spread
       h2.vui-panel__title.vui-align-middle {{ title }}

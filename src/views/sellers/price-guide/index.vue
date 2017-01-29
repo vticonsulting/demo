@@ -1,11 +1,11 @@
-<template lang="jade">
+<template lang="pug">
   price-guide(route-name='sellers.price-guide')
 </template>
 
 <script>
-  import store from '../../../store'
+  import store from 'store'
 
-  import PriceGuide from '../../../components/PriceGuide/index.vue'
+  import PriceGuide from 'components/PriceGuide'
 
   export default {
     components: { PriceGuide },

@@ -1,5 +1,5 @@
-<template lang="jade">
-  modal(:show.sync='show', :on-close='close', size='large')
+<template lang="pug">
+  modal(:show='show', :on-close='close', size='large')
     .modal-header.vui-m-bottom--large
       h3.vui-text-heading--medium Export Avail
     .modal-body
@@ -8,19 +8,14 @@
         | Select a format in which you would like to export your avail.
 
       .vui-text-align--center
-        button.vui-button.vui-button--neutral.vui-m-right--x-small(@click.prevent='close()') None
-        button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close()') CSV
-        button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close()') XML
-        button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close()') Both XML and CSV
+        button.vui-button.vui-button--neutral.vui-m-right--x-small(@click.prevent='close') None
+        button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close') CSV
+        button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close') XML
+        button.vui-button.vui-button--brand.vui-m--x-small(@click.prevent='close') Both XML and CSV
 </template>
 
 <script>
-  import Datepicker from './Datepicker2.vue'
-  import Modal from './Modal.vue'
-
   export default {
-    components: { Datepicker, Modal },
-
     props: ['show'],
 
     data () {

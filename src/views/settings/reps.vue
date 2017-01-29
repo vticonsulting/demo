@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   #reps-settings.vui-p-around--x-large.vui-tabs--scoped__content(role='tabpanel', aria-labelledby='tab-scoped-1__item', v-show="activeTab == '#reps-settings'")
     h2.vui-text-heading--medium.vui-m-bottom--medium  Current Sales Reps
     p.vui-text-longform.vui-m-bottom--large Select the reps you'd like to have access to your Price Guide
@@ -15,7 +15,7 @@
             th Email
             th.vui-text-align--center Price Guide Access
         tbody
-          tr(v-for='rep in reps', :class='($index % 2 === 0) ? "vui-highlight" : ""')
+          tr(v-for='(rep, index) in reps', :class='(index % 2 === 0) ? "vui-highlight" : ""')
             td {{ rep.name }}
             td {{ rep.phone }}
             td {{ rep.email }}
@@ -23,15 +23,14 @@
               label.vui-checkbox
                 input#checkbox-01(type='checkbox', name='options')
                 span.vui-checkbox--faux
-    edit-sales-reps-modal(:show.sync="showEditSalesRepsModal")
+    edit-sales-reps-modal(:show="showEditSalesRepsModal")
 </template>
 
 <script>
-  import PageHeading from '../../components/PageHeading.vue'
-  import EditSalesRepsModal from '../../components/EditSalesRepsModal.vue'
+  import EditSalesRepsModal from 'components/EditSalesRepsModal'
 
   export default {
-    components: { PageHeading, EditSalesRepsModal },
+    components: { EditSalesRepsModal },
 
     data () {
       return {

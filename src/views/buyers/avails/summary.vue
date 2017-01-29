@@ -1,10 +1,8 @@
-<template lang="jade">
+<template lang="pug">
   .avails-summary
-
-
     h2.vui-text-heading--medium.vui-m-bottom--medium.vui-box(style='background-color: #fff', v-show='loading')
       i.fa.fa-refresh.fa-spin.vui-m-right--small(style='color: hsla(196, 46%, 48%, 1)')
-      | {{loadingMessage}}
+      | {{ loadingMessage }}
 
     h1.vui-text-heading--large.vui-m-bottom--medium Summary
 
@@ -12,22 +10,22 @@
       .vui-form-element
         label.vui-form-element__label Client
         .vui-form-element__control
-          span.vui-form-element__static {{avail.client}}
+          span.vui-form-element__static {{ avail.client }}
 
       .vui-form-element
         label.vui-form-element__label Product
         .vui-form-element__control
-          span.vui-form-element__static {{avail.product}}
+          span.vui-form-element__static {{ avail.product }}
 
       .vui-form-element
         label.vui-form-element__label Estimate
         .vui-form-element__control
-          span.vui-form-element__static {{avail.estimate}}
+          span.vui-form-element__static {{ avail.estimate }}
 
       .vui-form-element
         label.vui-form-element__label Campaign Name
         .vui-form-element__control
-          span.vui-form-element__static {{avail.campaignName}}
+          span.vui-form-element__static {{ avail.campaignName }}
 
       .vui-form-element
         label.vui-form-element__label Expiration Date
@@ -37,39 +35,39 @@
       .vui-form-element
         label.vui-form-element__label Start Date
         .vui-form-element__control
-          span.vui-form-element__static {{avail.startDate}}
+          span.vui-form-element__static {{ avail.startDate }}
 
       .vui-form-element
         label.vui-form-element__label End Date
         .vui-form-element__control
-          span.vui-form-element__static {{avail.endDate}}
+          span.vui-form-element__static {{ avail.endDate }}
 
       .vui-form-element
         label.vui-form-element__label Gross Market Budget
         .vui-form-element__control
-          span.vui-form-element__static {{avail.grossMarketBudget | numberWithCommas | formatMoney}}
+          span.vui-form-element__static {{ avail.grossMarketBudget | numberWithCommas | formatMoney }}
 
       .vui-form-element
         label.vui-form-element__label Target GRP Goal
         .vui-form-element__control
-          span.vui-form-element__static {{avail.targetGrpGoal}}
+          span.vui-form-element__static {{ avail.targetGrpGoal }}
 
       .vui-form-element
         label.vui-form-element__label Primary Target
         .vui-form-element__control
-          span.vui-form-element__static {{avail.primaryTarget}}
+          span.vui-form-element__static {{ avail.primaryTarget }}
 
     div(v-show='!loading')
       .vui-grid.vui-grid--align-spread
         h2.vui-text-heading--large.vui-m-bottom--medium Detail
         .buttons
-          button.vui-m-right--xx-small.vui-button.vui-button--secondary(v-link='{name: "buyers.avails", exact: true}') Save and Close
-          button.vui-m-right--xx-small.vui-button.vui-button--secondary(v-link='{name: "buyers.avails", exact: true}') Cancel
-          a.vui-button.vui-button--brand(@click.prevent='exportAvail()') Export Avail
+          router-link.vui-m-right--xx-small.vui-button.vui-button--secondary(tag='button', :to='{ name: "buyers.avails", exact: true }') Save and Close
+          router-link.vui-m-right--xx-small.vui-button.vui-button--secondary(tag='button', :to='{ name: "buyers.avails", exact: true }') Cancel
+          a.vui-button.vui-button--brand(@click.prevent='exportAvail') Export Avail
 
       .vui-tabs--scoped
         ul.vui-tabs--scoped__nav(role='tablist')
-          li.vui-tabs--scoped__item.vui-active.vui-text-heading--label(title='WVVV', role='presentation' v-link-active)
+          li.vui-tabs--scoped__item.vui-active.vui-text-heading--label(title='WVVV', role='presentation')
             a.vui-tabs--scoped__link(@click.prevent='', href='#', role='tab', tabindex='0', aria-selected='true', aria-controls='tab-default-1')
               | WVVV
       #wnn.vui-tabs--scoped__content.vui-p-around--x-large.vui-show(role='tabpanel')
@@ -98,13 +96,13 @@
                 th Start Time
                 th End Time
                 th Length
-            tbody(v-for="(index, program) in programs")
+            tbody(v-for="(program, index) in programs")
               tr.program(v-if='program.active', :class='(index % 2 === 0) ? "vui-highlight" : ""')
                 td
                   .vui-grid
                     a.vui-align-middle(v-if='program.details', href='#', @click.prevent='program.expanded = !program.expanded')
-                      icon.vui-align-middle(:name="(program.expanded) ? 'caret-lower-right' : 'caret-right'")
-                    .vui-form-element(:class='[!program.details ? "vui-m-left--medium" : ""]')
+                      icon.vui-align-middle(:name='program.expanded ? "caret-lower-right" : "caret-right"')
+                    .vui-form-element(:class='!program.details ? "vui-m-left--medium" : ""')
                       .vui-form-element__control
                         label.vui-checkbox
                           input#checkbox-01(type='checkbox', name='options', checked='true')
@@ -127,7 +125,7 @@
                         label.vui-checkbox
                           input#checkbox-01(type='checkbox', name='options', checked='true')
                           span.vui-checkbox--faux
-                      span {{detail.flightStartDate}} - {{detail.flightEndDate}}
+                      span {{ detail.flightStartDate }} - {{ detail.flightEndDate }}
                   td.vui-text-align--right.u-width-medium {{ detail.avgRate | numberWithCommas | formatMoney }}
                   td.vui-text-align--right.u-width-xx-small {{ detail.avgRating | formatRating }}
                   td.vui-text-align--right.u-width-medium {{ detail.avgCpp | numberWithCommas | formatMoney }}
@@ -143,15 +141,10 @@
 </template>
 
 <script>
-  import store from '../../../store'
-  import Icon from '../../../components/Icon.vue'
+  import store from 'store'
   import moment from 'moment'
 
   export default {
-    components: {
-      Icon
-    },
-
     data () {
       return {
         sharedState: store.state,
@@ -217,7 +210,7 @@
       }
     },
 
-    ready () {
+    mounted () {
       // setTimeout(() => this.show = false, 3000)
 
       this.loading = true

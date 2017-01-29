@@ -1,24 +1,17 @@
-<template>
-  <div class="checkbox-list">
-    <div class="vui-form-element">
-      <div class="vui-form-element__control">
-        <label class="vui-checkbox">
-          <input type="checkbox" v-model="selectAll">
-          <span class="vui-checkbox--faux"></span>
-          <span class="vui-form-element__label">Check/Uncheck All</span>
-        </label>
-      </div>
-    </div>
-    <div class="vui-form-element" v-for="item in items">
-      <div class="vui-form-element__control">
-        <label class="vui-checkbox">
-          <input type="checkbox" v-model="selected" name="items" :value="item.id" number>
-          <span class="vui-checkbox--faux"></span>
-          <span class="vui-form-element__label">{{ item.name }}</span>
-        </label>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  .checkbox-list
+    .vui-form-element
+      .vui-form-element__control
+        label.vui-checkbox
+          input(type='checkbox', v-model='selectAll')
+          span.vui-checkbox--faux
+          span.vui-form-element__label Check/Uncheck All
+    .vui-form-element(v-for='item in items')
+      .vui-form-element__control
+        label.vui-checkbox
+          input(type='checkbox', v-model.number='selected', name='items', :value='item.id')
+          span.vui-checkbox--faux
+          span.vui-form-element__label {{ item.name }}
 </template>
 
 <script>
