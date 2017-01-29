@@ -1,6 +1,6 @@
-<template lang="jade">
-  .vui-dropdown-trigger.vui-dropdown-trigger--click(:class='{ "vui-is-open": show, dropdown: !dropup, dropup: dropup}', aria-expanded='{{show}}')
-    button.vui-button.vui-not-selected(aria-live='assertive', aria-expanded='{{show}}' aria-haspopup='true', @click='toggle($event)', :disabled='disabled')
+<template lang="pug">
+  .vui-dropdown-trigger.vui-dropdown-trigger--click.dropdown(:class='{ "vui-is-open": show }', :aria-expanded='show')
+    button.vui-button.vui-not-selected(aria-live='assertive', :aria-expanded='show' aria-haspopup='true', @click='toggle', :disabled='disabled')
       span.vui-m-right--xx-small(style='color: white') {{ text }}
       icon(name='caret-down', style='color: #4296b4; margin-right: 0')
     .vui-dropdown(:class='{ "vui-nubbin--top": nubbinTop, "vui-nubbin--top-left": nubbinLeft, "vui-nubbin--top-right": nubbinRight }')
@@ -14,11 +14,7 @@
 </template>
 
 <script>
-  import Icon from './Icon.vue'
-
   export default {
-    components: { Icon },
-
     props: {
       text: {
         type: String,
@@ -43,16 +39,14 @@
       toggle (e) {
         this.show = !this.show
         if (this.show) {
-          this.$dispatch('shown::dropdown')
           e.stopPropagation()
         } else {
-          this.$dispatch('hidden::dropdown')
         }
       },
 
       clicked (route) {
         this.show = false
-        this.$route.router.go({
+        this.$router.push({
           name: route
         })
       }

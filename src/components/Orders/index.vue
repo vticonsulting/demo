@@ -1,50 +1,25 @@
-<template lang="jade">
+<template lang="pug">
   .orders-view
     page-heading.vui-m-bottom--medium(title='Order Reporting')
     p.vui-m-bottom--medium Order Reporting - The order information below reflects the data from your station's traffic system. Videa updates traffic information once each day; as a result, data may not be current.
 
     panel.vui-m-bottom--large(title='View Selection')
-      //- form.vui-form--inline(action='')
-      //-   fieldset.vui-form--compound
-      //-     //- legend.form-element__legend.vui-form-element__label Flight Date Range
-      //-     .form-element__group
-      //-       .vui-form-element__row
-      //-         //- .vui-form-element.vui-size--1-of-4.vui-align-bottom
-      //-         //-   label.vui-form-element__label(for='input-01') Search
-      //-         //-   input#input-01.vui-input(type='text')
-      //-         .vui-form-element.vui-size--1-of-4.vui-align-bottom
-      //-           label.vui-form-element__label(for='input-02') Start Date
-      //-           datepicker#fromDate(:value.sync='fromDate', name='fromDate')
-      //-         .vui-form-element.vui-size--1-of-4.vui-align-bottom
-      //-           label.vui-form-element__label(for='input-01') End Date
-      //-           datepicker#toDate(:value.sync='toDate', name='toDate')
-      //-         .vui-form-element.vui-size--1-of-4.vui-align-bottom
-      //-           button.vui-button.vui-button--brand.vui-m-right--x-small  Go
-      //-           //- button.vui-button.vui-button--neutral.vui-m-right--x-small  Clear
       form.vui-grid.vui-grid--vertical-align-end(action='')
 
         fieldset.vui-form-element
           label.vui-form-element__label Search
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='searchText', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Advertiser or Agency', style='width: 24rem')
-
-        //- fieldset.vui-form-element
-        //-   .vui-form-element__control.vui-m-right--small
-        //-     .vui-select_container
-        //-       select.vui-select(id='')
-        //-         option Advertiser
-        //-         option Agency
-        //-         option Campaign
+            input.vui-input(type='text', name='searchText', v-model='searchKey', ref='searchKey', placeholder='Advertiser or Agency', style='width: 24rem')
 
         fieldset.vui-form-element
           label.vui-form-element__label.vui-m-right--x-small(for='fromDate') Flight Start Date
           .vui-form-element__control.vui-m-right--small
-            datepicker#fromDate(:value.sync='fromDate', name='fromDate')
+            datepicker#fromDate(:value='fromDate', name='fromDate')
 
         fieldset.vui-form-element
           label.vui-form-element__label.vui-m-right--x-small(for='fromDate') Flight End Date
           .vui-form-element__control.vui-m-right--small
-            datepicker#toDate(:value.sync='toDate', name='toDate')
+            datepicker#toDate(:value='toDate', name='toDate')
 
         fieldset.vui-form-element
           button.vui-button.vui-button--brand.vui-m-right--x-small(@click.prevent='') Search
@@ -59,12 +34,11 @@
                 span {{column.title}}
                 icon.vui-icon--sort-arrow(name='sort-asc')
         tbody
-          template(v-for='order in orders | orderBy sortKey sortOrder | filterBy searchKey')
-            tr(:class='($index % 2 === 1) ? "vui-highlight" : ""')
+          template(v-for='(order, index) in orders')
+            tr
               td
-                a(href='#', @click.prevent='toggleDetail(order, $event)')
-                  svg.vui-icon.vui-icon--small(style="width: 1rem; height: 1rem;")
-                    use(xlink:href="/Content/assets/icons.svg#icon-{{ order.expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
+                a(href='#', @click.prevent='toggleDetail(order)')
+                  icon.vui-align-middle(:name="(order.expanded) ? 'caret-lower-right' : 'caret-right'")
                 span {{ order.advertiser }}
               td {{ order.agency }}
               td {{ order.cpe }}
@@ -73,10 +47,12 @@
               td.vui-text-align--right {{ order.revenue | numberWithCommas | formatMoney }}
               //- td.vui-text-align--right {{ order.share | decimalToPercent }}
               td.vui-text-align--right {{ sharedState['share'+order.id] | decimalToPercent }}
+              td {{ order.stationOrderNumber }}
+              td Manage Schedule
               td {{ order.id }}
               td {{ order.id == 135001 ? orderDate : order.orderDate }}
             tr.animated(v-show='order.expanded')
-              td.expanded(colspan='9')
+              td.expanded(:colspan='gridColumns.length')
                 .vui-box.vui-theme--shade.vui-grid.vui-grid--align-spread.vui-m-top--medium
                   span
                     b.vui-m-right--x-small Agency:
@@ -87,7 +63,7 @@
                   div.vui-theme--shade.vui-grid.vui-grid--align-spread(v-for='entry in order.revenueBy')
                     .vui-grid--vertical.vui-grid--align-center
                       .vui-text-align--center
-                        b {{ entry.month | capitalize }}
+                        b {{ entry.month }}
                       .vui-text-align--center $ {{ entry.revenue | numberWithCommas }}
                   span
                     b.vui-m-right--x-small Dates:
@@ -131,28 +107,14 @@
                           a.vui-align-middle(@click.prevent='showOrder(order.id)', href='#')
                             span.vui-align-middle.vui-m-right--xx-small View Detail
                             icon.vui-align-middle(name="arrow-circle-right")
-      //- paging(:items='orders', :count='count', type='order')
 </template>
 
 <script>
   import $ from 'jquery'
-  import store from '../../store'
-  import Icon from '../Icon.vue'
-  import Panel from '../Panel.vue'
-  import PageHeading from '../PageHeading.vue'
-  import Paging from '../Paging.vue'
-  import Datepicker from '../Datepicker2.vue'
   import moment from 'moment'
+  import store from 'store'
 
   export default {
-    components: {
-      Panel,
-      PageHeading,
-      Icon,
-      Paging,
-      Datepicker
-    },
-
     props: {
       orderRoute: {
         type: String,
@@ -204,6 +166,8 @@
           { field: 'flightEndDate', title: 'End' },
           { field: 'revenue', title: 'Revenue' },
           { field: 'share', title: 'Share' },
+          { field: 'stationOrderNumber', title: 'Station Order #' },
+          { field: 'manageSchedule', title: 'Manage Schedule' },
           { field: 'orderId', title: 'Videa Order #' },
           { field: 'orderDate', title: 'Order Date' }
         ],
@@ -212,13 +176,13 @@
     },
 
     computed: {
-      sharedState () {
-        return store.state
-      },
+      // sharedState () {
+      //   return store.state
+      // },
 
-      offset () {
-        return this.activePage * this.count
-      }
+      // offset () {
+      //   return this.activePage * this.count
+      // }
     },
 
     methods: {
@@ -233,12 +197,10 @@
         )
       },
 
-      toggleDetail (order, event) {
+      toggleDetail (order) {
         // NOTE: Do I really need to use jQuery here?
         var $element = $(event.target).closest('tr')
         order.expanded = !order.expanded
-
-        console.log(order.expanded)
 
         // if (order.expanded) {
         //   $element.css({ 'backgroundColor': '#cee5eb'})
@@ -259,7 +221,7 @@
           routeInfo.query = { version: version }
         }
 
-        this.$route.router.go(routeInfo)
+        this.$router.push(routeInfo)
       },
 
       sortBy (sortKey) {
@@ -277,10 +239,6 @@
 
     created () {
       this.fetchOrders()
-    },
-
-    ready () {
-      // this.$els.searchKey.focus()
     }
   }
 </script>

@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   h1.vui-text-heading--large {{ title }}
 </template>
 

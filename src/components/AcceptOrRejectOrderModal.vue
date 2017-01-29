@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   img(:src='/absolute/path/{{image_src}}')
   //- This doesn't work though. Can someone help me out?
 

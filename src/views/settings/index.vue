@@ -1,32 +1,26 @@
-<template lang="jade">
+<template lang="pug">
   #settings
     page-heading.vui-m-bottom--medium(title='Settings')
     .vui-tabs--scoped
       ul.vui-tabs--scoped__nav(role='tablist')
-        li.vui-tabs--scoped__item.vui-text-heading--label.vui-active(title='User Settings', role='presentation', v-link-active)
-          a#user-settings__item.vui-tabs--scoped__link(v-link="{ name: 'settings.user', activeClass: 'vui-active', exact: true  }", role='tab', tabindex='0', aria-selected='true', aria-controls='tab-scoped-1') User Settings
+        router-link.vui-tabs--scoped__item.vui-text-heading--label(:to='{ name: "settings.user" }', tag='li', title='User Settings', role='presentation', active-class='vui-active', exact)
+          a#user-settings__item.vui-tabs--scoped__link(role='tab', tabindex='0', aria-selected='true', aria-controls='tab-scoped-1') User Settings
 
-        li.vui-tabs--scoped__item.vui-text-heading--label(v-if="sharedState.activeApp == 'sellers'" title='Display Settings', role='presentation', v-link-active)
-          a#display-settings__item.vui-tabs--scoped__link(v-link="{ name: 'settings.display', activeClass: 'vui-active', exact: true  }", role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-scoped-2') Display Settings
+        router-link.vui-tabs--scoped__item.vui-text-heading--label(v-if='sharedState.activeApp == "sellers"', :to='{ name: "settings.display" }', tag='li', title='Display Settings', role='presentation', active-class='vui-active', exact)
+          a#display-settings__item.vui-tabs--scoped__link(role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-scoped-2') Display Settings
 
-        //- li.vui-tabs--scoped__item.vui-text-heading--label(v-if="sharedState.activeApp == 'sellers'" title='Premium Advertisers', role='presentation', v-link-active)
-        //-   a#premium-advertisers__item.vui-tabs--scoped__link(v-link="{ name: 'settings.premium-advertisers', activeClass: 'vui-active', exact: true  }", role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-scoped-3') Premium Advertisers
+        router-link.vui-tabs--scoped__item.vui-text-heading--label(v-if='sharedState.activeApp == "sellers"', :to="{ name: 'settings.specials' }", tag='li', title='Sports Specials', role='presentation', active-class='vui-active', exact)
+          a#specials-settings__item.vui-tabs--scoped__link(role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-scoped-4') Add A Program
 
-        li.vui-tabs--scoped__item.vui-text-heading--label(v-if="sharedState.activeApp == 'sellers'" title='Sports Specials', role='presentation', v-link-active)
-          a#specials-settings__item.vui-tabs--scoped__link(v-link="{ name: 'settings.specials', activeClass: 'vui-active', exact: true  }", role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-scoped-4') Sports and Specials
-
-        li.vui-tabs--scoped__item.vui-text-heading--label(v-if="sharedState.activeApp == 'sellers'" title='Sales Reps', role='presentation', v-link-active)
-          a#reps-settings__item.vui-tabs--scoped__link(v-link="{ name: 'settings.reps', activeClass: 'vui-active', exact: true  }", role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-scoped-5') Sales Reps
+        router-link.vui-tabs--scoped__item.vui-text-heading--label(v-if='sharedState.activeApp == "sellers"', :to='{ name: "settings.reps" }', tag='li', title='Sales Reps', role='presentation', active-class='vui-active', exact)
+          a#reps-settings__item.vui-tabs--scoped__link(role='tab', tabindex='-1', aria-selected='false', aria-controls='tab-scoped-5') Sales Reps
     router-view
 </template>
 
 <script>
-  import store from '../../store'
-  import PageHeading from '../../components/PageHeading.vue'
+  import store from 'store'
 
   export default {
-    components: { PageHeading },
-
     data () {
       return {
         sharedState: store.state,

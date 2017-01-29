@@ -1,5 +1,5 @@
-<template lang="jade">
-  button.vui-button(class='vui-button--{{type}}')
+<template lang="pug">
+  button.vui-button(:class='"vui-button--" + type')
     slot
 </template>
 

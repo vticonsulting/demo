@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .orders-show-detail
     .vui-grid.vui-grid--align-spread
         h1.vui-text-heading--large Order Detail
@@ -29,16 +29,12 @@
             th.u-width-small
               | CPP
               sup 1
-        tbody(v-for="daypart in order.dayparts")
-          tr.daypart(:class='($index % 2 === 1) ? "vui-highlight" : ""')
+        tbody(v-for='daypart in order.dayparts')
+          tr.daypart
             td
-              //- a(href='#', @click.prevent='handleDaypartExpansion(daypart, $event)')
-              //-   icon.vui-align-middle.vui-m-right--x-small(:name="(daypart.expanded) ? 'caret-lower-right' : 'caret-right'")
-              //-   span.vui-align-middle {{daypart.name}}
-
               .vui-grid
                 a.vui-align-middle(href='#', @click.prevent='daypart.expanded = !daypart.expanded')
-                  icon.vui-align-middle(:name="(daypart.expanded) ? 'caret-lower-right' : 'caret-right'")
+                  icon.vui-align-middle(:name='daypart.expanded ? "caret-lower-right" : "caret-right"')
                 span {{ daypart.name }}
             td
             td.vui-text-align--right {{ daypart.aur | numberWithCommas | formatMoney }}
@@ -46,18 +42,18 @@
             td.vui-text-align--right {{ daypart.revenue | numberWithCommas | formatMoney }}
             td.vui-text-align--right {{ daypart.grps | formatRating}}
             td.vui-text-align--right {{ Math.round(daypart.cpp) | numberWithCommas | formatMoney }}
-          template(v-for="show in daypart.shows")
+          template(v-for='show in daypart.shows')
             tr.show(v-show='daypart.expanded')
               td(colspan='7')
                 .vui-grid
                   a.vui-align-middle(href='#', @click.prevent='show.expanded = !show.expanded')
-                    icon.vui-align-middle(:name="(show.expanded) ? 'caret-lower-right' : 'caret-right'")
+                    icon.vui-align-middle(:name='show.expanded ? "caret-lower-right" : "caret-right"')
                   span.vui-align-middle {{ show.name }}
-            template(v-for="showTime in show.showTimes")
+            template(v-for='showTime in show.showTimes')
               tr.showTime(v-show='show.expanded')
                 td(colspan='7')
                   span.vui-align-middle {{ showTime.time }}
-              template(v-for="date in showTime.dates")
+              template(v-for='date in showTime.dates')
                 tr.date(v-show='show.expanded')
                   td {{ date.date }}
                   td.vui-text-align--center {{ date.spotLength }}
@@ -72,13 +68,9 @@
 </template>
 
 <script>
-  import store from '../../store'
-  import DataGridHeading from '../DataGridHeading.vue'
-  import Icon from '../Icon.vue'
+  import store from 'store'
 
   export default {
-    components: { DataGridHeading, Icon },
-
     props: {
       ordersRoute: {
         type: String,
@@ -125,7 +117,7 @@
       },
 
       showOrders () {
-        this.$route.router.go({
+        this.$router.push({
           name: this.ordersRoute
         })
       }

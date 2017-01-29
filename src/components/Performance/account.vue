@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .account-performance-view
     page-heading.vui-m-bottom--medium(title='Account Performance')
     panel.vui-m-bottom--large(title='View Selection')
@@ -61,7 +61,7 @@
             td.vui-text-align--right {{ totalSpotVolumeTy | numberWithCommas }}
             td
         tbody
-          tr(v-for='account in accounts', :class='($index % 2 === 1) ? "vui-highlight" : ""')
+          tr(v-for='(account, index) in accounts', :class='(index % 2 === 1) ? "vui-highlight" : ""')
             td.vui-text-align--center {{ account.orderCount }}
             td
               a(href='#', @click.prevent="showAccountDetail(account)") {{ account.advertiser }}
@@ -70,18 +70,15 @@
             td.vui-text-align--right {{ account.marketRevenueTy | numberWithCommas | formatMoney }}
             td.vui-text-align--right {{ account.spotVolumeTy }}
             td.vui-text-align--right {{ account.shareTy | decimalToPercent }}
-    account-detail-modal(:show.sync="showAccountDetailModal", :account='selectedAccount')
+    account-detail-modal(:show="showAccountDetailModal", :account='selectedAccount')
 </template>
 
 <script>
-  import store from '../../store'
-  import Alert from '../Alert.vue'
-  import PageHeading from '../PageHeading.vue'
-  import Panel from '../Panel.vue'
-  import AccountDetailModal from '../AccountDetailModal.vue'
+  import store from 'store'
+  import AccountDetailModal from 'components/AccountDetailModal'
 
   export default {
-    components: { Alert, PageHeading, Panel, AccountDetailModal },
+    components: { AccountDetailModal },
 
     data () {
       return {

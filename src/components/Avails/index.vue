@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .avails-view
     page-heading.vui-m-bottom--medium(title='Avails')
     panel.vui-m-bottom--large(title='View Selection')
@@ -85,12 +85,11 @@
                 span.vui-align-middle Last Updated
                 span.vui-align-middle
                   icon(name="sort", style="color: hsla(192, 9%, 89%, .5)")
-        tbody(v-for='(index, avail) in avails')
+        tbody(v-for='(avail, index) in avails')
           tr(:class='(index % 2 === 1) ? "vui-highlight" : ""')
             td
-              a(v-if='avail.versions', href='#', @click.prevent='toggleDetail(avail, $event)')
-                svg.vui-icon.vui-icon--x-small(style="width: 1rem; height: 1rem;margin-left: -1rem")
-                  use(xlink:href="/Content/assets/icons.svg#icon-{{ avail.expanded ? 'caret-lower-right' : 'caret-right'}}", xmlns:xlink='http://www.w3.org/1999/xlink')
+              a(v-if='avail.versions', href='#', @click.prevent='toggleDetail(avail)')
+                icon.vui-align-middle(:name="(avail.expanded) ? 'caret-lower-right' : 'caret-right'", style="margin-left: -1rem")
               a.vui-align-middle(@click.prevent='showAvail(avail.id)', href='#') {{avail.id}}
             td
               span.vui-badge(:class='avail.availStatus')  {{avail.availStatus}}
@@ -115,7 +114,7 @@
                     th Submitted by
                     th
                 tbody
-                  tr(v-for='version in avail.versions | orderBy "id" -1')
+                  tr(v-for='version in avail.versions')
                     td {{ version.id }}
                     td {{ avail.id == 65733 ? dateSubmitted : version.dateSubmitted }}
                     td {{ version.timeSubmitted }}
@@ -126,15 +125,10 @@
 
 <script>
   import $ from 'jquery'
-  import store from '../../store'
-  import Icon from '../Icon.vue'
-  import PageHeading from '../PageHeading.vue'
-  import Panel from '../Panel.vue'
   import moment from 'moment'
+  import store from 'store'
 
   export default {
-    components: {Icon, PageHeading, Panel},
-
     props: {
       availRoute: {
         type: String
@@ -159,20 +153,13 @@
         this.$http.get(store.apiHost + '/avails')
           .then((response) => {
             this.avails = response.data
-            this.$broadcast('availsRetrieved', response.data)
           }, (response) => {
             // error callback
           })
       },
 
-      toggleDetail (avail, event) {
-        let $element = $(event.target).closest('tr')
+      toggleDetail (avail) {
         avail.expanded = !avail.expanded
-        if (avail.expanded) {
-          // $element.css({ 'backgroundColor': '#cee5eb'})
-        } else {
-          // $element.css({ 'backgroundColor': '#ffffff'})
-        }
       },
 
       showAvail (avail, version = '') {
@@ -187,7 +174,7 @@
           routeInfo.query = { version: version }
         }
 
-        this.$route.router.go(routeInfo)
+        this.$router.push(routeInfo)
       }
     },
 

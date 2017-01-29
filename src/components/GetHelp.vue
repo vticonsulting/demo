@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .get-help
     .call
       h2 Call us

@@ -24,4 +24,14 @@ npm run e2e
 npm test
 ```
 
+## To create a ZIP file of the demo
+
+`npm run build`
+`rm -rf dist`
+`mv public dist`
+`cp db.json dist/.`
+`zip -r dist.zip dist -x "*.DS_Store"
+`mv dist.zip dist-YYYY-MM-DD-HHmm--localhost.zip`
+`mv dist-YYYY-MM-DD-HHmm--localhost.zip ~/Dropbox/.
+
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

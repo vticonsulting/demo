@@ -1,11 +1,11 @@
-<template lang="jade">
+<template lang="pug">
   orders(order-route='sellers.order')
 </template>
 
 <script>
-  import store from '../../../store'
+  import store from 'store'
 
-  import Orders from '../../../components/Orders/index.vue'
+  import Orders from 'components/Orders'
 
   export default {
     components: { Orders },

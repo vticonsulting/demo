@@ -1,5 +1,5 @@
-<template lang="jade">
-  modal(:show.sync='show', :on-close='close', size='large')
+<template lang="pug">
+  modal(:show='show', :on-close='close', size='large')
     .modal-header.vui-m-bottom--x-large
       h3.vui-text-heading--medium Order Details
     .modal-body
@@ -14,7 +14,7 @@
                 | CPP
                 sup 1
           tbody
-            tr(v-for='spot in spots', :class='($index % 2 === 0) ? "vui-highlight" : ""')
+            tr(v-for='spot in spots')
               td {{ spot.advertiser }}
               td.u-width-small {{ spot.intendedAirDate }}
               td.u-width-small.vui-text-align--right {{ spot.unitRate | numberWithCommas | formatMoney }}
@@ -25,11 +25,7 @@
 </template>
 
 <script>
-  import Modal from './Modal.vue'
-
   export default {
-    components: { Modal },
-
     props: ['show', 'program'],
 
     data () {

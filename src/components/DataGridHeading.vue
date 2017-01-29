@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .vui-grid.vui-grid--align-spread.vui-m-bottom--xx-small
     //- #viewFormatSelector
     //-   .vui-hint-parent.hint-parent-demo
@@ -17,11 +17,7 @@
 </template>
 
 <script>
-  import Icon from './Icon.vue'
-
   export default {
-    components: { Icon },
-
     props: [ 'heading' ],
 
     data () {

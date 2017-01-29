@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   #sportsAndSpecials.vui-p-around--x-large.vui-tabs--scoped__content.vui-show(role='tabpanel', v-show="activeTab == '#sportsAndSpecials'")
     h1.vui-text-heading--medium Sports / Specials
     h2.vui-text-heading--label.vui-m-bottom--medium As of {{ lastUpdated }}
@@ -33,14 +33,11 @@
 
 <script>
   import moment from 'moment'
-  import store from '../../../store'
-  import PageHeading from '../../../components/PageHeading.vue'
-  import DataGridHeading from '../../../components/DataGridHeading.vue'
-  import Panel from '../../../components/Panel.vue'
-  import SpotDetailModal from '../../../components/SpotDetailModal.vue'
+  import store from 'store'
+  import SpotDetailModal from 'components/SpotDetailModal'
 
   export default {
-    components: { PageHeading, DataGridHeading, Panel, SpotDetailModal },
+    components: { SpotDetailModal },
 
     data () {
       return {
@@ -101,7 +98,7 @@
       this.sharedState.activeApp = 'sellers'
     },
 
-    ready () {
+    mounted () {
       this.lastUpdated = moment().format('MMMM DD, YYYY')
     }
   }

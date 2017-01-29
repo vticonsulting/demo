@@ -1,5 +1,5 @@
-<template lang="jade">
-  modal(:show.sync='show', :on-close='close', size='large')
+<template lang="pug">
+  modal(:show='show', :on-close='close', size='large')
     .modal-header.vui-m-bottom--large
       h3.vui-text-heading--medium Transfer Open Preempt(s)
     .modal-body
@@ -8,7 +8,7 @@
         fieldset.vui-form-element
           label.vui-form-element__label(for='') Due back
           .vui-form-element__control
-            datepicker#fromDate(:value.sync='fromDate', name='fromDate')
+            datepicker#fromDate(:value='fromDate', name='fromDate')
         fieldset.vui-form-element
           label.vui-form-element__label(for='')
 
@@ -24,12 +24,7 @@
 </template>
 
 <script>
-  import Modal from './Modal.vue'
-  import Datepicker from './Datepicker2.vue'
-
   export default {
-    components: { Modal, Datepicker },
-
     props: ['show'],
 
     data () {

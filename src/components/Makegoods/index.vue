@@ -1,50 +1,48 @@
-<template lang="jade">
+<template lang="pug">
   .offer-dashboard
-
-    h1.vui-text-heading--large.vui-m-bottom--medium Makegood Dashboard
+    h1.vui-text-heading--large.vui-m-bottom--medium Makegood Dashboard ( Index )
 
     panel.vui-m-bottom--large(title='View Selection')
       form.vui-grid.vui-grid--vertical-align-end(action='')
         fieldset.vui-form-element
           label.vui-form-element__label Offer Status
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='offer-status', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Pending')
+            input.vui-input(type='text', name='offer-status', v-model='searchKey', ref='searchKey', placeholder='Pending')
 
         fieldset.vui-form-element
           label.vui-form-element__label Offer Type
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='offer-status', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='All Offer Types')
+            input.vui-input(type='text', name='offer-status', v-model='searchKey', ref='searchKey', placeholder='All Offer Types')
 
         fieldset.vui-form-element
           label.vui-form-element__label Agency
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='agency', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Agency')
-
+            input.vui-input(type='text', name='agency', v-model='searchKey', ref='searchKey', placeholder='Agency')
 
         fieldset.vui-form-element
           label.vui-form-element__label Advertiser
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='advertiser', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Advertiser')
+            input.vui-input(type='text', name='advertiser', v-model='searchKey', ref='searchKey', placeholder='Advertiser')
 
         fieldset.vui-form-element
           label.vui-form-element__label Campaign Name
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='campaign', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='Campaign')
+            input.vui-input(type='text', name='campaign', v-model='searchKey', ref='searchKey', placeholder='Campaign')
 
         fieldset.vui-form-element
           label.vui-form-element__label Agency Status
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='campaign', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='All Agency Statuses')
+            input.vui-input(type='text', name='campaign', v-model='searchKey', ref='searchKey', placeholder='All Agency Statuses')
 
         fieldset.vui-form-element
           label.vui-form-element__label Station Status
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='campaign', v-model='searchKey', debounce='500', v-el:search-key='', placeholder='All Station Statuses')
+            input.vui-input(type='text', name='campaign', v-model='searchKey', ref='searchKey', placeholder='All Station Statuses')
 
         fieldset.vui-form-element
           label.vui-form-element__label MG Transfers
           .vui-form-element__control.vui-m-right--small
-            input.vui-input(type='text', name='campaign', v-model='searchKey', debounce='500', v-el:search-key='', placeholder="All MG's & Transferred")
+            input.vui-input(type='text', name='campaign', v-model='searchKey', ref='searchKey', placeholder="All MG's & Transferred")
 
         fieldset.vui-form-element
           button.vui-button.vui-button--brand.vui-m-right--x-small(@click.prevent='') Search
@@ -80,7 +78,7 @@
             th Action
 
         tbody
-          tr(v-for='offer in offers', :class='[(offer.overdue) ? "overdue" : "", ($index % 2 === 0) ? "vui-highlight" : ""]')
+          tr(v-for='(offer, index) in offers', :class='[ offer.overdue ? "overdue" : "", (index % 2 === 0) ? "vui-highlight" : "" ]')
             td {{offer.advertiser}}
             td {{offer.agency}}
             td {{offer.cpe}}
@@ -102,34 +100,23 @@
             td.vui-text-align--center
               a(@click.prevent='', href='#')
                 icon(name='sticky-note-o')
-              //- {{offer.agencyNotes}}
 
             td {{offer.stationOrderNumber}}
             td
               span.vui-badge(:class='offer.acceptedByStation') {{offer.acceptedByStation}}
             td.vui-text-align--center
-              //- {{offer.stationNotes}}
               a(@click.prevent='', href='#')
                 icon(name='sticky-note-o')
             td.vui-text-align--center {{offer.stationAction}}
-
-
-
             td.vui-text-align--center
-              a(v-link='{ name: "sellers.order", params: { id: offer.orderId }}') {{offer.orderId}}
+              router-link(:to='{ name: "sellers.order", params: { id: offer.orderId }}') {{offer.orderId}}
 </template>
 
 <script>
-  import store from '../../store'
-  import Panel from '../Panel.vue'
-  import Icon from '../Icon.vue'
-  import Breadcrumbs from '../Breadcrumbs.vue'
-  import Datepicker from '../Datepicker2.vue'
   import moment from 'moment'
+  import store from 'store'
 
   export default {
-    components: { Panel, Icon, Breadcrumbs, Datepicker },
-
     props: {
       offerRoute: {
         type: String,
@@ -139,6 +126,7 @@
 
     data () {
       return {
+        searchKey: '',
         sharedState: store.state,
         fromDate: new Date('2016-04-25T12:24:00'),
         toDate: new Date('2016-06-05T12:24:00'),
@@ -177,7 +165,7 @@
           routeInfo.query = { version: version }
         }
 
-        this.$route.router.go(routeInfo)
+        this.$router.push(routeInfo)
       }
     },
 

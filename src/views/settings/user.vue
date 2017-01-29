@@ -1,8 +1,8 @@
-<template lang="jade">
+<template lang="pug">
   #user-settings.vui-p-around--x-large.vui-tabs--scoped__content(role='tabpanel', aria-labelledby='tab-scoped-1__item', v-show="activeTab == '#user-settings'")
 
-    validator(name='userSettingsValidation')
-      form(novalidate, @submit='onSubmit')
+    //- validator(name='userSettingsValidation')
+    form(novalidate, @submit='onSubmit')
 
         #resetPassword.vui-m-bottom--large
 
@@ -18,29 +18,29 @@
               fieldset.vui-form-element.vui-m-bottom--large
                 label.vui-form-element__label(for='password') Old Password
                 .vui-form-element__control
-                  input#password.vui-input(type='password', name='password', @keyup.191='onKeyup', detect-change='off', detect-blur='off', v-validate:password='{ required: true }')
+                  input#password.vui-input(type='password', name='password', @keyup.191='onKeyup', detect-change='off', detect-blur='off')
 
               // New Password Fieldset
               fieldset.vui-form-element.vui-m-bottom--large
                 label.vui-form-element__label(for='newpassword') New Password
                 .vui-form-element__control
-                  input#newpassword.vui-input(type='password', v-model='newpassword', name='newpassword', detect-change='off', detect-blur='off', v-validate:newpassword='{ required: true, minlength: 6 }')
+                  input#newpassword.vui-input(type='password', v-model='newpassword', name='newpassword', detect-change='off', detect-blur='off')
 
               // Confirm Password Fieldset
               fieldset.vui-form-element.vui-m-bottom--large
                 label.vui-form-element__label(for='confirmpassword') Confirm Password:
                 .vui-form-element__control
-                  input#confirmpassword.vui-input(type='password', name='confirmpassword', detect-change='off', detect-blur='off', v-validate:confirmpassword='{ required: { rule: true, message: "required your confirm password !!" }, confirm: { rule: true, message: "your confirm password is incorrect !!" }}')
+                  input#confirmpassword.vui-input(type='password', name='confirmpassword', detect-change='off', detect-blur='off')
 
             div.vui-size--12-of-12.vui-medium-size--1-of-2.vui-large-size--1-of-2
 
               h4.vui-text-heading--small.vui-m-bottom--medium Password Requirements
 
-              .errors(v-if="$userSettingsValidation.touched")
-                validator-errors(:validation="$userSettingsValidation")
+              .errors(v-if="hasErrors")
+                //- validator-errors(:validation="$userSettingsValidation")
 
               ul
-                li(v-if='$userSettingsValidation.password.minlength') At least 6 characters
+                //- li(v-if='$userSettingsValidation.password.minlength') At least 6 characters
                 li Contains uppercase and lowercase letters
                 li Contains a number
                 li Contains at least 1 special character (!@$)
@@ -66,7 +66,7 @@
               // Confirm Phone Number
               vui-input.vui-m-bottom--large(id='confirmPhoneNumber', label='Confirm Phone Number', type='tel')
 
-              button.vui-button.vui-button--brand.vui-m-right--x-small(:disabled="!$userSettingsValidation.valid") Submit
+              button.vui-button.vui-button--brand.vui-m-right--x-small Submit
               button.vui-button.vui-button--neutral Cancel
 
             div.vui-size--12-of-12.vui-medium-size--1-of-2.vui-large-size--1-of-2
@@ -75,18 +75,11 @@
 </template>
 
 <script>
-  import PageHeading from '../../components/PageHeading.vue'
-  import VuiInput from '../../components/Input.vue'
-
   export default {
-    components: {
-      PageHeading,
-      VuiInput
-    },
-
     data () {
       return {
         newpassword: '',
+        hasErrors: false,
         activeTab: '#user-settings'
       }
     },

@@ -1,249 +1,296 @@
-<template lang="jade">
-//- link(href='/Content/styles/buyers.css', rel='stylesheet')
-//- form(action='/Buyers/Campaign/SaveCampaign', data-ng-cloak='', data-ng-controller='EditCampaignController', data-ng-init='init()', method='post', name='displayForm', role='form')
-#avails-request
-  // Page Heading
-  page-heading.vui-m-bottom--medium(title='Request Avails')
-  .primary-information.vui-m-bottom--xx-large
-    .vui-grid.vui-grid--align-spread
-      div
-        h2.vui-text-heading--medium Primary Information
-        p.vui-m-bottom--large Fields marked <span class='required'>*</span> are required
-      .vui-text-align--right
-        button.vui-m-right--xx-small.vui-button.vui-button--brand(v-link='{ name: "buyers.avails.request.summary" }', :disabled='daypartMixTotal !== 100') Submit
-        button.vui-button.vui-button--neutral Cancel
-
-    .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
-      // Client
-      fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large.vui-m-bottom--large
-        label.vui-form-element__label(for='client') Client <span class='required'>*</span>
-        .vui-form-element__control
-          .vui-select_container
-            select#client.vui-select(v-model='selectedAdvertiser')
-              option
-              option(v-for='advertiser in advertisers', :value='advertiser.id') {{ advertiser.name }}
-
-      // Product
-      fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
-        label.vui-form-element__label(for='product') Product <span class='required'>*</span>
-        .vui-form-element__control
-          input#product.vui-input(type='text', :disabled='!selectedAdvertiser')
-
-      // Estimate
-      fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
-        label.vui-form-element__label(for='product') Estimate <span class='required'>*</span>
-        .vui-form-element__control
-          input#estimate.vui-input(type='text')
-
-    .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
-      // Campain Name
-      fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
-        label.vui-form-element__label(for='campaign-name') Campaign Name
-        .vui-form-element__control
-          input#campaign-name.vui-input(type='text')
-
-      // Gender
-      fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
-        legend.vui-form-element__label.vui-form-element__label--top Gender
-        .vui-form-element__control.vui-grid
-          label.vui-radio(for='male')
-            input#male(type='radio', name='gender')
-            span.vui-radio--faux
-            span.vui-form-element__label Male
-          label.vui-radio(for='female')
-            input#female(type='radio', name='gender')
-            span.vui-radio--faux
-            span.vui-form-element__label Female
-          label.vui-radio(for='persons')
-            input#persons(type='radio', name='gender', checked='true')
-            span.vui-radio--faux
-            span.vui-form-element__label Persons
-          label.vui-radio(for='household')
-            input#household(type='radio', name='gender')
-            span.vui-radio--faux
-            span.vui-form-element__label HH
-
-      // Age Range
-      fieldset.vui-form-element.vui-size--1-of-3.vui-m-bottom--xx-large.vui-p-right--large
-        label.vui-form-element__label(for='age-range') Age Range
-        .vui-form-element__control
-          #age-range
-
-    .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
-      // Market
-      fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
-        label.vui-form-element__label(for='market') Market <span class='required'>*</span>
-        .vui-form-element__control
-          .vui-select_container
-            select#markets.vui-select(v-model='selectedMarket')
-              option(value='none') Select Market
-              option(value='atl') Atlanta
-              option(value='bos') Boston
-              option(value='was') Washington
-
-      // Stations
-      fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
-        label.vui-form-element__label Stations <span class='required'>*</span>
-        #stations(style='width: 450px;height: 10.75rem; overflow-y: scroll; border: 1px solid #d8dde6')
-          template(v-for='market in markets')
-            checkbox-list(v-if='selectedMarket == market.id && market.id !== "none"', :items='market.stations')
-
-      // Spot Length
-      fieldset.vui-form-element.vui-size--1-of-3
-        legend.vui-form-element__label.vui-form-element__label--top Spot Length <span class='required'>*</span>
-        .vui-grid
-          .vui-form-element
-            label.vui-checkbox(for='fiveSeconds')
-              input#fiveSeconds(name='spotLengths', type='checkbox', :disabled='true')
-              span.vui-checkbox--faux
-              span.vui-form-element__label 5S
-          .vui-form-element
-            label.vui-checkbox(for='tenSeconds')
-              input#tenSeconds(name='spotLengths', type='checkbox', :disabled='true')
-              span.vui-checkbox--faux
-              span.vui-form-element__label 10S
-          .vui-form-element
-            label.vui-checkbox(for='fifteenSeconds')
-              input#fifteenSeconds(name='spotLengths', type='checkbox', :disabled='false')
-              span.vui-checkbox--faux
-              span.vui-form-element__label 15S
-          .vui-form-element
-            label.vui-checkbox(for='twentySeconds')
-              input#twentySeconds(name='spotLengths', type='checkbox', :disabled='true')
-              span.vui-checkbox--faux
-              span.vui-form-element__label 20S
-          .vui-form-element
-            label.vui-checkbox(for='thirtySeconds')
-              input#thirtySeconds(name='spotLengths', type='checkbox', :disabled='false', checked='true')
-              span.vui-checkbox--faux
-              span.vui-form-element__label 30S
-          .vui-form-element
-            label.vui-checkbox(for='fortyFiveSeconds')
-              input#fortyFiveSeconds(name='spotLengths', type='checkbox', :disabled='true')
-              span.vui-checkbox--faux
-              span.vui-form-element__label 45S
-          .vui-form-element
-            label.vui-checkbox(for='sixtySeconds')
-              input#sixtySeconds(name='spotLengths', type='checkbox', :disabled='true')
-              span.vui-checkbox--faux
-              span.vui-form-element__label 60S
-          .vui-form-element
-            label.vui-checkbox(for='seventyFiveSeconds')
-              input#seventyFiveSeconds(name='spotLengths', type='checkbox', :disabled='true')
-              span.vui-checkbox--faux
-              span.vui-form-element__label 75S
-          .vui-form-element
-            label.vui-checkbox(for='ninetySeconds')
-              input#ninetySeconds(name='spotLengths', type='checkbox', :disabled='true')
-              span.vui-checkbox--faux
-              span.vui-form-element__label 90S
-          .vui-form-element
-            label.vui-checkbox(for='oneHundredTwentySeconds')
-              input#oneHundredTwentySeconds(name='spotLengths', type='checkbox', :disabled='true')
-              span.vui-checkbox--faux
-              span.vui-form-element__label 120S
-
-  .vui-grid.vui-grid--align-spread
-    // Dayparts
-    .dayparts.vui-m-bottom--large.vui-size--2-of-5.vui-p-right--large
-      h2.vui-text-heading--medium.vui-m-bottom--medium Parameters <span class='required'>*</span>
-
-      .vui-box(style='background-color: #ccc')
-        form.vui-form--inline(action='')
-          label.vui-radio(for='cpp')
-            input#cpp.vui-m-right--x-small(type='radio', name='when', checked='true')
-            span.vui-radio--faux.vui-m-right--xx-small
-            span.vui-form-element__label CPP
-          label.vui-radio.vui-m-right--large(for='cpm')
-            input#cpm(type='radio', name='when')
-            span.vui-radio--faux.vui-m-right--xx-small
-            span.vui-form-element__label CPM
-          .vui-form-element
-            label.vui-form-element__label(for='grossBudget')
-              | Gross Budget <span class='required'>*</span>
-            .vui-form-element__control
-              input#grossBudget.vui-input(v-model='grossBudget | currencyDisplay', style='width: 6rem; text-align: right')
-          .vui-form-element
-            label.vui-form-element__label(for='grpGoal') GRP Goal
-            .vui-form-element__control
-              input#grpGoal.vui-input(value='0', style='width: 6rem; text-align: right')
-
-      table.vui-table.vui-no-row-hover
-        thead
-          tr
-            th Daypart
-            th.u-width-medium Target <br>CPP <span class='required'>*</span>
-            th.u-width-medium Daypart <br>Mix %<span class='required'>*</span>
-            th.u-width-medium Target <br>GRP
-        tfoot
-          tr
-            td.vui-text-align--right<b>Total</b>
-            td
-            td.vui-text-align--right <b>{{ (daypartMixTotal > 0) ? daypartMixTotal : '' }}</b>
-            td
-        tbody
-          tr(v-for='(index, daypart) in dayparts')
-            td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""') {{ daypart.name }}
-            td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""')
-              input.vui-input.vui-text-align--right(v-model='daypart.targetCpp', number)
-            td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""')
-              input.vui-input.vui-text-align--right(v-model='daypart.daypartMix', number)
-            td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""')
-              input.vui-input.vui-text-align--right(v-model='daypart.targetGrp', number)
-
-    // Flight Days
-    .flight-days.vui-m-bottom--large.vui-size--3-of-5
+<template lang="pug">
+  #avails-request
+    // Page Heading
+    page-heading.vui-m-bottom--medium(title='Request Avails')
+    .primary-information.vui-m-bottom--xx-large
       .vui-grid.vui-grid--align-spread
-        h2.vui-text-heading--medium.vui-m-bottom--medium Flight Dates <span class='required'>*</span>
+        div
+          h2.vui-text-heading--medium Primary Information
+          p.vui-m-bottom--large Fields marked <span class='required'>*</span> are required
+        .vui-text-align--right
+          button.vui-m-right--xx-small.vui-button.vui-button--brand(router-link='{ name: "buyers.avails.request.summary" }', :disabled='daypartMixTotal !== 100') Submit
+          button.vui-button.vui-button--neutral Cancel
 
-        .vui-grid.vui-grid--align-end.vui-grid--vertical-align-center
-          .vui-grid.vui-align-middle.vui-m-right--medium
-            span.vui-align-middle.vui-table-legend.vui-table-legend--selected.vui-m-right--x-small
-            span.vui-align-middle Selected
-          .vui-grid.vui-align-middle
-            span.vui-align-middle.vui-table-legend.vui-table-legend--unselected.vui-m-right--x-small
-            span.vui-align-middle Unselected
+      .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
+        // Client
+        fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large.vui-m-bottom--large
+          label.vui-form-element__label(for='client') Client <span class='required'>*</span>
+          .vui-form-element__control
+            .vui-select_container
+              select#client.vui-select(v-model='selectedAdvertiser')
+                option
+                option(v-for='advertiser in advertisers', :value='advertiser.id') {{ advertiser.name }}
 
-      .vui-box.vui-m-bottom--xx-small(style='background-color: #ccc')
-        form.vui-form--inline(action='')
+        // Product
+        fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
+          label.vui-form-element__label(for='product') Product <span class='required'>*</span>
+          .vui-form-element__control
+            input#product.vui-input(type='text', :disabled='!selectedAdvertiser')
 
-          .vui-form-element
-            label.vui-form-element__label(for='') Start <span class='required'>*</span>
-            .vui-form-element__control
-              datepicker#startDate(:value.sync='startDate', name='startDate')
+        // Estimate
+        fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
+          label.vui-form-element__label(for='product') Estimate <span class='required'>*</span>
+          .vui-form-element__control
+            input#estimate.vui-input(type='text')
 
-          .vui-form-element
-            label.vui-form-element__label End <span class='required'>*</span>
-            .vui-form-element__control
-              datepicker#endDate(:value.sync='endDate', name='endDate')
+      .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
+        // Campain Name
+        fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
+          label.vui-form-element__label(for='campaign-name') Campaign Name
+          .vui-form-element__control
+            input#campaign-name.vui-input(type='text')
 
-          button.vui-button.vui-button--neutral(@click.prevent='selectOrDeselectAllWeeks') {{ selectButtonText }} all weeks
-          //- button.vui-button.vui-button--neutral(@click.prevent='selectOrDeselectAllWeekends') {{ selectButtonText }} all weekends
-          //- button.vui-button.vui-button--neutral(@click.prevent='deselectAllWeeks') Deselect all weeks
-      .vui-box.vui-grid.vui-grid--align-spread(style='background-color: #ccc')
-        a(href='#', @click.prevent='goTo(-1)')
-          icon.vui-align-middle.vui-m-right--xx-small(name='arrow-circle-left')
-          span.vui-align-middle Previous
-        a(href='#', @click.prevent='goTo(1)')
-          span.vui-align-middle.vui-m-right--xx-small Next
-          icon.vui-align-middle(name='arrow-circle-right')
+        // Gender
+        fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
+          legend.vui-form-element__label.vui-form-element__label--top Gender
+          .vui-form-element__control.vui-grid
+            label.vui-radio(for='male')
+              input#male(type='radio', name='gender')
+              span.vui-radio--faux
+              span.vui-form-element__label Male
+            label.vui-radio(for='female')
+              input#female(type='radio', name='gender')
+              span.vui-radio--faux
+              span.vui-form-element__label Female
+            label.vui-radio(for='persons')
+              input#persons(type='radio', name='gender', checked='true')
+              span.vui-radio--faux
+              span.vui-form-element__label Persons
+            label.vui-radio(for='household')
+              input#household(type='radio', name='gender')
+              span.vui-radio--faux
+              span.vui-form-element__label HH
 
-      table#flight-days.vui-table.vui-table--calendar.vui-m-bottom--large.vui-no-row-hover
-        thead
+        // Age Range
+        fieldset.vui-form-element.vui-size--1-of-3.vui-m-bottom--xx-large.vui-p-right--large
+          label.vui-form-element__label(for='age-range') Age Range
+          .vui-form-element__control
+            #age-range
+
+      .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
+        // Market
+        fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
+          label.vui-form-element__label(for='market') Market <span class='required'>*</span>
+          .vui-form-element__control
+            .vui-select_container
+              select#markets.vui-select(v-model='selectedMarket')
+                option(value='none') Select Market
+                option(value='atl') Atlanta
+                option(value='bos') Boston
+                option(value='was') Washington
+
+        // Stations
+        fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
+          label.vui-form-element__label Stations <span class='required'>*</span>
+          #stations(style='width: 450px;height: 10.75rem; overflow-y: scroll; border: 1px solid #d8dde6')
+            template(v-for='market in markets')
+              checkbox-list(v-if='selectedMarket == market.id && market.id !== "none"', :items='market.stations')
+
+        // Spot Length
+        fieldset.vui-form-element.vui-size--1-of-3
+          legend.vui-form-element__label.vui-form-element__label--top Spot Length <span class='required'>*</span>
+          .vui-grid
+            .vui-form-element
+              label.vui-checkbox(for='fiveSeconds')
+                input#fiveSeconds(name='spotLengths', type='checkbox', :disabled='true')
+                span.vui-checkbox--faux
+                span.vui-form-element__label 5S
+            .vui-form-element
+              label.vui-checkbox(for='tenSeconds')
+                input#tenSeconds(name='spotLengths', type='checkbox', :disabled='true')
+                span.vui-checkbox--faux
+                span.vui-form-element__label 10S
+            .vui-form-element
+              label.vui-checkbox(for='fifteenSeconds')
+                input#fifteenSeconds(name='spotLengths', type='checkbox', :disabled='false')
+                span.vui-checkbox--faux
+                span.vui-form-element__label 15S
+            .vui-form-element
+              label.vui-checkbox(for='twentySeconds')
+                input#twentySeconds(name='spotLengths', type='checkbox', :disabled='true')
+                span.vui-checkbox--faux
+                span.vui-form-element__label 20S
+            .vui-form-element
+              label.vui-checkbox(for='thirtySeconds')
+                input#thirtySeconds(name='spotLengths', type='checkbox', :disabled='false', checked='true')
+                span.vui-checkbox--faux
+                span.vui-form-element__label 30S
+            .vui-form-element
+              label.vui-checkbox(for='fortyFiveSeconds')
+                input#fortyFiveSeconds(name='spotLengths', type='checkbox', :disabled='true')
+                span.vui-checkbox--faux
+                span.vui-form-element__label 45S
+            .vui-form-element
+              label.vui-checkbox(for='sixtySeconds')
+                input#sixtySeconds(name='spotLengths', type='checkbox', :disabled='true')
+                span.vui-checkbox--faux
+                span.vui-form-element__label 60S
+            .vui-form-element
+              label.vui-checkbox(for='seventyFiveSeconds')
+                input#seventyFiveSeconds(name='spotLengths', type='checkbox', :disabled='true')
+                span.vui-checkbox--faux
+                span.vui-form-element__label 75S
+            .vui-form-element
+              label.vui-checkbox(for='ninetySeconds')
+                input#ninetySeconds(name='spotLengths', type='checkbox', :disabled='true')
+                span.vui-checkbox--faux
+                span.vui-form-element__label 90S
+            .vui-form-element
+              label.vui-checkbox(for='oneHundredTwentySeconds')
+                input#oneHundredTwentySeconds(name='spotLengths', type='checkbox', :disabled='true')
+                span.vui-checkbox--faux
+                span.vui-form-element__label 120S
+
+    .vui-grid.vui-grid--align-spread
+      // Dayparts
+      .dayparts.vui-m-bottom--large.vui-size--2-of-5.vui-p-right--large
+        h2.vui-text-heading--medium.vui-m-bottom--medium Parameters <span class='required'>*</span>
+
+        .vui-box(style='background-color: #ccc')
+          form.vui-form--inline(action='')
+            label.vui-radio(for='cpp')
+              input#cpp.vui-m-right--x-small(type='radio', name='when', checked='true')
+              span.vui-radio--faux.vui-m-right--xx-small
+              span.vui-form-element__label CPP
+            label.vui-radio.vui-m-right--large(for='cpm')
+              input#cpm(type='radio', name='when')
+              span.vui-radio--faux.vui-m-right--xx-small
+              span.vui-form-element__label CPM
+            .vui-form-element
+              label.vui-form-element__label(for='grossBudget')
+                | Gross Budget <span class='required'>*</span>
+              .vui-form-element__control
+                input#grossBudget.vui-input(v-model='grossBudget', style='width: 6rem; text-align: right')
+            .vui-form-element
+              label.vui-form-element__label(for='grpGoal') GRP Goal
+              .vui-form-element__control
+                input#grpGoal.vui-input(value='0', style='width: 6rem; text-align: right')
+
+        table.vui-table.vui-no-row-hover
+          thead
+            tr
+              th Daypart
+              th.u-width-medium Target <br>CPP <span class='required'>*</span>
+              th.u-width-medium Daypart <br>Mix %<span class='required'>*</span>
+              th.u-width-medium Target <br>GRP
+          tfoot
+            tr
+              td.vui-text-align--right <b>Total</b>
+              td
+              td.vui-text-align--right <b>{{ (daypartMixTotal > 0) ? daypartMixTotal : '' }}</b>
+              td
+          tbody
+            tr(v-for='(daypart, index) in dayparts')
+              td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""') {{ daypart.name }}
+              td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""')
+                input.vui-input.vui-text-align--right(v-model.number='daypart.targetCpp')
+              td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""')
+                input.vui-input.vui-text-align--right(v-model.number='daypart.daypartMix')
+              td(:class='(foundDaypart(daypart.name) || daypart.targetCpp || daypart.daypartMix || daypart.targetGrp ) ? "vui-selected" : ""')
+                input.vui-input.vui-text-align--right(v-model.number='daypart.targetGrp')
+
+      // Flight Days
+      .flight-days.vui-m-bottom--large.vui-size--3-of-5
+        .vui-grid.vui-grid--align-spread
+          h2.vui-text-heading--medium.vui-m-bottom--medium Flight Dates <span class='required'>*</span>
+
+          .vui-grid.vui-grid--align-end.vui-grid--vertical-align-center
+            .vui-grid.vui-align-middle.vui-m-right--medium
+              span.vui-align-middle.vui-table-legend.vui-table-legend--selected.vui-m-right--x-small
+              span.vui-align-middle Selected
+            .vui-grid.vui-align-middle
+              span.vui-align-middle.vui-table-legend.vui-table-legend--unselected.vui-m-right--x-small
+              span.vui-align-middle Unselected
+
+        .vui-box.vui-m-bottom--xx-small(style='background-color: #ccc')
+          form.vui-form--inline(action='')
+
+            .vui-form-element
+              label.vui-form-element__label(for='') Start <span class='required'>*</span>
+              .vui-form-element__control
+                datepicker#startDate(:value='startDate', name='startDate')
+
+            .vui-form-element
+              label.vui-form-element__label End <span class='required'>*</span>
+              .vui-form-element__control
+                datepicker#endDate(:value='endDate', name='endDate')
+
+            button.vui-button.vui-button--neutral(@click.prevent='selectOrDeselectAllWeeks') {{ selectButtonText }} all weeks
+            //- button.vui-button.vui-button--neutral(@click.prevent='selectOrDeselectAllWeekends') {{ selectButtonText }} all weekends
+            //- button.vui-button.vui-button--neutral(@click.prevent='deselectAllWeeks') Deselect all weeks
+        .vui-box.vui-grid.vui-grid--align-spread(style='background-color: #ccc')
+          a(href='#', @click.prevent='goTo(-1)')
+            icon.vui-align-middle.vui-m-right--xx-small(name='arrow-circle-left')
+            span.vui-align-middle Previous
+          a(href='#', @click.prevent='goTo(1)')
+            span.vui-align-middle.vui-m-right--xx-small Next
+            icon.vui-align-middle(name='arrow-circle-right')
+
+        table#flight-days.vui-table.vui-table--calendar.vui-m-bottom--large.vui-no-row-hover
+          thead
+            tr
+              th(rowspan='2') Week
+              th.vui-text-align--center(@click='monthClick', colspan='7') February 2017
+            tr
+              th.vui-text-align--center.monday(@click='dayOfWeekHeaderRowClick("monday")', style='padding-left: 0.5rem') Mon
+              th.vui-text-align--center.tuesday(@click='dayOfWeekHeaderRowClick("tuesday")') Tue
+              th.vui-text-align--center.wednesday(@click='dayOfWeekHeaderRowClick("wednesday")') Wed
+              th.vui-text-align--center.thursdey(@click='dayOfWeekHeaderRowClick("thursday")') Thu
+              th.vui-text-align--center.friday(@click='dayOfWeekHeaderRowClick("friday")') Fri
+              th.vui-text-align--center.saturday(@click='dayOfWeekHeaderRowClick("saturday")') Sat
+              th.vui-text-align--center.sunday(@click='dayOfWeekHeaderRowClick("sunday")') Sun
+          tbody
+            tr
+              td(@click='weekNumberClick') Week 1
+              td.vui-text-align--center.monday(@click='dayOfWeekClick') 13
+              td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 14
+              td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 15
+              td.vui-text-align--center.thursday(@click='dayOfWeekClick') 16
+              td.vui-text-align--center.friday(@click='dayOfWeekClick') 17
+              td.vui-text-align--center.saturday(@click='dayOfWeekClick') 18
+              td.vui-text-align--center.sunday(@click='dayOfWeekClick') 19
+            tr
+              td(@click='weekNumberClick') Week 2
+              td.vui-text-align--center.monday(@click='dayOfWeekClick') 20
+              td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 21
+              td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 22
+              td.vui-text-align--center.thursday(@click='dayOfWeekClick') 23
+              td.vui-text-align--center.friday(@click='dayOfWeekClick') 24
+              td.vui-text-align--center.saturday(@click='dayOfWeekClick') 25
+              td.vui-text-align--center.sunday(@click='dayOfWeekClick') 26
+          thead
+            tr
+              th(rowspan='2') Week
+              th.vui-text-align--center(@click='monthClick', colspan='7') March 2017
+            tr
+              th.vui-text-align--center.monday(@click='dayOfWeekHeaderRowClick()', style='padding-left: 0.5rem') Mon
+              th.vui-text-align--center.tuesday(@click='dayOfWeekHeaderRowClick()') Tue
+              th.vui-text-align--center.wednesday(@click='dayOfWeekHeaderRowClick()') Wed
+              th.vui-text-align--center.thursday(@click='dayOfWeekHeaderRowClick()') Thu
+              th.vui-text-align--center.friday(@click='dayOfWeekHeaderRowClick()') Fri
+              th.vui-text-align--center.saturday(@click='dayOfWeekHeaderRowClick()') Sat
+              th.vui-text-align--center.sunday(@click='dayOfWeekHeaderRowClick()') Sun
+          tbody
+            tr
+              td(@click='weekNumberClick') Week 3
+              td.vui-text-align--center.monday(@click='dayOfWeekClick') 27
+              td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 28
+              td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 01
+              td.vui-text-align--center.thursday(@click='dayOfWeekClick') 02
+              td.vui-text-align--center.friday(@click='dayOfWeekClick') 03
+              td.vui-text-align--center.saturday(@click='dayOfWeekClick') 04
+              td.vui-text-align--center.sunday(@click='dayOfWeekClick') 05
+            tr
+              td(@click='weekNumberClick') Week 4
+              td.vui-text-align--center.monday(@click='dayOfWeekClick') 06
+              td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 07
+              td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 08
+              td.vui-text-align--center.thursday(@click='dayOfWeekClick') 09
+              td.vui-text-align--center.friday(@click='dayOfWeekClick') 10
+              td.vui-text-align--center.saturday(@click='dayOfWeekClick') 11
+              td.vui-text-align--center.sunday(@click='dayOfWeekClick') 12
           tr
-            th(rowspan='2') Week
-            th.vui-text-align--center(@click='monthClick($event)', colspan='7') February 2017
-          tr
-            th.vui-text-align--center.monday(@click='dayOfWeekHeaderRowClick("monday")', style='padding-left: 0.5rem') Mon
-            th.vui-text-align--center.tuesday(@click='dayOfWeekHeaderRowClick("tuesday")') Tue
-            th.vui-text-align--center.wednesday(@click='dayOfWeekHeaderRowClick("wednesday")') Wed
-            th.vui-text-align--center.thursdey(@click='dayOfWeekHeaderRowClick("thursday")') Thu
-            th.vui-text-align--center.friday(@click='dayOfWeekHeaderRowClick("friday")') Fri
-            th.vui-text-align--center.saturday(@click='dayOfWeekHeaderRowClick("saturday")') Sat
-            th.vui-text-align--center.sunday(@click='dayOfWeekHeaderRowClick("sunday")') Sun
-        tbody
-          tr
-            td(@click='weekNumberClick') Week 1
+            td(@click='weekNumberClick') Week 5
             td.vui-text-align--center.monday(@click='dayOfWeekClick') 13
             td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 14
             td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 15
@@ -252,7 +299,7 @@
             td.vui-text-align--center.saturday(@click='dayOfWeekClick') 18
             td.vui-text-align--center.sunday(@click='dayOfWeekClick') 19
           tr
-            td(@click='weekNumberClick') Week 2
+            td(@click='weekNumberClick') Week 6
             td.vui-text-align--center.monday(@click='dayOfWeekClick') 20
             td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 21
             td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 22
@@ -260,87 +307,21 @@
             td.vui-text-align--center.friday(@click='dayOfWeekClick') 24
             td.vui-text-align--center.saturday(@click='dayOfWeekClick') 25
             td.vui-text-align--center.sunday(@click='dayOfWeekClick') 26
-        thead
-          tr
-            th(rowspan='2') Week
-            th.vui-text-align--center(@click='monthClick($event)', colspan='7') March 2017
-          tr
-            th.vui-text-align--center.monday(@click='dayOfWeekHeaderRowClick()', style='padding-left: 0.5rem') Mon
-            th.vui-text-align--center.tuesday(@click='dayOfWeekHeaderRowClick()') Tue
-            th.vui-text-align--center.wednesday(@click='dayOfWeekHeaderRowClick()') Wed
-            th.vui-text-align--center.thursday(@click='dayOfWeekHeaderRowClick()') Thu
-            th.vui-text-align--center.friday(@click='dayOfWeekHeaderRowClick()') Fri
-            th.vui-text-align--center.saturday(@click='dayOfWeekHeaderRowClick()') Sat
-            th.vui-text-align--center.sunday(@click='dayOfWeekHeaderRowClick()') Sun
-        tbody
-          tr
-            td(@click='weekNumberClick') Week 3
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 27
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 28
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 01
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 02
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 03
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 04
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 05
-          tr
-            td(@click='weekNumberClick') Week 4
-            td.vui-text-align--center.monday(@click='dayOfWeekClick') 06
-            td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 07
-            td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 08
-            td.vui-text-align--center.thursday(@click='dayOfWeekClick') 09
-            td.vui-text-align--center.friday(@click='dayOfWeekClick') 10
-            td.vui-text-align--center.saturday(@click='dayOfWeekClick') 11
-            td.vui-text-align--center.sunday(@click='dayOfWeekClick') 12
-        tr
-          td(@click='weekNumberClick') Week 5
-          td.vui-text-align--center.monday(@click='dayOfWeekClick') 13
-          td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 14
-          td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 15
-          td.vui-text-align--center.thursday(@click='dayOfWeekClick') 16
-          td.vui-text-align--center.friday(@click='dayOfWeekClick') 17
-          td.vui-text-align--center.saturday(@click='dayOfWeekClick') 18
-          td.vui-text-align--center.sunday(@click='dayOfWeekClick') 19
-        tr
-          td(@click='weekNumberClick') Week 6
-          td.vui-text-align--center.monday(@click='dayOfWeekClick') 20
-          td.vui-text-align--center.tuesday(@click='dayOfWeekClick') 21
-          td.vui-text-align--center.wednesday(@click='dayOfWeekClick') 22
-          td.vui-text-align--center.thursday(@click='dayOfWeekClick') 23
-          td.vui-text-align--center.friday(@click='dayOfWeekClick') 24
-          td.vui-text-align--center.saturday(@click='dayOfWeekClick') 25
-          td.vui-text-align--center.sunday(@click='dayOfWeekClick') 26
-      .vui-text-align--right
-        button.vui-m-right--xx-small.vui-button.vui-button--brand(v-link='{ name: "buyers.avails.request.summary" }', :disabled='daypartMixTotal !== 100') Submit
-        button.vui-button.vui-button--neutral Cancel
+        .vui-text-align--right
+          router-link.vui-m-right--xx-small.vui-button.vui-button--brand(tag='button', :to='{ name: "buyers.avails.request.summary" }', :disabled='daypartMixTotal !== 100') Submit
+          button.vui-button.vui-button--neutral Cancel
 </template>
 
 <script>
   import $ from 'jquery'
-  import store from '../../../store'
-  import Button from '../../../components/Button.vue'
-  import Datepicker from '../../../components/Datepicker2.vue'
-  import Icon from '../../../components/Icon.vue'
-  import MarketsTypeahead from '../../../components/MarketsTypeahead.vue'
-  import PageHeading from '../../../components/PageHeading.vue'
-  import CheckboxList from '../../../components/CheckboxList.vue'
-  import Typeahead from '../../../components/Typeahead.vue'
+  import store from 'store'
 
   export default {
-    components: {
-      Button,
-      Datepicker,
-      Icon,
-      MarketsTypeahead,
-      PageHeading,
-      CheckboxList,
-      Typeahead
-    },
-
     created () {
       this.sharedState.activeApp = 'buyers'
     },
 
-    ready () {
+    mounted () {
       let ageRange = document.getElementById('age-range')
 
       noUiSlider.create(ageRange, {

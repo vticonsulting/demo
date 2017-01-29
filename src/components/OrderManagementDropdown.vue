@@ -1,19 +1,31 @@
-<template lang="jade">
-  .vui-dropdown-trigger.vui-dropdown-trigger--site-nav.vui-dropdown-trigger--click(:class='{ "vui-is-open": show, dropdown: !dropup, dropup: dropup}', aria-expanded='{{show}}')
-    a(aria-live='assertive', aria-expanded='{{show}}', aria-haspopup='true', @click.prevent='toggle($event)', :disabled='disabled', v-link-active, style='margin-right: 0')
+<template lang="pug">
+  .vui-dropdown-trigger.vui-dropdown-trigger--site-nav.vui-dropdown-trigger--click.dropdown(@closeDropdowns='show = false', :class='{ "vui-is-open": show}', :aria-expanded='show')
+    a(aria-live='assertive', :aria-expanded='show', aria-haspopup='true', @click.prevent='toggle', :disabled='disabled', style='margin-right: 0')
       span.vui-m-right--xx-small(style='color: white') {{ text }}
       icon(name='caret-down', style='color: #4296b4; margin-right: 0')
     .vui-dropdown.vui-dropdown--site-nav
       ul.dropdown-menu.dropdown__list.vui-dropdown__list(role='menu', v-if="sharedState.activeApp == 'sellers'")
         li.dropdown-item.vui-dropdown__item
           a(@click.prevent='clicked("sellers.order-management")', role='menuitem')
-            p.vui-truncate Order Dashboard
+            p.vui-truncate Pending Orders
         li.dropdown-item.vui-dropdown__item
           a(@click.prevent='clicked("sellers.makegoods")', role='menuitem')
-            p.vui-truncate Makegood Dashboard
+            p.vui-truncate Pending Makegoods
         li.dropdown-item.vui-dropdown__item
-          a(@click.prevent='clicked("sellers.orders")', role='menuitem')
-            p.vui-truncate Order Reporting
+          a(@click.prevent='clicked("sellers.makegoods.create")', role='menuitem')
+            p.vui-truncate Makegood -- Create
+        li.dropdown-item.vui-dropdown__item
+          a(@click.prevent='clicked("sellers.makegoods.details")', role='menuitem')
+            p.vui-truncate Makegood -- Details (Show)
+        li.dropdown-item.vui-dropdown__item
+          a(@click.prevent='clicked("sellers.makegoods.add-bonus-offer")', role='menuitem')
+            p.vui-truncate Add Bonus Offer
+        li.dropdown-item.vui-dropdown__item
+          a(@click.prevent='clicked("sellers.open-preempts")', role='menuitem')
+            p.vui-truncate Open Pre-Empts
+        li.dropdown-item.vui-dropdown__item
+          a(@click.prevent='clicked("sellers.active-orders")', role='menuitem')
+            p.vui-truncate Order Search
 
       ul.dropdown-menu.dropdown__list.vui-dropdown__list(role='menu', v-if="sharedState.activeApp == 'reps'")
         li.dropdown-item.vui-dropdown__item
@@ -28,12 +40,11 @@
 </template>
 
 <script>
-  import store from '../store'
-  import Icon from './Icon.vue'
+  import { eventBus } from '../main'
+
+  import store from 'store'
 
   export default {
-    components: {Icon},
-
     props: {
       text: {
         type: String,
@@ -56,20 +67,27 @@
     },
 
     methods: {
+      hideDropdown (options) {
+        // this.show = false
+        // console.log(options)
+      },
+
       toggle (e) {
-        this.$root.$broadcast('menu:toggle')
         this.show = !this.show
         if (this.show) {
-          this.$dispatch('shown::dropdown')
+          eventBus.$emit('hide-dropdowns', {
+            show: this.show
+          })
+          this.show = true
           e.stopPropagation()
         } else {
-          this.$dispatch('hidden::dropdown')
+          this.show = false
         }
       },
 
       clicked (route) {
         this.show = false
-        this.$route.router.go({
+        this.$router.push({
           name: route,
           activeClass: 'vui-active',
           exact: true
@@ -77,10 +95,8 @@
       }
     },
 
-    events: {
-      'hide::dropdown' () {
-        this.show = false
-      }
+    created () {
+      eventBus.$on('hide-dropdowns', this.hideDropdown)
     }
   }
 </script>

@@ -1,7 +1,7 @@
-<template lang="jade">
-  td {{status}}
+<template lang="pug">
+  td {{ status }}
   td
-    span(:style="{ width: decimalToPercent(percentComplete), backgroundColor: setBackgroundColor(percentComplete) }") {{formattedPercentComplete}}
+    span(:style="{ width: decimalToPercent(percentComplete), backgroundColor: setBackgroundColor(percentComplete) }") {{ formattedPercentComplete }}
 </template>
 
 <script>

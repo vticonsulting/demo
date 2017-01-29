@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   fieldset.vui-form-element
     label.vui-form-element__label(v-if='!hideLabel') {{ label }}
     .vui-form-element__control.vui-form-element__control--with-addon

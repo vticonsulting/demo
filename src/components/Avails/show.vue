@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .avails-show-view
     .vui-grid.vui-grid--align-spread.vui-m-bottom--large
       div.vui-m-bottom--medium
@@ -61,13 +61,13 @@
           .vui-form-element__control
             span(v-if='!editing') {{ expirationDate | formatDate }}
             //- input.vui-input(type='text', v-if='editing', v-model='avail.dueDate')
-            datepicker#expirationDate(:value.sync='expirationDate', name='expirationDate', v-if='editing')
+            datepicker#expirationDate(:value='expirationDate', name='expirationDate', v-if='editing')
 
         fieldset.vui-form-element.vui-m-bottom--small(:class='error')
           label.vui-form-element__label(for='') Gross Market Budget
           .vui-form-element__control
             span(v-if='!editing') {{ avail.grossMarketBudget | formatMoney | numberWithCommas }}
-            input.vui-input(v-if='editing', v-model='avail.grossMarketBudget | currencyDisplay')
+            input.vui-input(v-if='editing', v-model='avail.grossMarketBudget')
             span#errorSample1.vui-form-element__help(v-if='error') This field is required
 
         fieldset.vui-form-element.vui-m-bottom--small
@@ -86,7 +86,7 @@
           label.vui-form-element__label(for='') Due Date
           .vui-form-element__control
             span(v-if='!editing') {{ dueDate | formatDate }}
-            datepicker#dueDate(:value.sync='dueDate', name='dueDate', v-if='editing')
+            datepicker#dueDate(:value='dueDate', name='dueDate', v-if='editing')
       .vui-col--padded-medium(style='width:50%')
         fieldset.vui-form-element.vui-m-bottom--small
           label.vui-form-element__label.vui-m-bottom--xx-small(for='')
@@ -233,38 +233,21 @@
       .buttons
         button.vui-button.vui-button.vui-button--secondary.vui-m-right--x-small(@click="showReleaseToBuyerModal = true") Release to Buyer
         button.vui-button.vui-button.vui-button--brand(@click.prevent='editAvail(avail.id)', href='#') Edit Avail
-    release-to-buyer-modal(:show.sync="showReleaseToBuyerModal")
+    release-to-buyer-modal(:show="showReleaseToBuyerModal")
 </template>
 
 <script>
   import $ from 'jquery'
-
-  import store from '../../store'
-  import Datepicker from '../Datepicker2.vue'
-  import DaypartSelector from '../DaypartSelector.vue'
-  import Icon from '../Icon.vue'
   import moment from 'moment'
-  import ReleaseToBuyerModal from '../ReleaseToBuyerModal.vue'
+  import store from 'store'
+  import ReleaseToBuyerModal from 'components/ReleaseToBuyerModal'
 
   let Highcharts = require('highcharts')
 
   require('highcharts/modules/exporting')(Highcharts)
 
   export default {
-    components: {
-      Datepicker,
-      DaypartSelector,
-      Icon,
-      ReleaseToBuyerModal,
-      text: {
-        props: ['value'],
-        template: '<input type="text" v-model="value" />'
-      },
-      checkbox: {
-        props: ['value'],
-        template: '<input type="checkbox" v-model="value" />'
-      }
-    },
+    components: { ReleaseToBuyerModal },
 
     props: {
       availsRoute: {
@@ -283,6 +266,7 @@
         showReleaseToBuyerModal: false,
         selectedDaypart: require('./selected.json'),
         editing: false,
+        error: false,
         avail: {},
         'dayparts': [
           {
@@ -353,7 +337,6 @@
         this.$http.get(store.apiHost + '/avails/' + id)
           .then((response) => {
             this.avail = response.data
-            this.$broadcast('availRetrieved', response.data)
           }, (response) => {
             // error callback
           })
@@ -368,17 +351,12 @@
           })
       },
 
-      // selectDaypart (daypart) {
-      //   this.selectedDaypart = this.avail.dayparts[daypart - 1]
-      // },
-
       selectDaypart (daypart) {
-        this.$dispatch('selected-daypart', daypart)
         this.selectedDaypart = daypart
       },
 
       showAvails () {
-        this.$route.router.go({
+        this.$router.push({
           name: this.availsRoute
         })
       },
@@ -395,7 +373,7 @@
           routeInfo.query = { version: version }
         }
 
-        this.$route.router.go(routeInfo)
+        this.$router.push(routeInfo)
       }
     },
 

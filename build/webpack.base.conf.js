@@ -2,23 +2,41 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+var env = process.env.NODE_ENV
+// check env & config/index.js to decide whether to enable CSS source maps for the
+// various preprocessor loaders added to vue-loader at the end of this file
+var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
+var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
+var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
   entry: {
     app: './src/main.js'
   },
+  plugins: [                                                 // <----- Create plugin array
+    new ExtractTextPlugin('[name].css', {allChunks: true})   // <----- Add ExtractTextPlugin plugin
+  ],
   output: {
     path: config.build.assetsRoot,
-    publicPath: config.build.assetsPublicPath,
+    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.vue'],
+    extensions: ['', '.js', '.vue', '.json'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
+      'vue$': 'vue/dist/vue.common.js',
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+      'directives': path.resolve(__dirname, '../src/directives'),
+      'filters': path.resolve(__dirname, '../src/filters'),
+      'transitions': path.resolve(__dirname, '../src/transitions'),
+      'store': path.resolve(__dirname, '../src/store'),
+      'views': path.resolve(__dirname, '../src/views'),
+      'utils': path.resolve(__dirname, '../src/utils')
     }
   },
   resolveLoader: {
@@ -29,13 +47,17 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'eslint',
-        include: projectRoot,
+        include: [
+          path.join(projectRoot, 'src')
+        ],
         exclude: /node_modules/
       },
       {
         test: /\.js$/,
         loader: 'eslint',
-        include: projectRoot,
+        include: [
+          path.join(projectRoot, 'src')
+        ],
         exclude: /node_modules/
       }
     ],
@@ -47,16 +69,18 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
-        include: projectRoot,
+        include: [
+          path.join(projectRoot, 'src')
+        ],
         exclude: /node_modules/
       },
       {
         test: /\.json$/,
         loader: 'json'
       },
-      {
-        test: /\.html$/,
-        loader: 'vue-html'
+      {                                                                   // <------ Create a new JSON object to add a CSS loader.
+        test: /\.css$/,                                                   // <------ This tells Webpack that we want to handle css files.
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')   // <------ this tells Webpack *how* to handle css files.
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -80,6 +104,11 @@ module.exports = {
     formatter: require('eslint-friendly-formatter')
   },
   vue: {
-    loaders: utils.cssLoaders()
+    loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
+    postcss: [
+      require('autoprefixer')({
+        browsers: ['last 2 versions']
+      })
+    ]
   }
 }

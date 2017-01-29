@@ -1,14 +1,6 @@
-<template lang="jade">
-  //- div(:class="{ open: show, dropdown: !dropup, dropup: dropup, 'dropdown-arrow': arrow}", v-on:click.prevent='toggle($event)')
-  //-   span.btn-action
-  //-     button#dLabel.btn(class='{{dropdownToggle}} {{btnVariant}} {{btnSize}}', aria-haspopup='true', aria-expanded='{{show}}', :disabled='disabled', v-if='text')
-  //-       span(v-html='text')
-  //-       span.caret
-  //-     slot(name='button', v-if='!text')
-  //-   slot
-
-  .vui-dropdown-trigger.vui-dropdown-trigger--site-nav.vui-dropdown-trigger--click(:class='{ "vui-is-open": show, dropdown: !dropup, dropup: dropup}', aria-expanded='{{show}}')
-    a(aria-live='assertive', aria-expanded='{{show}}' aria-haspopup='true', @click.prevent='toggle($event)', :disabled='disabled')
+<template lang="pug">
+  .vui-dropdown-trigger.vui-dropdown-trigger--site-nav.vui-dropdown-trigger--click(:class='{ "vui-is-open": show }', :aria-expanded='show')
+    a(aria-live='assertive', :aria-expanded='show' aria-haspopup='true', @click.prevent='toggle', :disabled='disabled')
       span.vui-m-right--xx-small(style='color: white') {{ text }}
       icon(name='caret-down', style='color: #4296b4; margin-right: 0')
     .vui-dropdown.vui-dropdown--site-nav
@@ -22,11 +14,7 @@
 </template>
 
 <script>
-  import Icon from './Icon.vue'
-
   export default {
-    components: { Icon },
-
     props: {
       caret: {
         type: Boolean,
@@ -84,16 +72,14 @@
       toggle (e) {
         this.show = !this.show
         if (this.show) {
-          this.$dispatch('shown::dropdown')
           e.stopPropagation()
         } else {
-          this.$dispatch('hidden::dropdown')
         }
       },
 
       clicked (route) {
         this.show = false
-        this.$route.router.go({
+        this.$router.push({
           name: route
         })
       }

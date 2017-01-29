@@ -7,6 +7,7 @@ var path = require('path')
 var merge = require('webpack-merge')
 var baseConfig = require('../../build/webpack.base.conf')
 var utils = require('../../build/utils')
+var webpack = require('webpack')
 var projectRoot = path.resolve(__dirname, '../../')
 
 var webpackConfig = merge(baseConfig, {
@@ -17,26 +18,23 @@ var webpackConfig = merge(baseConfig, {
   devtool: '#inline-source-map',
   vue: {
     loaders: {
-      js: 'isparta'
+      js: 'babel-loader'
     }
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': require('../../config/test.env')
+    })
+  ]
 })
 
 // no need for app entry during tests
 delete webpackConfig.entry
 
-// make sure isparta loader is applied before eslint
-webpackConfig.module.preLoaders = webpackConfig.module.preLoaders || []
-webpackConfig.module.preLoaders.unshift({
-  test: /\.js$/,
-  loader: 'isparta',
-  include: path.resolve(projectRoot, 'src')
-})
-
-// only apply babel for test files when using isparta
+// Use babel for test files too
 webpackConfig.module.loaders.some(function (loader, i) {
-  if (loader.loader === 'babel') {
-    loader.include = path.resolve(projectRoot, 'test/unit')
+  if (/^babel(-loader)?$/.test(loader.loader)) {
+    loader.include.push(path.resolve(projectRoot, 'test/unit'))
     return true
   }
 })

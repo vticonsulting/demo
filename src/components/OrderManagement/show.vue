@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .order-management-show-view
 
     h2.vui-text-heading--large {{order.advertiser}} Details
@@ -89,9 +89,7 @@
           fieldset.vui-form-element
             label.vui-form-element__label(for='') Share
             .vui-form-element__control
-              //- input.vui-input(type='text', style='width: 5rem')
-              //- input#stationAudienceShare.vui-input(type='text', style='width: 5rem', v-model='order.share | percentDisplay')
-              input#stationAudienceShare.vui-input(type='text', style='width: 5rem', v-model='sharedState["share"+order.id] | percentDisplay')
+              input#stationAudienceShare.vui-input(type='text', style='width: 5rem', v-model='sharedState["share"+order.id]')
 
           fieldset.vui-form-element
             button.vui-button--brand(@click.prevent='') Update
@@ -111,7 +109,7 @@
             th Buyer Rating
             th Total Ratings
         tbody(v-for='version in order.versions')
-          tr(v-for='(index, program) in version.programs', :class='(index % 2 === 0) ? "vui-highlight" : ""')
+          tr(v-for='(program, index) in version.programs', :class='(index % 2 === 0) ? "vui-highlight" : ""')
             td {{program.name}}
             td {{program.time}}
             td.vui-text-align--center {{program.length}}
@@ -123,22 +121,17 @@
             td.vui-text-align--right {{program.totalCost | numberWithCommas | formatMoney}}
             td.vui-text-align--right {{program.buyerRating | formatRating}}
             td.vui-text-align--right {{program.totalRatings | formatRating}}
-    accept-order-modal(:show.sync="showAcceptOrderModal")
-    reject-order-modal(:show.sync="showRejectOrderModal")
+    accept-order-modal(:show="showAcceptOrderModal")
+    reject-order-modal(:show="showRejectOrderModal")
 </template>
 
 <script>
-  import store from '../../store'
-  import Icon from '../../components/Icon.vue'
-  import AcceptOrderModal from '../../components/AcceptOrderModal.vue'
-  import RejectOrderModal from '../../components/RejectOrderModal.vue'
+  import store from 'store'
+  import AcceptOrderModal from 'components/AcceptOrderModal'
+  import RejectOrderModal from 'components/RejectOrderModal'
 
   export default {
-    components: {
-      Icon,
-      AcceptOrderModal,
-      RejectOrderModal
-    },
+    components: { AcceptOrderModal, RejectOrderModal },
 
     props: {
       summaryRoute: {
@@ -172,13 +165,13 @@
       },
 
       showSummary () {
-        this.$route.router.go({
+        this.$router.push({
           name: this.summaryRoute
         })
       },
 
       showOrders () {
-        this.$route.router.go({
+        this.$router.push({
           name: this.ordersRoute
         })
       }

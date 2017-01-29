@@ -1,5 +1,5 @@
-<template lang="jade">
-  modal(:show.sync='show', :on-close='close', size='large')
+<template lang="pug">
+  modal(:show='show', :on-close='close', size='large')
     .modal-header.vui-m-bottom--large
       h3.vui-text-heading--medium Order Details
     .modal-body
@@ -13,7 +13,7 @@
             th Revenue
             th Share
         tbody
-          tr(v-for='order in account.orders', :class='($index % 2 === 0) ? "vui-highlight" : ""')
+          tr(v-for='(order, index) in account.orders', :class='(index % 2 === 0) ? "vui-highlight" : ""')
             td {{ order.id }}
             td {{ order.flightStartDate }}
             td {{ order.flightEndDate }}
@@ -22,11 +22,7 @@
 </template>
 
 <script>
-  import Modal from './Modal.vue'
-
   export default {
-    components: {Modal},
-
     props: ['show', 'account'],
 
     data () {

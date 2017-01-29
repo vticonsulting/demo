@@ -1,10 +1,10 @@
-<template lang="jade">
+<template lang="pug">
   order-management-detail(summary-route='sellers.order-management')
 </template>
 
 <script>
-  import store from '../../../store'
-  import OrderManagementDetail from '../../../components/OrderManagement/show.vue'
+  import store from 'store'
+  import OrderManagementDetail from 'components/OrderManagement/show'
 
   export default {
 

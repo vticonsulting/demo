@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .station-performance-view
     h1.vui-text-heading--large Station Performance
     h2.vui-text-heading--label.vui-m-bottom--medium As of April 18, 2016
@@ -53,7 +53,7 @@
             th This Year
             th Last Year
         tbody
-          tr.region(v-show='region.show', v-for='($index, region) in regions')
+          tr.region(v-show='region.show', v-for='(region, index) in regions')
             td {{ region.name }}
             td.u-width-large.vui-text-align--right {{ region.tyRevenue | numberWithCommas | formatMoney }}
             td.u-width-large.vui-text-align--right {{ region.lyRevenue | numberWithCommas | formatMoney }}
@@ -168,7 +168,7 @@
 
             td.vui-text-align--right {{ totalStationUniverseSpotVolume | numberWithCommas}}
             td.vui-text-align--right 38%
-        tbody(v-for='daypart in stationDayparts', :class='($index % 2 === 1) ? "vui-highlight" : ""')
+        tbody(v-for='(daypart, index) in stationDayparts', :class='(index % 2 === 1) ? "vui-highlight" : ""')
           tr.daypart
             td
               .vui-grid
@@ -256,12 +256,7 @@
 </template>
 
 <script>
-  import store from '../../../store'
-  import Alert from '../../../components/Alert.vue'
-  import PageHeading from '../../../components/PageHeading.vue'
-  import DataGridHeading from '../../../components/DataGridHeading.vue'
-  import Panel from '../../../components/Panel.vue'
-  import Icon from '../../../components/Icon.vue'
+  import store from 'store'
 
   let Highcharts = require('highcharts')
   var faker = require('faker')
@@ -270,14 +265,6 @@
   require('highcharts/modules/exporting')(Highcharts)
 
   export default {
-    components: {
-      Alert,
-      PageHeading,
-      DataGridHeading,
-      Panel,
-      Icon
-    },
-
     data () {
       return {
         sharedState: store.state,
