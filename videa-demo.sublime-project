@@ -1,8 +1,13 @@
 {
-	"folders":
-	[
-		{
-			"path": "."
-		}
-	]
+  "folders":
+  [
+    {
+      "path": ".",
+      "folder_exclude_patterns": [
+        ".nuxt",
+        "dist",
+        "node_modules"
+      ]
+    }
+  ]
 }

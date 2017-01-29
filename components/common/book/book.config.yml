@@ -1,0 +1,9 @@
+hidden: true
+context:
+  author: Marijn Haverbeke
+  isbn-10: 1593272820
+  isbn-13: 978-1593272821
+  publication_date: February 3, 2011
+  title: 'Eloquent JavaScript: A Modern Introduction to Programming'
+  review: A concise and balanced mix of principles and pragmatics. I loved the tutorial-style game-like program development. This book rekindled my earliest joys of programming. Plus, JavaScript! -- Brendan Eich, creator of JavaScript,
+  img_url:

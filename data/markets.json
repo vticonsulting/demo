@@ -1,0 +1,12 @@
+{
+  "markets": [
+    {
+      "id": 1,
+      "name": "Atlanta"
+    },
+    {
+      "id": 2,
+      "name": "Atlanta"
+    }
+  ]
+}

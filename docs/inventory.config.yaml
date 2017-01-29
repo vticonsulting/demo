@@ -1,0 +1,256 @@
+context:
+  inventory:
+    - name: Accept Button
+    - name: Accepted By Agency
+    - name: Accepted By Station
+    - name: Add a Week Button
+    - name: Add Offer Button
+    - name: Advertiser
+    - name: Agency
+    - name: Agency Name
+    - name: Agency Notes
+    - name: Agency Notes
+    - name: Agency Order Number
+    - name: Agency Status
+    - name: Agency Status
+    - name: All Offers
+    - name: All Order Preempts
+    - name: Bonus
+    - name: Buyer
+    - name: Buyer Comment
+    - name: Buyer IMP
+    - name: Buyer Name
+    - name: Buyer Order Comment
+    - name: Buyer Rating
+    - name: Campaign Name
+    - name: Classification
+    - name: Clear Button
+    - name: Copy Offer Button
+    - name: CPE
+    - name: Create MGs
+    - name: Credit
+    - name: Currency
+    - name: Current Information
+    - name: Customer Care Comment To Station
+    - name: Customer Care Internal Notes
+    - name: Date Offer Sent
+    - name: Daypart
+    - name: Days
+    - name: Deal Type
+    - name: Delete Offer Button
+    - name: Delete Spot(s) Button
+    - name: Demo
+    - name: Dollars
+    - name: Draft
+    - name: Draft and Pending Orders Only
+    - name: Draft MG
+    - name: Edit Offer Button
+    - name: End
+    - name: End Date
+    - name: Estimate
+    - name: Flight End
+    - name: Flight Start
+    - name: GDLNS
+    - name: GRPs
+    - name: Guidelines Button
+    - name: Guidelines Warnings / Violations
+    - name: Len
+    - name: Length
+    - name: Line $ Total
+    - name: Line Number
+    - name: Line Type
+    - name: Location
+    - name: Makegood
+    - name: Makegood Comment
+    - name: Makegood Comments
+    - name: Makegood Comments
+    - name: Makegood Due
+    - name: Makegood Number
+    - name: Makegood Sent
+    - name: Makegood Status
+    - name: Makegood Total
+    - name: Makegood Type
+    - name: Manage Schedule Link
+    - name: Market Budget
+    - name: MG Preempts
+    - name: MG Spots
+    - name: MG Transfers
+    - name: Missed Only
+    - name: Missed Spots
+    - name: Offer
+    - name: Offer Number
+    - name: Offer Status
+    - name: Offer Status
+    - name: Offer Type
+    - name: Offer Type
+    - name: Offer Version
+    - name: Open Pre-empt Note
+    - name: Open Preempts
+    - name: Order
+    - name: 'Order #'
+    - name: Order Count
+    - name: Order v. Missed
+    - name: Order v. Traffic
+    - name: Ordered Spots
+    - name: Pending MG
+    - name: Pending MGs
+    - name: Product
+    - name: Program
+    - name: Program Change
+    - name: Quarter
+    - name: Rate
+    - name: Rating
+    - name: Redeliver Button
+    - name: Reject Button
+    - name: Rep Name
+    - name: Revenue
+    - name: Sales Office
+    - name: Salesperson
+    - name: Save Button
+    - name: Save Button
+    - name: Schedule Type
+    - name: Search Button
+    - name: Search Text Input
+    - name: Select
+    - name: Selected
+    - name: Sent
+    - name: Share
+    - name: Show Spot Allocations
+    - name: Spot Option
+    - name: Spot Rate
+    - name: Spot Rate
+    - name: Spot Volume
+    - name: Spots
+    - name: Start
+    - name: Start Date
+    - name: Station Action
+    - name: Station CPM
+    - name: Station Notes
+    - name: Station Notes
+    - name: Station Order
+    - name: Station Order Comment
+    - name: Station Order Number
+    - name: Station Status
+    - name: Station Status
+    - name: Status
+    - name: Time
+    - name: Time
+    - name: Total $$$
+    - name: Total Cost
+    - name: Total Ratings
+    - name: Total Revenue
+    - name: Total Spots
+    - name: Total Spots Ordered
+    - name: Totals
+    - name: Traffic Spots
+    - name: Transfer Offer Button
+    - name: Transfer Status
+    - name: Transfer to MediaOps Button
+    - name: Type
+    - name: Version
+    - name: Videa IMP
+    - name: Videa Impressions
+    - name: Videa Order
+    - name: Videa Order Number
+    - name: View All
+    - name: View Offer
+    - name: View Order
+    - name: Weekly Spots
+    - name: Year
+    - name: Total $ Pre-empted
+    - name: Air Date
+    - name: Air Time
+    - name: Pre-empt Reason
+    - name: C/P/E
+    - name: Order Completed
+    - name: Stations
+    - name: 'Station Order #'
+    - name: Manage Schedule
+    - name: Order Value
+    - name: Spots Ordered
+    - name: Spots Missed
+    - name: Missed Value
+    - name: Date/Time Order Completed
+    - name: Order Completed By
+    - name: Exclude $0 Spots
+    - name: Videa Sell Through
+    - name: Units Sold
+    - name: Units Available
+    - name: Videa Overall AUR
+    - name: AUR This Year
+    - name: AUR Last Year
+    - name: Revenue This Year
+    - name: Revenue Last Year
+    - name: CPP
+    - name: 'Spot #'
+    - name: Intended Air Date
+    - name: Unit Rate
+    - name: Order Date
+    - name: AUR
+    - name: '# of Spots'
+    - name: Export To Excel
+    - name: Metric
+    - name: $0 Spots
+    - name: Submit Button
+    - name: Station Rate
+    - name: Station Demographic
+    - name: Station CPP
+    - name: Videa Accept Rate
+    - name: Videa Rate
+    - name: Videa Demographic
+    - name: Videa CPP
+    - name: On the Books Min Rate
+    - name: On the Books Max Rate
+    - name: Sellout %
+    - name: Avail Number
+    - name: Released
+    - name: 'Estimate #'
+    - name: Last Updated
+    - name: Client
+    - name: Hiatus Weeks
+    - name: Primary Demo
+    - name: Expiration Date
+    - name: Gross Market Budget
+    - name: Target GRP Goal
+    - name: Share Goal
+    - name: Due Date
+    - name: Last Updated By
+    - name: Station & Rep Notes
+    - name: CPP Goal
+    - name: GRPs Goal
+    - name: Mix Goal
+    - name: Avg. CPP
+    - name: Edit Buyer Specs and Daypart Goals
+    - name: Release to Buyer Button
+    - name: Edit Avail Button
+    - name: Cancel Button
+    - name: Market Competitive Low CPP
+    - name: Market Competitive High CPP
+    - name: Save Changes and Continue Button
+    - name: Save and Release
+    - name: Add Programs Link
+    - name: Availed Rate
+    - name: Availed Rating
+    - name: Availed CPP
+    - name: Videa Rating
+    - name: Videa Need Goal
+    - name: Videa Need Low
+    - name: Videa Need High
+    - name: Buyer Rating
+    - name: Buyer Need Goal
+    - name: Buyer Need Low
+    - name: Buyer Need High
+    - name: Accept All Buyer Ratings (except 0's)
+    - name: Campaign Delivery %
+    - name: Current RTGs/Imps
+    - name: Purchased GRPs/IMPs To Date
+    - name: '+/-'
+    - name: Current HH GRPs/IMPs
+    - name: Weeks Remaining
+    - name: Show
+    - name: Columns
+    - name: Metered
+
+
+
+

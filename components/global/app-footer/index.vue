@@ -1,0 +1,56 @@
+<template lang="pug">
+  footer.vui-site-footer(
+    role = 'contentinfo'
+  )
+    .vui-container
+      nav.vui-navigation--footer.vui-grid.vui-grid--align-center
+        ul.vui-list--horizontal.vui-has-dividers--right
+          li.vui-list__item
+            nuxt-link(
+              v-bind:to = '{ name: "privacy" }'
+            ) Privacy Policy
+          li.vui-list__item
+            nuxt-link(
+              v-bind:to = '{ name: "terms" }'
+            ) Terms &amp; Conditions
+      p.
+        3390 Peachtree Road, NE, Suite 400 Atlanta, GA 30326 #[br]
+        Copyright © 2014&ndash;{{ new Date().getFullYear() }} Videa. All rights reserved.
+
+    div(
+      v-if = 'isLoading'
+    )
+      spinner(
+        color = '#276092'
+        size = '16px'
+      )
+
+    sidebar(
+      v-bind:show = 'showRight'
+      v-bind:width = '350'
+      header = 'Page Info',
+      placement = 'right'
+    )
+      h4.vui-text-heading--small Page Information
+      div.aside-footer
+        button.vui-button.vui-button--brand(
+          @click = 'showRight=false'
+          type = 'button'
+        ) Close
+</template>
+
+<script>
+  import Sidebar from '~components/global/sidebar'
+
+  export default {
+    components: {
+      Sidebar
+    },
+    data () {
+      return {
+        showRight: false,
+        isLoading: false
+      }
+    }
+  }
+</script>

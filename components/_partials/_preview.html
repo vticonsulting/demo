@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+    PHP: Check if fonts-loaded cookie has been set.
+    If so, add the `fonts-loaded` class to the `html` element.
+-->
+<html lang="en" dir="ltr" prefix="og: http://ogp.me/ns#" class="no-js fonts-loaded">
+  <head>
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'has-js')
+    </script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{{ _target.context.title }} &#9670; Videa Design</title>
+    <link rel="stylesheet" href="{{ '/css/vui.css' | path }}"/>
+    <!--
+      PHP: Get correct hue value for year and day from array.
+    -->
+    <style>
+      :root {
+        --color-year: hsl({{ theme.year[11] }}, 100%, 16%);
+        --color-year--dark: hsl({{ theme.year[11] }}, 100%, 8%);
+        --color-year--dark-alpha: hsla({{ theme.year[11] }}, 100%, 8%, 0.8);
+        --color-day: hsl({{ theme.day[11]}}, 80%, 60%);
+        --color-day--light: hsl({{ theme.day[11]}}, 60%, 98%);
+        --color-day--dark: hsl({{ theme.day[11]}}, 100%, 24%);
+        --color-day--dark-alpha: hsla({{ theme.day[11]}}, 100%, 24%, 0.33);
+      }
+    </style>
+  </head>
+  <body style="padding: 1rem">
+
+    {{ yield }}
+
+  </body>
+</html>
+
