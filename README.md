@@ -1,9 +1,51 @@
-`npm run dev`
+# Videa Demo
 
-For detailed explanation on how things work, checkout the [guide][3] and [docs for vue-loader][4].
+> There is a need for a demo that reflects Videa's production system look and feel and will be flexible enough to show customers real scenarios and experiences.
+
+## What for?
+
+- Training (Internal / External)
+- Conferences
+- New Client Demos (Sales)
+- Product Support
+
+## Why this approach?
+
+- Will represent the true value of the platform and allow for data to flow without violation of using stations real data.
+- Stand-alone environment – independent of release management cycle
+- Stable environment where screens and workflow are consistent
+- Supports UX teams and provides ample time for usability testing
+- Supports product council feedback in a timely manner
+- Helps scrum teams clearly understand product requirements / workflow
+- HTML Code can be repurposed to help rapid dev within sprints
+- Responsive design
+
+## For Developer
+
+###  Build Setup Instructions
+
+```
+# checkout the git repository
+git clone https://tfs.videa.tv/tfs/Videa/Videa%20Git/_git/videa-demo`
+
+# change to directory
+cd videa-demo
+
+# checkout the v3 branch
+git checkout v3
+
+# install the dependencies
+npm install` # or yarn
+
+# serve with hot reload at localhost:8083
+npm run dev
+```
+
+For detailed explanation on how things work, checkout the [guide][1] and [docs for vue-loader][4].
+
+### Coding Standards
 
 [![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
-[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 
 [1]: https://nuxtjs.org/guide
