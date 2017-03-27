@@ -1,37 +1,46 @@
-import $ from 'jquery'
 import Vue from 'vue'
+import axios from 'axios'
+import moment from 'moment'
 
-import VueRouter from 'vue-router'
-import VueResource from 'vue-resource'
-import VueDependOn from 'vue-dependon'
+window.Vue = Vue
+window.axios = axios
+window.moment = moment
 
-import Components from 'components'
-import Directives from 'directives'
-import Filters from 'filters'
+window.EventBus = new Vue()
 
-import Router from './router'
-import App from './App.vue'
+window.axios.defaults.baseURL = 'http://localhost:3000'
+window.axios.defaults.headers.common = { 'X-Requested-With': 'XMLHttpRequest' }
 
-import '!style!css!tachyons/css/tachyons.css'
-
-Vue.use(VueRouter)
-Vue.use(VueResource)
-Vue.use(VueDependOn)
-
+import Components from '@/components'
 Components.registerAllGlobalComponents()
-Directives.registerAllGlobalDirectives()
+
+import Filters from '@/filters'
 Filters.registerAllGlobalFilters()
 
-window.$ = $
-window.noUiSlider = require('nouislider')
+Vue.config.productionTip = false
 
-export const router = new VueRouter(Router)
-export const eventBus = new Vue()
+import router from './router'
+import store from './store'
+import App from './App'
+
+import VueHighcharts from 'vue-highcharts'
+Vue.use(VueHighcharts)
+
+import Toasted from 'vue-toasted'
+Vue.use(Toasted)
+
+import vMediaQuery from 'v-media-query'
+Vue.use(vMediaQuery)
+
+import vueBemCn from 'vue-bem-cn'
+const bemConfig = {ns: '', el: '__', mod: '--', modValue: '-'}
+Vue.use(vueBemCn, bemConfig)
 
 /* eslint-disable no-new */
-window.vm = new Vue({
-  router,
+new Vue({
   el: '#app',
+  store,
+  router,
   template: '<App/>',
   components: { App }
 })

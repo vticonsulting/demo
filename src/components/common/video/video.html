@@ -1,0 +1,25 @@
+<div class="videos">
+  <!-- video -->
+  <div class="fullscreen">
+    <video v-el:video controls @ended.prevent="switchToNext" @mousemove="showThumbs" :poster="current.thumb">
+      <source v-for='(type, src) in current.video' :src="src" :type="type">
+        HTML5 Video seems to be not supported in your browser.
+    </video>
+  </div>
+
+  <!-- Thumbnails -->
+  <ul v-show="showThumbnails" class="popover">
+    <li v-for='(video, index) in videos' v-show='index !== currentIndex'>
+      <a @click.prevent="setCurrent(index)" :href="firstSource(video.video)">
+        <img :src="video.thumb" alt="" />
+      </a>
+    </li>
+  </ul>
+
+  <!-- Loader -->
+  <div v-show="loader">
+    <div class="loader">
+      <div class="loader__inner" :class="{ 'loader__inner--active': loader }"></div>
+    </div>
+  </div>
+</div>
