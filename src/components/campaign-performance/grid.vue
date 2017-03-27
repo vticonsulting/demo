@@ -33,7 +33,7 @@
             v-show = 'columns.videaOrderNumber.isVisible'
           )
             router-link(
-              v-bind:to = '{ name: "sellers-reporting-order-reporting-id", params: { id: campaign.videaOrderNumber } }'
+              v-bind:to = '{ name: "sellers-campaign-performance-id", params: { id: campaign.stationOrderNumber } }'
             ) {{ campaign.videaOrderNumber }}
           td.vui-truncate(
             v-bind:title = 'campaign.advertiser'
