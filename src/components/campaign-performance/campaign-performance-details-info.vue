@@ -6,9 +6,8 @@
       .vui-align-middle
         h3.vui-text-heading--medium.vui-m-bottom--small Campaign Detail
       .vui-align-middle
-        div(v-if='hasSpotsLastUpdated')
-          span Spots Last Updated:
-          //- span {{ daypartSummary.spotsLastUpdated }}
+          span Spots Last Updated: &nbsp;
+          span {{ campaign.orderLastUpdated }}
     .vui-grid--align-spread.vui-grid
       .vui-col--padded.vui-form-element
         label.vui-form-element__label(
@@ -45,13 +44,13 @@
           for = ''
         ) Revenue
         .vui-form-element__control
-          span.vui-form-element__static {{ campaign.revenue }}
+          span.vui-form-element__static {{ campaign.revenue | numberWithCommas | formatMoney }}
       .vui-col--padded.vui-form-element
         label.vui-form-element__label(
           for = ''
         ) Total Purchased
         .vui-form-element__control
-          span.vui-form-element__static {{ campaign.totalPurchased }}
+          span.vui-form-element__static {{ campaign.daypartSummary.total.purchasedGrpsImps }}
       .vui-col--padded.vui-form-element
         label.vui-form-element__label(
           for = ''

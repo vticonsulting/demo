@@ -1,12 +1,8 @@
 <template lang="pug">
-  .modal-mask(
-    @click = 'close'
-    v-show = 'show'
-    transition = 'modal'
-  )
+  .modal-mask(@click='close' v-show='show' transition='modal')
     .modal-container(
-      @click.stop = ''
-      v-bind:class = '{ "modal-container--xx-large": size }'
+      @click.stop=''
+      v-bind:class='{"modal-container--xx-large": size }'
     )
       slot
 </template>

@@ -15,12 +15,15 @@ div
         td Makegood(s)
         td.vui-text-align--right {{makegoodSpotsCount}}
         td.vui-text-align--right {{makegoodStationRates * makegoodSpotsCount | numberWithCommas | formatMoney}}
-        td.vui-text-align--right {{0 | formatRating}}
+        td.vui-text-align--right {{makegoodStationGrps * makegoodSpotsCount | formatRating}}
       tr(v-if='preempts && preempts.length')
         td Diff.
-        td.vui-text-align--right(:class='{"error": (preempts.length - makegoodSpotsCount) < 0}') {{preempts.length - makegoodSpotsCount}}
-        td.vui-text-align--right(:class='{"error": (preemptDollars - (makegoodStationRates * makegoodSpotsCount)) < 0}') {{preemptDollars - (makegoodStationRates * makegoodSpotsCount) | numberWithCommas | formatMoney}}
-        td.vui-text-align--right {{0 | formatRating}}
+        td.vui-text-align--right(:class='{"error": (preempts.length - makegoodSpotsCount) < 0}')
+          | {{preempts.length - makegoodSpotsCount}}
+        td.vui-text-align--right(:class='{"error": (preemptDollars - (makegoodStationRates * makegoodSpotsCount)) < 0}')
+          | {{preemptDollars - (makegoodStationRates * makegoodSpotsCount) | numberWithCommas | formatMoney}}
+        td.vui-text-align--right
+          | {{preemptGrps - (makegoodStationGrps * makegoodSpotsCount) | formatRating}}
       //- tr(v-for='item in items')
       //-   td.vui-truncate(:title='item.rowName' style='width: 155px') {{item.rowName}}
       //-   td.vui-truncate.vui-text-align--right(:class='{"error": item.spotsCount < 0}', :title='item.spotsCount' style='width: 80px') {{item.spotsCount}}
@@ -77,10 +80,11 @@ div
       makegoodStationRates () {
         return this.offered.map(offer => offer.spotRate)
           .reduce((total, value) => total + parseFloat(value), 0)
+      },
 
-        return this.offered.map(offer => offer.stationRate)
+      makegoodStationGrps () {
+        return this.offered.map(offer => offer.buyerRating)
           .reduce((total, value) => total + parseFloat(value), 0)
-        // return this.offered.reduce((total, offer) => total + parseFloat(offer.weeks), 0)
       }
     }
   }

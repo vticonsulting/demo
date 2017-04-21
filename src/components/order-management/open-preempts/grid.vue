@@ -84,7 +84,7 @@
               )
                 vui-icon(name = 'sticky-note-o')
             td(v-bind:title='item.orderNumber' style='width: 90px') {{ item.stationOrderNumber }}
-            td(v-bind:title='item.videaOrderNumber' style='width: 106px') {{ item.videaOrderNumber }}
+            td(v-bind:title='item.videaOrderNumber' style='width: 106px') V{{ item.videaOrderNumber }}
             td.vui-text-align--right.currency(v-bind:title='item.programSpotUnitRate' style='width: 130px') {{ item.programSpotUnitRate | numberWithCommas | formatMoney }}
             td.vui-truncate(v-bind:title='item.airDate' style='width: 110px') {{ item.airDate }}
             td {{ item.stationLineNumber }}

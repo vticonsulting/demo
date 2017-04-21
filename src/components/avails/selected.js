@@ -10,7 +10,7 @@ module.exports = {
   },
   goals: {
     cpp: 150,
-    grps: 150,
+    grps: 320,
     mix: 0.4
   },
   programs: [
@@ -25,6 +25,7 @@ module.exports = {
       rating: 2.1,
       avgCpp: 213,
       expanded: false,
+      accepted: true,
       videa: {
         rate: 325,
         cpp: 191,
@@ -45,7 +46,7 @@ module.exports = {
           flightStartDate: '05/15/17',
           flightEndDate: '05/19/17',
           length: ':30',
-          rate: 475,
+          rate: 500,
           rating: 2.1,
           avgCpp: 226,
           expanded: false,
@@ -364,6 +365,7 @@ module.exports = {
       rating: 1.8,
       avgCpp: 211,
       expanded: false,
+      accepted: false,
       videa: {
         rate: 325,
         cpp: 191,
@@ -580,6 +582,7 @@ module.exports = {
       rating: 2.2,
       avgCpp: 205,
       expanded: false,
+      accepted: false,
       videa: {
         rate: 325,
         cpp: 191,
@@ -605,6 +608,7 @@ module.exports = {
       rating: 0.9,
       avgCpp: 222,
       expanded: false,
+      accepted: false,
       videa: {
         rate: 325,
         cpp: 191,
@@ -630,6 +634,7 @@ module.exports = {
       rating: 1.1,
       avgCpp: 207,
       expanded: false,
+      accepted: false,
       videa: {
         rate: 325,
         cpp: 191,
@@ -651,6 +656,7 @@ module.exports = {
   name: 'Early News',
   startTime: '04:30 AM',
   expanded: false,
+  accepted: false,
   marketCompetitive: {
     low: 215,
     high: 240
@@ -671,6 +677,7 @@ module.exports = {
     rating: 2.6,
     avgCpp: 240,
     expanded: false,
+    accepted: false,
     videa: {
       rate: 325,
       cpp: 191,
@@ -696,6 +703,7 @@ module.exports = {
     rating: 2.2,
     avgCpp: 237,
     expanded: false,
+    accepted: false,
     videa: {
       rate: 325,
       cpp: 191,
@@ -1024,6 +1032,7 @@ module.exports = {
     rating: 1,
     avgCpp: 216,
     expanded: false,
+    accepted: false,
     videa: {
       rate: 325,
       cpp: 191,
@@ -1049,6 +1058,7 @@ module.exports = {
     rating: 1.4,
     avgCpp: 209,
     expanded: false,
+    accepted: false,
     videa: {
       rate: 325,
       cpp: 191,

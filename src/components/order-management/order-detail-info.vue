@@ -49,7 +49,7 @@
             .vui-col.vui-m-right--medium
               label.vui-form-element__label Videa Order #
               br
-              span {{ order.id }}
+              span V{{ order.id }}
 
             .vui-col.vui-m-right--medium
               label.vui-form-element__label Version

@@ -6,11 +6,11 @@ div
         tr
           th(rowspan = '2') View #[br] Offer
           th(rowspan = '2') View #[br] Order
-          th(rowspan = '2') Advertiser
-          th(rowspan = '2') Agency
-          th(rowspan = '2') Campaign Name
-          th(rowspan = '2') Flight Start
-          th(rowspan = '2') Flight End
+          th(rowspan = '2'): vui-sorting-column(title='Advertiser')
+          th(rowspan = '2'): vui-sorting-column(title='Agency')
+          th(rowspan = '2'): vui-sorting-column(title='Campaign Name')
+          th(rowspan = '2'): vui-sorting-column(title='Flight Start')
+          th(rowspan = '2'): vui-sorting-column(title='Flight End')
           th(colspan = '6') Makegood
           th(colspan = '4') Station
           th(colspan = '2') Agency
@@ -21,17 +21,17 @@ div
           th(rowspan = '2') Date/Time last updated
           th(rowspan = '2') CPE
         tr
-          th(style = 'padding-left: 0.5rem') Number
-          th Status
-          th Sent
-          th Due
-          th Total
-          th Type
-          th Order
-          th Status
+          th(style = 'padding-left: 0.5rem'): vui-sorting-column(title='Number')
+          th: vui-sorting-column(title='Status')
+          th: vui-sorting-column(title='Sent')
+          th: vui-sorting-column(title='Due')
+          th: vui-sorting-column(title='Total')
+          th: vui-sorting-column(title='Type')
+          th: vui-sorting-column(title='Order')
+          th: vui-sorting-column(title='Status')
           th Notes
-          th Action
-          th Status
+          th: vui-sorting-column(title='Action')
+          th: vui-sorting-column(title='Status')
           th Notes
       tbody
         tr(v-for='offer in offers')
@@ -56,17 +56,15 @@ div
             span.vui-badge(
               v-bind:class = 'offer.offerStatus'
             ) {{ offer.offerStatus }}
-          td {{ offer.makegoodNumber == 12676 ? dateMakegoodSent : offer.dateMakegoodSent }}
-          td {{ offer.makegoodNumber == 12676 ? dateTimeOfferDue : offer.dateTimeOfferDue }}
+          td {{ offer.makegoodNumber == '001' ? dateMakegoodSent : offer.dateMakegoodSent }}
+          td {{ offer.makegoodNumber == '001' ? dateTimeOfferDue : offer.dateTimeOfferDue }}
           td.vui-text-align--right(v-if='offer.makegoodTotal') {{ offer.makegoodTotal | numberWithCommas | formatMoney }}
           td.vui-text-align--right(v-else)
           td {{ offer.offerType }}
 
           td {{ offer.stationOrderNumber }}
           td
-            span.vui-badge(
-              v-bind:class = 'offer.acceptedByStation'
-            ) {{ offer.acceptedByStation }}
+            span.vui-badge(v-bind:class='offer.acceptedByStation') {{offer.acceptedByStation}}
           td.vui-text-align--center
             a(@click.prevent='')
               vui-icon(name='sticky-note-o')
@@ -77,7 +75,7 @@ div
           td.vui-text-align--center
             a(@click.prevent='')
               vui-icon(name='sticky-note-o')
-          td {{offer.orderId}}
+          td V{{offer.orderId}}
           td {{offer.repName}}
           td {{offer.dateCreated}} {{offer.timeCreated}}
           td {{offer.repName}}
@@ -211,7 +209,7 @@ div
                       td.vui-text-align--right 4.0
           .vui-grid.vui-grid--align-end
             input.vui-button.vui-button--secondary.vui-m-right--xx-small(type='button', @click='showRejectDialog = true', value='Reject Offer', ng-disabled='!canBeRejected')
-            input.vui-button.vui-button--brand(type='button', @click='acceptOffer(selectedOffer)', value='Accept Offer' ng-disabled='!canBeAccepted')
+            input.vui-button.vui-button--brand(type='button', @click='acceptOffer(selectedOffer)', value='Accept Offer', :disabled='selectedOffer.offerType !== "Program Change"')
   offers-reject-offer-popup(@close='showRejectDialog = false' v-show='showRejectDialog')
 </template>
 
@@ -276,7 +274,8 @@ div
 
       acceptOffer (offer) {
         this.showOfferPopup = false
-        offer.acceptedByStation = 'accepted'
+        offer.offerStatus = 'confirmed'
+        offer.acceptedByStation = 'confirmed'
       }
     }
   }

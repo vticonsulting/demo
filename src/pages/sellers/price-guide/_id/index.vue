@@ -82,7 +82,7 @@
           transition = 'item'
         )
 
-          tr.program
+          tr.program(style="background-color:#cee5eb")
 
             // Program
             td.name

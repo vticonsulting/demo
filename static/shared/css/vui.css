@@ -13668,6 +13668,7 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  height: 100%;
   background-color: #f4f6f9;
   color: #000000;
   position: relative;
@@ -14585,6 +14586,7 @@ tr.overdue td {
   background-image: -webkit-linear-gradient(left, #83c9bd 10%, #1d4f90 10%, #1d4f90 10%);
   background-image: linear-gradient(to right, #83c9bd 10%, #1d4f90 10%, #1d4f90 10%);
   padding: 0;
+  z-index: 1;
 }
 
 .vui-site-header--app__container {
@@ -14699,11 +14701,11 @@ tr.overdue td {
 
 .vui-main--login {
   background-image: url("../img/login-background.jpg");
-  background-position: 0 50%;
+  background-position: 0 0;
   background-repeat: no-repeat;
-  background-attachment: local;
+  background-attachment: fixed;
   background-size: cover;
-  margin-top: -2rem;
+  margin-top: -8rem;
   margin-bottom: 0;
   max-width: none;
 }

@@ -33,7 +33,7 @@
               v-bind:href = '`/#/sellers/order-management/pending-makegoods/${order.id}`'
               target = '_blank'
             ) Manage Schedule
-          td(v-on:click.prevent='toggleDetail(order)') {{ order.id }}
+          td(v-on:click.prevent='toggleDetail(order)') V{{ order.id }}
           td(v-on:click.prevent='toggleDetail(order)') {{ order.id == 135001 ? orderDate : order.orderDate }}
 
         tr.animated(v-show='order.expanded')

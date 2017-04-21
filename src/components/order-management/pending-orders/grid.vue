@@ -3,17 +3,17 @@
     table.vui-table.vui-table--striped
       thead
         tr
-          th.u-width-medium Order #
-          th.u-width-medium Status
-          th.u-width-medium Type
-          th Advertiser
-          th Agency
-          th CPE
-          th.u-width-medium Start
-          th.u-width-medium End
-          th.u-width-medium Currency
-          th.u-width-large Revenue
-          th.u-width-large Share
+          th.u-width-medium: vui-sorting-column(title='Order #')
+          th.u-width-medium: vui-sorting-column(title='Status')
+          th.u-width-medium: vui-sorting-column(title='Type')
+          th: vui-sorting-column(title='Advertiser')
+          th: vui-sorting-column(title='Agency')
+          th: vui-sorting-column(title='CPE')
+          th.u-width-medium: vui-sorting-column(title='Start')
+          th.u-width-medium: vui-sorting-column(title='End')
+          th.u-width-medium: vui-sorting-column(title='Currency')
+          th.u-width-large: vui-sorting-column(title='Revenue')
+          th.u-width-large: vui-sorting-column(title='Share')
       tbody(
         v-for = 'order in orders'
       )
@@ -29,7 +29,7 @@
                 style = 'margin-left: -0.5rem'
               )
             //- a.vui-align-middle(@click.prevent='showDetail(order.id)', href='#') {{ order.id }}
-            span(@click.prevent = 'showDetail(order.id)') {{ order.id }}
+            span(@click.prevent = 'showDetail(order.id)') V{{ order.id }}
           td(@click.prevent = 'showDetail(order.id)')
             span.vui-badge.new(
               v-bind:class = 'order.status'

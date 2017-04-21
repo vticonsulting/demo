@@ -43,7 +43,7 @@
         td.vui-text-align--right {{ daypart.grps | formatRating}}
         td.vui-text-align--right {{ Math.round(daypart.cpp) | numberWithCommas | formatMoney }}
         td {{ order.stationOrderNumber }}
-        td {{ order.id }}
+        td V{{ order.id }}
       template(
         v-for = 'show in daypart.shows'
       )

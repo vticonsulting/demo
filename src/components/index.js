@@ -69,6 +69,7 @@ export default {
     Vue.component('revision-history-grid', require('@/components/order-management/pending-makegoods/revision-history-grid'))
     Vue.component('ebiz-history-popup', require('@/components/order-management/pending-makegoods/ebiz-history-popup'))
     Vue.component('ebiz-history-grid', require('@/components/order-management/pending-makegoods/ebiz-history-grid'))
+    Vue.component('totals-popup', require('@/components/order-management/pending-makegoods/totals-popup'))
 
     // Vue.component('makegoods-offer-spots-grid', require('@/components/pending-makegoods/makegoods-offer-spots-grid'))
     // Vue.component('makegoods-preempts-grid', require('@/components/pending-makegoods/makegoods-preempts-grid'))

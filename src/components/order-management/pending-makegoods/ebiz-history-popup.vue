@@ -16,37 +16,44 @@
             v-bind:class = '{ "vui-active": currentTab === tabs.revisionHistory }'
           )
             a.vui-tabs--scoped__link(@click='changeTab(tabs.revisionHistory)') {{ tabs.revisionHistory }}
-      .table.vui-tabs--scoped__content.vui-p-around--x-large(
-        style = 'height: 500px; overflow-y: auto'
-      )
-        //- makegoods-ebiz-history-grid(
-        //-   v-show = 'currentTab === tabs.transactionHistory'
-        //-   is-show-delnotes = 'isShowDelnotes'
-        //-   items = 'transactionHistoryItems'
-        //- )
-        //- makegoods-revision-history-grid(
-        //-   v-show = 'currentTab == tabs.revisionHistory'
-        //-   is-order-type-impression = 'isOrderTypeImpression'
-        //-   items = 'revisionHistoryItems'
-        //- )
-      .vui-grid.vui-grid--pull-padded.vui-grid--vertical-align-end
-        .vui-col--padded
-          .vui-grid.vui-grid--align-end
-            label.vui-checkbox(v-show = 'currentTab == "Transaction History"')
-              input.vui-input(v-model = 'isShowDelnotes' type = 'checkbox')
-              span.vui-checkbox--faux
-              span.vui-form-element__label Show Delivery Notifications
-            input.vui-button.vui-button--neutral(
-              @click = '$emit("close")'
-              type = 'button'
-              value = 'Close'
-            )
+
+      .vui-tabs--scoped__content.vui-p-around--x-large.vui-m-bottom--small(style = 'height: 500px; overflow-y: auto')
+        transaction-history-grid(
+          v-show = 'currentTab === tabs.transactionHistory'
+          v-bind:showDelivered = 'showDelivered'
+          items = 'transactionHistoryItems'
+        )
+
+        revision-history-grid(
+          v-show = 'currentTab == tabs.revisionHistory'
+          items = 'revisionHistoryItems'
+        )
+
+      .vui-grid.vui-grid--align-end.vui-grid--vertical-align-center
+        label.vui-checkbox(v-show = 'currentTab == "Transaction History"')
+          input.vui-input(v-model='showDelivered' type='checkbox')
+          span.vui-checkbox--faux
+          span.vui-form-element__label Show Delivery Notifications
+        input.vui-button.vui-button--neutral(
+          @click = '$emit("close")'
+          type = 'button'
+          value = 'Close'
+        )
 </template>
 
 <script>
+
+  import RevisionHistoryGrid from './revision-history-grid'
+  import TransactionHistoryGrid from './transaction-history-grid'
+
   export default {
+    components: {
+      RevisionHistoryGrid,
+      TransactionHistoryGrid
+    },
+
     data: () => ({
-      isShowDelnotes: false,
+      showDelivered: false,
       currentTab: 'Transaction History',
       tabs: {
         transactionHistory: 'Transaction History',

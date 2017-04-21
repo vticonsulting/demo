@@ -34,7 +34,7 @@
           )
             router-link(
               v-bind:to = '{ name: "sellers-campaign-performance-id", params: { id: campaign.stationOrderNumber } }'
-            ) {{ campaign.videaOrderNumber }}
+            ) V{{ campaign.videaOrderNumber }}
           td.vui-truncate(
             v-bind:title = 'campaign.advertiser'
             v-show = 'columns.advertiser.isVisible'
@@ -84,7 +84,7 @@
           td.vui-truncate.vui-text-align--right(
             v-bind:title = 'campaign.currentGrpsImps'
             v-show = 'columns.currentRtgsImps.isVisible'
-          ) {{ campaign.currentGrpsImps | formatRating }}
+          ) {{ campaign.currentGrpsImps }}
           td.vui-truncate.vui-text-align--right(
             v-bind:title = 'campaign.purchasedGrpsImps'
             v-show = 'columns.purchasedGrpsImpsToDate.isVisible'

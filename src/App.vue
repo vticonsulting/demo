@@ -72,7 +72,7 @@
   //   font-size 75%
   //   line-height 1
 
-  .app
+  #app, body
     display flex
     flex-direction column
     min-height 100vh

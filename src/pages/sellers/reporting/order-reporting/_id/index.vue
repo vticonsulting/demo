@@ -2,7 +2,7 @@
   .orders-show-detail
     vui-title.vui-grid.vui-grid--align-spread(style='margin-bottom: 0')
       span Order Reporting Detail
-      span {{ order.advertiser }} &mdash; Order # {{ id }}
+      span {{ order.advertiser }} &mdash; Order # V{{ id }}
 
     .vui-grid.vui-grid--align-spread.vui-m-bottom--large
         a(@click.prevent='showOrders')

@@ -233,14 +233,29 @@
 
       .avail-programs.vui-scrollable--x.vui-m-bottom--medium
         .vui-grid.vui-grid--align-spread
-          h3.vui-text-heading--small.vui-m-bottom--small {{ selectedDaypart.name }}
-          a.vui-text-align--right(
-            @click.prevent = 'showEditProgramsModal = true'
-            href = '#'
-          )
-            vui-icon.vui-m-right--xx-small(
-              name = 'edit'
-            )
+          .vui-box.vui-box--border.vui-theme--default(style='width: 90%')
+            .vui-grid.vui-grid--align-spread.vui-wrap.vui-p-vertical--x-small
+              fieldset.vui-col--padded-medium.vui-form-element
+                .vui-form-element__control
+                  b {{ selectedDaypart.name }} Specs:
+              fieldset.vui-col--padded-medium.vui-form-element
+                .vui-form-element__control
+                  span GRP's&nbsp;
+                  span {{ selectedDaypart.goals.grps | formatMoney }}
+              fieldset.vui-col--padded-medium.vui-form-element
+                .vui-form-element__control
+                  span Mix&nbsp;
+                  span {{ selectedDaypart.goals.mix | decimalToPercent }}
+              fieldset.vui-col--padded-medium.vui-form-element
+                .vui-form-element__control
+                  span CPP Goal (:30)&nbsp;
+                  span {{ selectedDaypart.goals.cpp  | formatMoney }}
+              fieldset.vui-col--padded-medium.vui-form-element
+                .vui-form-element__control
+                  span Market Competitive&nbsp;
+                  span {{ selectedDaypart.marketCompetitive.low  | formatMoney  }} - {{ selectedDaypart.marketCompetitive.high  | formatMoney }}
+          a.vui-text-align--right(@click.prevent='showEditProgramsModal = true' href = '#')
+            vui-icon.vui-m-right--xx-small(name='plus-circle')
             | Add Programs
 
         table.vui-table.vui-no-row-hover.vui-m-bottom--large
@@ -249,6 +264,11 @@
               th(
                 rowspan = '2'
               ) Program
+              th(
+                rowspan = '2'
+              )
+                div Notes
+                div.vui-form-element__help Only visible to station and sales rep.
               th.u-width-large(
                 rowspan = '2'
               ) Start
@@ -266,18 +286,20 @@
               )
                 .vui-grid.vui-grid--align-spread
                   span.vui-align-middle Buyer
-                  //- span.vui-align-middle.vui-grid
-                  //-   //- input.vui-align-middle.vui-m-right--xx-small(type = 'checkbox')
-                  //-   .vui-form-element
-                  //-     .vui-checkbox.vui-m-right--xxx-small
-                  //-       input(
-                  //-         id = 'accept-all-buyer-ratings'
-                  //-         type = 'checkbox'
-                  //-       )
-                  //-       span.vui-checkbox--faux
-                  //-     label.vui-align-middle(
-                  //-       for = 'accept-all-buyer-ratings'
-                  //-     ) Accept All Buyer Ratings #[small (except 0's)]
+                  span.vui-align-middle.vui-grid
+                    //- input.vui-align-middle.vui-m-right--xx-small(type = 'checkbox')
+
+                    .vui-form-element
+                      .vui-checkbox.vui-m-right--xxx-small
+                        label.vui-checkbox
+                          input#accept-all-buyer-ratings.vui-input(
+                            v-model='acceptAll'
+                            type='checkbox'
+                          )
+                          span.vui-checkbox--faux
+                      label.vui-align-middle(
+                        for = 'accept-all-buyer-ratings'
+                      ) Accept All Buyer Ratings
             tr
               th.u-width-large Rate
               th.u-width-large Rating
@@ -319,6 +341,8 @@
                     span
                       span {{ program.name }} #[br]
                       span {{ program.time }}
+              td
+                textarea(ng-model='item.summaryLine.notes', ng-change='onGridDataChange()', style='width:250px;height:50px;background-color:#dceaf1;overflow-y:scroll;resize:none;font-size:10pt')
               // Flight Start Date(program)
               td {{ program.flightStartDate }}
               // Flight End Date (program)
@@ -334,8 +358,8 @@
               // Rating (program)
               td.u-width-small
                 input.vui-text-align--right.vui-input(
-                  v-bind:value = 'program.rating'
-                  v-model = 'program.rating'
+                  v-bind:value = 'accepted.length > 0 ? program.buyer.rating : program.rating'
+                  v-model = 'accepted.length > 0 ? program.buyer.rating : program.rating'
                 )
               // Average CPP
               td.vui-text-align--right.u-width-small
@@ -355,12 +379,15 @@
               // Buyer --  Rating (program)
               td.vui-text-align--right.u-width-small
                 .vui-grid.vui-grid--align-end
-                  //- .vui-form-element
-                  //-   .vui-checkbox.vui-m-right--xxx-small
-                  //-     input(
-                  //-       type = 'checkbox'
-                  //-     )
-                  //-     span.vui-checkbox--faux
+                  .vui-form-element
+                    .vui-checkbox.vui-m-right--xxx-small
+                      label.vui-checkbox
+                        input(type='checkbox'
+                          v-model='accepted'
+                          v-bind:value='program.id'
+                          number
+                        )
+                        span.vui-checkbox--faux
                   span.vui-align-middle {{ program.buyer.rating | formatRating }}
               // Buyer --  Need Goal (program)
               td.vui-text-align--right.u-width-small {{ program.buyer.needGoal | numberWithCommas | formatMoney }}
@@ -386,6 +413,9 @@
                       v-bind:month = 'month'
                       v-bind:weeks = 'month.weeks'
                     )
+                // Notes (month)
+                td
+                  textarea(ng-model='item.summaryLine.notes', ng-change='onGridDataChange()', style='width:250px;height:50px;background-color:#dceaf1;overflow-y:scroll;resize:none;font-size:10pt')
                 // Flight Start Date (month)
                 td.u-width-small {{ month.flightStartDate }}
                 // Flight End Date (month)
@@ -422,12 +452,10 @@
                 // Buyer Rating (month)
                 td.vui-text-align--right.u-width-small
                   .vui-grid.vui-grid--align-end
-                    //- .vui-form-element
-                    //-   .vui-checkbox.vui-m-right--xxx-small
-                    //-     input(
-                    //-       type = 'checkbox'
-                    //-     )
-                    //-     span.vui-checkbox--faux
+                    .vui-form-element
+                      label.vui-checkbox
+                        input(type='checkbox', v-model='accepted' v-bind:value='program.id' number)
+                        span.vui-checkbox--faux
                     span.vui-align-middle {{ month.buyer.rating | formatRating }}
                 // Buyer Need Goal(month)
                 td.vui-text-align--right.u-width-small {{ month.buyer.needGoal | numberWithCommas | formatMoney }}
@@ -454,6 +482,9 @@
                           name = 'times-circle'
                         )
                       span.vui-align-middle {{ week.week }}
+                  // Notes (week)
+                  td
+                    textarea(ng-model='item.summaryLine.notes', ng-change='onGridDataChange()', style='width:250px;height:50px;background-color:#dceaf1;overflow-y:scroll;resize:none;font-size:10pt')
                   // Flight Start Date (week)
                   td.u-width-small {{ week.flightStartDate }}
                   // Flight End Date (week)
@@ -570,6 +601,8 @@
         activeTab: 'market-competitive',
         application: 'reps',
         avails: [],
+        acceptAllBuyerRatings: true,
+        accepted: [],
         // selectedDaypart: require('@/components/avails/selected.json'),
         selectedDaypart: require('@/components/avails/selected.js'),
         'dayparts': [
@@ -631,7 +664,23 @@
         ]
       }
     },
+    computed: {
+      acceptAll: {
+        get () {
+          return this.selectedDaypart.programs ? this.accepted.length == this.selectedDaypart.programs.length : false;
+        },
+        set (value) {
+          var accepted = []
 
+          if (value) {
+            this.selectedDaypart.programs.forEach(function (program) {
+              accepted.push(program.id);
+            })
+          }
+          this.accepted = accepted
+        }
+      }
+    },
     methods: {
       fetchAvail (id) {
         axios.get(`/avails/${id}`)
@@ -718,6 +767,7 @@
     created () {
       this.fetchAvail(this.$route.params.id)
       this.fetchDayparts()
+      this.$on('acceptAll')
     }
   }
 </script>

@@ -2,7 +2,7 @@
   .makegoods-view
     vui-title Pending Makegoods
     vui-panel
-      .vui-scrollable--x.vui-p-bottom--x-small
+      .vui-p-bottom--x-small
         pending-makegoods-filter
     pending-makegoods-grid(:offers='offers', :orders='orders')
 

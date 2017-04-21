@@ -1,50 +1,46 @@
 <template lang="pug">
-  .fixed-header-grid(
-    style = 'display: flex; flex-direction: column; position: relative; height: 100%'
-  )
-    div(
-      style ='overflow: hidden; flex: 0 0 auto; width: 0px'
-    )
-      table.vui-table.vui-no-row-hover.vui-table--striped.vui-table--fixed-layout(
-        style = 'position: relative'
-      )
-        thead
-          tr
-            th(
-              style = 'width: 56px'
-            ) Version
-            th(
-              style = 'width: 100px'
-            ) Last Updated
-            th(
-              style = 'width: 100px'
-            ) Total Dollars
-            th.ng-scope(
-              v-if = '!isOrderTypeImpression'
-              style = 'width: 100px'
-            ) Total GRPs
-            th(
-              style = 'width: 70px'
-            ) Total Spots
-            th(
-              style = 'width: 70px'
-            ) Total Lines
-            th(
-              style = 'width: 105px'
-            ) Difference Dollars
-            th(
-              v-if = '!isOrderTypeImpression'
-              style = 'width: 95px'
-            ) Difference GRPs
-            th(
-              style = 'width: 95px'
-            ) Difference Spots
-            th(
-              style = 'width: 20%'
-            ) Difference Lines
-    .vui-scrollable(
-      style = 'flex: 0 1 auto'
-    )
-      table.vui-table.vui-no-row-hover.vui-table--striped.vui-table--fixed-layout
-        tbody
+  table.vui-table.vui-no-row-hover.vui-table--striped
+    thead
+      tr
+        th(style='width: 56px'): vui-sorting-column(title='Version')
+        th(style='width: 100px'): vui-sorting-column(title='Last Updated')
+        th(style='width: 100px'): vui-sorting-column(title='Total Dollars')
+        th(style='width: 100px'): vui-sorting-column(title='Total GRPs')
+        th(style='width: 70px'): vui-sorting-column(title='Total Spots')
+        th(style='width: 70px'): vui-sorting-column(title='Total Lines')
+        th(style='width: 105px'): vui-sorting-column(title='Difference Dollars')
+        th(style='width: 95px'): vui-sorting-column(title='Difference GRPs')
+        th(style='width: 95px'): vui-sorting-column(title='Difference Spots')
+        th(style='width: 20%'): vui-sorting-column(title='Difference Lines')
+    tbody
+      tr(v-for='item in items')
+        td.vui-text-align--right {{item.version}}
+        td {{item.lastUpdated}}
+        td.vui-text-align--right {{item.totalDollars | numbersWithCommas | formatMoney}}
+        td.vui-text-align--right {{item.totalGrps}}
+        td.vui-text-align--right {{item.totalSpots }}
+        td.vui-text-align--right {{item.totalLines}}
+        td
+        td
+        td
+        td
 </template>
+
+<script>
+  export default {
+    data () {
+      return {
+        items: [
+          {
+            version: 1,
+            lastUpdated: '04/14/2017',
+            totalDollars: 41000,
+            totalGrps: 99.7,
+            totalSpots: 53,
+            totalLines: 11
+          }
+        ]
+      }
+    }
+  }
+</script>

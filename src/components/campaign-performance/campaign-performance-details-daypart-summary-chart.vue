@@ -21,7 +21,7 @@
 
     data () {
       return {
-        dayparts: [ 'EM', 'EN', 'PR', 'LN', 'LF' ]
+        dayparts: [ 'EM', 'EN', 'PR', 'LF' ]
       }
     }
   }

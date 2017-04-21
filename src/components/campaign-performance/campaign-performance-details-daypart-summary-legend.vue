@@ -2,7 +2,7 @@
   .vui-text-align--center
     .vui-box--border.vui-text-align--center.vui-show--inline-block.vui-size--2-of-3.vui-form-element__helper
       .campaign-performance-legend
-        span.vui-m-right--medium Metered
+        span.vui-m-right--medium LPM
         span.vui-m-right--medium
           vui-icon.vui-m-right--x-small(
             name = 'stop'

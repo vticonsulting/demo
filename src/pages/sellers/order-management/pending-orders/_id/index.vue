@@ -25,7 +25,7 @@
       fieldset.vui-form-element
         label.vui-form-element__label Videa Order ID
         .vui-form-element__control
-          span.vui-form-element__static {{ order.id }}
+          span.vui-form-element__static V{{ order.id }}
 
       fieldset.vui-form-element
         label.vui-form-element__label Order Type

@@ -258,7 +258,7 @@
             transition = 'item'
           )
 
-            tr.program
+            tr.program(style="background-color:#cee5eb")
 
               // Program
               td.name
@@ -328,19 +328,19 @@
               ) {{ Math.round(averageMonthlyStationPremiumCpm(program.months)) | numberWithCommas | formatMoney }}
 
               // Videa -- Rate (Program)
-              td.videa.rate.vui-text-align--right.vui-highlight
+              td.videa.rate.vui-text-align--right
                 | {{ Math.round(avg(program.months, 'videa', 'rate')) | numberWithCommas | formatMoney }}
 
               // Videa -- Accept Videa Rate (Program)
-              td.videa.accept-rate.vui-text-align--center.vui-highlight
+              td.videa.accept-rate.vui-text-align--center
 
               // Videa -- Rating (Program)
-              td.videa.rating.vui-text-align--right.vui-highlight(
+              td.videa.rating.vui-text-align--right(
                 v-show = 'cppOrCpm == "cpp"'
               ) {{ avg(program.months, 'videa', 'rating') | formatRating }}
 
               // Videa -- CPP (Program)
-              td.videa.cpp.vui-text-align--right.vui-highlight(
+              td.videa.cpp.vui-text-align--right(
                 v-show = 'cppOrCpm == "cpp"'
               )
                 cpp(
@@ -349,12 +349,12 @@
                 )
 
               // Videa -- Impressions (Program)
-              td.videa.impressions.vui-text-align--right.vui-highlight(
+              td.videa.impressions.vui-text-align--right(
                 v-show = 'cppOrCpm == "cpm"'
               ) {{ Math.round(avg(program.months, 'videa', 'impressions')) | formatRating }}
 
               // Videa -- CPM (Program)
-              td.videa.cpm.vui-text-align--right.vui-highlight(
+              td.videa.cpm.vui-text-align--right(
                 v-show = 'cppOrCpm == "cpm"'
               ) {{ Math.round(averageMonthlyVideaCpm(program.months)) | numberWithCommas | formatMoney }}
 
@@ -380,7 +380,7 @@
               v-if = 'program.months'
             )
 
-              tr.month(
+              tr.month.vui-highlight(
                 v-bind:class = 'month.station.rate !== month.videa.rate ? "has-changed" : ""'
                 v-show = 'program.expanded'
               )
@@ -605,7 +605,7 @@
                 v-if = 'month.weeks'
               )
 
-                tr.week(
+                tr.week.vui-highlight(
                   v-bind:class = '[ week.station.rate !== week.videa.rate ? "has-changed" : "", !week.expanded ? "vui-hide" : "" ]'
                   v-show = 'week.expanded'
                 )
@@ -872,10 +872,11 @@
         priceGuide: {},
         selectedQuarter: '2017/Q2',
         quarters: [
-          '2016/Q3',
-          '2016/Q4',
-          '2017/Q1',
-          '2017/Q2'
+          '2017/Q2',
+          '2017/Q3',
+          '2017/Q4',
+          '2018/Q1',
+          '2018/Q2'
         ],
         selected: 'early-morning',
         selectedDaypart: 'early-morning',

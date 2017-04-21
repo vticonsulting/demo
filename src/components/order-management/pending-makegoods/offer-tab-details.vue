@@ -73,7 +73,7 @@
                     type = 'radio'
                   )
                   span.vui-radio--faux.vui-m-right--xxx-small
-                  span.vui-form-element__label Open Preempts Only
+                  span.vui-form-element__label Missed Only
 
           .vui-fieldset.vui-size-3-of-4.vui-m-right--x-large.vui-shrink-none.vui-grow-none
             .vui-grid.vui-grid--vertical-align-center.vui-p-around--x-small

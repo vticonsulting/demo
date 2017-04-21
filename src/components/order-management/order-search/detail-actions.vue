@@ -18,27 +18,37 @@
 
       input.vui-button.vui-button--secondary(
         v-if = '!isCancelledOrder'
-        v-on:click = 'openSpotsRunNotOrderedModal'
+        v-on:click = 'openSpotsRunNotOrderedPopup'
         type = 'button'
-        value = 'Spots Run Not Ordered'
+        value = 'Unmatched Spots'
       )
 
       input.vui-button.vui-button--secondary(
         v-if = '!isCancelledOrder'
-        v-on:click = 'openEbizHistoryModal'
+        v-on:click = 'openEbizHistoryPopup'
         type = 'button'
         value = 'eBiz History'
+      )
+      input.vui-button.vui-button--secondary(
+        v-on:click.prevent = 'openTotalsPopup'
+        type = 'button'
+        value = 'Totals'
       )
 
     ebiz-history-popup(
       v-bind:context = 'context'
-      v-if='showEbizHistoryModal'
-      @close='showEbizHistoryModal = false'
+      v-if = 'showEbizHistoryPopup'
+      @close = 'showEbizHistoryPopup = false'
+    )
+    totals-popup(
+      v-bind:context = 'context'
+      v-if = 'showTotalsPopup'
+      @close = 'showTotalsPopup = false'
     )
     spots-run-not-ordered-popup(
       v-bind:context = 'context'
-      v-if='showSpotsRunNotOrderedModal'
-      @close='showSpotsRunNotOrderedModal = false'
+      v-if = 'showSpotsRunNotOrderedPopup'
+      @close = 'showSpotsRunNotOrderedPopup = false'
     )
 </template>
 
@@ -68,8 +78,9 @@
         isImpressionsBuyType: true,
         shouldShowInfo: true,
         isMakegoodDefined: true,
-        showSpotsRunNotOrderedModal: false,
-        showEbizHistoryModal: false
+        showSpotsRunNotOrderedPopup: false,
+        showEbizHistoryPopup: false,
+        showTotalsPopup: false
       }
     },
     methods: {
@@ -96,12 +107,16 @@
 
       },
 
-      openSpotsRunNotOrderedModal () {
-        this.showSpotsRunNotOrderedModal = true
+      openSpotsRunNotOrderedPopup () {
+        this.showSpotsRunNotOrderedPopup = true
       },
 
-      openEbizHistoryModal () {
-        this.showEbizHistoryModal = true
+      openEbizHistoryPopup () {
+        this.showEbizHistoryPopup = true
+      },
+
+      openTotalsPopup () {
+        this.showTotalsPopup = true
       },
 
       showEbizHistory () {},

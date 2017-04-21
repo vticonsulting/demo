@@ -2,7 +2,7 @@
   .makegoods-details-view
     vui-title.vui-grid.vui-grid--align-spread
       span Order Information - Offers
-      span {{ order.advertiser }} &mdash; Order # {{ id }}
+      span {{ order.advertiser }} &mdash; Order # V{{ id }}
 
     order-detail-info(:order='order')
 

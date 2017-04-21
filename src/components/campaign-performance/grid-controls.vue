@@ -3,14 +3,6 @@
     .vui-align-middle
       campaign-performance-legend
     .vui-align-middle.vui-col--bump-left
-      .vui-dropdown-trigger
-        | Show:
-        .vui-dropdown-trigger.vui-m-right--small.vui-m-left--x-small
-          .vui-select_container
-            vui-items-per-page-selector(
-              items-per-page = 'listCtrl.queryParams.pageSize'
-              refresh-data = 'listCtrl.changeItemsPerPage(itemsPerPage)'
-            )
     .vui-align-middle
       .vui-dropdown-trigger
         | Columns:

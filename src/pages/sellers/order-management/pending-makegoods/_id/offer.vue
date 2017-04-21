@@ -10,9 +10,11 @@
 
       fieldset.vui-form-element
         button.vui-button.vui-button--brand.vui-m-right--x-small(:disabled='!offered.length' @click='transfer') Transfer to MediaOps
+        button.vui-button.vui-button--brand.vui-m-right--x-small(:disabled='!offered.length' @click='send') Send
         button.vui-button.vui-button--brand.vui-m-right--x-small(@click='viewGuidelines') Guidelines
         button.vui-button.vui-button--secondary.vui-m-right--xx-small(:disabled='!canSave' @click='save') Save
         button.vui-button.vui-button--neutral(:disabled='!canSave' @click.prevent='closeWindow') Close
+        button.vui-button.vui-button--secondary(@click.prevent='showTotalsPopup = true') Totals
 
     // Tab
     .vui-tabs--scoped.details-tabs-header-container
@@ -45,11 +47,11 @@
               .vui-form-element
                 label.vui-form-element__label New program name:
                 .vui-form-element__control
-                  input.vui-input(type='text', name='newProgramName', ng-model='programData.newProgramName', required='', maxlength='50')
+                  input.vui-input(type='text', name='newProgramName', v-model='programData.newProgramName', required='', maxlength='50')
               .vui-form-element
                 label.vui-form-element__label MG comment:
                 .vui-form-element__control
-                  input.vui-input(type='text', ng-model='programData.mgComment')
+                  input.vui-input(type='text', v-model='programData.mgComment')
             .vui-large-size--2-of-5.vui-text-align--right
               .vui-form-element
                 label.vui-form-element__label.vui-size--2-of-3 Effective from:
@@ -70,13 +72,102 @@
                   label.vui-form-element__label Days:
                   .vui-form-element__control(style='width: 8rem')
                     //- vui-multiselect-dropdown(items='programData.dayItems')
+                    .vui-form-element__control
+                      .vui-select_container
+                        select.vui-select(v-model='programData.newSelectedDay')
+                          option ALL
+                          option MO-FR
+                          option SU
+                          option MO
+                          option TU
+                          option WE
+                          option TH
+                          option FR
+                          option SA
                 .vui-form-element
                   label.vui-form-element__label Start Time:
                   .vui-form-element__control
                     //- vui-time-input(on-time-changed='timeChanged', is-time-invalid='!isTimeRangeValid', model='programData.startTime')
+                    .vui-form-element__control
+                      .vui-select_container
+                        select.vui-select(v-model='programData.newStartTime')
+                            option 07:00 AM
+                            option 07:30 AM
+                            option 08:00 AM
+                            option 08:30 AM
+                            option 09:00 AM
+                            option 09:30 AM
+                            option 10:00 AM
+                            option 10:30 AM
+                            option 11:00 AM
+                            option 11:30 AM
+                            option 12:00 PM
+                            option 12:30 PM
+                            option 01:00 PM
+                            option 01:30 PM
+                            option 02:00 PM
+                            option 02:30 PM
+                            option 03:00 PM
+                            option 03:30 PM
+                            option 04:00 PM
+                            option 04:30 PM
+                            option 05:00 PM
+                            option 05:30 PM
+                            option 06:00 PM
+                            option 06:30 PM
+                            option 07:00 PM
+                            option 07:30 PM
+                            option 08:00 PM
+                            option 08:30 PM
+                            option 09:00 PM
+                            option 09:30 PM
+                            option 10:00 PM
+                            option 10:30 PM
+                            option 11:00 PM
+                            option 11:30 PM
+                            option 12:00 AM
+                            option 12:30 AM
                 .vui-form-element
                   label.vui-form-element__label End Time:
                   .vui-form-element__control
+                    .vui-select_container
+                      select.vui-select(v-model='programData.newEndTime')
+                            option 07:00 AM
+                            option 07:30 AM
+                            option 08:00 AM
+                            option 08:30 AM
+                            option 09:00 AM
+                            option 09:30 AM
+                            option 10:00 AM
+                            option 10:30 AM
+                            option 11:00 AM
+                            option 11:30 AM
+                            option 12:00 PM
+                            option 12:30 PM
+                            option 01:00 PM
+                            option 01:30 PM
+                            option 02:00 PM
+                            option 02:30 PM
+                            option 03:00 PM
+                            option 03:30 PM
+                            option 04:00 PM
+                            option 04:30 PM
+                            option 05:00 PM
+                            option 05:30 PM
+                            option 06:00 PM
+                            option 06:30 PM
+                            option 07:00 PM
+                            option 07:30 PM
+                            option 08:00 PM
+                            option 08:30 PM
+                            option 09:00 PM
+                            option 09:30 PM
+                            option 10:00 PM
+                            option 10:30 PM
+                            option 11:00 PM
+                            option 11:30 PM
+                            option 12:00 AM
+                            option 12:30 AM
                     //- vui-time-input(on-time-changed='timeChanged', is-time-invalid='!isTimeRangeValid', model='programData.endTime')
         .vui-grid.vui-grid--pull-padded.vui-grid--align-spread.vui-m-top--medium.vui-m-bottom--medium
           .vui-col--padded.vui-align-middle
@@ -87,9 +178,9 @@
               | Add Spots(s)
 
         // Lines to Change
-        div(style='height: 15rem')
+        div
           //- program-change-lines-to-change-grid(items='orderItems')
-          .vui-scrollable--x(style='height: 220px;overflow-y: hidden')
+          .vui-scrollable--x
             table.vui-table.vui-no-row-hover.vui-table--striped.vui-table--fixed-layout.mg-program-name-change
               thead
                 tr
@@ -104,8 +195,8 @@
                   th.spot-allocation-column(style='width: 503px')
                     spot-allocation-header
                   th(style='width: 100px'): vui-sorting-column(title='Spot Rate')
-                  th(v-if='isImpressionsBuyType' style='width: 100px'): vui-sorting-column(title='Buyer IMP')
-                  th(v-if='isImpressionsBuyType' style='width: 100px'): vui-sorting-column(title='Buyer CPM')
+                  th(v-if='isImpressionsBuyType' style='width: 100px'): vui-sorting-column(title='Buyer RTG')
+                  th(v-if='isImpressionsBuyType' style='width: 100px'): vui-sorting-column(title='Buyer CPP')
                   th(style='width: 50%'): vui-sorting-column(title='Line $ Total')
               tbody
                 tr(v-for='program in programsToChange')
@@ -127,10 +218,10 @@
                         ul.spot-allocation(style='left: 0')
                           li(v-for='spot in program.weeklySpotAllocations')
                             div: span: span {{ spot.value }}
-                  td.vui-truncate.vui-text-align--right(:title='program.orderedSpotRate' style='width: 100px') {{program.orderedSpotRate}}
-                  td.vui-truncate.vui-text-align--right(:title='program.buyerRating' style='width: 100px') {{program.buyerRating}}
-                  td.vui-truncate.vui-text-align--right(:title='program.orderedCpp' style='width: 100px') {{program.orderedCpp}}
-                  td.vui-truncate.vui-text-align--right(:title='program.lineTotalMoney' style='width: 50%') {{program.lineTotalMoney}}
+                  td.vui-truncate.vui-text-align--right(:title='program.orderedSpotRate' style='width: 100px') {{program.spotRate | numberWithCommas | formatMoney}}
+                  td.vui-truncate.vui-text-align--right(:title='program.buyerRating' style='width: 100px') {{program.buyerRating | formatRating}}
+                  td.vui-truncate.vui-text-align--right(:title='program.orderedCpp' style='width: 100px') {{Math.round((program.spotRate / program.buyerRating)) | formatMoney}}
+                  td.vui-truncate.vui-text-align--right(:title='program.lineTotalMoney' style='width: 50%') {{program.lineDollarTotal | numberWithCommas | formatMoney}}
 
         .vui-grid.vui-grid--pull-padded.vui-grid--align-spread.vui-m-top--medium.vui-m-bottom--medium
           .vui-col--padded.vui-align-middle
@@ -179,7 +270,7 @@
                     td
                       .vui-form-element__control
                         .vui-select_container
-                          select.vui-select
+                          select.vui-select(v-model='item.selectedDay')
                             option ALL
                             option MO-FR
                             option SU
@@ -192,16 +283,84 @@
                     td
                       .vui-form-element__control
                         .vui-select_container
-                          select.vui-select
-                            option 12:00 am
-                            option 12:30 am
+                          select.vui-select(v-model='item.startTime')
+                            option 07:00 AM
+                            option 07:30 AM
+                            option 08:00 AM
+                            option 08:30 AM
+                            option 09:00 AM
+                            option 09:30 AM
+                            option 10:00 AM
+                            option 10:30 AM
+                            option 11:00 AM
+                            option 11:30 AM
+                            option 12:00 PM
+                            option 12:30 PM
+                            option 01:00 PM
+                            option 01:30 PM
+                            option 02:00 PM
+                            option 02:30 PM
+                            option 03:00 PM
+                            option 03:30 PM
+                            option 04:00 PM
+                            option 04:30 PM
+                            option 05:00 PM
+                            option 05:30 PM
+                            option 06:00 PM
+                            option 06:30 PM
+                            option 07:00 PM
+                            option 07:30 PM
+                            option 08:00 PM
+                            option 08:30 PM
+                            option 09:00 PM
+                            option 09:30 PM
+                            option 10:00 PM
+                            option 10:30 PM
+                            option 11:00 PM
+                            option 11:30 PM
+                            option 12:00 AM
+                            option 12:30 AM
                     td
                       .vui-form-element__control
                         .vui-select_container
-                          select.vui-select
-                            option 12:00 am
-                            option 12:30 am
-                    td: input.vui-input(type='text', v-model='item.name')
+                          select.vui-select(v-model='item.endTime')
+                            option 07:00 AM
+                            option 07:30 AM
+                            option 08:00 AM
+                            option 08:30 AM
+                            option 09:00 AM
+                            option 09:30 AM
+                            option 10:00 AM
+                            option 10:30 AM
+                            option 11:00 AM
+                            option 11:30 AM
+                            option 12:00 PM
+                            option 12:30 PM
+                            option 01:00 PM
+                            option 01:30 PM
+                            option 02:00 PM
+                            option 02:30 PM
+                            option 03:00 PM
+                            option 03:30 PM
+                            option 04:00 PM
+                            option 04:30 PM
+                            option 05:00 PM
+                            option 05:30 PM
+                            option 06:00 PM
+                            option 06:30 PM
+                            option 07:00 PM
+                            option 07:30 PM
+                            option 08:00 PM
+                            option 08:30 PM
+                            option 09:00 PM
+                            option 09:30 PM
+                            option 10:00 PM
+                            option 10:30 PM
+                            option 11:00 PM
+                            option 11:30 PM
+                            option 12:00 AM
+                            option 12:30 AM
+                    td: input.vui-input(type='text', v-model='programData.newProgramName')
                     //-  Len
                     td 30 s
                     //- Ordered Spots
@@ -219,8 +378,8 @@
                                 )
                     td: input.vui-input.vui-text-align--right(type='text', v-model.number='item.spotRate' @keypress='onKeypress')
                     td: input.vui-input.vui-text-align--right(type='text', v-model.number='item.stationRating' @keypress='onKeypress')
-                    td
-                    td: input.vui-input(type='text', v-model='item.makegoodComment')
+                    td.vui-text-align--right {{Math.round((item.spotRate / item.stationRating)) | formatMoney}}
+                    td: input.vui-input(type='text', v-model='programData.mgComment')
 
 
     // Tab Panel -- Other Offer Types
@@ -371,7 +530,7 @@
                       td
                         .vui-form-element__control
                           .vui-select_container
-                            select.vui-select
+                            select.vui-select(v-model='item.selectedDay')
                               option ALL
                               option MO-FR
                               option SU
@@ -384,15 +543,83 @@
                       td
                         .vui-form-element__control
                           .vui-select_container
-                            select.vui-select
-                              option 12:00 am
-                              option 12:30 am
+                            select.vui-select(v-model='item.startTime')
+                              option 07:00 AM
+                              option 07:30 AM
+                              option 08:00 AM
+                              option 08:30 AM
+                              option 09:00 AM
+                              option 09:30 AM
+                              option 10:00 AM
+                              option 10:30 AM
+                              option 11:00 AM
+                              option 11:30 AM
+                              option 12:00 PM
+                              option 12:30 PM
+                              option 01:00 PM
+                              option 01:30 PM
+                              option 02:00 PM
+                              option 02:30 PM
+                              option 03:00 PM
+                              option 03:30 PM
+                              option 04:00 PM
+                              option 04:30 PM
+                              option 05:00 PM
+                              option 05:30 PM
+                              option 06:00 PM
+                              option 06:30 PM
+                              option 07:00 PM
+                              option 07:30 PM
+                              option 08:00 PM
+                              option 08:30 PM
+                              option 09:00 PM
+                              option 09:30 PM
+                              option 10:00 PM
+                              option 10:30 PM
+                              option 11:00 PM
+                              option 11:30 PM
+                              option 12:00 AM
+                              option 12:30 AM
                       td
                         .vui-form-element__control
                           .vui-select_container
-                            select.vui-select
-                              option 12:00 am
-                              option 12:30 am
+                            select.vui-select(v-model='item.endTime')
+                              option 07:00 AM
+                              option 07:30 AM
+                              option 08:00 AM
+                              option 08:30 AM
+                              option 09:00 AM
+                              option 09:30 AM
+                              option 10:00 AM
+                              option 10:30 AM
+                              option 11:00 AM
+                              option 11:30 AM
+                              option 12:00 PM
+                              option 12:30 PM
+                              option 01:00 PM
+                              option 01:30 PM
+                              option 02:00 PM
+                              option 02:30 PM
+                              option 03:00 PM
+                              option 03:30 PM
+                              option 04:00 PM
+                              option 04:30 PM
+                              option 05:00 PM
+                              option 05:30 PM
+                              option 06:00 PM
+                              option 06:30 PM
+                              option 07:00 PM
+                              option 07:30 PM
+                              option 08:00 PM
+                              option 08:30 PM
+                              option 09:00 PM
+                              option 09:30 PM
+                              option 10:00 PM
+                              option 10:30 PM
+                              option 11:00 PM
+                              option 11:30 PM
+                              option 12:00 AM
+                              option 12:30 AM
                       td: input.vui-input(type='text', v-model='item.name')
                       //-  Len
                       td 30 s
@@ -530,7 +757,7 @@
                               //-       v-model.number='item.week12')
                       td: input.vui-input.vui-text-align--right(type='text', v-model.number='item.spotRate' @keypress='onKeypress')
                       td: input.vui-input.vui-text-align--right(type='text', v-model.number='item.buyerRating' @keypress='onKeypress')
-                      td.vui-text-align--right {{item.spotRate / item.buyerRating | formatMoney}}
+                      td.vui-text-align--right {{Math.round((item.spotRate / item.buyerRating))  | formatMoney}}
                       td: input.vui-input(type='text', v-model='item.makegoodComment')
 
           // Station Avails
@@ -607,8 +834,10 @@
                           option 03:00 PM
                           option 04:00 PM
                           option 05:00 PM
-                          option(selected) 06:00 PM
-
+                          option 06:00 PM
+                          option(selected) 07:00 PM
+                          option 08:00 PM
+                          option 09:00 PM
                   fieldset.vui-form-element.vui-m-right--small
                     .vui-form-element__control(style='width: 8rem')
                       .vui-form-element__control
@@ -622,10 +851,10 @@
                         .vui-select_container
                           select.vui-select
                             option All Dayparts
-                            option(selected) Early Morning
+                            option Early Morning
                             option Daytime
                             option Early Fringe
-                            option Early News
+                            option(selected) Early News
                             option Prime Access
                             option Prime/Specials
                             option Sports
@@ -645,11 +874,11 @@
 
                   fieldset.vui-form-element.vui-m-right--small
                     .vui-form-element__control(style='width: 8rem')
-                      vui-datepicker(v-model='startDate' name='startDate' placeholder='MM/dd/yyyy')
+                      vui-datepicker(v-model='flightStartDate' name='flightStartDate' placeholder='MM/dd/yyyy')
 
                   fieldset.vui-form-element.vui-m-right--small
                     .vui-form-element__control(style='width: 8rem')
-                      vui-datepicker(v-model='endDate' name='endDate' placeholder='MM/dd/yyyy')
+                      vui-datepicker(v-model='flightEndDate' name='flightEndDate' placeholder='MM/dd/yyyy')
 
                   fieldset.vui-form-element.vui-m-right--small.vui-m-top--medium
                     .vui-form-element__control
@@ -692,8 +921,8 @@
                         span(v-if='!avail.isSelected') {{avail.days || avail.day}}
                         .vui-form-element__control(v-else)
                           .vui-select_container
-                            select.vui-select
-                              option M-F
+                            select.vui-select(v-model='avail.selectedDay')
+                              option MO-FR
                               option SU
                               option MO
                               option TU
@@ -701,7 +930,6 @@
                               option TH
                               option FR
                               option SA
-
                       td.vui-truncate(:title='avail.dayPartName' style='width: 140px') {{daypart.daypartName || avail.dayPartName || avail.daypart}}
                       td.vui-text-align--center(:title='avail.spotLength', style='width: 60px') {{avail.spotLength || '30 s'}}
                       td.vui-text-align--right(:title='avail.totalSpots' style='width: 77px')
@@ -747,6 +975,7 @@
               label Found Avails Count:
               span {{availsCount}}
     requested-dayparts-popup(v-if='showRequestedDaypartsModal' @close='showRequestedDaypartsModal = false')
+    totals-popup(v-if='showTotalsPopup' @close='showTotalsPopup = false')
 </template>
 
 <script>
@@ -779,12 +1008,15 @@
         canSave: true,
         showStationAvails: false,
         showRequestedDaypartsModal: false,
+        showTotalsPopup: false,
         filteringType: 0,
         startTime: '',
         endTime: '',
         dayItems: [],
         daypartItems: [],
         lengthItems: [],
+        flightStartDate: new Date(moment().subtract(2, 'weeks').weekday(1).toISOString()),
+        flightEndDate: new Date(moment().add(3, 'weeks').weekday(7).toISOString()),
         startDate: new Date(moment().add(14, 'days').toISOString()),
         endDate: new Date(moment().add(5, 'days').toISOString()),
         selectedClassification: 'Unknown',
@@ -804,7 +1036,10 @@
         programData: {
           effectiveFrom: new Date(moment().add(14, 'days').toISOString()),
           effectiveThrough: new Date(moment().add(14, 'days').toISOString()),
-          newProgramName: null
+          newProgramName: null,
+          newSelectedDay: 'ALL',
+          newStartTime: '07:00 AM',
+          newEndTime: '07:00 AM'
         },
         oldProgramNamesBeingReplaced: [
           {
@@ -982,6 +1217,9 @@
           {
             isSelected: false,
             lineNumber: 0,
+            startTime: null,
+            endTime: null,
+            selectedDay: null,
             spotRate: 0,
             buyerRating: 0,
             weeks: [
@@ -1035,10 +1273,16 @@
         // return avail
       },
 
-
+      send () {
+        this.$toasted.success('Sent...', {
+          theme: "primary",
+          position: "top-right",
+          duration : 9000
+        })
+        // this.spotsOffered = []
+      },
 
       transfer () {
-
         this.$toasted.success('Successfully Transferred to MediaOps', {
           theme: "primary",
           position: "top-right",

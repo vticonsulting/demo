@@ -1,6 +1,6 @@
 <template lang="pug">
   .campaign-performance-legend
-    span.vui-m-right--medium Metered
+    span.vui-m-right--medium LPM
     span.vui-m-right--medium
       vui-icon.vui-m-right--x-small(
         name = 'stop'

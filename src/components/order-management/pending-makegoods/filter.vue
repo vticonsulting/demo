@@ -1,5 +1,5 @@
 <template lang="pug">
-  form.vui-grid.vui-grid--vertical-align-end
+  form.vui-grid.vui-grid--vertical-align-end.vui-wrap
     fieldset.vui-form-element.vui-m-right--small
       label.vui-form-element__label Offer Status
       .vui-form-element__control(style='width: 11rem')
