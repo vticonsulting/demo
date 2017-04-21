@@ -241,7 +241,7 @@
               fieldset.vui-col--padded-medium.vui-form-element
                 .vui-form-element__control
                   span GRP's&nbsp;
-                  span {{ selectedDaypart.goals.grps | formatMoney }}
+                  span {{ selectedDaypart.goals.grps  }}
               fieldset.vui-col--padded-medium.vui-form-element
                 .vui-form-element__control
                   span Mix&nbsp;
