@@ -3,7 +3,7 @@
     vui-title Price Guide
 
     p.vui-text-heading--label Videa Pricing was last updated on {{ lastUpdated }} at 08:30 AM
-    p.vui-text-body--small ON THE BOOKS WAS LAST UPDATED ON FEBRUARY 13, 2017 AT  12:00 AM
+    p.vui-text-heading--label ON THE BOOKS WAS LAST UPDATED ON {{ lastUpdated }} AT  6:00 AM
     p.vui-text-longform.vui-m-bottom--medium Use the Price Guide to review your rates and to either accept the Videa rates or override the Videa rates. The price is set prior to avail in the price guide. If you accept the Videa rates, know that Videa updates the rates every Sunday.
     vui-panel
       // Form
@@ -870,13 +870,12 @@
       return {
         context: {},
         priceGuide: {},
-        selectedQuarter: '2017/Q2',
+        selectedQuarter: '2017/Q4',
         quarters: [
-          '2017/Q2',
-          '2017/Q3',
           '2017/Q4',
           '2018/Q1',
-          '2018/Q2'
+          '2018/Q2',
+          '2018/Q3'
         ],
         selected: 'early-morning',
         selectedDaypart: 'early-morning',

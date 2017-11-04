@@ -15,7 +15,7 @@
           ) Submit
           button.vui-button.vui-button--neutral Cancel
 
-      .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
+      .vui-grid.vui-grid--align-spread.vui-m-bottom--large
         // Client
         fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large.vui-m-bottom--large
           label.vui-form-element__label(
@@ -53,7 +53,7 @@
               type = 'text'
             )
 
-      .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
+      .vui-grid.vui-grid--align-spread.vui-m-bottom--large
         // Campain Name
         fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
           label.vui-form-element__label(
@@ -114,7 +114,7 @@
           .vui-form-element__control
             #age-range
 
-      .vui-box.vui-grid.vui-grid--align-spread.vui-theme--default
+      .vui-grid.vui-grid--align-spread
         // Market
         fieldset.vui-form-element.vui-size--1-of-3.vui-p-right--large
           label.vui-form-element__label(
