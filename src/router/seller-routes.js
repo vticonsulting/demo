@@ -87,6 +87,11 @@ module.exports = [
     component: require('@/pages/sellers/avails')
   },
   {
+    path: '/sellers/avails/request',
+    name: 'sellers-avails-request',
+    component: require('@/pages/sellers/avails/request')
+  },
+  {
     path: '/sellers/avails/:id',
     name: 'sellers-avails-id',
     component: require('@/pages/sellers/avails/_id')
@@ -138,5 +143,4 @@ module.exports = [
       }
     ]
   }
-
 ]
