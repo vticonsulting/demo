@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-  baseURL: process.env.BASE_URL || 'http://localhost:3000',
+  baseURL: process.env.VUE_APP_API_URL || 'http://localhost:3000',
   withCredentials: false, // This is the default
   headers: {
     Accept: 'application/json',
